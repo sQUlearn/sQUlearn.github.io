@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Executor Class &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Operators for expectation values" href="operators.html" />
+    <link rel="prev" title="User Guide" href="user_guide_index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user_guide_index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Executor Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-features-of-the-executor">Key Features of the Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialization-of-the-executor-class">Initialization of the Executor class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#utilizing-executor-primitives-in-qiskit-routines">Utilizing Executor Primitives in Qiskit Routines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-options-for-primitives">Setting Options for Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Operators for expectation values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_maps.html">Quantum Feature Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel_methods.html">Quantum Kernel Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user_guide_index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">The Executor Class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/executor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-executor-class">
+<span id="executor-user-guide"></span><h1>The Executor Class<a class="headerlink" href="#the-executor-class" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> class is the central component of sQUlearn, responsible
+for running all quantum jobs.
+Both high- and low-level methods utilize the Executor class to execute circuits or other
+quantum jobs.
+The class provides a high-level interface to the Qiskit simulators and access to IBM
+Quantum systems.
+It features a variety of comfort features, such as automatic session handling, result caching,
+restarts and it automatically creates the necessary Qiskit primitives when they are
+required in the sub-program.
+The Executor class is also responsible for handling the execution environment, and can be
+initialized with a variety of objects that specify the execution environment (see figure below).
+The following figure summarizes the structure of the Executor class; ingoing arrows indicate
+that the Executor class can be initialized or adjusted with the corresponding object.
+Outgoing arrows indicate that the Executor class can return the corresponding object.</p>
+<a class="reference internal image-reference" href="../_images/executor.png"><img alt="../_images/executor.png" class="align-center" src="../_images/executor.png" style="width: 525px;" /></a>
+</section>
+<section id="key-features-of-the-executor">
+<h2>Key Features of the Executor<a class="headerlink" href="#key-features-of-the-executor" title="Permalink to this heading"></a></h2>
+<p>The Executor class provides the following key comfort features when executing a quantum job:</p>
+<ul class="simple">
+<li><p><strong>Session handling:</strong> Automatically manages the creation and handling of Qiskit sessions.
+If Sessions are time out, the Executor automatically creates a new session and re-executes the
+job.</p></li>
+<li><p><strong>Result caching:</strong> Enables caching of results to avoid redundant job executions, and enable
+restarts of failed executions. Caching is enabled as default only for remote executions.
+The cached files are named after the hash out of different properties of the quantum job,
+that include the backend name, the circuit, the options of the primitive, etc.
+Before running a job, the Executor checks if a cached result exists and returns it if it does.
+The caching can be disabled by setting the <code class="docutils literal notranslate"><span class="pre">caching</span></code> argument to <code class="docutils literal notranslate"><span class="pre">False</span></code>; the folder for
+the cached results can be specified by the <code class="docutils literal notranslate"><span class="pre">cache_dir</span></code> argument,
+(default folder: <code class="docutils literal notranslate"><span class="pre">&quot;_cache&quot;</span></code>).</p></li>
+<li><p><strong>Automatic restarts:</strong> In case the job execution fails or is canceled, the Executor
+automatically resubmits and restarts the job up to a specified number of times.
+The number of restarts can be specified via the <code class="docutils literal notranslate"><span class="pre">max_jobs_retries</span></code> argument, the pause
+between restarts can be adjusted by the <code class="docutils literal notranslate"><span class="pre">wait_restart</span></code> argument.</p></li>
+<li><p><strong>Logging:</strong> The executor automatically logs all actions to a log file that ca be specified
+via the <code class="docutils literal notranslate"><span class="pre">log_file</span></code> argument.</p></li>
+<li><p><strong>Modified Qiskit Primitives:</strong> The Executor allows the creation of modified Qiskit Primitives
+that function similarly to regular primitives but leverage the comfort features mentioned above.
+The primitives can be obtained utilizing the <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.get_estimator" title="squlearn.Executor.get_estimator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_estimator()</span></code></a> and
+<a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.get_sampler" title="squlearn.Executor.get_sampler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sampler()</span></code></a> methods. The modified primitives route all executions through the Executor
+class, and thus benefit from all comfort features. The primitives are fully compatible with
+the Qiskit framework, and can be used in the same way as regular primitives.
+The Executor primitives are automatically utilized in the sQUlearn
+sub-programs.</p></li>
+</ul>
+</section>
+<section id="initialization-of-the-executor-class">
+<h2>Initialization of the Executor class<a class="headerlink" href="#initialization-of-the-executor-class" title="Permalink to this heading"></a></h2>
+<p>The Estimator can be initialized with various inputs (<code class="docutils literal notranslate"><span class="pre">execution=</span></code>) that specify the
+execution environment:</p>
+<ul>
+<li><p>A string specifying the simulator backend (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;statevector_simulator&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;qasm_simulator&quot;</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">execution</span><span class="o">=</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The argument <code class="docutils literal notranslate"><span class="pre">execution</span></code> is omitted in the following examples since it is not necessary,
+if the environment is specified as the first argument.</p>
+</li>
+<li><p>A backend following the Qiskit backend standard, e.g. a Qiskit Aer backend, a fake backend,
+a real IBM Quantum backend. This allows in principle the utilization
+of other quantum computing backends as IBM Quantum, as long as they provide a Qiskit backend
+class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span>
+
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;qasm_simulator&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>A backend from the Qiskit Runtime Service, which utilizes the execution of quantum jobs on
+IBM Quantum utilizing Sessions and Primitives.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_nairobi&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>A pre-initialized Session object, which can be used to execute quantum jobs on the Qiskit
+Runtime Service</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Pre-configured Primitive with options for transpiling and error mitigation. The Executor class
+utilizes the options of the inputted primitive, and automatically creates a new primitive with
+the same options if necessary. Note Options from an Estimator are not automatically copied to
+the Sampler, and vice versa.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">Estimator</span><span class="p">,</span> <span class="n">Options</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+
+<span class="n">options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+<span class="n">options</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">shots</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># No optimization in transpilation</span>
+<span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># ZNE</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">service</span><span class="o">.</span><span class="n">create_session</span><span class="p">(),</span> <span class="n">options_estimator</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">estimator</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>If only the <code class="docutils literal notranslate"><span class="pre">backend.run</span></code> execution is wanted, this can be achieved by utilizing the
+Qiskit IBM Provider package. However, most sQUlearn algorithms a build upon primitives.
+However, this access is not recommended, since it is likely to be deprecated in the future.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_provider</span> <span class="kn">import</span> <span class="n">IBMProvider</span>
+
+<span class="n">IBMProvider</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+<span class="n">provider</span> <span class="o">=</span> <span class="n">IBMProvider</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s2">&quot;hub/group/project&quot;</span><span class="p">)</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">provider</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;ibmq_qasm_simulator&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>An example for configuring the Executor class with a backend from the Qiskit Runtime Service
+and setting options for caching, logging and restarts:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">Options</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+
+<span class="n">options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+<span class="n">options</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">shots</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># No optimization in transpilation</span>
+<span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># ZNE</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_nairobi&#39;</span><span class="p">),</span> <span class="c1"># Specify the backend</span>
+                     <span class="n">cache_dir</span><span class="o">=</span><span class="s1">&#39;cache&#39;</span> <span class="c1"># Set cache folder to &quot;cache&quot;</span>
+                     <span class="n">caching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># Enable caching default for remote executions</span>
+                     <span class="n">log_file</span><span class="o">=</span><span class="s2">&quot;executor.log&quot;</span><span class="p">,</span> <span class="c1"># Set-up logging file</span>
+                     <span class="n">wait_restart</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>  <span class="c1"># Set 10 min pause between restarts of Jobs</span>
+                     <span class="n">max_jobs_retries</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># Set maximum number of restarts to 10 before aborting</span>
+                     <span class="n">options_estimator</span><span class="o">=</span><span class="n">options</span> <span class="c1"># Set options for the Estimator primitive</span>
+                     <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="utilizing-executor-primitives-in-qiskit-routines">
+<h2>Utilizing Executor Primitives in Qiskit Routines<a class="headerlink" href="#utilizing-executor-primitives-in-qiskit-routines" title="Permalink to this heading"></a></h2>
+<p>The Executor class provides an Estimator and Sampler primitive that are compatible with the
+Qiskit framework. The primitives can be obtained by the <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.get_estimator" title="squlearn.Executor.get_estimator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_estimator()</span></code></a> and
+<a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.get_sampler" title="squlearn.Executor.get_sampler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sampler()</span></code></a> methods of the Executor class. The primitives automatically utilized the parent
+Executor class for all executions, and thus benefit from all comfort features of the Executor.</p>
+<p>The following example shows, how to evaluate the Quantum Fisher Information utilizing the
+Executor primitive.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.gradients</span> <span class="kn">import</span> <span class="n">LinCombQGT</span><span class="p">,</span> <span class="n">QFI</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Pauli</span>
+<span class="c1"># Executor intialization (other ways are possible, see above)</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">execution</span><span class="o">=</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">)</span>
+<span class="c1"># This creates the QFI primitive that utilizes the Estimator of the Executor class</span>
+<span class="n">qfi</span> <span class="o">=</span> <span class="n">QFI</span><span class="p">(</span><span class="n">LinCombQGT</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">get_estimator</span><span class="p">()))</span>
+<span class="c1"># Quantum Fischer Information can be evaluated as usual with qfi.run()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>If only the run function of the Executor Primitive is wanted, this can be achieved by utilizing the
+Executor class function <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.estimator_run" title="squlearn.Executor.estimator_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code></a> and <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.sampler_run" title="squlearn.Executor.sampler_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sampler_run()</span></code></a>.</p>
+<p>Note that the attributes <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.estimator" title="squlearn.Executor.estimator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator()</span></code></a> and <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.sampler" title="squlearn.Executor.sampler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sampler()</span></code></a> of the Executor class are
+not creating or referring to the Executor primitives! Instead they refer to the
+Qiskit Primitives used internally that do not utilize any caching, restarts, etc.</p>
+</section>
+<section id="setting-options-for-primitives">
+<h2>Setting Options for Primitives<a class="headerlink" href="#setting-options-for-primitives" title="Permalink to this heading"></a></h2>
+<p>Options for the Primitives can be provided through the <code class="docutils literal notranslate"><span class="pre">options_estimator</span></code> and
+<code class="docutils literal notranslate"><span class="pre">options_sampler</span></code> arguments, but they are also automatically copied from inputted primitives.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">Options</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+
+<span class="n">options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No optimization in transpilation</span>
+<span class="n">options</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">shots</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No Mitigation</span>
+
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;ibm_nairobi&quot;</span><span class="p">),</span><span class="n">options_estimator</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Options can be adjusted by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_options()</span></code> method of the Primitives that are created by the
+Executor class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">Options</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;ibm_nairobi&quot;</span><span class="p">))</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">get_estimator</span><span class="p">()</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">set_options</span><span class="p">(</span><span class="n">resilience_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a></p></li>
+<li><p><a class="reference external" href="https://quantum-computing.ibm.com/lab/docs/iql/runtime">Qiskit Runtime</a></p></li>
+<li><p><a class="reference external" href="https://qiskit.org/documentation/apidoc/primitives.html">Qsikit Primitives</a></p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user_guide_index.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="operators.html" class="btn btn-neutral float-right" title="Operators for expectation values" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.Executor" href="squlearn.Executor.html" />
+    <link rel="prev" title="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase" href="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.feature_map">Feature Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#feature-map-tools">Feature Map Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#operators">Operators</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#operator-tools">Operator Tools</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_base</span></code>.ExpectationOperatorBase</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_derivatives</span></code>.ExpectationOperatorDerivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#core">Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_derivatives</span></code>.ExpectationOperatorDerivatives</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-expectation-operator-expectation-operator-derivatives-expectationoperatorderivatives">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_derivatives</span></code>.ExpectationOperatorDerivatives<a class="headerlink" href="#squlearn-expectation-operator-expectation-operator-derivatives-expectationoperatorderivatives" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.expectation_operator.expectation_operator_derivatives.</span></span><span class="sig-name descname"><span class="pre">ExpectationOperatorDerivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expectation_operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html#squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase" title="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase"><span class="pre">ExpectationOperatorBase</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opflow_caching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives" title="Permalink to this definition"></a></dt>
+<dd><p>Class for calculating derivatives of expectation operators.</p>
+<p>The derivatives are calculated by automatic differentiation of parameter in the expectation
+operator. Also, squaring of the operator is implemented.
+The class can either applied on a single operator, or on a list of operators.
+results are cached for faster evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expectation_operator</strong> (<em>Union</em><em>[</em><a class="reference internal" href="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html#squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase" title="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase"><em>ExpectationOperatorBase</em></a><em>, </em><em>list</em><em>]</em>) – Expectation operator or list
+of expectation operators from
+which the derivatives are
+obtained.</p></li>
+<li><p><strong>opflow_caching</strong> (<em>bool</em>) – If True, the opflow structure of the expectation operator is cached</p></li>
+</ul>
+</dd>
+</dl>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Strings that are recognized by the <a class="reference internal" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_derivative" title="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_derivative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_derivative()</span></code></a> method</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>String</p></th>
+<th class="head"><p>Derivative</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;O&quot;</span></code></p></td>
+<td><p>Expectation operator <span class="math notranslate nohighlight">\(\hat{O}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;OO&quot;</span></code></p></td>
+<td><p>Squared expectation operator <span class="math notranslate nohighlight">\(\hat{O}^2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;dop&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Odop&quot;</span></code></p></td>
+<td><p>First-order derivative of the expectation operator:
+<span class="math notranslate nohighlight">\(\frac{d}{dp}\hat{O}(p)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;dopdop&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Odopdop&quot;</span></code></p></td>
+<td><p>Second-order derivative of the expectation operator:
+<span class="math notranslate nohighlight">\(\frac{d^2}{dp^2}\hat{O}(p)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;OOdop&quot;</span></code></p></td>
+<td><p>First-order derivative of the squared expectation operator:
+<span class="math notranslate nohighlight">\(\frac{d}{dp}\hat{O}^2(p)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;OOdopdop&quot;</span></code></p></td>
+<td><p>Second-order derivative of the squared expectation operator:
+<span class="math notranslate nohighlight">\(\frac{d^2}{dp^2}\hat{O}^2(p)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code></p></td>
+<td><p>Returns a identity operator with the same number of qubits as the provided
+expectation operator</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example: first-order derivative of the Ising Hamiltonian</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">IsingHamiltonian</span><span class="p">,</span><span class="n">ExpectationOperatorDerivatives</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">IsingHamiltonian</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ExpectationOperatorDerivatives</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">(</span><span class="s2">&quot;dop&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Example: Squared summed Pauli Operator</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">SummedPaulis</span><span class="p">,</span><span class="n">ExpectationOperatorDerivatives</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ExpectationOperatorDerivatives</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">get_operator_squared</span><span class="p">())</span>
+</pre></div>
+</div>
+<section id="attributes">
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.parameter_vector">
+<span class="sig-name descname"><span class="pre">parameter_vector</span></span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.parameter_vector" title="Permalink to this definition"></a></dt>
+<dd><p>Parameter vector used in the expectation operator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ParameterVector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.num_parameters">
+<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.num_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Total number of trainable parameters in the expectation operator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.num_operators">
+<span class="sig-name descname"><span class="pre">num_operators</span></span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.num_operators" title="Permalink to this definition"></a></dt>
+<dd><p>Number operators in case of multiple expectation operators</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.assign_parameters">
+<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OperatorBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.assign_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Assign parameters to a derivative that is obtained from this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>operator</strong> (<em>OperatorBase</em>) – Operator to which the parameters are assigned</p></li>
+<li><p><strong>parameters</strong> (<em>np.ndarray</em>) – Parameters values that replace the parameters in the operator</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Operator with assigned parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_derivation_from_string">
+<span class="sig-name descname"><span class="pre">get_derivation_from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_derivation_from_string" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the derivative of the expectation operator for a string abbreviation.</p>
+<p>The table for the abbreviations can be found at <a class="reference internal" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives" title="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExpectationOperatorDerivatives</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_string</strong> (<em>str</em>) – String for specifying the derivation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Differentiated expectation operator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_derivative">
+<span class="sig-name descname"><span class="pre">get_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">derivative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_derivative" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the derivative of the expectation operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>derivative</strong> (<em>str</em><em> or </em><em>tuple</em>) – String or tuple of parameters for specifying the derivation.
+See <a class="reference internal" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives" title="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExpectationOperatorDerivatives</span></code></a> for more information.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Differentiated expectation operator in opflow StateFn format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_differentiation_from_tuple">
+<span class="sig-name descname"><span class="pre">get_differentiation_from_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diff_tuple</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_differentiation_from_tuple" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the derivative of the expectation operator from a tuple of parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diff_tuple</strong> (<em>tuple</em>) – Tuple containing ParameterVectors or ParameterExpressions</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Differentiated expectation operator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_operator_squared">
+<span class="sig-name descname"><span class="pre">get_operator_squared</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.get_operator_squared" title="Permalink to this definition"></a></dt>
+<dd><p>Builds and caches the squared form of the expectation operator OO=O^2</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html" class="btn btn-neutral float-left" title="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.Executor.html" class="btn btn-neutral float-right" title="squlearn.Executor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

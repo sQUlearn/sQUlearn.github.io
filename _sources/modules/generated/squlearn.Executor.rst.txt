@@ -1,0 +1,6 @@
+﻿:mod:`squlearn`.\ :spelling:word:`Executor`
+==================================================
+
+.. currentmodule:: squlearn
+
+.. autoclass:: Executor

@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.matrix`.\ :spelling:word:`FidelityKernel`
+======================================================================
+
+.. currentmodule:: squlearn.kernel.matrix
+
+.. autoclass:: FidelityKernel

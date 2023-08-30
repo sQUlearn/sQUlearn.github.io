@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.loss`.\ :spelling:word:`LossBase`
+===========================================================
+
+.. currentmodule:: squlearn.qnn.loss
+
+.. autoclass:: LossBase

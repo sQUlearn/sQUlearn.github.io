@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn`.\ :spelling:word:`QNNRegressor`
+==========================================================
+
+.. currentmodule:: squlearn.qnn
+
+.. autoclass:: QNNRegressor

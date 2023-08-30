@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.matrix.kernel_matrix_base`.\ :spelling:word:`KernelMatrixBase`
+===========================================================================================
+
+.. currentmodule:: squlearn.kernel.matrix.kernel_matrix_base
+
+.. autoclass:: KernelMatrixBase

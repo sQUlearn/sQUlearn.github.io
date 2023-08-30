@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.feature_map`.\ :spelling:word:`automated_pruning`
+=======================================================================
+
+.. currentmodule:: squlearn.feature_map
+
+.. autofunction:: automated_pruning

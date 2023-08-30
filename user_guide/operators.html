@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operators for expectation values &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quantum Feature Maps" href="feature_maps.html" />
+    <link rel="prev" title="The Executor Class" href="executor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user_guide_index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="executor.html">The Executor Class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Operators for expectation values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implemented-expectation-operators">Implemented expectation operators.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#obtained-derivatives-of-the-expectation-values">Obtained derivatives of the expectation values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="feature_maps.html">Quantum Feature Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel_methods.html">Quantum Kernel Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user_guide_index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Operators for expectation values</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/operators.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operators-for-expectation-values">
+<h1>Operators for expectation values<a class="headerlink" href="#operators-for-expectation-values" title="Permalink to this heading"></a></h1>
+<p>Operators play a crucial role in computing the expectation value in conjunction with a
+wave function. Currently, in sQUlearn, only operators constructed from the Pauli group
+<span class="math notranslate nohighlight">\(\{\hat{X},\hat{Y},\hat{Z},\hat{I}\}\)</span> are supported. In the context of sQUlearn,
+expectation operators are mandatory inputs for the Quantum Neural Network (QNN) and can be
+employed in the Projected Quantum Kernel program.
+All operators follow the Base Class <code class="xref py py-class docutils literal notranslate"><span class="pre">ExpectationOperatorBase</span></code>.</p>
+<p>The following functions and operators are accessible via <a class="reference internal" href="../modules/classes.html#module-squlearn.expectation_operator" title="squlearn.expectation_operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.expectation_operator</span></code></a>.</p>
+<section id="implemented-expectation-operators">
+<h2>Implemented expectation operators.<a class="headerlink" href="#implemented-expectation-operators" title="Permalink to this heading"></a></h2>
+<p>The following operators are available and implemented as standalone classes:</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.expectation_operator.SinglePauli.html#squlearn.expectation_operator.SinglePauli" title="squlearn.expectation_operator.SinglePauli"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SinglePauli</span></code></a></p></td>
+<td><p>Single Pauli operator of a single Qubit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.expectation_operator.SummedPaulis.html#squlearn.expectation_operator.SummedPaulis" title="squlearn.expectation_operator.SummedPaulis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SummedPaulis</span></code></a></p></td>
+<td><p>Operator for summation of single Pauli operators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.expectation_operator.SingleProbability.html#squlearn.expectation_operator.SingleProbability" title="squlearn.expectation_operator.SingleProbability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SingleProbability</span></code></a></p></td>
+<td><p>Operator for measuring the probability of being in state 0 or 1 of a specified qubit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.expectation_operator.SummedProbabilities.html#squlearn.expectation_operator.SummedProbabilities" title="squlearn.expectation_operator.SummedProbabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SummedProbabilities</span></code></a></p></td>
+<td><p>Operator for summing single Qubit probabilities of binary states.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.expectation_operator.IsingHamiltonian.html#squlearn.expectation_operator.IsingHamiltonian" title="squlearn.expectation_operator.IsingHamiltonian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsingHamiltonian</span></code></a></p></td>
+<td><p>Implementation of Ising type Hamiltonians.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.expectation_operator.CustomExpectationOperator.html#squlearn.expectation_operator.CustomExpectationOperator" title="squlearn.expectation_operator.CustomExpectationOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomExpectationOperator</span></code></a></p></td>
+<td><p>Class for evaluating the expectation value of a custom operator.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example: Summed Pauli Operator</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
+
+<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example: Custom operator</strong></p>
+<p>Operators can be added by <code class="docutils literal notranslate"><span class="pre">+</span></code> or multiplied by <code class="docutils literal notranslate"><span class="pre">*</span></code> with each other.
+Together with the class <a class="reference internal" href="../modules/generated/squlearn.expectation_operator.CustomExpectationOperator.html#squlearn.expectation_operator.CustomExpectationOperator" title="squlearn.expectation_operator.CustomExpectationOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomExpectationOperator</span></code></a>, in which single parameterized operators
+can be build from strings, your can create more complex operators.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">CustomExpectationOperator</span>
+
+<span class="n">op1</span> <span class="o">=</span> <span class="n">CustomExpectationOperator</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">operator_string</span><span class="o">=</span><span class="s2">&quot;IX&quot;</span><span class="p">,</span><span class="n">parameterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">op2</span> <span class="o">=</span> <span class="n">CustomExpectationOperator</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">operator_string</span><span class="o">=</span><span class="s2">&quot;ZY&quot;</span><span class="p">,</span><span class="n">parameterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">total_op</span> <span class="o">=</span> <span class="n">op1</span> <span class="o">+</span> <span class="n">op2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">total_op</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that in Qiskit, the qubits are counted from the right to the left as in the computational
+basis!</p>
+<p><strong>Example: Use the mapping from the transpiled feature map</strong></p>
+<p>When running on a backend, the number of physical qubits may change
+from the number of qubits the definition of the expectation operator.
+to solve this issue, it is possible to provide a map from the logical qubits to the
+physical qubits via <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_qubit_map()</span></code>.
+The map can be for example obtained in the transpiled feature map.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.feature_map</span> <span class="kn">import</span> <span class="n">ChebRx</span><span class="p">,</span><span class="n">TranspiledFeatureMap</span>
+<span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
+<span class="kn">from</span> <span class="nn">qiskit.providers.fake_provider</span> <span class="kn">import</span> <span class="n">FakeManilaV2</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">TranspiledFeatureMap</span><span class="p">(</span><span class="n">ChebRx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">backend</span><span class="o">=</span><span class="n">FakeManilaV2</span><span class="p">(),</span><span class="n">initial_layout</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">op_str</span><span class="o">=</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">set_map</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">qubit_map</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">num_all_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="obtained-derivatives-of-the-expectation-values">
+<h2>Obtained derivatives of the expectation values<a class="headerlink" href="#obtained-derivatives-of-the-expectation-values" title="Permalink to this heading"></a></h2>
+<p>In sQUlearn it is also possible to evaluate the derivatives of expectation operators
+as for example needed during the training of the QNN.
+This is possible with the class <code class="xref py py-class docutils literal notranslate"><span class="pre">ExpectationOperatorDerivatives</span></code>.
+The derivatives are calculated with respect to the parameters of the expectation operator.</p>
+<p><strong>Example: first-order derivative of the Ising Hamiltonian</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">IsingHamiltonian</span><span class="p">,</span><span class="n">ExpectationOperatorDerivatives</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">IsingHamiltonian</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ExpectationOperatorDerivatives</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">(</span><span class="s2">&quot;dop&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To calculate the variance of an operator, the squared operator can be used.</p>
+<p><strong>Example: Squared summed Pauli Operator</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">SummedPaulis</span><span class="p">,</span><span class="n">ExpectationOperatorDerivatives</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ExpectationOperatorDerivatives</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">get_operator_squared</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>In principle, arbitrary derivatives can be computed by supplying a tuple, but often, the higher-order derivatives
+are zero. To achieve this, the function <code class="xref py py-meth docutils literal notranslate"><span class="pre">ExpectationOperatorDerivatives.get_derivative()</span></code> can be used with a tuple
+of parameters <code class="xref py py-meth docutils literal notranslate"><span class="pre">ExpectationOperatorDerivatives.parameter_vector()</span></code>.</p>
+<p><strong>Example: higher-order derivative of the cubed SummedPaulis operator</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.expectation_operator</span> <span class="kn">import</span> <span class="n">SummedPaulis</span><span class="p">,</span><span class="n">ExpectationOperatorDerivatives</span>
+
+<span class="c1"># Build cubed SummedPaulis operator</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">op3</span> <span class="o">=</span> <span class="n">op</span><span class="o">*</span><span class="n">op</span><span class="o">*</span><span class="n">op</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">op3</span><span class="p">)</span>
+
+<span class="c1"># Get the Hessian from a tuple</span>
+<span class="n">deriv</span> <span class="o">=</span> <span class="n">ExpectationOperatorDerivatives</span><span class="p">(</span><span class="n">op3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deriv</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">((</span><span class="n">deriv</span><span class="o">.</span><span class="n">parameter_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">deriv</span><span class="o">.</span><span class="n">parameter_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="executor.html" class="btn btn-neutral float-left" title="The Executor Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="feature_maps.html" class="btn btn-neutral float-right" title="Quantum Feature Maps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

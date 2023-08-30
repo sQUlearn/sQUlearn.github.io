@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.loss`.\ :spelling:word:`ParameterRegularizationLoss`
+==============================================================================
+
+.. currentmodule:: squlearn.qnn.loss
+
+.. autoclass:: ParameterRegularizationLoss

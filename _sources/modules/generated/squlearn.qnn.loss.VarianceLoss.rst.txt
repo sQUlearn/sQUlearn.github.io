@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.loss`.\ :spelling:word:`VarianceLoss`
+===============================================================
+
+.. currentmodule:: squlearn.qnn.loss
+
+.. autoclass:: VarianceLoss

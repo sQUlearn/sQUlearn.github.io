@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.expectation_operator`.\ :spelling:word:`IsingHamiltonian`
+===============================================================================
+
+.. currentmodule:: squlearn.expectation_operator
+
+.. autoclass:: IsingHamiltonian

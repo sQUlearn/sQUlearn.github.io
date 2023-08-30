@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.ml`.\ :spelling:word:`QKRR`
+========================================================
+
+.. currentmodule:: squlearn.kernel.ml
+
+.. autoclass:: QKRR

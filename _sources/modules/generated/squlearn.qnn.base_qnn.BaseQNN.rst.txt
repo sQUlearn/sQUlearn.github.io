@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.base_qnn`.\ :spelling:word:`BaseQNN`
+==============================================================
+
+.. currentmodule:: squlearn.qnn.base_qnn
+
+.. autoclass:: BaseQNN

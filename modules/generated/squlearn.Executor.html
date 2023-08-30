@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.Executor &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.kernel.matrix.FidelityKernel" href="squlearn.kernel.matrix.FidelityKernel.html" />
+    <link rel="prev" title="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives" href="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn</span></code>.Executor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#squlearn.Executor"><code class="docutils literal notranslate"><span class="pre">Executor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#core">Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn</span></code>.Executor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.Executor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-executor">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn</span></code>.Executor<a class="headerlink" href="#squlearn-executor" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.Executor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.</span></span><span class="sig-name descname"><span class="pre">Executor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">execution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Backend</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">QuantumInstance</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">QiskitRuntimeService</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Session</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">BaseEstimator</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">BaseSampler</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'statevector_simulator'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Backend</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Options</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Options</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_sampler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Options</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Options</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'_cache'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_session_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'8h'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_jobs_retries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_restart</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor" title="Permalink to this definition"></a></dt>
+<dd><p>A class for executing quantum jobs on IBM Quantum systems or simulators.</p>
+<p>The Executor class is the central component of sQUlearn, responsible for running quantum jobs.
+Both high- and low-level methods utilize the Executor class to execute jobs seamlessly.
+It automatically creates the necessary primitives when they are required in the sQUlearn
+sub-program. The Executor takes care about session handling, result caching, and automatic
+restarts of failed jobs.</p>
+<p>The Estimator can be initialized with various objects that specify the execution environment,
+as for example a Qiskit backend either from IBM Quantum or a Aer simulator.</p>
+<p>A detailed introduction to the Executor can be found in the
+<a class="reference internal" href="../../user_guide/executor.html"><span class="doc">User Guide: The Executor Class</span></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>execution</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Backend</em><em>, </em><em>QuantumInstance</em><em>, </em><em>QiskitRuntimeService</em><em>, </em><em>Session</em><em>, </em><em>BaseEstimator</em><em>, </em><em>BaseSampler</em><em>]</em>) – <p>The execution environment, possible inputs are:</p>
+<ul>
+<li><p>A string, that specifics the simulator
+backend (<code class="docutils literal notranslate"><span class="pre">&quot;statevector_simulator&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;qasm_simulator&quot;</span></code>)</p></li>
+<li><p>A Qiskit backend, to run the jobs on IBM Quantum
+systems or simulators</p></li>
+<li><p>A QuantumInstance, that includes the backend and some options</p></li>
+<li><p>A QiskitRuntimeService, to run the jobs on the Qiskit Runtime service
+In this case the backend has to be provided separately via <code class="docutils literal notranslate"><span class="pre">backend=</span></code></p></li>
+<li><p>A Session, to run the jobs on the Qiskit Runtime service</p></li>
+<li><p>A Estimator primitive (either simulator or Qiskit Runtime primitive)</p></li>
+<li><p>A Sampler primitive (either simulator or Qiskit Runtime primitive)</p></li>
+</ul>
+<p>Default is the initialization with the <code class="xref py py-class docutils literal notranslate"><span class="pre">StatevectorSimulator</span></code>.</p>
+</p></li>
+<li><p><strong>backend</strong> (<em>Union</em><em>[</em><em>Backend</em><em>, </em><em>str</em><em>, </em><em>None</em><em>]</em>) – The backend that is used for the execution.
+Only mandatory if a service is provided.</p></li>
+<li><p><strong>options_estimator</strong> (<em>Union</em><em>[</em><em>Options</em><em>, </em><em>Options</em><em>, </em><em>None</em><em>]</em>) – The options for the created estimator
+primitives.</p></li>
+<li><p><strong>options_sampler</strong> (<em>Union</em><em>[</em><em>Options</em><em>, </em><em>Options</em><em>, </em><em>None</em><em>]</em>) – The options for the created sampler
+primitives.</p></li>
+<li><p><strong>log_file</strong> (<em>str</em>) – The name of the log file, if empty, no log file is created.</p></li>
+<li><p><strong>caching</strong> (<em>Union</em><em>[</em><em>bool</em><em>, </em><em>None</em><em>]</em>) – Whether to cache the results of the jobs.</p></li>
+<li><p><strong>cache_dir</strong> (<em>str</em>) – The directory where to cache the results of the jobs.</p></li>
+<li><p><strong>max_session_time</strong> (<em>str</em>) – The maximum time for a session, similar input as in Qiskit.</p></li>
+<li><p><strong>max_jobs_retries</strong> (<em>int</em>) – The maximum number of retries for a job
+until the execution is aborted.</p></li>
+<li><p><strong>wait_restart</strong> (<em>int</em>) – The time to wait before restarting a job in seconds.</p></li>
+</ul>
+</dd>
+</dl>
+<section id="attributes">
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.execution">
+<span class="sig-name descname"><span class="pre">execution</span></span><a class="headerlink" href="#squlearn.Executor.execution" title="Permalink to this definition"></a></dt>
+<dd><p>String of the execution environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.backend">
+<span class="sig-name descname"><span class="pre">backend</span></span><a class="headerlink" href="#squlearn.Executor.backend" title="Permalink to this definition"></a></dt>
+<dd><p>The backend that is used in the Executor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Backend</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.session">
+<span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#squlearn.Executor.session" title="Permalink to this definition"></a></dt>
+<dd><p>The session that is used in the Executor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Session</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.service">
+<span class="sig-name descname"><span class="pre">service</span></span><a class="headerlink" href="#squlearn.Executor.service" title="Permalink to this definition"></a></dt>
+<dd><p>The service that is used in the Executor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QiskitRuntimeService</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.estimator">
+<span class="sig-name descname"><span class="pre">estimator</span></span><a class="headerlink" href="#squlearn.Executor.estimator" title="Permalink to this definition"></a></dt>
+<dd><p>The Qiskit estimator primitive that is used in the Executor.
+Different to <a class="reference internal" href="#squlearn.Executor.get_estimator" title="squlearn.Executor.get_estimator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_estimator()</span></code></a>,
+which creates a new estimator object with overwritten methods
+that runs everything through the Executor with
+<a class="reference internal" href="#squlearn.Executor.estimator_run" title="squlearn.Executor.estimator_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>BaseEstimator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.sampler">
+<span class="sig-name descname"><span class="pre">sampler</span></span><a class="headerlink" href="#squlearn.Executor.sampler" title="Permalink to this definition"></a></dt>
+<dd><p>The Qiskit sampler primitive that is used in the Executor.
+Different to <a class="reference internal" href="#squlearn.Executor.get_sampler" title="squlearn.Executor.get_sampler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sampler()</span></code></a>,
+which creates a new sampler object with overwritten methods
+that runs everything through the Executor with
+<a class="reference internal" href="#squlearn.Executor.estimator_run" title="squlearn.Executor.estimator_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>BaseSampler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.quantum_instance">
+<span class="sig-name descname"><span class="pre">quantum_instance</span></span><a class="headerlink" href="#squlearn.Executor.quantum_instance" title="Permalink to this definition"></a></dt>
+<dd><p>The quantum instance that is used in the Executor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QuantumInstance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.shots">
+<span class="sig-name descname"><span class="pre">shots</span></span><a class="headerlink" href="#squlearn.Executor.shots" title="Permalink to this definition"></a></dt>
+<dd><p>The number of shots that is used in the Executor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../user_guide/executor.html"><span class="doc">User Guide: The Executor Class</span></a></p></li>
+<li><p><a class="reference external" href="https://quantum-computing.ibm.com/lab/docs/iql/runtime">Qiskit Runtime</a></p></li>
+<li><p><a class="reference external" href="https://qiskit.org/documentation/apidoc/primitives.html">Qsikit Primitives</a></p></li>
+</ul>
+</div>
+<p><strong>Example: Different initializations of the Executor</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="c1"># Executor with a ideal simulator backend</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">)</span>
+
+<span class="c1"># Executor with a shot-based simulator backend and 1000 shots</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;qasm_simulator&quot;</span><span class="p">)</span>
+<span class="n">exec</span><span class="o">.</span><span class="n">set_shots</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Executor with a IBM Quantum backend</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_nairobi&#39;</span><span class="p">))</span>
+
+<span class="c1"># Executor with a IBM Quantum backend and caching and logging</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_nairobi&#39;</span><span class="p">),</span> <span class="n">caching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">cache_dir</span><span class="o">=</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="s2">&quot;log.log&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example: Get the Executor based primitives</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+
+<span class="c1"># Initialize the Executor</span>
+<span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the Executor based Estimator - can be used as a normal Qiskit Estimator</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">get_estimator</span><span class="p">()</span>
+
+<span class="c1"># Get the Executor based Sampler - can be used as a normal Qiskit Sampler</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">get_sampler</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a circuit with the Executor based Sampler</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.random</span> <span class="kn">import</span> <span class="n">random_circuit</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">random_circuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods:<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.backend_run">
+<span class="sig-name descname"><span class="pre">backend_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_input</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.backend_run" title="Permalink to this definition"></a></dt>
+<dd><p>Routine that runs the given circuits on the backend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_input</strong> – An object to run on the backend (typically a circuit).</p></li>
+<li><p><strong>options</strong> – Additional arguments that are passed to the backend.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Qiskit job object from the run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.clear_estimator_cache">
+<span class="sig-name descname"><span class="pre">clear_estimator_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.Executor.clear_estimator_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Function for clearing the cache of the estimator primitive to avoid memory overflow.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.clear_sampler_cache">
+<span class="sig-name descname"><span class="pre">clear_sampler_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.Executor.clear_sampler_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Function for clearing the cache of the sampler primitive to avoid memory overflow.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.close_session">
+<span class="sig-name descname"><span class="pre">close_session</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.close_session" title="Permalink to this definition"></a></dt>
+<dd><p>Closes the current session, is called automatically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.create_session">
+<span class="sig-name descname"><span class="pre">create_session</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.create_session" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a new session, is called automatically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.estimator_run">
+<span class="sig-name descname"><span class="pre">estimator_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">JobV1</span></span></span><a class="headerlink" href="#squlearn.Executor.estimator_run" title="Permalink to this definition"></a></dt>
+<dd><p>Function similar to the Qiskit Sampler run function, but this one includes caching,
+automatic session handling, and restarts of failed jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuits</strong> – Quantum circuits to execute.</p></li>
+<li><p><strong>observables</strong> – Observable to measure.</p></li>
+<li><p><strong>parameter_values</strong> – Values for the parameters in circuits.</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>) – Additional arguments that are passed to the estimator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A qiskit job containing the results of the run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.get_estimator">
+<span class="sig-name descname"><span class="pre">get_estimator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.get_estimator" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Estimator primitive that overwrites the Qiskit Estimator primitive.
+This Estimator runs all executions through the Executor and
+includes result caching, automatic session handling, and restarts of failed jobs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.get_sampler">
+<span class="sig-name descname"><span class="pre">get_sampler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.get_sampler" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Sampler primitive that overwrites the Qiskit Sampler primitive.
+This Sampler runs all executions through the Executor and
+includes result caching, automatic session handling, and restarts of failed jobs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.get_shots">
+<span class="sig-name descname"><span class="pre">get_shots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#squlearn.Executor.get_shots" title="Permalink to this definition"></a></dt>
+<dd><p>Getter for the number of shots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the number of shots that are used for the current evaluation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.opflow_exec">
+<span class="sig-name descname"><span class="pre">opflow_exec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opflow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OperatorBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.Executor.opflow_exec" title="Permalink to this definition"></a></dt>
+<dd><p>Function for executing an opflow structure.</p>
+<p>This function automatically detects if an estimator, sampler or quantum instance
+is initialized and uses the corresponding function for the execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>opflow</strong> – Operator to evaluate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The evaluated opflow structure as a numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.opflow_executor">
+<span class="sig-name descname"><span class="pre">opflow_executor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#squlearn.Executor.opflow_executor" title="Permalink to this definition"></a></dt>
+<dd><p>A string that indicates which executor is used for opflow execution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.reset_shots">
+<span class="sig-name descname"><span class="pre">reset_shots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.Executor.reset_shots" title="Permalink to this definition"></a></dt>
+<dd><p>Resets the shots to the initial values when the executor was created.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.sampler_run">
+<span class="sig-name descname"><span class="pre">sampler_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">JobV1</span></span></span><a class="headerlink" href="#squlearn.Executor.sampler_run" title="Permalink to this definition"></a></dt>
+<dd><p>Function similar to the Qiskit Sampler run function, but this one includes caching,
+automatic session handling, and restarts of failed jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuits</strong> – Quantum circuits to execute.</p></li>
+<li><p><strong>parameter_values</strong> – Values for the parameters in circuits.</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>) – Additional arguments that are passed to the estimator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A qiskit job containing the results of the run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.set_shots">
+<span class="sig-name descname"><span class="pre">set_shots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.Executor.set_shots" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the number shots for the next evaluations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_shots</strong> (<em>int</em><em> or </em><em>None</em>) – Number of shots that are set</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.html" class="btn btn-neutral float-left" title="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.kernel.matrix.FidelityKernel.html" class="btn btn-neutral float-right" title="squlearn.kernel.matrix.FidelityKernel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

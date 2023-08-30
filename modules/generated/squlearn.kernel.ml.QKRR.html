@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.kernel.ml.QKRR &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.kernel.ml.QGPR" href="squlearn.kernel.ml.QGPR.html" />
+    <link rel="prev" title="squlearn.kernel.ml.QSVR" href="squlearn.kernel.ml.QSVR.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="squlearn.kernel.ml.QSVR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QSVR</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QKRR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#squlearn.kernel.ml.QKRR"><code class="docutils literal notranslate"><span class="pre">QKRR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="squlearn.kernel.ml.QGPR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QGPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="squlearn.qnn.QNNRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.QNNRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#core">Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QKRR</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.kernel.ml.QKRR.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-kernel-ml-qkrr">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QKRR<a class="headerlink" href="#squlearn-kernel-ml-qkrr" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.kernel.ml.QKRR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.ml.</span></span><span class="sig-name descname"><span class="pre">QKRR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.ml.QKRR" title="Permalink to this definition"></a></dt>
+<dd><p>Quantum Kernel Ridge Regression.</p>
+<p>This class implements the Quantum Kernel Ridge Regression analogous to KRR [1] in scikit-learn
+but is not a wrapper.
+Read more about the theoretical background of KRR in, e.g., the
+<a class="reference external" href="https://scikit-learn.org/stable/modules/kernel_ridge.html#kernel-ridge">scikit-learn user guide</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantum_kernel</strong> (<a class="reference internal" href="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.html#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase" title="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase"><em>KernelMatrixBase</em></a>) – The quantum kernel matrix to be used in the KRR pipeline (either a fidelity
+quantum kernel (FQK) or projected quantum kernel (PQK) must be provided)</p></li>
+<li><p><strong>alpha</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>np.ndarray</em><em>]</em><em>, </em><em>default=1.0e-6</em>) – Hyperparameter for the regularization strength; must be a positive float. This
+regularization improves the conditioning of the problem and assure the solvability
+of the resulting linear system. Larger values specify stronger regularization, cf.,
+e.g., Ref. [2]</p></li>
+<li><p><strong>kwargs</strong> – Keyword arguments for the quantum kernel matrix, possible arguments can be obtained
+by calling <code class="docutils literal notranslate"><span class="pre">get_params()</span></code>. Can be used to set for example the number of qubits
+(<code class="docutils literal notranslate"><span class="pre">num_qubits=</span></code>), or (if supported) the number of layers (<code class="docutils literal notranslate"><span class="pre">num_layers=</span></code>)
+of the underlying feature map.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="squlearn.kernel.ml.QGPR.html#squlearn.kernel.ml.QGPR" title="squlearn.kernel.ml.QGPR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">squlearn.kernel.ml.QGPR</span></code></a></dt><dd><p>Quantum Gaussian Process regression.</p>
+</dd>
+<dt><a class="reference internal" href="squlearn.kernel.ml.QSVR.html#squlearn.kernel.ml.QSVR" title="squlearn.kernel.ml.QSVR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">squlearn.kernel.ml.QSVR</span></code></a></dt><dd><p>Quantum Support Vector regression.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<p>[1] Kevin P. Murphy “Machine Learning: A Probabilistic Perspective”, The MIT Press
+chapter 14.4.3, pp. 493-493</p>
+<p>[2] <a class="reference external" href="https://en.wikipedia.org/wiki/Ridge_regression">https://en.wikipedia.org/wiki/Ridge_regression</a></p>
+<p><strong>Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.feature_map</span> <span class="kn">import</span> <span class="n">ChebPQC</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.matrix</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.ml</span> <span class="kn">import</span> <span class="n">QKRR</span>
+
+<span class="n">fmap</span> <span class="o">=</span> <span class="n">ChebPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">q_kernel_pqk</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
+    <span class="n">feature_map</span><span class="o">=</span><span class="n">fmap</span><span class="p">,</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">),</span>
+    <span class="n">measurement</span><span class="o">=</span><span class="s2">&quot;XYZ&quot;</span><span class="p">,</span>
+    <span class="n">outer_kernel</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
+    <span class="n">initial_parameters</span><span class="o">=</span><span class="n">param</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="mf">2.0</span>
+<span class="p">)</span>
+<span class="n">qkrr_pqk</span> <span class="o">=</span> <span class="n">QKRR</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">q_kernel_pqk</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">qkrr_pqk</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_pqk</span> <span class="o">=</span> <span class="n">qkrr_pqk</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="methods">
+<h2>Methods:<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.ml.QKRR.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.ml.QKRR.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit the Quantum Kernel Ridge regression model.</p>
+<p>Depending on whether <code class="docutils literal notranslate"><span class="pre">regularization</span></code> is set, the training kernel matrix is pre-processed
+accordingly prior to the actual fitting step is performed. The respective solution of the
+QKRR problem is obtained by solving the linear system using scipy’s Cholesky decomposition
+for providing numerical stability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_train</strong> (<em>np.ndarray</em>) – Training data of shape (n_samples, n_features)</p></li>
+<li><p><strong>y_train</strong> (<em>np.ndarray</em>) – Target values or labels of shape (n_samples,)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the instance itself.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.ml.QKRR.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.kernel.ml.QKRR.get_params" title="Permalink to this definition"></a></dt>
+<dd><p>Returns hyperparameters and their values of the QKRR method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em>) – If True, also the parameters for
+contained objects are returned (default=True).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with hyperparameters and values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.ml.QKRR.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.ml.QKRR.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predict using the Quantum Kernel Ridge model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x_test</strong> (<em>np.ndarray</em>) – Samples of data of shape (n_samples, n_features) on which QKRR
+model makes predictions.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns predicted labels (at x_test) of shape (n_samples,)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.ml.QKRR.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.kernel.ml.QKRR.set_params" title="Permalink to this definition"></a></dt>
+<dd><p>Sets value of the feature map hyperparameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – Hyperparameters and their values, e.g. <code class="docutils literal notranslate"><span class="pre">num_qubits=2</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.kernel.ml.QSVR.html" class="btn btn-neutral float-left" title="squlearn.kernel.ml.QSVR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.kernel.ml.QGPR.html" class="btn btn-neutral float-right" title="squlearn.kernel.ml.QGPR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

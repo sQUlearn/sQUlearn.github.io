@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.qnn.base_qnn.BaseQNN &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.qnn.loss.LossBase" href="squlearn.qnn.loss.LossBase.html" />
+    <link rel="prev" title="squlearn.optimizers.optimizer_base.OptimizerBase" href="squlearn.optimizers.optimizer_base.OptimizerBase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#core">Core</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.kernel.matrix">Quantum Kernel Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_base</span></code>.ExpectationOperatorBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.feature_map.feature_map_base.FeatureMapBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map.feature_map_base</span></code>.FeatureMapBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base</span></code>.KernelMatrixBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.optimization.kernel_loss_base.KernelLossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_loss_base</span></code>.KernelLossBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimization_base</span></code>.KernelOptimizerBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.optimizers.optimizer_base.OptimizerBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.optimizers.optimizer_base</span></code>.OptimizerBase</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.base_qnn</span></code>.BaseQNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.LossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.LossBase</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.base_qnn</span></code>.BaseQNN</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.qnn.base_qnn.BaseQNN.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-qnn-base-qnn-baseqnn">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.base_qnn</span></code>.BaseQNN<a class="headerlink" href="#squlearn-qnn-base-qnn-baseqnn" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.qnn.base_qnn.BaseQNN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.base_qnn.</span></span><span class="sig-name descname"><span class="pre">BaseQNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.base_qnn.BaseQNN" title="Permalink to this definition"></a></dt>
+<dd><p>Base Class for Quantum Neural Networks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>feature_map</strong> – Parameterized quantum circuit in feature map format</p></li>
+<li><p><strong>operator</strong> – Operator that are used in the expectation value of the QNN. Can be a list for
+multiple outputs.</p></li>
+<li><p><strong>executor</strong> – Executor instance</p></li>
+<li><p><strong>optimizer</strong> – Optimizer instance</p></li>
+<li><p><strong>param_ini</strong> – Initialization values of the parameters of the PQC</p></li>
+<li><p><strong>param_op_ini</strong> – Initialization values of the cost operator</p></li>
+<li><p><strong>batch_size</strong> – Number of data points in each batch, for SGDMixin optimizers</p></li>
+<li><p><strong>epochs</strong> – Number of epochs of SGD to perform, for SGDMixin optimizers</p></li>
+<li><p><strong>shuffle</strong> – If True, data points get shuffled before each epoch (default: False),
+for SGDMixin optimizers</p></li>
+<li><p><strong>opt_param_op</strong> – If True, operators parameters get optimized</p></li>
+<li><p><strong>variance</strong> – Variance factor</p></li>
+<li><p><strong>parameter_seed</strong> – Seed for the random number generator for the parameter initialization</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.base_qnn.BaseQNN.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.qnn.base_qnn.BaseQNN.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit a new model to data.</p>
+<p>This method will reinitialize the models parameters and fit it to the provided data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Input data</p></li>
+<li><p><strong>y</strong> – Labels</p></li>
+<li><p><strong>weights</strong> – Weights for each data point</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.base_qnn.BaseQNN.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.qnn.base_qnn.BaseQNN.get_params" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a dictionary of parameters for the current object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>deep</strong> – If True, includes the parameters from the base class.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary of parameters for the current object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.base_qnn.BaseQNN.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#squlearn.qnn.base_qnn.BaseQNN" title="squlearn.qnn.base_qnn.BaseQNN"><span class="pre">BaseQNN</span></a></span></span><a class="headerlink" href="#squlearn.qnn.base_qnn.BaseQNN.set_params" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the hyper-parameters of the BaseQNN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – Hyper-parameters of the BaseQNN.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>updated BaseQNN</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.optimizers.optimizer_base.OptimizerBase.html" class="btn btn-neutral float-left" title="squlearn.optimizers.optimizer_base.OptimizerBase" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.qnn.loss.LossBase.html" class="btn btn-neutral float-right" title="squlearn.qnn.loss.LossBase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

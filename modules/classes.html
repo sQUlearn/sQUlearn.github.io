@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="squlearn.kernel.ml.QSVR" href="generated/squlearn.kernel.ml.QSVR.html" />
+    <link rel="prev" title="Quantum Kernel Methods" href="../user_guide/kernel_methods.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#qml-regressors">QML Regressors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QSVR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QSVR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QKRR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QKRR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QGPR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QGPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.qnn.QNNRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.QNNRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#qml-classifiers">QML Classifiers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QSVC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QSVC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QGPC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QGPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.qnn.QNNClassifier.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.QNNClassifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#circuit-design">Circuit Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-squlearn.feature_map">Feature Maps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.YZ_CX_FeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.YZ_CX_FeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.HighDimFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.HighDimFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.QEKFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.QEKFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.ChebyshevTower.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.ChebyshevTower</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.ChebPQC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.ChebPQC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.HZCRxCRyCRz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.HZCRxCRyCRz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.ChebRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.ChebRx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.ParamZFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.ParamZFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.QiskitZFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.QiskitZFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.QiskitFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.QiskitFeatureMap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-map-tools">Feature Map Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.feature_map_base.FeatureMapBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map.feature_map_base</span></code>.FeatureMapBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.PrunedFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.PrunedFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.LayeredFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.LayeredFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.FeatureMapDerivatives.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.FeatureMapDerivatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.TranspiledFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.TranspiledFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.automated_pruning.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.automated_pruning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.pruning_from_QFI.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map</span></code>.pruning_from_QFI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#operators">Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.SinglePauli.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator</span></code>.SinglePauli</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.SummedPaulis.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator</span></code>.SummedPaulis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.SingleProbability.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator</span></code>.SingleProbability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.SummedProbabilities.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator</span></code>.SummedProbabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.IsingHamiltonian.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator</span></code>.IsingHamiltonian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.CustomExpectationOperator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator</span></code>.CustomExpectationOperator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#operator-tools">Operator Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_base</span></code>.ExpectationOperatorBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_derivatives</span></code>.ExpectationOperatorDerivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#execution-tools">Execution Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.Executor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn</span></code>.Executor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#core">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-squlearn.kernel.matrix">Quantum Kernel Core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.matrix.FidelityKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code>.FidelityKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code>.ProjectedQuantumKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimizer</span></code>.KernelOptimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.negative_log_likelihood</span></code>.NLL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.target_alignment</span></code>.TargetAlignment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-squlearn.qnn">QNN Core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.qnn.QNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.qnn</span></code>.QNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.qnn.Expec.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.qnn</span></code>.Expec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.VarianceLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ParameterRegularizationLoss</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#base-classes">Base Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_base</span></code>.ExpectationOperatorBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.feature_map.feature_map_base.FeatureMapBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map.feature_map_base</span></code>.FeatureMapBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base</span></code>.KernelMatrixBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_loss_base.KernelLossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_loss_base</span></code>.KernelLossBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimization_base</span></code>.KernelOptimizerBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.optimizers.optimizer_base.OptimizerBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.optimizers.optimizer_base</span></code>.OptimizerBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.base_qnn.BaseQNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.base_qnn</span></code>.BaseQNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.LossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.LossBase</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/classes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<span id="id1"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
+<section id="qml-regressors">
+<h2>QML Regressors<a class="headerlink" href="#qml-regressors" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.ml.QSVR.html#squlearn.kernel.ml.QSVR" title="squlearn.kernel.ml.QSVR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.ml.QSVR</span></code></a></p></td>
+<td><p>Quantum Support Vector Regression</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.ml.QKRR.html#squlearn.kernel.ml.QKRR" title="squlearn.kernel.ml.QKRR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.ml.QKRR</span></code></a></p></td>
+<td><p>Quantum Kernel Ridge Regression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.ml.QGPR.html#squlearn.kernel.ml.QGPR" title="squlearn.kernel.ml.QGPR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.ml.QGPR</span></code></a></p></td>
+<td><p>Quantum Gaussian Process Regression (QGPR).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.QNNRegressor</span></code></a></p></td>
+<td><p>Quantum Neural Network for Regression.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="qml-classifiers">
+<h2>QML Classifiers<a class="headerlink" href="#qml-classifiers" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.ml.QSVC.html#squlearn.kernel.ml.QSVC" title="squlearn.kernel.ml.QSVC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.ml.QSVC</span></code></a></p></td>
+<td><p>Quantum Support Vector Classification</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.ml.QGPC.html#squlearn.kernel.ml.QGPC" title="squlearn.kernel.ml.QGPC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.ml.QGPC</span></code></a></p></td>
+<td><p>Quantum Gaussian process classification (QGPC), that extends the scikit-learn <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessClassifier.html">sklearn.gaussian_process.GaussianProcessClassifier</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.QNNClassifier.html#squlearn.qnn.QNNClassifier" title="squlearn.qnn.QNNClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.QNNClassifier</span></code></a></p></td>
+<td><p>Quantum Neural Network for Classification.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="circuit-design">
+<h2>Circuit Design<a class="headerlink" href="#circuit-design" title="Permalink to this heading"></a></h2>
+<section id="module-squlearn.feature_map">
+<span id="id2"></span><span id="feature-maps"></span><h3>Feature Maps<a class="headerlink" href="#module-squlearn.feature_map" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.YZ_CX_FeatureMap.html#squlearn.feature_map.YZ_CX_FeatureMap" title="squlearn.feature_map.YZ_CX_FeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.YZ_CX_FeatureMap</span></code></a></p></td>
+<td><p>Creates the YZ-CX Feature Map from Reference <a class="reference external" href="https://arxiv.org/abs/2108.01039v3">https://arxiv.org/abs/2108.01039v3</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.HighDimFeatureMap.html#squlearn.feature_map.HighDimFeatureMap" title="squlearn.feature_map.HighDimFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.HighDimFeatureMap</span></code></a></p></td>
+<td><p>The high-dimensional feature map from Reference <a class="reference external" href="https://doi.org/10.1103/PhysRevA.106.042431">https://doi.org/10.1103/PhysRevA.106.042431</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.QEKFeatureMap.html#squlearn.feature_map.QEKFeatureMap" title="squlearn.feature_map.QEKFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.QEKFeatureMap</span></code></a></p></td>
+<td><p>Creates the QEK feature map as presented in Reference <a class="reference external" href="http://arxiv.org/pdf/2105.02276v1">http://arxiv.org/pdf/2105.02276v1</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.ChebyshevTower.html#squlearn.feature_map.ChebyshevTower" title="squlearn.feature_map.ChebyshevTower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.ChebyshevTower</span></code></a></p></td>
+<td><p>A feature-map that is based on the Chebyshev Tower encoding.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.ChebPQC.html#squlearn.feature_map.ChebPQC" title="squlearn.feature_map.ChebPQC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.ChebPQC</span></code></a></p></td>
+<td><p>Chebyshev Feature Map from Reference <a class="reference external" href="https://arxiv.org/abs/2306.01639">https://arxiv.org/abs/2306.01639</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.HZCRxCRyCRz.html#squlearn.feature_map.HZCRxCRyCRz" title="squlearn.feature_map.HZCRxCRyCRz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.HZCRxCRyCRz</span></code></a></p></td>
+<td><p>Feature map with HZ encoding followed by controlled Rx, Ry Rz rotations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.ChebRx.html#squlearn.feature_map.ChebRx" title="squlearn.feature_map.ChebRx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.ChebRx</span></code></a></p></td>
+<td><p>Simple Chebyshev feature map build from  Rx gates</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.ParamZFeatureMap.html#squlearn.feature_map.ParamZFeatureMap" title="squlearn.feature_map.ParamZFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.ParamZFeatureMap</span></code></a></p></td>
+<td><p>Parameterized ZFeatureMap with optional CNOT gates between the default layers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.QiskitZFeatureMap.html#squlearn.feature_map.QiskitZFeatureMap" title="squlearn.feature_map.QiskitZFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.QiskitZFeatureMap</span></code></a></p></td>
+<td><p>Wrapper to use Qiskit's ZFeatureMap</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.QiskitFeatureMap.html#squlearn.feature_map.QiskitFeatureMap" title="squlearn.feature_map.QiskitFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.QiskitFeatureMap</span></code></a></p></td>
+<td><p>Wrapper to create sQUlearn feature maps from the <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="feature-map-tools">
+<h3>Feature Map Tools<a class="headerlink" href="#feature-map-tools" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.feature_map_base.FeatureMapBase.html#squlearn.feature_map.feature_map_base.FeatureMapBase" title="squlearn.feature_map.feature_map_base.FeatureMapBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.feature_map_base.FeatureMapBase</span></code></a></p></td>
+<td><p>Feature map base class</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.PrunedFeatureMap.html#squlearn.feature_map.PrunedFeatureMap" title="squlearn.feature_map.PrunedFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.PrunedFeatureMap</span></code></a></p></td>
+<td><p>Class for pruning redundant parameter of feature maps.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.LayeredFeatureMap.html#squlearn.feature_map.LayeredFeatureMap" title="squlearn.feature_map.LayeredFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.LayeredFeatureMap</span></code></a></p></td>
+<td><p>A class for a simple creation of layered feature maps.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.FeatureMapDerivatives.html#squlearn.feature_map.FeatureMapDerivatives" title="squlearn.feature_map.FeatureMapDerivatives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.FeatureMapDerivatives</span></code></a></p></td>
+<td><p>Class for automatic differentiation of feature maps.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.TranspiledFeatureMap.html#squlearn.feature_map.TranspiledFeatureMap" title="squlearn.feature_map.TranspiledFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.TranspiledFeatureMap</span></code></a></p></td>
+<td><p>Class for generated a Feature Map with a transpiled circuit.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.feature_map.automated_pruning.html#squlearn.feature_map.automated_pruning" title="squlearn.feature_map.automated_pruning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.automated_pruning</span></code></a></p></td>
+<td><p>Function for automated pruning of the parameters in the inputted parameterized quantum circuit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.pruning_from_QFI.html#squlearn.feature_map.pruning_from_QFI" title="squlearn.feature_map.pruning_from_QFI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.pruning_from_QFI</span></code></a></p></td>
+<td><p>Algorithm for determining the redundant parameters from the Quantum Fischer Information.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="operators">
+<span id="id3"></span><h3>Operators<a class="headerlink" href="#operators" title="Permalink to this heading"></a></h3>
+<span class="target" id="module-squlearn.expectation_operator"></span><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.SinglePauli.html#squlearn.expectation_operator.SinglePauli" title="squlearn.expectation_operator.SinglePauli"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.SinglePauli</span></code></a></p></td>
+<td><p>Single Pauli operator of a single Qubit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.SummedPaulis.html#squlearn.expectation_operator.SummedPaulis" title="squlearn.expectation_operator.SummedPaulis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.SummedPaulis</span></code></a></p></td>
+<td><p>Operator for summation of single Pauli operators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.SingleProbability.html#squlearn.expectation_operator.SingleProbability" title="squlearn.expectation_operator.SingleProbability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.SingleProbability</span></code></a></p></td>
+<td><p>Operator for measuring the probability of being in state 0 or 1 of a specified qubit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.SummedProbabilities.html#squlearn.expectation_operator.SummedProbabilities" title="squlearn.expectation_operator.SummedProbabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.SummedProbabilities</span></code></a></p></td>
+<td><p>Operator for summing single Qubit probabilities of binary states.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.IsingHamiltonian.html#squlearn.expectation_operator.IsingHamiltonian" title="squlearn.expectation_operator.IsingHamiltonian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.IsingHamiltonian</span></code></a></p></td>
+<td><p>Implementation of Ising type Hamiltonians.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.CustomExpectationOperator.html#squlearn.expectation_operator.CustomExpectationOperator" title="squlearn.expectation_operator.CustomExpectationOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.CustomExpectationOperator</span></code></a></p></td>
+<td><p>Class for evaluating the expectation value of a custom operator.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="operator-tools">
+<h3>Operator Tools<a class="headerlink" href="#operator-tools" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html#squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase" title="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.expectation_operator_base.ExpectationOperatorBase</span></code></a></p></td>
+<td><p>Base class for expectation operators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives.html#squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives" title="squlearn.expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.expectation_operator_derivatives.ExpectationOperatorDerivatives</span></code></a></p></td>
+<td><p>Class for calculating derivatives of expectation operators.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-tools">
+<h2>Execution Tools<a class="headerlink" href="#execution-tools" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a></p></td>
+<td><p>A class for executing quantum jobs on IBM Quantum systems or simulators.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="core">
+<h2>Core<a class="headerlink" href="#core" title="Permalink to this heading"></a></h2>
+<section id="module-squlearn.kernel.matrix">
+<span id="quantum-kernel-core"></span><h3>Quantum Kernel Core<a class="headerlink" href="#module-squlearn.kernel.matrix" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.matrix.FidelityKernel.html#squlearn.kernel.matrix.FidelityKernel" title="squlearn.kernel.matrix.FidelityKernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.matrix.FidelityKernel</span></code></a></p></td>
+<td><p>Fidelity Quantum Kernel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html#squlearn.kernel.matrix.ProjectedQuantumKernel" title="squlearn.kernel.matrix.ProjectedQuantumKernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.matrix.ProjectedQuantumKernel</span></code></a></p></td>
+<td><p>Projected Quantum Kernel for Quantum Kernel Algorithms</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-squlearn.kernel.optimization"></span><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html#squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer" title="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.kernel_optimizer.KernelOptimizer</span></code></a></p></td>
+<td><p>Quantum kernel optimizer.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.negative_log_likelihood.NLL.html#squlearn.kernel.optimization.negative_log_likelihood.NLL" title="squlearn.kernel.optimization.negative_log_likelihood.NLL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.negative_log_likelihood.NLL</span></code></a></p></td>
+<td><p>Negative log likelihood loss function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.target_alignment.TargetAlignment.html#squlearn.kernel.optimization.target_alignment.TargetAlignment" title="squlearn.kernel.optimization.target_alignment.TargetAlignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.target_alignment.TargetAlignment</span></code></a></p></td>
+<td><p>Target alignment loss function.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-squlearn.qnn">
+<span id="qnn-core"></span><h3>QNN Core<a class="headerlink" href="#module-squlearn.qnn" title="Permalink to this heading"></a></h3>
+<p>QNN module for classification and regression.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.qnn.QNN.html#squlearn.qnn.qnn.QNN" title="squlearn.qnn.qnn.QNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.qnn.QNN</span></code></a></p></td>
+<td><p>A class for working with QNNs and its derivatives</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.qnn.Expec.html#squlearn.qnn.qnn.Expec" title="squlearn.qnn.qnn.Expec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.qnn.Expec</span></code></a></p></td>
+<td><p>Data structure that holds the set-up of derivative of the expectation value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.SquaredLoss.html#squlearn.qnn.loss.SquaredLoss" title="squlearn.qnn.loss.SquaredLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.SquaredLoss</span></code></a></p></td>
+<td><p>Squared loss for regression.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html#squlearn.qnn.loss.VarianceLoss" title="squlearn.qnn.loss.VarianceLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.VarianceLoss</span></code></a></p></td>
+<td><p>Variance loss for regression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html#squlearn.qnn.loss.ParameterRegularizationLoss" title="squlearn.qnn.loss.ParameterRegularizationLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.ParameterRegularizationLoss</span></code></a></p></td>
+<td><p>Loss for parameter regularization.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="base-classes">
+<h3>Base Classes<a class="headerlink" href="#base-classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html#squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase" title="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation_operator.expectation_operator_base.ExpectationOperatorBase</span></code></a></p></td>
+<td><p>Base class for expectation operators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.feature_map.feature_map_base.FeatureMapBase.html#squlearn.feature_map.feature_map_base.FeatureMapBase" title="squlearn.feature_map.feature_map_base.FeatureMapBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feature_map.feature_map_base.FeatureMapBase</span></code></a></p></td>
+<td><p>Feature map base class</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.html#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase" title="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.matrix.kernel_matrix_base.KernelMatrixBase</span></code></a></p></td>
+<td><p>Base class for defining quantum kernels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_loss_base.KernelLossBase.html#squlearn.kernel.optimization.kernel_loss_base.KernelLossBase" title="squlearn.kernel.optimization.kernel_loss_base.KernelLossBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.kernel_loss_base.KernelLossBase</span></code></a></p></td>
+<td><p>Empty parent class for a kernel loss function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase.html#squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase" title="squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.kernel_optimization_base.KernelOptimizerBase</span></code></a></p></td>
+<td><p>Empty parent class for defining a kernel optimizer object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.optimizers.optimizer_base.OptimizerBase.html#squlearn.optimizers.optimizer_base.OptimizerBase" title="squlearn.optimizers.optimizer_base.OptimizerBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optimizers.optimizer_base.OptimizerBase</span></code></a></p></td>
+<td><p>Base class for QNN optimizers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.base_qnn.BaseQNN.html#squlearn.qnn.base_qnn.BaseQNN" title="squlearn.qnn.base_qnn.BaseQNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.base_qnn.BaseQNN</span></code></a></p></td>
+<td><p>Base Class for Quantum Neural Networks.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.LossBase.html#squlearn.qnn.loss.LossBase" title="squlearn.qnn.loss.LossBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.LossBase</span></code></a></p></td>
+<td><p>Base class implementation for loss functions.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../user_guide/kernel_methods.html" class="btn btn-neutral float-left" title="Quantum Kernel Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/squlearn.kernel.ml.QSVR.html" class="btn btn-neutral float-right" title="squlearn.kernel.ml.QSVR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

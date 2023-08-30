@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.feature_map`.\ :spelling:word:`TranspiledFeatureMap`
+==========================================================================
+
+.. currentmodule:: squlearn.feature_map
+
+.. autoclass:: TranspiledFeatureMap

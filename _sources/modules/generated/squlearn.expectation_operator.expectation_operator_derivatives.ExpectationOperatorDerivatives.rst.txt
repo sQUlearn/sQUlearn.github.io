@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.expectation_operator.expectation_operator_derivatives`.\ :spelling:word:`ExpectationOperatorDerivatives`
+==============================================================================================================================
+
+.. currentmodule:: squlearn.expectation_operator.expectation_operator_derivatives
+
+.. autoclass:: ExpectationOperatorDerivatives

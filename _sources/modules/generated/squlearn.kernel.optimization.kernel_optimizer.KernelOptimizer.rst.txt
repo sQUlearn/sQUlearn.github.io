@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.optimization.kernel_optimizer`.\ :spelling:word:`KernelOptimizer`
+==============================================================================================
+
+.. currentmodule:: squlearn.kernel.optimization.kernel_optimizer
+
+.. autoclass:: KernelOptimizer

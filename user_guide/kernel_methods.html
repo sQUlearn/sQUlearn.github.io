@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Kernel Methods &mdash; sQUlearn 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="../modules/classes.html" />
+    <link rel="prev" title="Quantum Feature Maps" href="feature_maps.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user_guide_index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="executor.html">The Executor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Operators for expectation values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_maps.html">Quantum Feature Maps</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantum Kernel Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#high-level-methods-that-employ-quantum-kernels">High-Level methods that employ quantum kernels</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#classification">Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regression">Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#methods-to-evaluate-quantum-kernels">Methods to evaluate quantum kernels</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fidelity-quantum-kernel-fqk-via-fidelitykernel">Fidelity Quantum Kernel (FQK) via <code class="xref py py-class docutils literal notranslate"><span class="pre">FidelityKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#projected-quantum-kernel-pqk-via-projectedquantumkernel">Projected Quantum Kernel (PQK) via <code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectedQuantumKernel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#training-of-quantum-kernels">Training of quantum kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references"><em>References</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user_guide_index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Quantum Kernel Methods</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/kernel_methods.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quantum-kernel-methods">
+<span id="id1"></span><h1>Quantum Kernel Methods<a class="headerlink" href="#quantum-kernel-methods" title="Permalink to this heading"></a></h1>
+<p>Quantum Kernel Methods are among the most promising approaches to (supervised) Quantum Machine
+Learning (QML). This is due to the fact that it has been shown [1] that they can be formally
+embedded into the rich mathematical framework of classical kernel theory. The key idea in kernel
+theory is to solve the general task of machine learning, i.e. finding and studying patterns in data,
+in a high dimensional feature space - the reproducing kernel Hilbert space (RKHS) - where the
+original learning problem attains a trivial form. The mapping from the original space to the RKHS
+(which in general can be infinite-dimensional) is done by so called feature maps. The RKHS is
+endowed with an inner product which provides access to the high dimensional space without the need
+to ever explicitly calculate the high- (infinite-) dimensional feature vectors. This is known as
+the <em>kernel trick</em>: the feature map and the inner product define a kernel function and vice versa,
+via</p>
+<p><span class="math notranslate nohighlight">\(K(x,y) = \Braket{\phi(x), \phi(y)}\)</span></p>
+<p>Due to the inner product, the kernel function formally computes the distance between data points
+<span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and thus effectively reduces to the illustrative interpretation of a
+similarity measure between data points.</p>
+<p>The key point of Quantum Kernel methods is that they can be fundamentally formulated as a classical
+kernel method whose kernel is computed by a quantum computer. By using a quantum computer for the
+calculation of the kernel one naturally exploits the inherent quantum mechanical phenomena of
+<em>superposition</em> and <em>entanglement</em> - a fact which holds out the prospect of designing machine
+learning models that are able to deal with complex problems that are out of reach for conventional
+machine learning methods.</p>
+<p>Quantum Kernel methods work analogously to their classical counterparts, with data embedded into
+the exponentially increasing quantum Hilbert space via a quantum feature map</p>
+<p><span class="math notranslate nohighlight">\(\ket{\psi(x,\boldsymbol{\theta})} = U_{\boldsymbol{\theta}}(x)\ket{0}\)</span></p>
+<p>with <span class="math notranslate nohighlight">\(U_{\boldsymbol{\theta}}(x)\)</span> a parametrized quantum circuit for data encoding applied
+to the initial qubit state <span class="math notranslate nohighlight">\(\ket{0}\)</span> (as discussed below, trainable parameters can be
+introduced to optimally align a resulting quantum kernel to a given data set). This fundamental
+ansatz marks the bridge between QML and kernel methods. But for this to hold, we need to define the
+data encoding density matrices</p>
+<p><span class="math notranslate nohighlight">\(\rho(x,\boldsymbol{\theta})=\ket{\psi(x,\boldsymbol{\theta})}\bra{\psi(x,\boldsymbol{\theta})}\)</span></p>
+<p>as the feature “vectors”. Therefore, we can consider the space of complex density matrices
+enriched with the <em>Hilbert-Schmidt inner product</em> as the feature space of a quantum model and
+state [1]. In the quantum computational practice, the Hilbert-Schmidt inner products are revealed by
+measurements. Consequently, in quantum computing, access to the Hilbert space of quantum states is
+given by measurements.</p>
+<section id="high-level-methods-that-employ-quantum-kernels">
+<h2>High-Level methods that employ quantum kernels<a class="headerlink" href="#high-level-methods-that-employ-quantum-kernels" title="Permalink to this heading"></a></h2>
+<p>In general, kernel methods refer to a collection of pattern analysis algorithms that use kernel
+functions to operate in a high-dimensional feature space. Probably, the most famous representative
+of these kernel-based algorithms is <em>Support Vector Machines (SVMs)</em>. Kernel methods are most
+commonly used in supervised learning frameworks for either classification or regression tasks.</p>
+<p>In the NISQ era (no access to fast linear algebra algorithms such as HHL), the basic notion of
+quantum kernel methods is to merely compute the kernel matrix with a quantum computer and
+subsequently pass it to an conventional kernel algorithms. For this task, sQUlearn provides a
+convenient workflow by either wrapping the corresponding scikit-learn estimators or by
+independently implementing them analogously, adapted to the needs of quantum kernel methods.
+sQUlearn offers SVMs for both classification (QSVC) and regression (QSVR) tasks, Gaussian
+Processes (GPs) for both classification (QGPC) and regression (QGPR) tasks as well as a
+quantum kernel ridge regression routine (QKRR).</p>
+<section id="classification">
+<h3>Classification<a class="headerlink" href="#classification" title="Permalink to this heading"></a></h3>
+<p>In terms of classification algorithms, sQUlearn provides:</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QSVC.html#squlearn.kernel.ml.QSVC" title="squlearn.kernel.ml.QSVC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSVC</span></code></a></p></td>
+<td><p>Quantum Support Vector Classification</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QGPC.html#squlearn.kernel.ml.QGPC" title="squlearn.kernel.ml.QGPC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGPC</span></code></a></p></td>
+<td><p>Quantum Gaussian process classification (QGPC), that extends the scikit-learn <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessClassifier.html">sklearn.gaussian_process.GaussianProcessClassifier</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>We refer to the documentations and examples of the respective methods for in-depth information
+and user guidelines.</p>
+</section>
+<section id="regression">
+<h3>Regression<a class="headerlink" href="#regression" title="Permalink to this heading"></a></h3>
+<p>In terms of regression algorithms, sQUlearn provides:</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QSVR.html#squlearn.kernel.ml.QSVR" title="squlearn.kernel.ml.QSVR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSVR</span></code></a></p></td>
+<td><p>Quantum Support Vector Regression</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QKRR.html#squlearn.kernel.ml.QKRR" title="squlearn.kernel.ml.QKRR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QKRR</span></code></a></p></td>
+<td><p>Quantum Kernel Ridge Regression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QGPR.html#squlearn.kernel.ml.QGPR" title="squlearn.kernel.ml.QGPR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGPR</span></code></a></p></td>
+<td><p>Quantum Gaussian Process Regression (QGPR).</p></td>
+</tr>
+</tbody>
+</table>
+<p>We refer to the documentations and examples of the respective methods for in-depth information
+and user guidelines.</p>
+</section>
+</section>
+<section id="methods-to-evaluate-quantum-kernels">
+<h2>Methods to evaluate quantum kernels<a class="headerlink" href="#methods-to-evaluate-quantum-kernels" title="Permalink to this heading"></a></h2>
+<p>sQUlearn provides two methods to evaluate quantum kernels: Fidelity Quantum kernels (FQKs) and
+Projected Quantum kernels (PQKs), which also represent the standard approaches to quantum kernel
+methods in the literature.</p>
+<p>Central to both approaches is the embedding of data into the quantum Hilbert space by using
+quantum feature maps, which are nothing but encoding quantum circuits. These can optionally be
+parametrized (as already implicitly introduced above) for optimally adjusting the resulting
+quantum kernel to a given data set. If a feature map with trainable parameters is used, sQUlearn
+initializes them to some predefined and reasonable values, which can be controlled, within FQK
+<em>and</em> PQK definitions via the argument <code class="code docutils literal notranslate"><span class="pre">parameter_seed</span></code> (defaults to zero).</p>
+<p>Beyond that, for both FQKs and PQKs, sQUlearn provides the option for regularizing the respective
+kernel matrices using either <em>thresholding</em> or <em>tikhonov</em> approach as described in Ref. [2].
+Regularization is by default switched of but can be set via the <code class="code docutils literal notranslate"><span class="pre">regularization</span></code>
+argument.</p>
+<section id="fidelity-quantum-kernel-fqk-via-fidelitykernel">
+<h3>Fidelity Quantum Kernel (FQK) via <a class="reference internal" href="../modules/generated/squlearn.kernel.matrix.FidelityKernel.html#squlearn.kernel.matrix.FidelityKernel" title="squlearn.kernel.matrix.FidelityKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FidelityKernel</span></code></a><a class="headerlink" href="#fidelity-quantum-kernel-fqk-via-fidelitykernel" title="Permalink to this heading"></a></h3>
+<p>The straightforward and natural way to the definition of a quantum kernel [1,3-5], is to use the
+<em>native geometry of the quantum state space</em> which is inherent in the <em>Hilbert-Schmidt inner product</em>,
+i.e.</p>
+<p><span class="math notranslate nohighlight">\(k^Q(x,x^\prime)=\mathrm{tr}[\rho(x,\boldsymbol{\theta})\rho(x^\prime,\boldsymbol{\theta})]\)</span></p>
+<p>which, for pure states, reduces to</p>
+<p><span class="math notranslate nohighlight">\(k^Q(x,x^\prime)=\left|\Braket{\psi(x,\boldsymbol{\theta})|\psi(x^\prime, \boldsymbol{\theta})}\right|^2\)</span>,</p>
+<p>i.e. a <em>fidelity-type metric</em>. From this, it immediately follows that evaluating the FQK scales
+quadratically in the data set size. Therefore, the applicability of FQKs is naturally restricted to small data set
+instances.</p>
+<p>In sQUlearn a FQK (instance) can be defined as shown by the following example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.feature_map</span> <span class="kn">import</span> <span class="n">ChebPQC</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">FidelityKernel</span>
+<span class="n">fmap</span> <span class="o">=</span> <span class="n">ChebPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fqk_instance</span> <span class="o">=</span> <span class="n">FidelityKernel</span><span class="p">(</span>
+    <span class="n">feature_map</span><span class="o">=</span><span class="n">fmap</span><span class="p">,</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>When evaluating kernels on a real backend, sQUlearn provides an option for mitigating FQKs for
+with respect to depolarizing noise using the approach discussed in Ref. [2]. The respective
+mitigation technique uses the fact that ideally (train-train or test-test) kernel matrices
+should consist exclusively of ones along the diagonal - a property which is by construction
+fulfilled by PQKs. For FQKs one can attempt to restore this property using the
+<code class="code docutils literal notranslate"><span class="pre">mit_depol_noise</span></code> argument which can be either set to <code class="code docutils literal notranslate"><span class="pre">'msplit'</span></code> or <code class="code docutils literal notranslate"><span class="pre">'mmean'</span></code>
+as defined in Ref. [2]. By default this option is set to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</section>
+<section id="projected-quantum-kernel-pqk-via-projectedquantumkernel">
+<h3>Projected Quantum Kernel (PQK) via <a class="reference internal" href="../modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html#squlearn.kernel.matrix.ProjectedQuantumKernel" title="squlearn.kernel.matrix.ProjectedQuantumKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectedQuantumKernel</span></code></a><a class="headerlink" href="#projected-quantum-kernel-pqk-via-projectedquantumkernel" title="Permalink to this heading"></a></h3>
+<p>Several works show that with increasing problem size, the FQK approach suffers from
+<em>exponential concentration</em> leading to quantum models that suffer from untrainability.
+To circumvent this problem, Ref. [4] introduced a family of <em>projected quantum kernels</em>
+as a solution. These work by projecting the quantum states to an approximate classical
+representation by using, e.g., reduced physical observables.</p>
+<p>The default PQK implementation of sQUlearn is one of the simplest forms of PQKs. They work by
+measuring the one-particle reduced density matrix (1-RDM) on all qubits for the encoded state
+and define the kernel as (RBF-inspired)</p>
+<p><span class="math notranslate nohighlight">\(k^{PQ}(x,x^\prime)=\exp\left(-\gamma\sum_k\sum_{P\in\lbrace X,Y,Z\rbrace}\left[\mathrm{tr}(P\rho(x,\boldsymbol{\theta})_k) - \mathrm{tr}(P\rho(x^\prime,\boldsymbol{\theta})_k)\right]^2\right)\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\rho(x,\boldsymbol{\theta})_k=\mathrm{tr}_{j\neq k}\left[\rho(x,\boldsymbol{\theta})\right]\)</span>
+refers to the 1-RDM, which is the partial trace of the quantum state
+<span class="math notranslate nohighlight">\(\rho(x,\boldsymbol{\theta})=\ket{\psi(x,\boldsymbol{\theta})}\bra{\psi(x,\boldsymbol{\theta})}\)</span>
+over all qubits except for the <span class="math notranslate nohighlight">\(k\)</span>-th qubit. After some lines of algebra, it can be seen that
+these <span class="math notranslate nohighlight">\(\mathrm{tr}\)</span> arguments are nothing but expectation values for measuring the Paulis
+<span class="math notranslate nohighlight">\(X,Y,Z\)</span> on each qubit in the state <span class="math notranslate nohighlight">\(\ket{\psi(x,\boldsymbol{\theta})}\)</span> and thus can be
+viewed as QNNs. The definition of PQKs is ambiguous. This concerns the outer form of the kernel, i.e.
+the function into which the QNN is put, the choice measurement operators used to evaluate the QNN
+as well as their respective locality, which eventually reflects in the order of RDMs used in the
+definition. Currently, sQUlearn implements different outer forms <span class="math notranslate nohighlight">\(f(\cdot)\)</span>, which represent
+standard scikit-learn kernel functions (<cite>Gaussian</cite>, <cite>Matern</cite>, <cite>ExpSineSquared</cite>, <cite>RationalQuadratic</cite>,
+<cite>DotProduct</cite>, <cite>PariwiseKernel</cite>), i.e. generally speaking, sQUlearn provides PQKs of the form</p>
+<p><span class="math notranslate nohighlight">\(k^{PQ}(x,x^\prime) = f\left[QNN(x), QNN(x^\prime)\right]\)</span></p>
+<p>A respective PQK (instance) referring to the definition given above is defined as illustrated by
+the following example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.feature_map</span> <span class="kn">import</span> <span class="n">ChebPQC</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
+<span class="n">fmap</span> <span class="o">=</span> <span class="n">ChebPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
+    <span class="n">feature_map</span><span class="o">=</span><span class="n">fmap</span><span class="p">,</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">),</span>
+    <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
+    <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Moreover, the QNNs can be evaluated with respect to different measurement operators, where in
+addition to the default setting - <code class="code docutils literal notranslate"><span class="pre">measurement='XYZ'</span></code> - one can specify <code class="code docutils literal notranslate"><span class="pre">measurement='X'</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">measurement='Y'</span></code> and <code class="code docutils literal notranslate"><span class="pre">measurement='Z'</span></code> for one-qubit measurements with respect to only
+one Pauli operator. Beyond that, one can also specify an operator or a list of operators, see the
+respective examples in <a class="reference internal" href="../modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html#squlearn.kernel.matrix.ProjectedQuantumKernel" title="squlearn.kernel.matrix.ProjectedQuantumKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectedQuantumKernel</span></code></a> or the <a class="reference internal" href="operators.html"><span class="doc">Operators for expectation values</span></a>
+user guide.</p>
+</section>
+</section>
+<section id="training-of-quantum-kernels">
+<h2>Training of quantum kernels<a class="headerlink" href="#training-of-quantum-kernels" title="Permalink to this heading"></a></h2>
+<p>As mentioned above, the definition of quantum kernels (both FQK and PQK) relies quantum feature maps
+that are represented through parametrized quantum circuits (PQC). This results in quantum kernels
+that contain trainable parameters to optimally adjust to a given learning problem. The trainable
+parameters are obtained from classical optimization loops which attempt to minimize a given loss
+function.</p>
+<p>sQUlearn implements the kernel target alignment procedure as well as the Negative-Log-Likelihood.
+At the same time it provides several optimizers such as <code class="code docutils literal notranslate"><span class="pre">Adam</span></code> and <code class="code docutils literal notranslate"><span class="pre">SLSQP</span></code>; cf.
+<a class="reference internal" href="../modules/generated/squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html#squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer" title="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer</span></code></a> for details.</p>
+<p>The following examples assume that you have some data set available which you previously split into
+training and test data and shows how to optimize kernels.</p>
+<p><strong>Example - Kernel Target Alignment</strong></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.feature_map</span> <span class="kn">import</span> <span class="n">ChebPQC</span>
+<span class="kn">from</span> <span class="nn">squlearn.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.optimization</span> <span class="kn">import</span> <span class="n">KernelOptimizer</span><span class="p">,</span> <span class="n">TargetAlignment</span><span class="p">,</span> <span class="n">NLL</span>
+<span class="n">fmap</span> <span class="o">=</span> <span class="n">ChebPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
+    <span class="n">feature_map</span><span class="o">=</span><span class="n">fmap</span><span class="p">,</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="n">Estimator</span><span class="p">()),</span>
+    <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
+    <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
+    <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="c1"># set up the optimizer</span>
+<span class="n">adam_opt</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+<span class="c1"># define KTA loss function</span>
+<span class="n">kta_loss</span> <span class="o">=</span> <span class="n">TargetAlignment</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">pqk_instance</span><span class="p">)</span>
+<span class="n">kta_optimizer</span> <span class="o">=</span> <span class="n">KernelOptimizer</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">kta_loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">adam_opt</span><span class="p">)</span>
+<span class="n">opt_kta_result</span> <span class="o">=</span> <span class="n">kta_optimizer</span><span class="o">.</span><span class="n">run_optimization</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># retrieve optimized parameters</span>
+<span class="n">opt_kta_params</span> <span class="o">=</span> <span class="n">opt_kta_result</span><span class="o">.</span><span class="n">x</span>
+<span class="c1"># assign optimal kta parameters to kernel</span>
+<span class="n">pqk_instance</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">opt_kta_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><em>Note:</em> The same workflow has to be used for FQKs!</p>
+<p><strong>Example - Negative-Log-Likelihood</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.feature_map</span> <span class="kn">import</span> <span class="n">ChebPQC</span>
+<span class="kn">from</span> <span class="nn">squlearn.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.optimization</span> <span class="kn">import</span> <span class="n">KernelOptimizer</span><span class="p">,</span> <span class="n">TargetAlignment</span><span class="p">,</span> <span class="n">NLL</span>
+<span class="n">fmap</span> <span class="o">=</span> <span class="n">ChebPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
+    <span class="n">feature_map</span><span class="o">=</span><span class="n">fmap</span><span class="p">,</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="n">Estimator</span><span class="p">()),</span>
+    <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
+    <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
+    <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="c1"># set up the optimizer</span>
+<span class="n">adam_opt</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+<span class="c1"># define NLL loss function (note that noise_val needs to bet set)</span>
+<span class="n">nll_loss</span> <span class="o">=</span> <span class="n">NLL</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">pqk_instance</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">noise_val</span><span class="p">)</span>
+<span class="n">nll_optimizer</span> <span class="o">=</span> <span class="n">KernelOptimizer</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">nll_loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">adam_opt</span><span class="p">)</span>
+<span class="n">opt_nll_result</span> <span class="o">=</span> <span class="n">nll_optimizer</span><span class="o">.</span><span class="n">run_optimization</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># retrieve optimized parameters</span>
+<span class="n">opt_nll_params</span> <span class="o">=</span> <span class="n">opt_nll_params</span><span class="o">.</span><span class="n">x</span>
+<span class="c1"># assign optimal nll parameters to kernel</span>
+<span class="n">pqk_instance</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">opt_nll_params</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Note:</em> The same workflow has to be used for FQKs!</p>
+</section>
+<section id="references">
+<h2><em>References</em><a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<p>[1] <a class="reference external" href="http://arxiv.org/pdf/2101.11020v2">M. Schuld, “Supervised quantum machine learning models are kernel methods”. arXiv:2101.11020v2 (2021).</a></p>
+<p>[2] <a class="reference external" href="https://arxiv.org/pdf/2105.02276.pdf">T. Hubregtsen et al., “Training Quantum Embedding Kernels on Near-Term Quantum Computers”. arXiv:2105.02276v1 (2021).</a></p>
+<p>[3] <a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.122.040504">M. Schuld and N. Killoran, “Quantum Machine Learning in feature Hilbert spaces”. Phys. Rev. Lett. 112(4), 040504 (2019).</a></p>
+<p>[4] <a class="reference external" href="https://arxiv.org/abs/2110.13162">S. Jerbi et al., “Quantum machine learning beyond kernel methods”. arXiv:2110.13162v3 (2023)</a></p>
+<p>[5] <a class="reference external" href="https://www.nature.com/articles/s41467-021-22539-9">H. Y. Huang et al., “Power of data in quantum machine learning”. Nat. Commun. 12, 2631 (2021).</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="feature_maps.html" class="btn btn-neutral float-left" title="Quantum Feature Maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../modules/classes.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

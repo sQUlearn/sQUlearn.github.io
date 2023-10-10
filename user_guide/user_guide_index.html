@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; sQUlearn 0.3.0 documentation</title>
+  <title>User Guide &mdash; sQUlearn 0.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -12,12 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -50,9 +49,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="executor.html">The Executor Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators.html">Operators for expectation values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html">Quantum Feature Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observables.html">Observables for expectation values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encoding_circuits.html">Quantum Encoding Circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kernel_methods.html">Quantum Kernel Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantum_neural_networks.html">Quantum Neural Networks</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
@@ -84,39 +84,14 @@
            <div itemprop="articleBody">
              
   <section id="user-guide">
-<span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this heading"></a></h1>
+<span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="executor.html">The Executor Class</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="executor.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="executor.html#key-features-of-the-executor">Key Features of the Executor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="executor.html#initialization-of-the-executor-class">Initialization of the Executor class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="executor.html#utilizing-executor-primitives-in-qiskit-routines">Utilizing Executor Primitives in Qiskit Routines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="executor.html#setting-options-for-primitives">Setting Options for Primitives</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="operators.html">Operators for expectation values</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="operators.html#implemented-expectation-operators">Implemented expectation operators.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators.html#obtained-derivatives-of-the-expectation-values">Obtained derivatives of the expectation values</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="feature_maps.html">Quantum Feature Maps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html#implemented-quantum-feature-maps">Implemented Quantum Feature Maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html#combining-quantum-feature-maps">Combining Quantum Feature Maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html#wrapping-qiskit-feature-maps">Wrapping Qiskit Feature Maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html#create-your-custom-feature-map-via-layeredfeaturemap">Create your custom Feature Map via <code class="xref py py-class docutils literal notranslate"><span class="pre">LayeredFeatureMap</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html#pruning-of-quantum-feature-maps">Pruning of Quantum Feature Maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html#different-quantum-feature-maps-via-featuremapderivatives">Different Quantum Feature Maps via <code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureMapDerivatives</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature_maps.html#transpile-quantum-feature-maps-via-transpiledfeaturemap">Transpile Quantum Feature Maps via <code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledFeatureMap</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="kernel_methods.html">Quantum Kernel Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kernel_methods.html#high-level-methods-that-employ-quantum-kernels">High-Level methods that employ quantum kernels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kernel_methods.html#methods-to-evaluate-quantum-kernels">Methods to evaluate quantum kernels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kernel_methods.html#training-of-quantum-kernels">Training of quantum kernels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kernel_methods.html#references"><em>References</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="executor.html">The Executor Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observables.html">Observables for expectation values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding_circuits.html">Quantum Encoding Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kernel_methods.html">Quantum Kernel Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantum_neural_networks.html">Quantum Neural Networks</a></li>
 </ul>
 </div>
 </section>

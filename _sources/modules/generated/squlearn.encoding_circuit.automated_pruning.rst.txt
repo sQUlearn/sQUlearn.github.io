@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.encoding_circuit`.\ :spelling:word:`automated_pruning`
+============================================================================
+
+.. currentmodule:: squlearn.encoding_circuit
+
+.. autofunction:: automated_pruning

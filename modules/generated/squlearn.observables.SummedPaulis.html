@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.observables.SummedPaulis &mdash; sQUlearn 0.4.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.observables.SingleProbability" href="squlearn.observables.SingleProbability.html" />
+    <link rel="prev" title="squlearn.observables.SinglePauli" href="squlearn.observables.SinglePauli.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit">Encoding Circuits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#encoding-circuit-tools">Encoding Circuit Tools</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#operators">Operators</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="squlearn.observables.SinglePauli.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code>.SinglePauli</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code>.SummedPaulis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.observables.SingleProbability.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code>.SingleProbability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.observables.SummedProbabilities.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code>.SummedProbabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.observables.IsingHamiltonian.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code>.IsingHamiltonian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.observables.CustomObservable.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code>.CustomObservable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#operator-tools">Operator Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#core">Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code>.SummedPaulis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.observables.SummedPaulis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-observables-summedpaulis">
+<h1><a class="reference internal" href="../classes.html#module-squlearn.observables" title="squlearn.observables"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code></a>.SummedPaulis<a class="headerlink" href="#squlearn-observables-summedpaulis" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.observables.</span></span><span class="sig-name descname"><span class="pre">SummedPaulis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Z'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_sum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_identity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.SummedPaulis" title="Link to this definition"></a></dt>
+<dd><p>Observable for summation of single Pauli operators.</p>
+<p><strong>Equation for Z Pauli operator:</strong></p>
+<div class="math notranslate nohighlight">
+\[\hat{H} = a\hat{I} + \sum_i b_i \hat{Z}_i\]</div>
+<p>Multiple Pauli operators can be specified by a tuple of strings, e.g. <code class="docutils literal notranslate"><span class="pre">op_str=(&quot;X&quot;,&quot;Z&quot;)</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{H} = a\hat{I} + \sum_i b_i \hat{X}_i + \sum_i c_i \hat{Z}_i\]</div>
+<p>The parameter can optionally be equal for the same kind of Pauli operators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_qubits</strong> (<em>int</em>) – Number of qubits.</p></li>
+<li><p><strong>op_str</strong> (<em>Union</em><em>[</em><em>str</em><em>,</em><em>tuple</em><em>[</em><em>str</em><em>]</em><em>]</em>) – String of the Pauli operator that is  measured.
+Possible values are <code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Y&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code>.
+Also a tuples of strings are allowed for multiple Pauli
+operators (default: <code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code>).</p></li>
+<li><p><strong>full_sum</strong> (<em>bool</em>) – If False, only one parameter is used for each Pauli operator,
+i.e. the sum is <span class="math notranslate nohighlight">\(b\sum_i \hat{Z}_i\)</span>
+instead of <span class="math notranslate nohighlight">\(\sum_i b_i \hat{Z}_i\)</span> (default: True).</p></li>
+<li><p><strong>include_identity</strong> (<em>bool</em>) – If True, the identity operator is included in the sum.
+(default: True)</p></li>
+</ul>
+</dd>
+</dl>
+<section id="attributes">
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+</section>
+<section id="id1">
+<h2>Attributes:<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.num_qubits">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.num_qubits" title="Link to this definition"></a></dt>
+<dd><p>Number of qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.num_parameters">
+<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.num_parameters" title="Link to this definition"></a></dt>
+<dd><p>Number of trainable parameters in the summed Paulis operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.op_str">
+<span class="sig-name descname"><span class="pre">op_str</span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.op_str" title="Link to this definition"></a></dt>
+<dd><p>String of the Pauli operator that is  measured.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[str,tuple[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.full_sum">
+<span class="sig-name descname"><span class="pre">full_sum</span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.full_sum" title="Link to this definition"></a></dt>
+<dd><p>If False, only one parameter is used for each Pauli operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.include_identity">
+<span class="sig-name descname"><span class="pre">include_identity</span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.include_identity" title="Link to this definition"></a></dt>
+<dd><p>If True, the identity operator is included in the sum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.generate_initial_parameters">
+<span class="sig-name descname"><span class="pre">generate_initial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.generate_initial_parameters" title="Link to this definition"></a></dt>
+<dd><p>Generates random parameters for the observable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ones</strong> (<em>bool</em>) – If True, returns an array of ones (default: True)</p></li>
+<li><p><strong>seed</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>None</em><em>]</em>) – Seed for the random number generator</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The randomly generated parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.get_operator">
+<span class="sig-name descname"><span class="pre">get_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.get_operator" title="Link to this definition"></a></dt>
+<dd><p>Returns Operator as a SparsePauliOp expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> (<em>Union</em><em>[</em><em>ParameterVector</em><em>, </em><em>np.ndarray</em><em>]</em>) – Vector of parameters used in
+the operator</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>StateFn expression of the observable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.get_params" title="Link to this definition"></a></dt>
+<dd><p>Returns hyper-parameters and their values of the single summed Pauli operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em>) – If True, also the parameters for
+contained objects are returned (default=True).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with hyper-parameters and values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.get_pauli">
+<span class="sig-name descname"><span class="pre">get_pauli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.get_pauli" title="Link to this definition"></a></dt>
+<dd><p>Function for generating the PauliOp expression of the summed Paulis operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> (<em>Union</em><em>[</em><em>ParameterVector</em><em>, </em><em>np.ndarray</em><em>]</em>) – Parameters of the summed
+Paulis operator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PauliOp expression of the specified summed Paulis operator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.get_pauli_mapped">
+<span class="sig-name descname"><span class="pre">get_pauli_mapped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.get_pauli_mapped" title="Link to this definition"></a></dt>
+<dd><p>Changes the operator to the physical qubits, set by <a class="reference internal" href="#squlearn.observables.SummedPaulis.set_map" title="squlearn.observables.SummedPaulis.set_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_map()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> (<em>Union</em><em>[</em><em>ParameterVector</em><em>, </em><em>np.ndarray</em><em>]</em>) – Vector of parameters used in
+the operator</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Expectation operator in Qiskit’s SprasePauliOp class with qubits mapped to
+physical ones</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.set_map">
+<span class="sig-name descname"><span class="pre">set_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qubit_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_all_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.SummedPaulis.set_map" title="Link to this definition"></a></dt>
+<dd><p>Function for setting a qubit mapping from physical qubits to the ones of the operator.</p>
+<p>This function is necessary whenever the number of physical qubits are different from the
+operator definition, as for example when running on a real backend.
+The number of qubits in the system has to be larger than the number
+of qubits in the observable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qubit_map</strong> (<em>Union</em><em>[</em><em>list</em><em>, </em><em>dict</em><em>]</em>) – A list or dictionary specifying which of the input
+qubits are mapped to the output qubits.</p></li>
+<li><p><strong>num_all_qubits</strong> (<em>int</em>) – The total number of qubits in the system.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.observables.SummedPaulis.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.observables.SummedPaulis.set_params" title="Link to this definition"></a></dt>
+<dd><p>Sets value of the operator hyper-parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – Hyper-parameters and their values, e.g. <code class="docutils literal notranslate"><span class="pre">num_qubits=2</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.observables.SinglePauli.html" class="btn btn-neutral float-left" title="squlearn.observables.SinglePauli" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.observables.SingleProbability.html" class="btn btn-neutral float-right" title="squlearn.observables.SingleProbability" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

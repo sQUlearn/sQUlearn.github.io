@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.optimizers`.\ :spelling:word:`Adam`
+=========================================================
+
+.. currentmodule:: squlearn.optimizers
+
+.. autoclass:: Adam

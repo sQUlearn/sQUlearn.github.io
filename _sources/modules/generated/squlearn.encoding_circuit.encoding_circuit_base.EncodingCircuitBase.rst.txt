@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.encoding_circuit.encoding_circuit_base`.\ :spelling:word:`EncodingCircuitBase`
+====================================================================================================
+
+.. currentmodule:: squlearn.encoding_circuit.encoding_circuit_base
+
+.. autoclass:: EncodingCircuitBase

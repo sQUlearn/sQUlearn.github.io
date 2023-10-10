@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hyperparamter Optimization and Pipelines &mdash; sQUlearn 0.3.0 documentation</title>
+  <title>Hyperparameter Optimization and Pipelines &mdash; sQUlearn 0.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -13,19 +13,19 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Handwritten Digit Recognition with Projected Quantum Kernels" href="example_kernel_mnist.html" /> 
+    <link rel="next" title="Bayesian Optimization using a Quantum Gaussian Process Surrogate Model" href="example_quantum_bayesian_optimization.html" />
+    <link rel="prev" title="Handwritten Digit Recognition with Projected Quantum Kernels" href="example_kernel_digit_classification.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,8 +53,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/user_guide_index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="examples_index.html">Examples</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="example_kernel_mnist.html">Handwritten Digit Recognition with Projected Quantum Kernels</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Hyperparamter Optimization and Pipelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example_kernel_digit_classification.html">Handwritten Digit Recognition with Projected Quantum Kernels</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hyperparameter Optimization and Pipelines</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Summary">Summary</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Importing-Libraries">Importing Libraries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Generating-Data">Generating Data</a></li>
@@ -64,6 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#Results-Analysis">Results Analysis</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="example_quantum_bayesian_optimization.html">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
 </ul>
 </li>
 </ul>
@@ -83,7 +84,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="examples_index.html">Examples</a></li>
-      <li class="breadcrumb-item active">Hyperparamter Optimization and Pipelines</li>
+      <li class="breadcrumb-item active">Hyperparameter Optimization and Pipelines</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/examples/example_kernel_grid_search.nblink.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,14 +94,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Hyperparamter-Optimization-and-Pipelines">
-<h1>Hyperparamter Optimization and Pipelines<a class="headerlink" href="#Hyperparamter-Optimization-and-Pipelines" title="Permalink to this heading"></a></h1>
+  <section id="Hyperparameter-Optimization-and-Pipelines">
+<h1>Hyperparameter Optimization and Pipelines<a class="headerlink" href="#Hyperparameter-Optimization-and-Pipelines" title="Link to this heading"></a></h1>
 <section id="Summary">
-<h2>Summary<a class="headerlink" href="#Summary" title="Permalink to this heading"></a></h2>
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading"></a></h2>
 <p>This tutorial demonstrates how to integrate quantum machine learning algorithms, specifically quantum kernel methods, from the <code class="docutils literal notranslate"><span class="pre">squlearn</span></code> library with traditional machine learning workflows in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. We’ll go through data generation, preprocessing, model definition, and hyperparameter optimization using GridSearchCV. The objective is to highlight that squlearn algorithms can be seamlessly used alongside classical algorithms.</p>
 </section>
 <section id="Importing-Libraries">
-<h2>Importing Libraries<a class="headerlink" href="#Importing-Libraries" title="Permalink to this heading"></a></h2>
+<h2>Importing Libraries<a class="headerlink" href="#Importing-Libraries" title="Link to this heading"></a></h2>
 <p>In this initial cell, we are importing all the libraries required for the tutorial. We are using <code class="docutils literal notranslate"><span class="pre">squlearn</span></code> for quantum kernel methods like Quantum Support Vector Regression (QSVR) and Quantum Gaussian Process Regression (QGPR). For tasks like data scaling and hyperparameter optimization, we rely on <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -116,7 +117,7 @@
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 
 <span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
-<span class="kn">from</span> <span class="nn">squlearn.feature_map</span> <span class="kn">import</span> <span class="n">YZ_CX_FeatureMap</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">YZ_CX_EncodingCircuit</span>
 <span class="kn">from</span> <span class="nn">squlearn.kernel.matrix</span> <span class="kn">import</span> <span class="n">FidelityKernel</span><span class="p">,</span> <span class="n">ProjectedQuantumKernel</span>
 <span class="kn">from</span> <span class="nn">squlearn.kernel.ml</span> <span class="kn">import</span> <span class="n">QGPR</span><span class="p">,</span> <span class="n">QSVR</span>
 </pre></div>
@@ -124,7 +125,7 @@
 </div>
 </section>
 <section id="Generating-Data">
-<h2>Generating Data<a class="headerlink" href="#Generating-Data" title="Permalink to this heading"></a></h2>
+<h2>Generating Data<a class="headerlink" href="#Generating-Data" title="Link to this heading"></a></h2>
 <p>Here, synthetic data is generated. We sample a training data set where we perform a grid search on. We also create hold-out test data which will be used to score the best estimator of the grid search.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -172,22 +173,24 @@
 </div>
 </section>
 <section id="Setting-up-the-kernels">
-<h2>Setting up the kernels<a class="headerlink" href="#Setting-up-the-kernels" title="Permalink to this heading"></a></h2>
-<p>We want to compare two QML algorithms with the same feature map and two variants of calculating the kernel: Fidelity kernels and projected quantum kernels. We set up the feature map with inital parameters. These will be varied during the grid search. The kernel instances are initialzed using a statevector simulator.</p>
+<h2>Setting up the kernels<a class="headerlink" href="#Setting-up-the-kernels" title="Link to this heading"></a></h2>
+<p>We want to compare two QML algorithms with the same encoding circuit and two variants of calculating the kernel: Fidelity kernels and projected quantum kernels. We set up the encoding circuit with initial parameters. These will be varied during the grid search. The kernel instances are initialized using Qiskit’s StatevectorSimulator.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_map</span> <span class="o">=</span> <span class="n">YZ_CX_FeatureMap</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">YZ_CX_EncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">)</span>
 
-<span class="n">fidelity_kernel</span> <span class="o">=</span> <span class="n">FidelityKernel</span><span class="p">(</span><span class="n">feature_map</span><span class="o">=</span><span class="n">feature_map</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">,</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fidelity_kernel</span> <span class="o">=</span> <span class="n">FidelityKernel</span><span class="p">(</span>
+    <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">encoding_circuit</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">,</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 <span class="n">projected_kernel</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
-    <span class="n">feature_map</span><span class="o">=</span><span class="n">feature_map</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">,</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">encoding_circuit</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">,</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
 
-<span class="n">feature_map</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -217,9 +220,9 @@ q_3: ┤ Ry(p[6] + 1.0*x[0]) ├┤ Rz(p[7] + 1.0*x[0]) ├┤ X ├»
 </div>
 </section>
 <section id="Setting-up-the-grid-search">
-<h2>Setting up the grid search<a class="headerlink" href="#Setting-up-the-grid-search" title="Permalink to this heading"></a></h2>
+<h2>Setting up the grid search<a class="headerlink" href="#Setting-up-the-grid-search" title="Link to this heading"></a></h2>
 <p>In this section, we define the quantum kernel methods we’ll be using for regression: Quantum Support Vector Regression (QSVR) and Quantum Gaussian Process Regression (QGPR). We initialize both with the two kernel-variants from above</p>
-<p>We use <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to perform hyperparameter optimization. The hyperparameters include the number of qubits and layers for the quantum feature maps.</p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to perform hyperparameter optimization. The hyperparameters include the number of qubits and layers for the quantum encoding circuits.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -227,7 +230,7 @@ q_3: ┤ Ry(p[6] + 1.0*x[0]) ├┤ Rz(p[7] + 1.0*x[0]) ├┤ X ├»
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_qubit_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="n">num_layers_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
-<span class="n">feature_map_params</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">encoding_circuit_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;estimator__num_qubits&quot;</span><span class="p">:</span> <span class="n">num_qubit_list</span><span class="p">,</span>
     <span class="s2">&quot;estimator__num_layers&quot;</span><span class="p">:</span> <span class="n">num_layers_list</span><span class="p">,</span>
 <span class="p">}</span>
@@ -241,7 +244,7 @@ q_3: ┤ Ry(p[6] + 1.0*x[0]) ├┤ Rz(p[7] + 1.0*x[0]) ├┤ X ├»
 
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">estimator</span> <span class="ow">in</span> <span class="n">estimator_list</span><span class="p">:</span>
-    <span class="n">estimator_params</span> <span class="o">=</span> <span class="n">feature_map_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">estimator_params</span> <span class="o">=</span> <span class="n">encoding_circuit_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">estimator_params</span><span class="p">[</span><span class="s2">&quot;estimator&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">estimator</span><span class="p">]</span>
     <span class="n">param_grid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">estimator_params</span><span class="p">)</span>
 </pre></div>
@@ -260,7 +263,7 @@ q_3: ┤ Ry(p[6] + 1.0*x[0]) ├┤ Rz(p[7] + 1.0*x[0]) ├┤ X ├»
 </div>
 </section>
 <section id="Running-Grid-Search">
-<h2>Running Grid Search<a class="headerlink" href="#Running-Grid-Search" title="Permalink to this heading"></a></h2>
+<h2>Running Grid Search<a class="headerlink" href="#Running-Grid-Search" title="Link to this heading"></a></h2>
 <p>Now that everything is set up, we execute the grid search by fitting it to the training data. <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> will evaluate every combination of hyperparameters and choose the best set for each estimator (QSVR and QGPR in this case) based on the mean test score.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -296,8 +299,8 @@ GridSearchCV(estimator=Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()),
 </div>
 </section>
 <section id="Results-Analysis">
-<h2>Results Analysis<a class="headerlink" href="#Results-Analysis" title="Permalink to this heading"></a></h2>
-<p>To visualize the performance of different hyperparameter combinations, we plot heatmaps for each estimator. Each cell in the heatmap represents a combination of the number of qubits and layers used in the quantum feature map, and the color represents the negative mean test score (MSE, larger is better). This allows for an intuitive understanding of how different hyperparameters impact performance.</p>
+<h2>Results Analysis<a class="headerlink" href="#Results-Analysis" title="Link to this heading"></a></h2>
+<p>To visualize the performance of different hyperparameter combinations, we plot heat maps for each estimator. Each cell in the heat map represents a combination of the number of qubits and layers used in the quantum encoding circuit, and the color represents the negative mean test score (MSE, larger is better). This allows for an intuitive understanding of how different hyperparameters impact performance.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -326,22 +329,22 @@ GridSearchCV(estimator=Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()),
 <span class="n">vmax</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
 <span class="n">estimator_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;QGPR Fidelity&quot;</span><span class="p">,</span> <span class="s2">&quot;QGPR PQK&quot;</span><span class="p">,</span> <span class="s2">&quot;QSVR Fidelity&quot;</span><span class="p">,</span> <span class="s2">&quot;QSVR Fidelity&quot;</span><span class="p">]</span>
-<span class="c1"># Loop through the chunks to plot each heatmap</span>
+<span class="c1"># Loop through the chunks to plot each heat map</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_estimators</span><span class="p">):</span>
     <span class="n">start_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">num_combinations</span>
     <span class="n">end_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">num_combinations</span>
     <span class="n">chunk_df</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
 
-    <span class="c1"># Pivot to get a matrix form suitable for heatmaps</span>
-    <span class="n">heatmap_data</span> <span class="o">=</span> <span class="n">chunk_df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="c1"># Pivot to get a matrix form suitable for heat maps</span>
+    <span class="n">heat_map_data</span> <span class="o">=</span> <span class="n">chunk_df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
         <span class="n">index</span><span class="o">=</span><span class="s2">&quot;param_estimator__num_qubits&quot;</span><span class="p">,</span>
         <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;param_estimator__num_layers&quot;</span><span class="p">,</span>
         <span class="n">values</span><span class="o">=</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="c1"># Create the heatmap (cbar=False will disable individual colorbars)</span>
+    <span class="c1"># Create the heat map (cbar=False will disable individual colorbars)</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
-        <span class="n">heatmap_data</span><span class="p">,</span>
+        <span class="n">heat_map_data</span><span class="p">,</span>
         <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.3f&quot;</span><span class="p">,</span>
         <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
@@ -422,14 +425,14 @@ Test Score: 0.999999978217105
 <img alt="../_images/examples_example_kernel_grid_search_16_1.png" src="../_images/examples_example_kernel_grid_search_16_1.png" />
 </div>
 </div>
-<p>Note that in the above evaluation, the QSVR did not perform quite as good as the QGPR. The QSVR is, as its classical counterpart, sensitive to additional hyperparamters which have not been varied during the grid search. We now include the classical regularization parameter C and the slack variable epsilon as additional parameters in the search. This also demonstrates that parameters of the quantum kernel and parameters of the classical algorithm can be treated equally during the search.</p>
+<p>Note that in the above evaluation, the QSVR did not perform quite as good as the QGPR. The QSVR is, as its classical counterpart, sensitive to additional hyperparameters which have not been varied during the grid search. We now include the classical regularization parameter C and the slack variable epsilon as additional parameters in the search. This also demonstrates that parameters of the quantum kernel and parameters of the classical algorithm can be treated equally during the search.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QSVR</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">fidelity_kernel</span><span class="p">)</span>
 
-<span class="n">estimator_params</span> <span class="o">=</span> <span class="n">feature_map_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">estimator_params</span> <span class="o">=</span> <span class="n">encoding_circuit_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">estimator_params</span><span class="p">[</span><span class="s2">&quot;estimator&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">QSVR</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">fidelity_kernel</span><span class="p">)]</span>
 <span class="n">estimator_params</span><span class="p">[</span><span class="s2">&quot;estimator__C&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">]</span>
 <span class="n">estimator_params</span><span class="p">[</span><span class="s2">&quot;estimator__epsilon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]</span>
@@ -464,7 +467,8 @@ Best Estimator: Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()),
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="example_kernel_mnist.html" class="btn btn-neutral float-left" title="Handwritten Digit Recognition with Projected Quantum Kernels" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example_kernel_digit_classification.html" class="btn btn-neutral float-left" title="Handwritten Digit Recognition with Projected Quantum Kernels" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example_quantum_bayesian_optimization.html" class="btn btn-neutral float-right" title="Bayesian Optimization using a Quantum Gaussian Process Surrogate Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

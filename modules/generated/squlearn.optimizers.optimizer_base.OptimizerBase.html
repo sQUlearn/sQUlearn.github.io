@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.optimizers.optimizer_base.OptimizerBase &mdash; sQUlearn 0.3.0 documentation</title>
+  <title>squlearn.optimizers.optimizer_base.OptimizerBase &mdash; sQUlearn 0.4.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -12,12 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -57,9 +56,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../classes.html#core">Core</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.kernel.matrix">Quantum Kernel Core</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="squlearn.expectation_operator.expectation_operator_base.ExpectationOperatorBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.expectation_operator.expectation_operator_base</span></code>.ExpectationOperatorBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.feature_map.feature_map_base.FeatureMapBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.feature_map.feature_map_base</span></code>.FeatureMapBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables.observable_base</span></code>.ObservableBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit.encoding_circuit_base</span></code>.EncodingCircuitBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base</span></code>.KernelMatrixBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.optimization.kernel_loss_base.KernelLossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_loss_base</span></code>.KernelLossBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimization_base</span></code>.KernelOptimizerBase</a></li>
@@ -101,15 +102,37 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-optimizers-optimizer-base-optimizerbase">
-<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.optimizers.optimizer_base</span></code>.OptimizerBase<a class="headerlink" href="#squlearn-optimizers-optimizer-base-optimizerbase" title="Permalink to this heading"></a></h1>
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.optimizers.optimizer_base</span></code>.OptimizerBase<a class="headerlink" href="#squlearn-optimizers-optimizer-base-optimizerbase" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.optimizers.optimizer_base.OptimizerBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.optimizers.optimizer_base.</span></span><span class="sig-name descname"><span class="pre">OptimizerBase</span></span><a class="headerlink" href="#squlearn.optimizers.optimizer_base.OptimizerBase" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.optimizers.optimizer_base.</span></span><span class="sig-name descname"><span class="pre">OptimizerBase</span></span><a class="headerlink" href="#squlearn.optimizers.optimizer_base.OptimizerBase" title="Link to this definition"></a></dt>
 <dd><p>Base class for QNN optimizers.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.optimizers.optimizer_base.OptimizerBase.minimize">
-<span class="sig-name descname"><span class="pre">minimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OptimizerResult</span></span></span><a class="headerlink" href="#squlearn.optimizers.optimizer_base.OptimizerBase.minimize" title="Permalink to this definition"></a></dt>
-<dd><p>Minimize a function</p>
+<span class="sig-name descname"><span class="pre">minimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OptimizerResult</span></span></span><a class="headerlink" href="#squlearn.optimizers.optimizer_base.OptimizerBase.minimize" title="Link to this definition"></a></dt>
+<dd><p>Function to minimize a given function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fun</strong> (<em>callable</em>) – Function to minimize.</p></li>
+<li><p><strong>x0</strong> (<em>numpy.ndarray</em>) – Initial guess.</p></li>
+<li><p><strong>grad</strong> (<em>callable</em>) – Gradient of the function to minimize.</p></li>
+<li><p><strong>bounds</strong> (<em>sequence</em>) – Bounds for the parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><cite>OptimizerResult</cite> format.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the optimization in class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.optimizers.optimizer_base.OptimizerBase.set_callback">
+<span class="sig-name descname"><span class="pre">set_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.optimizers.optimizer_base.OptimizerBase.set_callback" title="Link to this definition"></a></dt>
+<dd><p>Set the callback function.</p>
 </dd></dl>
 
 </dd></dl>

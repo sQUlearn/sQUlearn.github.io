@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.encoding_circuit`.\ :spelling:word:`EncodingCircuitDerivatives`
+=====================================================================================
+
+.. currentmodule:: squlearn.encoding_circuit
+
+.. autoclass:: EncodingCircuitDerivatives

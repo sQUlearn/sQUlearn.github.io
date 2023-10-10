@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.util.optree`.\ :spelling:word:`OpTreeSum`
+===============================================================
+
+.. currentmodule:: squlearn.util.optree
+
+.. autoclass:: OpTreeSum

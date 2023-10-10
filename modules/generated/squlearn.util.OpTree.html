@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.util.OpTree &mdash; sQUlearn 0.4.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.util.optree.OpTreeList" href="squlearn.util.optree.OpTreeList.html" />
+    <link rel="prev" title="squlearn.optimizers.SPSA" href="squlearn.optimizers.SPSA.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#core">Core</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.kernel.matrix">Quantum Kernel Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util</span></code>.OpTree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeList.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeSum.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeSum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeOperator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeOperator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeExpectationValue.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeExpectationValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeMeasuredOperator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeMeasuredOperator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeContainer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.util.optree.OpTreeValue.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeValue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util</span></code>.OpTree</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.util.OpTree.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-util-optree">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util</span></code>.OpTree<a class="headerlink" href="#squlearn-util-optree" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.util.OpTree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.util.</span></span><span class="sig-name descname"><span class="pre">OpTree</span></span><a class="headerlink" href="#squlearn.util.OpTree" title="Link to this definition"></a></dt>
+<dd><p>Static class containing functions for working with OpTrees objects.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeDerivative">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OpTreeDerivative</span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeDerivative" title="Link to this definition"></a></dt>
+<dd><p>Static class for differentiation of a OpTrees, circuits, or operators.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeDerivative.differentiate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">differentiate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeCircuit.html#squlearn.util.optree.OpTreeCircuit" title="squlearn.util.optree.optree.OpTreeCircuit"><span class="pre">OpTreeCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeOperator.html#squlearn.util.optree.OpTreeOperator" title="squlearn.util.optree.optree.OpTreeOperator"><span class="pre">OpTreeOperator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterExpression.html#qiskit.circuit.ParameterExpression" title="(in Qiskit v0.44)"><span class="pre">ParameterExpression</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterExpression.html#qiskit.circuit.ParameterExpression" title="(in Qiskit v0.44)"><span class="pre">ParameterExpression</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeNodeBase</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeDerivative.differentiate" title="Link to this definition"></a></dt>
+<dd><p>Calculates the derivative of a OpTree (or circuit) w.r.t. to a parameter or a list of parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafCircuit</em><em>, </em><em>QuantumCircuit</em><em>]</em>) – OpTree (or circuit)
+to be differentiated.</p></li>
+<li><p><strong>parameters</strong> (<em>Union</em><em>[</em><em>ParameterExpression</em><em>, </em><em>List</em><em>[</em><em>ParameterExpression</em><em>]</em><em>, </em><em>ParameterVector</em><em>]</em>) – Parameter(s) w.r.t.
+the OpTree is
+differentiated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The derivative of the OpTree (or circuit) in OpTree form.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeDerivative.differentiate_v2">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">differentiate_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeCircuit.html#squlearn.util.optree.OpTreeCircuit" title="squlearn.util.optree.optree.OpTreeCircuit"><span class="pre">OpTreeCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeOperator.html#squlearn.util.optree.OpTreeOperator" title="squlearn.util.optree.optree.OpTreeOperator"><span class="pre">OpTreeOperator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterExpression.html#qiskit.circuit.ParameterExpression" title="(in Qiskit v0.44)"><span class="pre">ParameterExpression</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterExpression.html#qiskit.circuit.ParameterExpression" title="(in Qiskit v0.44)"><span class="pre">ParameterExpression</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeNodeBase</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeDerivative.differentiate_v2" title="Link to this definition"></a></dt>
+<dd><p>Calculates the derivative of a OpTree (or circuit) w.r.t. to a parameter or a list of parameters.</p>
+<p>Second implementation, in which the derivative is calculated during the recursive derivative
+computation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafCircuit</em><em>, </em><em>QuantumCircuit</em><em>]</em>) – OpTree (or circuit)
+to be differentiated.</p></li>
+<li><p><strong>parameters</strong> (<em>Union</em><em>[</em><em>ParameterExpression</em><em>, </em><em>List</em><em>[</em><em>ParameterExpression</em><em>]</em><em>, </em><em>ParameterVector</em><em>]</em>) – Parameter(s) w.r.t.
+the OpTree is
+differentiated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The derivative of the OpTree (or circuit) in OpTree form.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeDerivative.transpile_to_supported_instructions">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transpile_to_supported_instructions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">supported_gates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{'cx',</span> <span class="pre">'cy',</span> <span class="pre">'cz',</span> <span class="pre">'ecr',</span> <span class="pre">'h',</span> <span class="pre">'p',</span> <span class="pre">'rx',</span> <span class="pre">'ry',</span> <span class="pre">'rz',</span> <span class="pre">'s',</span> <span class="pre">'sdg',</span> <span class="pre">'sx',</span> <span class="pre">'t',</span> <span class="pre">'tdg',</span> <span class="pre">'x',</span> <span class="pre">'y',</span> <span class="pre">'z'}</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeDerivative.transpile_to_supported_instructions" title="Link to this definition"></a></dt>
+<dd><p>Function for transpiling a circuit to a supported instruction set for gradient calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> (<em>QuantumCircuit</em>) – Circuit to transpile.</p></li>
+<li><p><strong>supported_gates</strong> (<em>Set</em><em>[</em><em>str</em><em>]</em>) – Set of supported gates (Default set given).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Circuit which is transpiled to the supported instruction set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeEvaluate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OpTreeEvaluate</span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeEvaluate" title="Link to this definition"></a></dt>
+<dd><p>Static class for evaluating OpTree structures with Qiskit’s primitives.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeEvaluate.evaluate_tree_with_estimator">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_tree_with_estimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expectation_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeExpectationValue.html#squlearn.util.optree.OpTreeExpectationValue" title="squlearn.util.optree.optree.OpTreeExpectationValue"><span class="pre">OpTreeExpectationValue</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.primitives.BaseEstimator.html#qiskit.primitives.BaseEstimator" title="(in Qiskit v0.44)"><span class="pre">BaseEstimator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect_duplicates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeEvaluate.evaluate_tree_with_estimator" title="Link to this definition"></a></dt>
+<dd><p>Evaluate a expectation tree with an estimator.</p>
+<p>The OpTree can only contain expectation values, and the estimator is used to evaluate the
+expectation values.
+Dictionary can be a list of dictionaries, in which case the function evaluates the expectation
+value for all combinations of the dictionaries.
+The function also checks if the same expectation value occurs multiple times, and only adds
+it once to the evaluation list. This can be turned off with the <code class="docutils literal notranslate"><span class="pre">detect_duplicates</span></code> flag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expectation_tree</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>,</em><em>OpTreeLeafExpectationValue</em><em>]</em>) – The expectation OpTree
+to be evaluated.</p></li>
+<li><p><strong>dictionary</strong> (<em>Union</em><em>[</em><em>List</em><em>(</em><em>dict</em><em>)</em><em>,</em><em>dict</em><em>]</em>) – The dictionary that contains the parameter and their
+values. Can be list for the evaluation of multiple
+dictionaries.</p></li>
+<li><p><strong>estimator</strong> (<em>BaseEstimator</em>) – The estimator primitive that is used for the evaluation.</p></li>
+<li><p><strong>detect_expectation_duplicates</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, duplicate expectation values are
+detected and only evaluated once.
+Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The expectation value of the expectation OpTree as a numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeEvaluate.evaluate_tree_with_sampler">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_tree_with_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expectation_tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect_duplicates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeEvaluate.evaluate_tree_with_sampler" title="Link to this definition"></a></dt>
+<dd><p>Evaluate a expectation tree with a sampler.</p>
+<p>The OpTree can only contain expectation values, and the sampler is used to evaluate the
+expectation values.
+Dictionary can be a list of dictionaries, in which case the function evaluates the expectation
+value for all combinations of the dictionaries.
+The function also checks if the same circuit or expectation value occurs multiple times,
+and only adds it once to the evaluation list.
+This can be turned off with the <code class="docutils literal notranslate"><span class="pre">detect_duplicates</span></code> flag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expectation_tree</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>,</em><em>OpTreeLeafExpectationValue</em><em>]</em>) – The expectation OpTree
+to be evaluated.</p></li>
+<li><p><strong>dictionary</strong> (<em>Union</em><em>[</em><em>List</em><em>(</em><em>dict</em><em>)</em><em>,</em><em>dict</em><em>]</em>) – The dictionary that contains the parameter and their
+values. Can be list for the evaluation of multiple
+dictionaries.</p></li>
+<li><p><strong>sampler</strong> (<em>BaseSampler</em>) – The sampler primitive that is used for the evaluation.</p></li>
+<li><p><strong>detect_expectation_duplicates</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, duplicate expectation values and
+circuits are detected and only evaluated
+once.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The expectation value of the expectation OpTree as a numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeEvaluate.evaluate_with_estimator">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_with_estimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeCircuit.html#squlearn.util.optree.OpTreeCircuit" title="squlearn.util.optree.optree.OpTreeCircuit"><span class="pre">OpTreeCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeOperator.html#squlearn.util.optree.OpTreeOperator" title="squlearn.util.optree.optree.OpTreeOperator"><span class="pre">OpTreeOperator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary_operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.primitives.BaseEstimator.html#qiskit.primitives.BaseEstimator" title="(in Qiskit v0.44)"><span class="pre">BaseEstimator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionaries_combined</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect_duplicates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeEvaluate.evaluate_with_estimator" title="Link to this definition"></a></dt>
+<dd><p>Function for evaluating the expectation value with the estimator primitive.</p>
+<p>Inputted are a circuit and operator in OpTree format, and a dictionaries that contain the
+values for the parameters in the circuit and operator.
+Dictionary can be a list of dictionaries, in which case the function evaluates the expectation
+value for all combinations of the dictionaries, or if <code class="docutils literal notranslate"><span class="pre">dictionaries_combined==True</span></code>, the
+function evaluates the expectation value for the same index of the dictionaries.</p>
+<p>The function also checks if the same circuit or operator occurs multiple times, and only adds
+it once to the evaluation list. This can be turned off with the <code class="docutils literal notranslate"><span class="pre">detect_duplicates</span></code> flag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafCircuit</em><em>, </em><em>QuantumCircuit</em><em>]</em>) – The circuit or OpTree
+with circuits to be
+evaluated.</p></li>
+<li><p><strong>operator</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafOperator</em><em>, </em><em>SparsePauliOp</em><em>]</em>) – The operator or OpTree in the expectation values.</p></li>
+<li><p><strong>dictionary_circuit</strong> (<em>Union</em><em>[</em><em>dict</em><em>, </em><em>List</em><em>[</em><em>dict</em><em>]</em><em>]</em>) – The dictionary or list of dictionaries that
+contain the values for the parameters in the
+circuit (or the circuit OpTree).</p></li>
+<li><p><strong>dictionary_operator</strong> (<em>Union</em><em>[</em><em>dict</em><em>, </em><em>List</em><em>[</em><em>dict</em><em>]</em><em>]</em>) – The dictionary or list of dictionaries that
+contain the values for the parameters in the
+operator (or the operator OpTree).</p></li>
+<li><p><strong>estimator</strong> (<em>BaseEstimator</em>) – The estimator primitive that is used for the evaluation.</p></li>
+<li><p><strong>dictionaries_combined</strong> (<em>bool</em>) – If True, the function evaluates the expectation value for
+the same index of the dictionaries (both have to be Lists).
+Defaults to False.</p></li>
+<li><p><strong>detect_duplicates</strong> (<em>bool</em>) – If True, the removes duplicate circuits and operators from the
+evaluation list. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The expectation value of the expectation values as a numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeEvaluate.evaluate_with_sampler">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_with_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeCircuit.html#squlearn.util.optree.OpTreeCircuit" title="squlearn.util.optree.optree.OpTreeCircuit"><span class="pre">OpTreeCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeOperator.html#squlearn.util.optree.OpTreeOperator" title="squlearn.util.optree.optree.OpTreeOperator"><span class="pre">OpTreeOperator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeMeasuredOperator.html#squlearn.util.optree.OpTreeMeasuredOperator" title="squlearn.util.optree.optree.OpTreeMeasuredOperator"><span class="pre">OpTreeMeasuredOperator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary_operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.primitives.BaseSampler.html#qiskit.primitives.BaseSampler" title="(in Qiskit v0.44)"><span class="pre">BaseSampler</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionaries_combined</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect_duplicates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeEvaluate.evaluate_with_sampler" title="Link to this definition"></a></dt>
+<dd><p>Function for evaluating the expectation value with the sampler primitive.</p>
+<p>Inputted are a circuit and operator in OpTree format, and a dictionaries that contain the
+values for the parameters in the circuit and operator.
+Dictionary can be a list of dictionaries, in which case the function evaluates the expectation
+value for all combinations of the dictionaries, or if <code class="docutils literal notranslate"><span class="pre">dictionaries_combined==True</span></code>, the
+function evaluates the expectation value for the same index of the dictionaries.</p>
+<p>The function also checks if the same circuit or operator occurs multiple times, and only adds
+it once to the evaluation list. This can be turned off with the <code class="docutils literal notranslate"><span class="pre">detect_duplicates</span></code> flag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafCircuit</em><em>, </em><em>QuantumCircuit</em><em>]</em>) – The circuit or OpTree
+with circuits to be
+evaluated.</p></li>
+<li><p><strong>operator</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafOperator</em><em>, </em><em>SparsePauliOp</em><em>, </em><em>OpTreeLeafMeasuredOperator</em><em>]</em>) – The operator or OpTree in the expectation values.</p></li>
+<li><p><strong>dictionary_circuit</strong> (<em>Union</em><em>[</em><em>dict</em><em>, </em><em>List</em><em>[</em><em>dict</em><em>]</em><em>]</em>) – The dictionary or list of dictionaries that
+contain the values for the parameters in the
+circuit (or the circuit OpTree).</p></li>
+<li><p><strong>dictionary_operator</strong> (<em>Union</em><em>[</em><em>dict</em><em>, </em><em>List</em><em>[</em><em>dict</em><em>]</em><em>]</em>) – The dictionary or list of dictionaries that
+contain the values for the parameters in the
+operator (or the operator OpTree).</p></li>
+<li><p><strong>sampler</strong> (<em>BaseSampler</em>) – The sampler primitive that is used for the evaluation.</p></li>
+<li><p><strong>dictionaries_combined</strong> (<em>bool</em>) – If True, the function evaluates the expectation value for
+the same index of the dictionaries (both have to be Lists).
+Defaults to False.</p></li>
+<li><p><strong>detect_duplicates</strong> (<em>bool</em>) – If True, the removes duplicate circuits and operators from the
+evaluation list. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The expectation value of the expectation values as a numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.OpTreeEvaluate.transform_to_zbasis">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform_to_zbasis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optree_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeOperator.html#squlearn.util.optree.OpTreeOperator" title="squlearn.util.optree.optree.OpTreeOperator"><span class="pre">OpTreeOperator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeExpectationValue.html#squlearn.util.optree.OpTreeExpectationValue" title="squlearn.util.optree.optree.OpTreeExpectationValue"><span class="pre">OpTreeExpectationValue</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">abelian_grouping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.OpTree.OpTreeEvaluate.transform_to_zbasis" title="Link to this definition"></a></dt>
+<dd><p>Function for transforming an OpTree structure to the Z basis.</p>
+<p>This can be applied to OpTree structures that contain operators or expectation values.
+The function transforms the operators to the Z basis by adding measurement circuits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optree_element</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafOperator</em><em>, </em><em>OpTreeLeafExpectationValue</em><em>, </em><em>SparsePauliOp</em><em>]</em>) – The OpTree structure to be transformed.</p></li>
+<li><p><strong>abelian_grouping</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the operator is grouped into commuting terms.
+Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The transformed OpTree structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.assign_parameters">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeCircuit.html#squlearn.util.optree.OpTreeCircuit" title="squlearn.util.optree.optree.OpTreeCircuit"><span class="pre">OpTreeCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.OpTree.assign_parameters" title="Link to this definition"></a></dt>
+<dd><p>Assigns the parameters of the OpTree structure to the values in the dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafCircuit</em><em>, </em><em>QuantumCircuit</em><em>]</em>) – The OpTree for which
+all parameters are
+assigned.</p></li>
+<li><p><strong>dictionary</strong> (<em>dict</em>) – The dictionary that contains the parameter names as keys
+and the parameter values as values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The OpTree structure with all parameters assigned, (copied if inplace=False)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.derivative">
+<span class="sig-name descname"><span class="pre">derivative</span></span><a class="headerlink" href="#squlearn.util.OpTree.derivative" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#squlearn.util.OpTree.OpTreeDerivative" title="squlearn.util.optree.optree_derivative.OpTreeDerivative"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpTreeDerivative</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><a class="headerlink" href="#squlearn.util.OpTree.evaluate" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#squlearn.util.OpTree.OpTreeEvaluate" title="squlearn.util.optree.optree_evaluate.OpTreeEvaluate"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpTreeEvaluate</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.gen_expectation_tree">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gen_expectation_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeCircuit.html#squlearn.util.optree.OpTreeCircuit" title="squlearn.util.optree.optree.OpTreeCircuit"><span class="pre">OpTreeCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeMeasuredOperator.html#squlearn.util.optree.OpTreeMeasuredOperator" title="squlearn.util.optree.optree.OpTreeMeasuredOperator"><span class="pre">OpTreeMeasuredOperator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.util.optree.OpTreeOperator.html#squlearn.util.optree.OpTreeOperator" title="squlearn.util.optree.optree.OpTreeOperator"><span class="pre">OpTreeOperator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.OpTree.gen_expectation_tree" title="Link to this definition"></a></dt>
+<dd><p>Function that generates an expectation tree from a circuit tree and an operator tree.</p>
+<p>The operator tree is applied to each leaf of the circuit tree and the
+resulting expectation values are returned as <a class="reference internal" href="squlearn.util.optree.OpTreeExpectationValue.html#squlearn.util.optree.OpTreeExpectationValue" title="squlearn.util.optree.OpTreeExpectationValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpTreeExpectationValue</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit_tree</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafCircuit</em><em>, </em><em>QuantumCircuit</em><em>]</em>) – The circuit tree.</p></li>
+<li><p><strong>operator_tree</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafMeasuredOperator</em><em>, </em><em>OpTreeLeafOperator</em><em>, </em><em>SparsePauliOp</em><em>]</em>) – The operator tree.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The combined tree with <a class="reference internal" href="squlearn.util.optree.OpTreeExpectationValue.html#squlearn.util.optree.OpTreeExpectationValue" title="squlearn.util.optree.OpTreeExpectationValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpTreeExpectationValue</span></code></a> at the leafs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.get_first_leaf">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_first_leaf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">OpTreeLeafBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeLeafBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.util.OpTree.get_first_leaf" title="Link to this definition"></a></dt>
+<dd><p>Returns the first leaf of the supplied OpTree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafBase</em><em>, </em><em>QuantumCircuit</em><em>, </em><em>SparsePauliOp</em><em>]</em>) – The OpTree.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The first found leaf of the OpTree.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.get_num_nested_lists">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_num_nested_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeElementBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.get_num_nested_lists" title="Link to this definition"></a></dt>
+<dd><p>Returns the depth of the OpTree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>OpTreeElementBase</em>) – The OpTree.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The depth of the OpTree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.get_number_of_leafs">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_number_of_leafs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeElementBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.get_number_of_leafs" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of leafs of the OpTree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>OpTreeElementBase</em>) – The OpTree.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of leafs of the OpTree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.get_tree_depth">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_tree_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeElementBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.get_tree_depth" title="Link to this definition"></a></dt>
+<dd><p>Returns the depth of the OpTree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>OpTreeElementBase</em>) – The OpTree.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The depth of the OpTree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.hash_circuit">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hash_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.hash_circuit" title="Link to this definition"></a></dt>
+<dd><p>Hashes a circuit using the qiskit _circuit_key function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>circuit</strong> (<em>QuantumCircuit</em>) – The circuit to be hashed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a tuple containing the circuit information that can be used for comparison.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.hash_operator">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hash_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#squlearn.util.OpTree.hash_operator" title="Link to this definition"></a></dt>
+<dd><p>Hashes an operator using the qiskit _observable_key function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>operator</strong> (<em>SparsePauliOp</em>) – The operator to be hashed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the operator information that can be used for comparison.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.util.OpTree.simplify">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">simplify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">OpTreeLeafBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeNodeBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">OpTreeLeafBase</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.util.OpTree.simplify" title="Link to this definition"></a></dt>
+<dd><p>Function for simplifying an OpTree structure, the input is kept untouched.</p>
+<p>Merges double sums and identifies identical branches or leafs in sums.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> (<em>Union</em><em>[</em><em>OpTreeNodeBase</em><em>, </em><em>OpTreeLeafBase</em><em>, </em><em>QuantumCircuit</em><em>, </em><em>SparsePauliOp</em><em>]</em>) – The OpTree to be simplified.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A simplified copy of the OpTree.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.optimizers.SPSA.html" class="btn btn-neutral float-left" title="squlearn.optimizers.SPSA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.util.optree.OpTreeList.html" class="btn btn-neutral float-right" title="squlearn.util.optree.OpTreeList" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

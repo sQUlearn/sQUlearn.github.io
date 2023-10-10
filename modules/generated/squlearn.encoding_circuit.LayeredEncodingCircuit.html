@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.encoding_circuit.LayeredEncodingCircuit &mdash; sQUlearn 0.4.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.encoding_circuit.EncodingCircuitDerivatives" href="squlearn.encoding_circuit.EncodingCircuitDerivatives.html" />
+    <link rel="prev" title="squlearn.encoding_circuit.PrunedEncodingCircuit" href="squlearn.encoding_circuit.PrunedEncodingCircuit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit">Encoding Circuits</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#encoding-circuit-tools">Encoding Circuit Tools</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit.encoding_circuit_base</span></code>.EncodingCircuitBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.PrunedEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.PrunedEncodingCircuit</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.LayeredEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.EncodingCircuitDerivatives.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.EncodingCircuitDerivatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.TranspiledEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.TranspiledEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.automated_pruning.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.automated_pruning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.pruning_from_QFI.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.pruning_from_QFI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#operators">Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#operator-tools">Operator Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#core">Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.LayeredEncodingCircuit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.encoding_circuit.LayeredEncodingCircuit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-encoding-circuit-layeredencodingcircuit">
+<h1><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.LayeredEncodingCircuit<a class="headerlink" href="#squlearn-encoding-circuit-layeredencodingcircuit" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">LayeredEncodingCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'p'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit" title="Link to this definition"></a></dt>
+<dd><p>A class for a simple creation of layered encoding circuits.</p>
+<p>Gates are added to all qubits by calling the associated function similar to Qiskit’s circuits.
+Single qubit gates are added to all qubits, while two qubits gates can be added with different
+entanglement patterns. The implemented one and two qubit gates are listed below.</p>
+<p>Some gates have a input variable, as for example rotation gates, that can be set by supplying
+the string <code class="docutils literal notranslate"><span class="pre">&quot;x&quot;</span></code> for feature or <code class="docutils literal notranslate"><span class="pre">&quot;p&quot;</span></code> for parameter. Non-linear mapping can
+be added by setting the map variable <code class="docutils literal notranslate"><span class="pre">map=</span></code>. Two qubit gates can be placed either
+in a nearest-neighbor <code class="docutils literal notranslate"><span class="pre">NN</span></code> or a all to all entangling pattern <code class="docutils literal notranslate"><span class="pre">AA</span></code>.</p>
+<p><strong>Simple Layered Encoding Circuit</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+<span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">H</span><span class="p">()</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">Rz</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">Ry</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">cx_entangling</span><span class="p">(</span><span class="s2">&quot;NN&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference download internal" download="" href="../../_downloads/cc6e93d79e075c0cf799fe6a991fee73/squlearn-encoding_circuit-LayeredEncodingCircuit-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/6cd5678181ec07fe1e45cde828b00b0a/squlearn-encoding_circuit-LayeredEncodingCircuit-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/55ae1f5cb3c3bf9dfb557a582b7f3c2c/squlearn-encoding_circuit-LayeredEncodingCircuit-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/fd78eb07a4a0aa958070ad31cc06e239/squlearn-encoding_circuit-LayeredEncodingCircuit-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-1.png" class="plot-directive" src="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-1.png" />
+</figure>
+<p><strong>Create a layered encoding circuit with non-linear input encoding</strong></p>
+<p>It is also possible to define a non-linear function for encoding variables in gates by
+supplying a function for the encoding as the second argument</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">H</span><span class="p">()</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">Rz</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="n">func</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">cx_entangling</span><span class="p">(</span><span class="s2">&quot;NN&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference download internal" download="" href="../../_downloads/3b8b927bf14175eb3aec6425abcba864/squlearn-encoding_circuit-LayeredEncodingCircuit-2.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/c5e2f6fa5f363350475176839cf56327/squlearn-encoding_circuit-LayeredEncodingCircuit-2.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/3405acf9b7c8b56e3738dc62dab0f184/squlearn-encoding_circuit-LayeredEncodingCircuit-2.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/a2093206cb90123da88182a38310dafa/squlearn-encoding_circuit-LayeredEncodingCircuit-2.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-2.png" class="plot-directive" src="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-2.png" />
+</figure>
+<p><strong>Create a layered encoding circuit with layers</strong></p>
+<p>Furthermore, it is possible to define layers and repeat them.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit.layered_encoding_circuit</span> <span class="kn">import</span> <span class="n">Layer</span>
+<span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">H</span><span class="p">()</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">Layer</span><span class="p">(</span><span class="n">encoding_circuit</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">Rz</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">Ry</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">cx_entangling</span><span class="p">(</span><span class="s2">&quot;NN&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span><span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference download internal" download="" href="../../_downloads/3c5c0112278b526063bb9ec2a6c959e6/squlearn-encoding_circuit-LayeredEncodingCircuit-3.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/5270eb955bfbbb7ee7b6ec602baccd75/squlearn-encoding_circuit-LayeredEncodingCircuit-3.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/062666d8a46dba67d29fe940d436c260/squlearn-encoding_circuit-LayeredEncodingCircuit-3.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/ed214c0b41c6a44a95aee8426290124d/squlearn-encoding_circuit-LayeredEncodingCircuit-3.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-3.png" class="plot-directive" src="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-3.png" />
+</figure>
+<p><strong>Create a layered encoding circuit from string</strong></p>
+<p>Another very useful feature is the creation from encoding circuits from strings.
+This can be achieved by the function <code class="docutils literal notranslate"><span class="pre">LayeredEncodingCircuit.from_string()</span></code>.</p>
+<p>Gates are separated by <code class="docutils literal notranslate"><span class="pre">-</span></code>, layers can be specified by <code class="docutils literal notranslate"><span class="pre">N[...]</span></code> where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the
+number of repetitions. The entangling strategy can be set by adding <code class="docutils literal notranslate"><span class="pre">NN</span></code> or <code class="docutils literal notranslate"><span class="pre">AA</span></code>.
+Adding a encoding function is possible by adding a <code class="docutils literal notranslate"><span class="pre">=</span></code> and the function definition as a
+string. The variables used in the function are given within curly brackets,
+e.g. <code class="docutils literal notranslate"><span class="pre">crz(p;=a*np.arccos(b),{y,x};NN)</span></code>.</p>
+<p>The following strings are used for the gates:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Single qubit gates and their string representation</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 21%" />
+<col style="width: 13%" />
+<col style="width: 21%" />
+<col style="width: 13%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>String</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>String</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>String</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;H&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.H" title="squlearn.encoding_circuit.LayeredEncodingCircuit.H"><code class="xref py py-meth docutils literal notranslate"><span class="pre">H()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.I" title="squlearn.encoding_circuit.LayeredEncodingCircuit.I"><code class="xref py py-meth docutils literal notranslate"><span class="pre">I()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;P&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.P" title="squlearn.encoding_circuit.LayeredEncodingCircuit.P"><code class="xref py py-meth docutils literal notranslate"><span class="pre">P()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Rx&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Rx" title="squlearn.encoding_circuit.LayeredEncodingCircuit.Rx"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rx()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Ry&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Ry" title="squlearn.encoding_circuit.LayeredEncodingCircuit.Ry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ry()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Rz&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Rz" title="squlearn.encoding_circuit.LayeredEncodingCircuit.Rz"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rz()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;S&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.S" title="squlearn.encoding_circuit.LayeredEncodingCircuit.S"><code class="xref py py-meth docutils literal notranslate"><span class="pre">S()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Sc&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.S_conjugate" title="squlearn.encoding_circuit.LayeredEncodingCircuit.S_conjugate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">S_conjugate()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;T&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.T" title="squlearn.encoding_circuit.LayeredEncodingCircuit.T"><code class="xref py py-meth docutils literal notranslate"><span class="pre">T()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Tc&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.T_conjugate" title="squlearn.encoding_circuit.LayeredEncodingCircuit.T_conjugate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">T_conjugate()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;U&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.U" title="squlearn.encoding_circuit.LayeredEncodingCircuit.U"><code class="xref py py-meth docutils literal notranslate"><span class="pre">U()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.X" title="squlearn.encoding_circuit.LayeredEncodingCircuit.X"><code class="xref py py-meth docutils literal notranslate"><span class="pre">X()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Y&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Y" title="squlearn.encoding_circuit.LayeredEncodingCircuit.Y"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Y()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Z" title="squlearn.encoding_circuit.LayeredEncodingCircuit.Z"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Z()</span></code></a></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Two qubit gates and their string representation</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>String</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>String</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>String</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;ch&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.ch_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.ch_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ch_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;cx&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cx_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.cx_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cx_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;cy&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cy_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.cy_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cy_entangling()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;cz&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cz_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.cz_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cz_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.swap" title="squlearn.encoding_circuit.LayeredEncodingCircuit.swap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">swap()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;cp&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cp_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.cp_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cp_entangling()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;crx&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.crx_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.crx_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">crx_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;cry&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cry_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.cry_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cry_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;crz&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.crz_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.crz_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">crz_entangling()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;rxx&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.rxx_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.rxx_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rxx_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;ryy&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.ryy_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.ryy_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ryy_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;rzz&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.rzz_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.rzz_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rzz_entangling()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;rzx&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.rzx_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.rzx_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rzx_entangling()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;cu&quot;</span></code></p></td>
+<td><p><a class="reference internal" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cu_entangling" title="squlearn.encoding_circuit.LayeredEncodingCircuit.cu_entangling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cu_entangling()</span></code></a></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+<span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span>
+    <span class="s2">&quot;Ry(p)-3[Rx(p,x;=y*np.arccos(x),{y,x})-crz(p)]-Ry(p)&quot;</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference download internal" download="" href="../../_downloads/ff67a88d69e08a2734d0b424e9cb16ea/squlearn-encoding_circuit-LayeredEncodingCircuit-4.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/86699b69437e0d826a27b1a4b83ebae3/squlearn-encoding_circuit-LayeredEncodingCircuit-4.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/9d09279eb5b4d37b1f78ebe320ac0083/squlearn-encoding_circuit-LayeredEncodingCircuit-4.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/fd360e8e1f2ac66919d27dbdf5f12849/squlearn-encoding_circuit-LayeredEncodingCircuit-4.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-4.png" class="plot-directive" src="../../_images/squlearn-encoding_circuit-LayeredEncodingCircuit-4.png" />
+</figure>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_qubits</strong> (<em>int</em>) – Number of qubits of the encoding circuit</p></li>
+<li><p><strong>num_features</strong> (<em>int</em>) – Dimension of the feature vector</p></li>
+<li><p><strong>feature_str</strong> (<em>str</em>) – Label for identifying the feature variable group (default: <code class="docutils literal notranslate"><span class="pre">&quot;x&quot;</span></code>).</p></li>
+<li><p><strong>parameter_str</strong> (<em>str</em>) – Label for identifying the parameter variable group (default: <code class="docutils literal notranslate"><span class="pre">&quot;p&quot;</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.H">
+<span class="sig-name descname"><span class="pre">H</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.H" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of H gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.I">
+<span class="sig-name descname"><span class="pre">I</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.I" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of I gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.P">
+<span class="sig-name descname"><span class="pre">P</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.P" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of P gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.Rx">
+<span class="sig-name descname"><span class="pre">Rx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Rx" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Rx gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.Ry">
+<span class="sig-name descname"><span class="pre">Ry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Ry" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Ry gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.Rz">
+<span class="sig-name descname"><span class="pre">Rz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Rz" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Rz gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.S">
+<span class="sig-name descname"><span class="pre">S</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.S" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of S gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.S_conjugate">
+<span class="sig-name descname"><span class="pre">S_conjugate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.S_conjugate" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of conjugated S gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.T">
+<span class="sig-name descname"><span class="pre">T</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.T" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of T gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.T_conjugate">
+<span class="sig-name descname"><span class="pre">T_conjugate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.T_conjugate" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of conjugated T gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.U">
+<span class="sig-name descname"><span class="pre">U</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.U" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of U gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.X">
+<span class="sig-name descname"><span class="pre">X</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.X" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of X gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.Y">
+<span class="sig-name descname"><span class="pre">Y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Y" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Y gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.Z">
+<span class="sig-name descname"><span class="pre">Z</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.Z" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Z gates to the Layered Encoding Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.add_layer">
+<span class="sig-name descname"><span class="pre">add_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.add_layer" title="Link to this definition"></a></dt>
+<dd><p>Add a layer <cite>num_layers</cite> times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer</strong> – Layer structure</p></li>
+<li><p><strong>num_layers</strong> (<em>int</em>) – Number of times that the layer is repeated</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.ch_entangling">
+<span class="sig-name descname"><span class="pre">ch_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.ch_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled H gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.cp_entangling">
+<span class="sig-name descname"><span class="pre">cp_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cp_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled P gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.crx_entangling">
+<span class="sig-name descname"><span class="pre">crx_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.crx_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled Rx gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.cry_entangling">
+<span class="sig-name descname"><span class="pre">cry_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cry_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled Ry gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.crz_entangling">
+<span class="sig-name descname"><span class="pre">crz_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.crz_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled Rz gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.cu_entangling">
+<span class="sig-name descname"><span class="pre">cu_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cu_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled U gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.cx_entangling">
+<span class="sig-name descname"><span class="pre">cx_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cx_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled X gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.cy_entangling">
+<span class="sig-name descname"><span class="pre">cy_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cy_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled Y gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.cz_entangling">
+<span class="sig-name descname"><span class="pre">cz_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.cz_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of controlled Z gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'p'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.draw" title="Link to this definition"></a></dt>
+<dd><p>Draws the encoding circuit circuit using the QuantumCircuit.draw() function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>feature_label</strong> (<em>str</em>) – Label for the feature vector (default:”x”).</p></li>
+<li><p><strong>parameter_label</strong> (<em>str</em>) – Label for the parameter vector (default:”p”).</p></li>
+<li><p><strong>decompose</strong> (<em>bool</em>) – If True, the circuit is decomposed before printing (default: False).</p></li>
+<li><p><strong>kwargs</strong> – Additional arguments from Qiskit’s QuantumCircuit.draw() function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the circuit in qiskit QuantumCircuit.draw() format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.from_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'p'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.from_string" title="Link to this definition"></a></dt>
+<dd><p>Constructs a Layered Encoding Circuit through a given string of gates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>encoding_circuit_str</strong> (<em>str</em>) – String that specifies the encoding circuit</p></li>
+<li><p><strong>num_qubits</strong> (<em>int</em>) – Number of qubits in the encoding circuit</p></li>
+<li><p><strong>num_features</strong> (<em>int</em>) – Dimension of the feature vector.</p></li>
+<li><p><strong>feature_str</strong> (<em>str</em>) – String that is used in encoding_circuit_str to label features (default: ‘x’)</p></li>
+<li><p><strong>parameter_str</strong> (<em>str</em>) – String that is used in encoding_circuit_str to label parameters (default: ‘p’)</p></li>
+<li><p><strong>num_laters</strong> (<em>int</em>) – Number of layers, i.e., the number of repetitions of the encoding circuit (default: 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a LayeredEncodingCircuit object that contains the specified encoding circuit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.generate_initial_parameters">
+<span class="sig-name descname"><span class="pre">generate_initial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.generate_initial_parameters" title="Link to this definition"></a></dt>
+<dd><p>Generates random parameters for the encoding circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>None</em><em>]</em>) – Seed for the random number generator (default: None)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The randomly generated parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.get_circuit">
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.get_circuit" title="Link to this definition"></a></dt>
+<dd><p>Returns the circuit of the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>ParameterVector</strong> (<em>param_vec</em>) – Input vector of the features
+from which the gate inputs are obtained</p></li>
+<li><p><strong>np.ndarray</strong><strong>]</strong> – Input vector of the features
+from which the gate inputs are obtained</p></li>
+<li><p><strong>Union</strong><strong>[</strong><strong>ParameterVector</strong> – Input vector of the parameters
+from which the gate inputs are obtained</p></li>
+<li><p><strong>np.ndarray</strong><strong>]</strong> – Input vector of the parameters
+from which the gate inputs are obtained</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the circuit in qiskit QuantumCircuit format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.get_params" title="Link to this definition"></a></dt>
+<dd><p>Returns hyper-parameters and their values of the encoding circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em>) – If True, also the parameters for
+contained objects are returned (default=True).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with hyper-parameters and values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.rxx_entangling">
+<span class="sig-name descname"><span class="pre">rxx_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.rxx_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Rxx gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.ryy_entangling">
+<span class="sig-name descname"><span class="pre">ryy_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.ryy_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Ryy gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.rzx_entangling">
+<span class="sig-name descname"><span class="pre">rzx_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.rzx_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Rzx gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.rzz_entangling">
+<span class="sig-name descname"><span class="pre">rzz_entangling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variable_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.rzz_entangling" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of Rzz gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_str</strong> (<em>str</em>) – Labels of variables that are used in the gate</p></li>
+<li><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p></li>
+<li><p><strong>encoding</strong> (<em>Callable</em>) – Encoding function that is applied to the variables, input in the
+same order as the given labels in variable_str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.set_params" title="Link to this definition"></a></dt>
+<dd><p>Sets value of the encoding circuit hyper-parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – Hyper-parameters and their values, e.g. <code class="docutils literal notranslate"><span class="pre">num_qubits=2</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.swap">
+<span class="sig-name descname"><span class="pre">swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ent_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NN'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.swap" title="Link to this definition"></a></dt>
+<dd><p>Adds a layer of swap gates to the Layered Encoding Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ent_strategy</strong> (<em>str</em>) – Entanglement strategy that is used to determine the entanglement,
+either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;AA&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.encoding_circuit.PrunedEncodingCircuit.html" class="btn btn-neutral float-left" title="squlearn.encoding_circuit.PrunedEncodingCircuit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.encoding_circuit.EncodingCircuitDerivatives.html" class="btn btn-neutral float-right" title="squlearn.encoding_circuit.EncodingCircuitDerivatives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

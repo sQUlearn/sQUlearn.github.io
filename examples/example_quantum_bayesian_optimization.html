@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model &mdash; sQUlearn 0.4.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Hyperparameter Optimization and Pipelines" href="example_kernel_grid_search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sQUlearn
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples_index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example_kernel_digit_classification.html">Handwritten Digit Recognition with Projected Quantum Kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_kernel_grid_search.html">Hyperparameter Optimization and Pipelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="examples_index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/example_quantum_bayesian_optimization.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Bayesian-Optimization-using-a-Quantum-Gaussian-Process-Surrogate-Model">
+<h1>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model<a class="headerlink" href="#Bayesian-Optimization-using-a-Quantum-Gaussian-Process-Surrogate-Model" title="Link to this heading"></a></h1>
+<p>In this notebook, we will perform a Bayesian Optimization by using sQUlearn’s implementations of Quantum Gaussian Processes <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.ml.QGPR.html">squlearn.kernel.QGPR</a> and Fidelity Quantum Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.matrix.FidelityQuantumKernel.html">squlearn.kernel.FidelityQuantumKernel</a>.</p>
+<center><p><img alt="quantum_bo" class="no-scaled-link" src="../_images/quantum_bo.png" style="width: 800px;" /></p>
+<p><em>Fig. 1: Conceptual layout of a quantum Bayesian optimization using a QGPR surrogate, taken from</em> <a class="reference external" href="https://arxiv.org/pdf/2304.12923.pdf">Rapp, F., Roth, M.</a></p>
+</center><p>Bayesian optimization is a global optimization method that solves problems of the form</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{x}^* = \text{arg} \min_{\boldsymbol{x}} g(\boldsymbol{x})\,.\]</div>
+<p>The optimization is performed iteratively where the next sample is chosen using information obtained from previous iterations. Through this informed guidance, Bayesian optimization usually requires a modest amount of samples which makes it attractive for problems where the evaluation of <span class="math notranslate nohighlight">\(g\)</span> is expensive. Bayesian optimization treats <span class="math notranslate nohighlight">\(g\)</span> as a black-box such that there are no further restrictions regarding its functional form.</p>
+<p>The algorithm is initialized by drawing a random sample and fitting a <em>surrogate model</em> as a proxy for <span class="math notranslate nohighlight">\(g\)</span>. The next sample is then chosen by considering an exploitation-exploration trade-off which is quantified by an <em>acquisition function</em>. This procedure is then repeated such that the surrogate model approximates the true function increasingly well. Due to their posterior variance output GP models are popular choices for surrogates. A common choice for an acquisition function is the
+expected improvement (EI)</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{EI}(\boldsymbol{x}) =
+        [g(\boldsymbol{x}^+) - \mu(\boldsymbol{x}) - \lambda] \boldsymbol{\Phi}(Z) + \Sigma(\boldsymbol{x}) \varphi(Z)\,\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\mu(\boldsymbol{x})\)</span> and <span class="math notranslate nohighlight">\(\Sigma(\boldsymbol{x})\)</span> are the posterior mean prediction and the prediction uncertainty of the surrogate model at position <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, and <span class="math notranslate nohighlight">\(\varphi(Z)\)</span>, and <span class="math notranslate nohighlight">\(\boldsymbol{\Phi}(Z)\)</span> are the probability distribution and the cumulative distribution of the standard normal distribution. The location of the best sample, i.e., the current observed minimum of the surrogate model, is indicated by <span class="math notranslate nohighlight">\(\boldsymbol{x}^+\)</span>. The
+standardized prediction error <span class="math notranslate nohighlight">\(Z\)</span> is given by <span class="math notranslate nohighlight">\(Z = [f(\boldsymbol{x}^+) - \mu(\boldsymbol{x}) - \lambda]/\Sigma(\boldsymbol{x})\)</span> if <span class="math notranslate nohighlight">\(\Sigma(\boldsymbol{x}) &gt; 0\)</span> and <span class="math notranslate nohighlight">\(Z=0\)</span> if <span class="math notranslate nohighlight">\(\Sigma(\boldsymbol{x}) = 0\)</span>. The parameter <span class="math notranslate nohighlight">\(\lambda\)</span> is a hyperparameter that controls the exploitation-exploration trade-off, where a high value of <span class="math notranslate nohighlight">\(\lambda\)</span> favours exploration.</p>
+<p>We obtain a quantum Bayesian optimization (QBO) algorithm by using a QGP model as a surrogate model.</p>
+<p>The follwing example will adapt the structre of the examples made in <a class="reference external" href="https://scikit-optimize.github.io/stable/auto_examples/bayesian-optimization.html">scikit-optimize</a>.</p>
+<p>We start by defining the Bayesian optimization base class.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span><span class="p">,</span> <span class="n">OptimizeResult</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">skopt.space</span> <span class="kn">import</span> <span class="n">Space</span>
+
+
+<span class="k">class</span> <span class="nc">BayesOpt</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">f</span><span class="p">,</span>
+        <span class="n">domain</span><span class="p">,</span>
+        <span class="n">surrogate_model</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="p">,</span>
+        <span class="n">nr_initial_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">X_plot</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">Y_plot</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">acquisition</span><span class="o">=</span><span class="s2">&quot;EI&quot;</span><span class="p">,</span>
+        <span class="n">xi</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">plot_iters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surrogate</span> <span class="o">=</span> <span class="n">surrogate_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span> <span class="o">=</span> <span class="n">acquisition</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blackbox_function</span> <span class="o">=</span> <span class="n">f</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnd</span> <span class="o">=</span> <span class="n">random_state</span>
+
+        <span class="c1"># preparation of the search space</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="n">Space</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initial_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span>
+            <span class="n">n_samples</span><span class="o">=</span><span class="n">nr_initial_points</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_samples</span>
+        <span class="n">Y_init</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">blackbox_function</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y_init</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_plot</span> <span class="o">=</span> <span class="n">X_plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Y_plot</span> <span class="o">=</span> <span class="n">Y_plot</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_surrogate_acquisition</span> <span class="o">=</span> <span class="n">plot_iters</span>  <span class="c1"># Control whether to plot at each step</span>
+
+    <span class="k">def</span> <span class="nf">expected_improvement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="n">gpr</span><span class="p">):</span>
+        <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">gpr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">mu_sample</span> <span class="o">=</span> <span class="n">gpr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_sample</span><span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">mu_sample_opt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mu_sample</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;warn&quot;</span><span class="p">):</span>
+            <span class="n">imp</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">-</span> <span class="n">mu_sample_opt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">xi</span>
+            <span class="n">Z</span> <span class="o">=</span> <span class="n">imp</span> <span class="o">/</span> <span class="n">sigma</span>
+            <span class="n">ei</span> <span class="o">=</span> <span class="n">imp</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+            <span class="n">ei</span><span class="p">[</span><span class="n">sigma</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="k">return</span> <span class="n">ei</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">propose_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acquisition</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="n">gpr</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">n_dims</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="n">min_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">min_x</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">def</span> <span class="nf">min_obj</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="c1"># Minimization objective is the negative acquisition function</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">acquisition</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="n">gpr</span><span class="p">)</span>
+
+        <span class="c1"># Find the best optimum by starting from n_restart different random points.</span>
+        <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">bounds</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">restarts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)):</span>
+            <span class="c1"># add a maxiter of 10 to the optimizer</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+                <span class="n">min_obj</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">min_val</span><span class="p">:</span>
+                <span class="n">min_val</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fun</span>
+                <span class="n">min_x</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;next sample X position: &quot;</span><span class="p">,</span> <span class="n">min_x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">min_x</span>
+
+    <span class="k">def</span> <span class="nf">run_optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">,</span> <span class="n">n_restarts</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+        <span class="n">X_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">Y_sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">restarts</span> <span class="o">=</span> <span class="n">n_restarts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span> <span class="o">==</span> <span class="s2">&quot;EI&quot;</span><span class="p">:</span>
+            <span class="n">acq_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_improvement</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="c1"># Update Gaussian process with existing samples</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">surrogate</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">)</span>
+
+            <span class="n">X_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propose_location</span><span class="p">(</span>
+                <span class="n">acq_func</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrogate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">bounds</span>
+            <span class="p">)</span>
+            <span class="n">X_next</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X_next</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">Y_next</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">blackbox_function</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">X_next</span><span class="p">]</span>
+
+            <span class="c1"># Add sample to previous samples</span>
+            <span class="n">X_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X_sample</span><span class="p">,</span> <span class="n">X_next</span><span class="p">))</span>
+            <span class="n">Y_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">Y_sample</span><span class="p">,</span> <span class="n">Y_next</span><span class="p">))</span>
+
+            <span class="c1"># Plot surrogate and acquisition at each step</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_surrogate_acquisition</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">plot_surrogate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">OptimizeResult</span><span class="p">()</span>
+        <span class="n">best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">Y_sample</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_sample</span><span class="p">[</span><span class="n">best</span><span class="p">]</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">fun</span> <span class="o">=</span> <span class="n">Y_sample</span><span class="p">[</span><span class="n">best</span><span class="p">]</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">func_vals</span> <span class="o">=</span> <span class="n">Y_sample</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">x_iters</span> <span class="o">=</span> <span class="n">X_sample</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">plot_surrogate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_plot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;X_plot is None. Surrogate function cannot be plotted.&quot;</span><span class="p">)</span>
+
+        <span class="n">y_pred</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrogate</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Surrogate Function (Step </span><span class="si">{</span><span class="n">step</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_plot</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y_plot</span><span class="p">,</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Noise-free objective&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Samples&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Surrogate function&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_plot</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">y_pred</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span>
+            <span class="n">y_pred</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Surrogate Value&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">y_conv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">Y_sample</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_conv</span><span class="p">,</span> <span class="s2">&quot;ro-&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Min f(x)&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Convergence plot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Note:</p>
+<ul><li><p>In this example, we only used the EI acquisition function. This can be easily exchanged through a customised acquisition function.</p>
+<li><p>There might be some rescaling of the inputs necessary, depending on the choice of data encoding circuit</p>
+<li><p>A custom plot_surrogate function is available, but only if there is an analitically know representation of your objective function</p>
+<ul><p>To get an intuition how Bayesian optimization works, we perform it the mimization of a known objective function with noisy samples. This will allow us to plot exactly what happens in each iteration step.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># objective function initialization</span>
+<span class="n">noise_level</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">noise_level</span><span class="o">=</span><span class="n">noise_level</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span> <span class="o">*</span> <span class="n">noise_level</span>
+
+
+<span class="c1"># Plot f(x) + contours</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">noise_level</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fx</span><span class="p">,</span> <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True (unknown)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="p">[</span><span class="n">fx_i</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">noise_level</span> <span class="k">for</span> <span class="n">fx_i</span> <span class="ow">in</span> <span class="n">fx</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">fx_i</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">noise_level</span> <span class="k">for</span> <span class="n">fx_i</span> <span class="ow">in</span> <span class="n">fx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+        <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+    <span class="n">ec</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_6_0.png" src="../_images/examples_example_quantum_bayesian_optimization_6_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the qgpr surrogate model</span>
+
+<span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QEKEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.matrix</span> <span class="kn">import</span> <span class="n">FidelityKernel</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.ml</span> <span class="kn">import</span> <span class="n">QGPR</span>
+
+<span class="c1"># set up quantum kernel and qgpr</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">enc_circ</span> <span class="o">=</span> <span class="n">QEKEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">q_kernel</span> <span class="o">=</span> <span class="n">FidelityKernel</span><span class="p">(</span>
+    <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">),</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">qgpr_model</span> <span class="o">=</span> <span class="n">QGPR</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">q_kernel</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.01</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Note:</p>
+<ol><li><p>The performance and results can be dependent on the choice of encoding strateg, and its hyperparameters (e.g. number qubits / layers / parameters).</p>
+<li><p>Depending on the number of function samples, the algorithm can run for quite a while. Especially when using a shot based simulator (e.g. QASM)</p>
+<li><p>We will start with 4 random samples and then perform the Bayesian optimization.</p>
+<ol><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform bayesian optimization with qgpr</span>
+<span class="n">qBO</span> <span class="o">=</span> <span class="n">BayesOpt</span><span class="p">(</span>
+    <span class="n">f</span><span class="p">,</span>
+    <span class="n">domain</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)],</span>
+    <span class="n">surrogate_model</span><span class="o">=</span><span class="n">qgpr_model</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">nr_initial_points</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">acquisition</span><span class="o">=</span><span class="s2">&quot;EI&quot;</span><span class="p">,</span>
+    <span class="n">xi</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">plot_iters</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">X_plot</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+    <span class="n">Y_plot</span><span class="o">=</span><span class="n">fx</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">qBO</span><span class="o">.</span><span class="n">run_optimization</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [-0.89749677]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_1.png" src="../_images/examples_example_quantum_bayesian_optimization_9_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [-0.98507347]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_3.png" src="../_images/examples_example_quantum_bayesian_optimization_9_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [-0.28272872]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_5.png" src="../_images/examples_example_quantum_bayesian_optimization_9_5.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [1.17951355]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_7.png" src="../_images/examples_example_quantum_bayesian_optimization_9_7.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [0.30425291]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_9.png" src="../_images/examples_example_quantum_bayesian_optimization_9_9.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [0.93148822]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_11.png" src="../_images/examples_example_quantum_bayesian_optimization_9_11.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [0.76589419]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_13.png" src="../_images/examples_example_quantum_bayesian_optimization_9_13.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [-1.89953538]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_15.png" src="../_images/examples_example_quantum_bayesian_optimization_9_15.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [-1.23313222]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_17.png" src="../_images/examples_example_quantum_bayesian_optimization_9_17.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+next sample X position:  [-0.32414859]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_19.png" src="../_images/examples_example_quantum_bayesian_optimization_9_19.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_quantum_bayesian_optimization_9_20.png" src="../_images/examples_example_quantum_bayesian_optimization_9_20.png" />
+</div>
+</div>
+<p>For the QGPR the choice of Projected Quantum Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html">squlearn.kernel.ProjectedQuantumKernel</a> is also possible. The algorithm can also be applied to more sophisticated problems. E.g., we used it to optimize the price prediction of industrial machinery. The intrested reader can learn more about it from our pre-print <a class="reference external" href="https://arxiv.org/pdf/2304.12923.pdf">Quantum Gaussian Process Regression for Bayesian
+Optimization</a>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example_kernel_grid_search.html" class="btn btn-neutral float-left" title="Hyperparameter Optimization and Pipelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.encoding_circuit`.\ :spelling:word:`YZ_CX_EncodingCircuit`
+================================================================================
+
+.. currentmodule:: squlearn.encoding_circuit
+
+.. autoclass:: YZ_CX_EncodingCircuit

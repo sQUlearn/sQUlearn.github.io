@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.util.optree`.\ :spelling:word:`OpTreeCircuit`
+===================================================================
+
+.. currentmodule:: squlearn.util.optree
+
+.. autoclass:: OpTreeCircuit

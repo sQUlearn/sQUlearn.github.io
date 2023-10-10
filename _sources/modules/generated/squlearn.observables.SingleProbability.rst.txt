@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.observables`.\ :spelling:word:`SingleProbability`
+=======================================================================
+
+.. currentmodule:: squlearn.observables
+
+.. autoclass:: SingleProbability

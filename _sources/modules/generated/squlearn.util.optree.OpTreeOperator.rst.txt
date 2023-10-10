@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.util.optree`.\ :spelling:word:`OpTreeOperator`
+====================================================================
+
+.. currentmodule:: squlearn.util.optree
+
+.. autoclass:: OpTreeOperator

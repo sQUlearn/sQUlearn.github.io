@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.qnn.qnn.Expec &mdash; sQUlearn 0.3.0 documentation</title>
+  <title>squlearn.qnn.qnn.Expec &mdash; sQUlearn 0.4.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -12,12 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6c02275b"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -64,6 +63,8 @@
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.ParameterRegularizationLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ParameterRegularizationLoss</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a></li>
 </ul>
 </li>
@@ -98,10 +99,10 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-qnn-qnn-expec">
-<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.qnn</span></code>.Expec<a class="headerlink" href="#squlearn-qnn-qnn-expec" title="Permalink to this heading"></a></h1>
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.qnn</span></code>.Expec<a class="headerlink" href="#squlearn-qnn-qnn-expec" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.qnn.qnn.Expec">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.qnn.</span></span><span class="sig-name descname"><span class="pre">Expec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wave_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ParameterVectorElement</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.qnn.</span></span><span class="sig-name descname"><span class="pre">Expec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wave_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ParameterVectorElement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec" title="Link to this definition"></a></dt>
 <dd><p>Data structure that holds the set-up of derivative of the expectation value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -109,15 +110,15 @@
 <li><p><strong>wave_function</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>tuple</em><em>, </em><em>ParameterVectorElement</em><em>]</em>) – Describes the wave function or
 its derivative. If tuple or ParameterVectorElement the differentiation with respect to
 the parameters in the tuple or with respect to the ParameterVectorElement is considered</p></li>
-<li><p><strong>operator</strong> (<em>str</em>) – String for the expectation value operator (<code class="docutils literal notranslate"><span class="pre">&quot;O&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;OO&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;dop&quot;</span></code>,
-<code class="docutils literal notranslate"><span class="pre">&quot;dopdop&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;var&quot;</span></code>).</p></li>
+<li><p><strong>observable</strong> (<em>str</em>) – String for the expectation value observable (<code class="docutils literal notranslate"><span class="pre">&quot;O&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;OO&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;dop&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;dopdop&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;var&quot;</span></code>).</p></li>
 <li><p><strong>label</strong> (<em>str</em>) – Label that is used for displaying or in the value dict of the QNN class.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.qnn.Expec.from_parameter">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParameterVectorElement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'O'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_parameter" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParameterVectorElement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'O'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_parameter" title="Link to this definition"></a></dt>
 <dd><p>Creates an Expec object from an inputted parameter</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -135,7 +136,7 @@ the parameters in the tuple or with respect to the ParameterVectorElement is con
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.qnn.Expec.from_string">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_string" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_string" title="Link to this definition"></a></dt>
 <dd><p>Converts an input string to the Expec data structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -149,7 +150,7 @@ the parameters in the tuple or with respect to the ParameterVectorElement is con
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.qnn.Expec.from_tuple">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'O'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_tuple" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'O'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_tuple" title="Link to this definition"></a></dt>
 <dd><p>Creates an Expec object from an input tuple</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -167,7 +168,7 @@ the parameters in the tuple or with respect to the ParameterVectorElement is con
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.qnn.Expec.from_variable">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_variable" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.qnn.Expec.from_variable" title="Link to this definition"></a></dt>
 <dd><p>Creates an Expec object from an inputted value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

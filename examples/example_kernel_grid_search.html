@@ -15,9 +15,9 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=6c02275b"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -95,13 +95,13 @@
            <div itemprop="articleBody">
              
   <section id="Hyperparameter-Optimization-and-Pipelines">
-<h1>Hyperparameter Optimization and Pipelines<a class="headerlink" href="#Hyperparameter-Optimization-and-Pipelines" title="Link to this heading"></a></h1>
+<h1>Hyperparameter Optimization and Pipelines<a class="headerlink" href="#Hyperparameter-Optimization-and-Pipelines" title="Permalink to this heading"></a></h1>
 <section id="Summary">
-<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading"></a></h2>
+<h2>Summary<a class="headerlink" href="#Summary" title="Permalink to this heading"></a></h2>
 <p>This tutorial demonstrates how to integrate quantum machine learning algorithms, specifically quantum kernel methods, from the <code class="docutils literal notranslate"><span class="pre">squlearn</span></code> library with traditional machine learning workflows in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. We’ll go through data generation, preprocessing, model definition, and hyperparameter optimization using GridSearchCV. The objective is to highlight that squlearn algorithms can be seamlessly used alongside classical algorithms.</p>
 </section>
 <section id="Importing-Libraries">
-<h2>Importing Libraries<a class="headerlink" href="#Importing-Libraries" title="Link to this heading"></a></h2>
+<h2>Importing Libraries<a class="headerlink" href="#Importing-Libraries" title="Permalink to this heading"></a></h2>
 <p>In this initial cell, we are importing all the libraries required for the tutorial. We are using <code class="docutils literal notranslate"><span class="pre">squlearn</span></code> for quantum kernel methods like Quantum Support Vector Regression (QSVR) and Quantum Gaussian Process Regression (QGPR). For tasks like data scaling and hyperparameter optimization, we rely on <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -125,7 +125,7 @@
 </div>
 </section>
 <section id="Generating-Data">
-<h2>Generating Data<a class="headerlink" href="#Generating-Data" title="Link to this heading"></a></h2>
+<h2>Generating Data<a class="headerlink" href="#Generating-Data" title="Permalink to this heading"></a></h2>
 <p>Here, synthetic data is generated. We sample a training data set where we perform a grid search on. We also create hold-out test data which will be used to score the best estimator of the grid search.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -173,7 +173,7 @@
 </div>
 </section>
 <section id="Setting-up-the-kernels">
-<h2>Setting up the kernels<a class="headerlink" href="#Setting-up-the-kernels" title="Link to this heading"></a></h2>
+<h2>Setting up the kernels<a class="headerlink" href="#Setting-up-the-kernels" title="Permalink to this heading"></a></h2>
 <p>We want to compare two QML algorithms with the same encoding circuit and two variants of calculating the kernel: Fidelity kernels and projected quantum kernels. We set up the encoding circuit with initial parameters. These will be varied during the grid search. The kernel instances are initialized using Qiskit’s StatevectorSimulator.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -220,7 +220,7 @@ q_3: ┤ Ry(p[6] + 1.0*x[0]) ├┤ Rz(p[7] + 1.0*x[0]) ├┤ X ├»
 </div>
 </section>
 <section id="Setting-up-the-grid-search">
-<h2>Setting up the grid search<a class="headerlink" href="#Setting-up-the-grid-search" title="Link to this heading"></a></h2>
+<h2>Setting up the grid search<a class="headerlink" href="#Setting-up-the-grid-search" title="Permalink to this heading"></a></h2>
 <p>In this section, we define the quantum kernel methods we’ll be using for regression: Quantum Support Vector Regression (QSVR) and Quantum Gaussian Process Regression (QGPR). We initialize both with the two kernel-variants from above</p>
 <p>We use <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to perform hyperparameter optimization. The hyperparameters include the number of qubits and layers for the quantum encoding circuits.</p>
 <div class="nbinput nblast docutils container">
@@ -263,7 +263,7 @@ q_3: ┤ Ry(p[6] + 1.0*x[0]) ├┤ Rz(p[7] + 1.0*x[0]) ├┤ X ├»
 </div>
 </section>
 <section id="Running-Grid-Search">
-<h2>Running Grid Search<a class="headerlink" href="#Running-Grid-Search" title="Link to this heading"></a></h2>
+<h2>Running Grid Search<a class="headerlink" href="#Running-Grid-Search" title="Permalink to this heading"></a></h2>
 <p>Now that everything is set up, we execute the grid search by fitting it to the training data. <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> will evaluate every combination of hyperparameters and choose the best set for each estimator (QSVR and QGPR in this case) based on the mean test score.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -299,7 +299,7 @@ GridSearchCV(estimator=Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()),
 </div>
 </section>
 <section id="Results-Analysis">
-<h2>Results Analysis<a class="headerlink" href="#Results-Analysis" title="Link to this heading"></a></h2>
+<h2>Results Analysis<a class="headerlink" href="#Results-Analysis" title="Permalink to this heading"></a></h2>
 <p>To visualize the performance of different hyperparameter combinations, we plot heat maps for each estimator. Each cell in the heat map represents a combination of the number of qubits and layers used in the quantum encoding circuit, and the color represents the negative mean test score (MSE, larger is better). This allows for an intuitive understanding of how different hyperparameters impact performance.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:

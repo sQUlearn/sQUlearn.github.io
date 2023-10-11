@@ -14,9 +14,9 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=6c02275b"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -96,7 +96,7 @@
            <div itemprop="articleBody">
              
   <section id="quantum-neural-networks">
-<span id="id1"></span><h1>Quantum Neural Networks<a class="headerlink" href="#quantum-neural-networks" title="Link to this heading"></a></h1>
+<span id="id1"></span><h1>Quantum Neural Networks<a class="headerlink" href="#quantum-neural-networks" title="Permalink to this heading"></a></h1>
 <p>Quantum Neural Networks (QNNs) extend the concept of artificial neural networks into the realm of
 quantum computing. Typically, they are constructed by encoding input data into a quantum state
 through a sequence of quantum gates. This quantum state is then manipulated using trainable
@@ -115,7 +115,7 @@ which explains the established nomenclature.</p>
 <figcaption>
 <p><span class="caption-text"><strong>Figure 1</strong> Layered design of a QNN with alternating encoding (orange) and parameter (blue) layers.
 The QNN is trained in a hybrid quantum-classical scheme by optimizing the QNN’s parameters
-<span class="math notranslate nohighlight">\({\theta}\)</span> for a given cost function <span class="math notranslate nohighlight">\(L\)</span>.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+<span class="math notranslate nohighlight">\({\theta}\)</span> for a given cost function <span class="math notranslate nohighlight">\(L\)</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>In principle, the design of QNN architectures offers a high degree of freedom.
@@ -154,7 +154,7 @@ They adjust the QNN’s parameters to minimize a predefined cost function, denot
 For instance, in a regression problem, the cost function is often defined as the mean squared
 error between the QNN’s output and the target value.</p>
 <section id="high-level-methods-for-qnns">
-<h2>High-level methods for QNNs<a class="headerlink" href="#high-level-methods-for-qnns" title="Link to this heading"></a></h2>
+<h2>High-level methods for QNNs<a class="headerlink" href="#high-level-methods-for-qnns" title="Permalink to this heading"></a></h2>
 <p>In this section, we will illustrate the process of constructing a QNN using sQUlearn.
 A QNN is composed of two main components: an encoding circuit, which is essentially a
 parameterized quantum circuit, and a cost operator.</p>
@@ -228,13 +228,13 @@ and the Adam optimizer for optimization.</p>
 </div>
 </section>
 <section id="optimization">
-<h2>Optimization<a class="headerlink" href="#optimization" title="Link to this heading"></a></h2>
+<h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this heading"></a></h2>
 <p>sQUlearn offers a lot of possibilities to train a QNN’s parameters. In this
 section we will show, how to use <a class="reference internal" href="../modules/generated/squlearn.optimizers.SLSQP.html#squlearn.optimizers.SLSQP" title="squlearn.optimizers.optimizers_wrapper.SLSQP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SLSQP</span></code></a>,
 as an example for a wrapped scipy optimizer, and <a class="reference internal" href="../modules/generated/squlearn.optimizers.Adam.html#squlearn.optimizers.Adam" title="squlearn.optimizers.adam.Adam"><code class="xref py py-class docutils literal notranslate"><span class="pre">Adam</span></code></a>
 with mini-batch gradient descent to optimize the loss function.</p>
 <section id="slsqp">
-<h3>SLSQP<a class="headerlink" href="#slsqp" title="Link to this heading"></a></h3>
+<h3>SLSQP<a class="headerlink" href="#slsqp" title="Permalink to this heading"></a></h3>
 <p>sQUlearn offers wrapper functions, <a class="reference internal" href="../modules/generated/squlearn.optimizers.SLSQP.html#squlearn.optimizers.SLSQP" title="squlearn.optimizers.optimizers_wrapper.SLSQP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SLSQP</span></code></a>
 and <a class="reference internal" href="../modules/generated/squlearn.optimizers.LBFGSB.html#squlearn.optimizers.LBFGSB" title="squlearn.optimizers.optimizers_wrapper.LBFGSB"><code class="xref py py-class docutils literal notranslate"><span class="pre">LBFGSB</span></code></a>, for scipy’s SLSQP and
 L-BFGS-B implementations as well as the wrapper function
@@ -259,7 +259,7 @@ The wrapper Class <a class="reference internal" href="../modules/generated/squle
 allows to specify hyper parameters in a <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> that get passed on to the function.</p>
 </section>
 <section id="mini-batch-gradient-descent-with-adam">
-<h3>Mini-Batch gradient descent with Adam<a class="headerlink" href="#mini-batch-gradient-descent-with-adam" title="Link to this heading"></a></h3>
+<h3>Mini-Batch gradient descent with Adam<a class="headerlink" href="#mini-batch-gradient-descent-with-adam" title="Permalink to this heading"></a></h3>
 <p>sQUlearn’s QNN classes, <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> and <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNClassifier.html#squlearn.qnn.QNNClassifier" title="squlearn.qnn.QNNClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNClassifier</span></code></a>, also offer the
 possibility to use mini-batch gradient descent with Adam to optimize the model. This allows for
 training on bigger data sets. Therefore we import and use the
@@ -291,7 +291,7 @@ The parameters <code class="docutils literal notranslate"><span class="pre">batc
 </section>
 </section>
 <section id="variance-reduction">
-<h2>Variance reduction<a class="headerlink" href="#variance-reduction" title="Link to this heading"></a></h2>
+<h2>Variance reduction<a class="headerlink" href="#variance-reduction" title="Permalink to this heading"></a></h2>
 <p>When evaluating a pretrained QNN on Qiskit’s <a class="reference external" href="https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.12.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a> or
 on real hardware, the model output will be subject to randomness due to the finite number of shots.
 The noise level of the model thus depends on its variance, which can be calculated as</p>
@@ -308,7 +308,7 @@ yields a high variance in the model output.</p>
 <img alt="../_images/quantum_neural_networks-2.png" class="plot-directive" src="../_images/quantum_neural_networks-2.png" />
 <figcaption>
 <p><span class="caption-text"><strong>Figure 2</strong> Logarithm and output of <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> <span class="math notranslate nohighlight">\(f(\theta, x)\)</span> evaluated on Qiskit’s
-<a class="reference external" href="https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.12.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>. The QNN output has a high variance.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+<a class="reference external" href="https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.12.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>. The QNN output has a high variance.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>We can mitigate this problem by adding the models variance to the loss function
@@ -340,7 +340,7 @@ in the model, as depicted in <a class="reference internal" href="#figure-3">figu
 <figcaption>
 <p><span class="caption-text"><strong>Figure 3</strong> Logarithm and output of <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> <span class="math notranslate nohighlight">\(f(\theta, x)\)</span>, trained with variance
 regularization, evaluated on Qiskit’s <a class="reference external" href="https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.12.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>.
-The QNN output has a low variance.</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+The QNN output has a low variance.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p class="rubric">References</p>

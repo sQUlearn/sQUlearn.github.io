@@ -14,9 +14,9 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=6c02275b"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -96,7 +96,7 @@
            <div itemprop="articleBody">
              
   <section id="quantum-encoding-circuits">
-<span id="id1"></span><h1>Quantum Encoding Circuits<a class="headerlink" href="#quantum-encoding-circuits" title="Link to this heading"></a></h1>
+<span id="id1"></span><h1>Quantum Encoding Circuits<a class="headerlink" href="#quantum-encoding-circuits" title="Permalink to this heading"></a></h1>
 <p>Quantum encoding circuits are used to embed classical data <span class="math notranslate nohighlight">\(x\)</span> into a quantum state and manipulate
 the quantum state via trainable parameters <span class="math notranslate nohighlight">\(p\)</span>.
 They are a key component of many quantum machine learning algorithms, and the design of a good
@@ -111,7 +111,7 @@ The package facilitate a fully automated pruning algorithm to remove redundant p
 enables the automatic differentiation of arbitrary derivative.</p>
 <p>The following functions and classes are are accessible via <a class="reference internal" href="../modules/classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.</p>
 <section id="implemented-quantum-encoding-circuits">
-<h2>Implemented Quantum Encoding Circuits<a class="headerlink" href="#implemented-quantum-encoding-circuits" title="Link to this heading"></a></h2>
+<h2>Implemented Quantum Encoding Circuits<a class="headerlink" href="#implemented-quantum-encoding-circuits" title="Permalink to this heading"></a></h2>
 <p>There are several Quantum Encoding Circuits implemented in sQUlearn:</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -157,7 +157,7 @@ enables the automatic differentiation of arbitrary derivative.</p>
 </figure>
 </section>
 <section id="combining-quantum-encoding-circuits">
-<h2>Combining Quantum Encoding Circuits<a class="headerlink" href="#combining-quantum-encoding-circuits" title="Link to this heading"></a></h2>
+<h2>Combining Quantum Encoding Circuits<a class="headerlink" href="#combining-quantum-encoding-circuits" title="Permalink to this heading"></a></h2>
 <p>In sQUlearn, quantum encoding circuits can be combined to create more sophisticated encoding circuits by
 utilizing the <code class="docutils literal notranslate"><span class="pre">+</span></code> operation between two encoding circuits. However, it is important to note that
 the number of qubits in both encoding circuits must match for successful combination.</p>
@@ -180,7 +180,7 @@ equal to the sum of the parameters in the two original encoding circuits.</p>
 </figure>
 </section>
 <section id="wrapping-qiskit-encoding-circuits">
-<h2>Wrapping Qiskit Encoding Circuits<a class="headerlink" href="#wrapping-qiskit-encoding-circuits" title="Link to this heading"></a></h2>
+<h2>Wrapping Qiskit Encoding Circuits<a class="headerlink" href="#wrapping-qiskit-encoding-circuits" title="Permalink to this heading"></a></h2>
 <p>It is also possible to utilize the wrapper <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html#squlearn.encoding_circuit.QiskitEncodingCircuit" title="squlearn.encoding_circuit.QiskitEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QiskitEncodingCircuit</span></code></a> to build Encoding Circuits from the
 <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QiskitEncodingCircuit</span>
@@ -195,7 +195,7 @@ equal to the sum of the parameters in the two original encoding circuits.</p>
 </figure>
 </section>
 <section id="create-your-custom-encoding-circuit-via-layeredencodingcircuit">
-<h2>Create your custom Encoding Circuit via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.LayeredEncodingCircuit.html#squlearn.encoding_circuit.LayeredEncodingCircuit" title="squlearn.encoding_circuit.LayeredEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayeredEncodingCircuit</span></code></a><a class="headerlink" href="#create-your-custom-encoding-circuit-via-layeredencodingcircuit" title="Link to this heading"></a></h2>
+<h2>Create your custom Encoding Circuit via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.LayeredEncodingCircuit.html#squlearn.encoding_circuit.LayeredEncodingCircuit" title="squlearn.encoding_circuit.LayeredEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayeredEncodingCircuit</span></code></a><a class="headerlink" href="#create-your-custom-encoding-circuit-via-layeredencodingcircuit" title="Permalink to this heading"></a></h2>
 <p>sQUlearn offers a user-friendly solution for creating custom layered encoding circuits effortlessly.
 Layered encoding circuits involve the application of gates to all qubits, ensuring a comprehensive
 approach. This method allows for the creation of encoding circuits in a structured manner,
@@ -237,7 +237,7 @@ the <a class="reference internal" href="../modules/generated/squlearn.encoding_c
 </figure>
 </section>
 <section id="pruning-of-quantum-encoding-circuits">
-<h2>Pruning of Quantum Encoding Circuits<a class="headerlink" href="#pruning-of-quantum-encoding-circuits" title="Link to this heading"></a></h2>
+<h2>Pruning of Quantum Encoding Circuits<a class="headerlink" href="#pruning-of-quantum-encoding-circuits" title="Permalink to this heading"></a></h2>
 <p>It is also possible to remove parameterized gates from a quantum encoding circuit by using the
 <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.PrunedEncodingCircuit.html#squlearn.encoding_circuit.PrunedEncodingCircuit" title="squlearn.encoding_circuit.PrunedEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrunedEncodingCircuit</span></code></a> class.
 This class accepts a quantum encoding circuit as input and removes the parameterized gates
@@ -262,7 +262,7 @@ the Quantum Fisher Information Matrix (QFIM) of the encoding circuit.</p>
 </figure>
 </section>
 <section id="different-quantum-encoding-circuits-via-encodingcircuitderivatives">
-<h2>Different Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.EncodingCircuitDerivatives.html#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="squlearn.encoding_circuit.EncodingCircuitDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuitDerivatives</span></code></a><a class="headerlink" href="#different-quantum-encoding-circuits-via-encodingcircuitderivatives" title="Link to this heading"></a></h2>
+<h2>Different Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.EncodingCircuitDerivatives.html#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="squlearn.encoding_circuit.EncodingCircuitDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuitDerivatives</span></code></a><a class="headerlink" href="#different-quantum-encoding-circuits-via-encodingcircuitderivatives" title="Permalink to this heading"></a></h2>
 <p>The calculation of derivatives for quantum encoding circuits is often essential in training a
 Quantum Machine Learning model. In sQUlearn, we offer a straightforward approach to compute
 these derivatives using the <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.EncodingCircuitDerivatives.html#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="squlearn.encoding_circuit.EncodingCircuitDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuitDerivatives</span></code></a> class.
@@ -298,7 +298,7 @@ is utilized for the arithmetic operations of the derivatives.</p>
 </div>
 </section>
 <section id="transpile-quantum-encoding-circuits-via-transpiledencodingcircuit">
-<h2>Transpile Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.TranspiledEncodingCircuit.html#squlearn.encoding_circuit.TranspiledEncodingCircuit" title="squlearn.encoding_circuit.TranspiledEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledEncodingCircuit</span></code></a><a class="headerlink" href="#transpile-quantum-encoding-circuits-via-transpiledencodingcircuit" title="Link to this heading"></a></h2>
+<h2>Transpile Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.TranspiledEncodingCircuit.html#squlearn.encoding_circuit.TranspiledEncodingCircuit" title="squlearn.encoding_circuit.TranspiledEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledEncodingCircuit</span></code></a><a class="headerlink" href="#transpile-quantum-encoding-circuits-via-transpiledencodingcircuit" title="Permalink to this heading"></a></h2>
 <p>To transpile a quantum encoding circuit, you can leverage the functionality provided by the
 <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.TranspiledEncodingCircuit.html#squlearn.encoding_circuit.TranspiledEncodingCircuit" title="squlearn.encoding_circuit.TranspiledEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledEncodingCircuit</span></code></a> class. By utilizing this class, you can input an existing
 quantum encoding circuit and have its circuit transpiled according to the specified backend and

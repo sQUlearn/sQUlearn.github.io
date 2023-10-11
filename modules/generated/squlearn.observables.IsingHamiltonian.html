@@ -14,9 +14,9 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=6c02275b"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4e78f113"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -101,10 +101,10 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-observables-isinghamiltonian">
-<h1><a class="reference internal" href="../classes.html#module-squlearn.observables" title="squlearn.observables"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code></a>.IsingHamiltonian<a class="headerlink" href="#squlearn-observables-isinghamiltonian" title="Link to this heading"></a></h1>
+<h1><a class="reference internal" href="../classes.html#module-squlearn.observables" title="squlearn.observables"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables</span></code></a>.IsingHamiltonian<a class="headerlink" href="#squlearn-observables-isinghamiltonian" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.observables.</span></span><span class="sig-name descname"><span class="pre">IsingHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'S'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'F'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ZZ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'F'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.observables.</span></span><span class="sig-name descname"><span class="pre">IsingHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'S'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'F'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'N'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ZZ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'F'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian" title="Permalink to this definition"></a></dt>
 <dd><p>Implementation of Ising type Hamiltonians.</p>
 <p><strong>Equation for a the full Ising Hamiltonian:</strong></p>
 <div class="math notranslate nohighlight">
@@ -141,10 +141,10 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 </dd>
 </dl>
 <section id="attributes">
-<h2>Attributes:<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.num_qubits">
-<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.num_qubits" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.num_qubits" title="Permalink to this definition"></a></dt>
 <dd><p>number of qubits</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -155,7 +155,7 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.num_parameters">
-<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.num_parameters" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.num_parameters" title="Permalink to this definition"></a></dt>
 <dd><p>number of trainable parameters in the Ising Hamiltonian</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -166,7 +166,7 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.I">
-<span class="sig-name descname"><span class="pre">I</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.I" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">I</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.I" title="Permalink to this definition"></a></dt>
 <dd><p>parameter options for identity term</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -177,7 +177,7 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.Z">
-<span class="sig-name descname"><span class="pre">Z</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.Z" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">Z</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.Z" title="Permalink to this definition"></a></dt>
 <dd><p>parameter options for Z term</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -188,7 +188,7 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.X">
-<span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.X" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.X" title="Permalink to this definition"></a></dt>
 <dd><p>parameter options for X term</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -199,7 +199,7 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.ZZ">
-<span class="sig-name descname"><span class="pre">ZZ</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.ZZ" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ZZ</span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.ZZ" title="Permalink to this definition"></a></dt>
 <dd><p>parameter options for ZZ term</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -210,7 +210,7 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.generate_initial_parameters">
-<span class="sig-name descname"><span class="pre">generate_initial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.generate_initial_parameters" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">generate_initial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.generate_initial_parameters" title="Permalink to this definition"></a></dt>
 <dd><p>Generates random parameters for the observable</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -227,7 +227,7 @@ sum (<span class="math notranslate nohighlight">\(\forall~ i,j: ~d_{ij}=d\)</spa
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.get_operator">
-<span class="sig-name descname"><span class="pre">get_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_operator" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_operator" title="Permalink to this definition"></a></dt>
 <dd><p>Returns Operator as a SparsePauliOp expression.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -242,7 +242,7 @@ the operator</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_params" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_params" title="Permalink to this definition"></a></dt>
 <dd><p>Returns hyper-parameters and their values of the Ising Hamiltonian operator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -257,7 +257,7 @@ contained objects are returned (default=True).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.get_pauli">
-<span class="sig-name descname"><span class="pre">get_pauli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_pauli" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_pauli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_pauli" title="Permalink to this definition"></a></dt>
 <dd><p>Function for generating the SparsePauliOp expression of the Ising Hamiltonian.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -271,7 +271,7 @@ contained objects are returned (default=True).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.get_pauli_mapped">
-<span class="sig-name descname"><span class="pre">get_pauli_mapped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_pauli_mapped" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_pauli_mapped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.SparsePauliOp.html#qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v0.44)"><span class="pre">SparsePauliOp</span></a></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.get_pauli_mapped" title="Permalink to this definition"></a></dt>
 <dd><p>Changes the operator to the physical qubits, set by <a class="reference internal" href="#squlearn.observables.IsingHamiltonian.set_map" title="squlearn.observables.IsingHamiltonian.set_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_map()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -287,7 +287,7 @@ physical ones</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.set_map">
-<span class="sig-name descname"><span class="pre">set_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qubit_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_all_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.set_map" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qubit_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_all_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.set_map" title="Permalink to this definition"></a></dt>
 <dd><p>Function for setting a qubit mapping from physical qubits to the ones of the operator.</p>
 <p>This function is necessary whenever the number of physical qubits are different from the
 operator definition, as for example when running on a real backend.
@@ -306,7 +306,7 @@ qubits are mapped to the output qubits.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.IsingHamiltonian.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.set_params" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.observables.IsingHamiltonian.set_params" title="Permalink to this definition"></a></dt>
 <dd><p>Sets value of the operator hyper-parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

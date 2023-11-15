@@ -4,19 +4,26 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Observables for expectation values &mdash; sQUlearn 0.4.0 documentation</title>
+  <title>Observables for expectation values &mdash; sQUlearn 0.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
+        <script src="../_static/documentation_options.js?v=1dd76d02"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,9 +42,13 @@
 
           
           
-          <a href="../index.html" class="icon icon-home">
-            sQUlearn
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.5.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -53,7 +64,9 @@
 <li class="toctree-l2"><a class="reference internal" href="executor.html">The Executor Class</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Observables for expectation values</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#implemented-observables">Implemented observables.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#obtained-derivatives-of-the-observable">Obtained derivatives of the observable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-observables">Custom observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mapping-observables-to-real-qubits">Mapping observables to real qubits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#derivatives-of-the-observable">Derivatives of the observable</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding_circuits.html">Quantum Encoding Circuits</a></li>
@@ -91,17 +104,17 @@
            <div itemprop="articleBody">
              
   <section id="observables-for-expectation-values">
-<span id="user-guide-observables"></span><h1>Observables for expectation values<a class="headerlink" href="#observables-for-expectation-values" title="Permalink to this heading"></a></h1>
+<span id="user-guide-observables"></span><h1>Observables for expectation values<a class="headerlink" href="#observables-for-expectation-values" title="Link to this heading"></a></h1>
 <p>Observables play a crucial role in computing the expectation value in conjunction with a
-wave function. Currently, in sQUlearn, only observables constructed from the Pauli group
+wave function. Currently, observables constructed purely from the Pauli group
 <span class="math notranslate nohighlight">\(\{\hat{X},\hat{Y},\hat{Z},\hat{I}\}\)</span> are supported. In the context of sQUlearn,
-observables are mandatory inputs for the Quantum Neural Network (QNN) and can be
+observables are mandatory inputs for Quantum Neural Networks (QNNs) and can be
 employed in the Projected Quantum Kernel program.
-All operators follow the Base Class <code class="xref py py-class docutils literal notranslate"><span class="pre">ObservableBase</span></code>.</p>
-<p>The following functions and observables are accessible in the module <a class="reference internal" href="../modules/classes.html#module-squlearn.observables" title="squlearn.observables"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.observables</span></code></a>.</p>
+All operators follow the Base Class <code class="xref py py-class docutils literal notranslate"><span class="pre">ObservableBase</span></code>. sQulearn features several
+predefined observables, but it is also possible to simply construct custom observables.</p>
 <section id="implemented-observables">
-<h2>Implemented observables.<a class="headerlink" href="#implemented-observables" title="Permalink to this heading"></a></h2>
-<p>The following observables are available and implemented as standalone classes:</p>
+<h2>Implemented observables.<a class="headerlink" href="#implemented-observables" title="Link to this heading"></a></h2>
+<p>The following predefined observables are available in the module <a class="reference internal" href="../modules/classes.html#module-squlearn.observables" title="squlearn.observables"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.observables</span></code></a>:</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.observables.SinglePauli.html#squlearn.observables.SinglePauli" title="squlearn.observables.SinglePauli"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SinglePauli</span></code></a></p></td>
@@ -124,78 +137,226 @@ All operators follow the Base Class <code class="xref py py-class docutils liter
 </tr>
 </tbody>
 </table>
+<p>The observables are simply constructed by initializing the associated class.</p>
 <p><strong>Example: Summed Pauli observable</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
 
 <span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Example: Custom observable</strong></p>
-<p>Observables can be added by <code class="docutils literal notranslate"><span class="pre">+</span></code> or multiplied by <code class="docutils literal notranslate"><span class="pre">*</span></code> with each other.
-Together with the class <a class="reference internal" href="../modules/generated/squlearn.observables.CustomObservable.html#squlearn.observables.CustomObservable" title="squlearn.observables.CustomObservable"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomObservable</span></code></a>, in which single parameterized operators
-can be build from strings, your can create more complex observables.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">CustomObservable</span>
-
-<span class="n">op1</span> <span class="o">=</span> <span class="n">CustomObservable</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">operator_string</span><span class="o">=</span><span class="s2">&quot;IX&quot;</span><span class="p">,</span><span class="n">parameterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">op2</span> <span class="o">=</span> <span class="n">CustomObservable</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">operator_string</span><span class="o">=</span><span class="s2">&quot;ZY&quot;</span><span class="p">,</span><span class="n">parameterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">total_op</span> <span class="o">=</span> <span class="n">op1</span> <span class="o">+</span> <span class="n">op2</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">total_op</span><span class="p">)</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;II&#39;, &#39;IZ&#39;, &#39;ZI&#39;],
+              coeffs=[ParameterExpression(1.0*p[0]), ParameterExpression(1.0*p[1]),
+ ParameterExpression(1.0*p[2])])
 </pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="custom-observables">
+<h2>Custom observables<a class="headerlink" href="#custom-observables" title="Link to this heading"></a></h2>
+<p>sQUlearn features several options to construct custom observables.
+With the class <a class="reference internal" href="../modules/generated/squlearn.observables.CustomObservable.html#squlearn.observables.CustomObservable" title="squlearn.observables.CustomObservable"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomObservable</span></code></a>, it is possible to construct observables from a string
+containing the letters of the Pauli matrices (<code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Y&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code>).
+The resulting observable can be multiplied by a parameter by setting <code class="docutils literal notranslate"><span class="pre">parameterized=True</span></code>.
+Furthermore, observables can be added by <code class="docutils literal notranslate"><span class="pre">+</span></code> or multiplied by <code class="docutils literal notranslate"><span class="pre">*</span></code> with each other.
+This allows the creation of arbitrary observables.</p>
+<p><strong>Example: Custom observable</strong></p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">CustomObservable</span>
+
+<span class="n">ob1</span> <span class="o">=</span> <span class="n">CustomObservable</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">operator_string</span><span class="o">=</span><span class="s2">&quot;IX&quot;</span><span class="p">,</span><span class="n">parameterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ob2</span> <span class="o">=</span> <span class="n">CustomObservable</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">operator_string</span><span class="o">=</span><span class="s2">&quot;ZY&quot;</span><span class="p">,</span><span class="n">parameterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">added_ob</span> <span class="o">=</span> <span class="n">ob1</span> <span class="o">+</span> <span class="n">ob2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added observable:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">added_ob</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">squared_ob</span> <span class="o">=</span> <span class="n">added_ob</span><span class="o">*</span><span class="n">added_ob</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Squared observable:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">squared_ob</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Added observable:
+ SparsePauliOp([&#39;IX&#39;, &#39;ZY&#39;],
+              coeffs=[ParameterExpression(1.0*p[0]), ParameterExpression(1.0*p[1])]) 
+
+
+Squared observable:
+ SparsePauliOp([&#39;II&#39;, &#39;ZZ&#39;],
+              coeffs=[ParameterExpression(1.0*p[0]**2 + 1.0*p[1]**2), ParameterExpression(0)])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example: More complex custom observable</strong></p>
+<p>It is also possible to construct more complex observables by supplying a list of strings
+containing the Pauli matrices. The observable is then constructed by adding the single observables
+together.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">CustomObservable</span>
+
+<span class="c1"># It is also possible to add trainable parameters:</span>
+<span class="n">ob</span> <span class="o">=</span> <span class="n">CustomObservable</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">operator_string</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ZIZZ&quot;</span><span class="p">,</span> <span class="s2">&quot;XIXI&quot;</span><span class="p">],</span> <span class="n">parameterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Custom observable with multiple operators:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">ob</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Custom observable with multiple operators:
+ SparsePauliOp([&#39;ZIZZ&#39;, &#39;XIXI&#39;],
+              coeffs=[ParameterExpression(1.0*p[0]), ParameterExpression(1.0*p[1])])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Note that in Qiskit, the qubits are counted from the right to the left as in the computational
 basis!</p>
-<p><strong>Example: Use the mapping from the transpiled encoding circuit</strong></p>
+</section>
+<section id="mapping-observables-to-real-qubits">
+<h2>Mapping observables to real qubits<a class="headerlink" href="#mapping-observables-to-real-qubits" title="Link to this heading"></a></h2>
 <p>When running on a backend, the number of physical qubits may change
 from the number of qubits the definition of the observable.
-to solve this issue, it is possible to provide a map from the logical qubits to the
-physical qubits via <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_qubit_map()</span></code>.
+If it is necessary, it is possible to adjust the observable to the physical qubits.
+This is achieved by providing a map from the qubits of the observable to the
+physical qubits utilized for example in the feature map via the function <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_qubit_map()</span></code>.
 The map can be for example obtained in the transpiled encoding circuit.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebRx</span><span class="p">,</span><span class="n">TranspiledEncodingCircuit</span>
+<p><strong>Example: Use the mapping from the transpiled encoding circuit</strong></p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevRx</span><span class="p">,</span><span class="n">TranspiledEncodingCircuit</span>
 <span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
 <span class="kn">from</span> <span class="nn">qiskit.providers.fake_provider</span> <span class="kn">import</span> <span class="n">FakeManilaV2</span>
-<span class="n">fm</span> <span class="o">=</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">(</span><span class="n">ChebRx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">backend</span><span class="o">=</span><span class="n">FakeManilaV2</span><span class="p">(),</span><span class="n">initial_layout</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
-<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">op_str</span><span class="o">=</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
-<span class="n">op</span><span class="o">.</span><span class="n">set_map</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">qubit_map</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">num_all_qubits</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">(</span><span class="n">ChebyshevRx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">backend</span><span class="o">=</span><span class="n">FakeManilaV2</span><span class="p">(),</span><span class="n">initial_layout</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">ob</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">op_str</span><span class="o">=</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable before mapping:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">ob</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ob</span><span class="o">.</span><span class="n">set_map</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">qubit_map</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">num_physical_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable after mapping:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">ob</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Observable before mapping:
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span> SparsePauliOp([&#39;III&#39;, &#39;IIZ&#39;, &#39;IZI&#39;, &#39;ZII&#39;],
+              coeffs=[ParameterExpression(1.0*p[0]), ParameterExpression(1.0*p[1]),
+ ParameterExpression(1.0*p[2]), ParameterExpression(1.0*p[3])]) 
+
+
+Observable after mapping:
+ SparsePauliOp([&#39;IIIII&#39;, &#39;IIIIZ&#39;, &#39;IIIZI&#39;, &#39;ZIIII&#39;],
+              coeffs=[ParameterExpression(1.0*p[0]), ParameterExpression(1.0*p[1]),
+ ParameterExpression(1.0*p[2]), ParameterExpression(1.0*p[3])])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="obtained-derivatives-of-the-observable">
-<h2>Obtained derivatives of the observable<a class="headerlink" href="#obtained-derivatives-of-the-observable" title="Permalink to this heading"></a></h2>
-<p>In sQUlearn it is also possible to evaluate the derivatives of observables
+<section id="derivatives-of-the-observable">
+<h2>Derivatives of the observable<a class="headerlink" href="#derivatives-of-the-observable" title="Link to this heading"></a></h2>
+<p>In sQUlearn it is also possible to calculate derivatives of observables
 as for example needed during the training of the QNN.
 This is possible with the class <a class="reference internal" href="../modules/generated/squlearn.observables.observable_derivatives.ObservableDerivatives.html#squlearn.observables.observable_derivatives.ObservableDerivatives" title="squlearn.observables.observable_derivatives.ObservableDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservableDerivatives</span></code></a>.
 The derivatives are calculated with respect to the parameters of the observable.</p>
-<p><strong>Example: first-order derivative of the Ising Hamiltonian</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">IsingHamiltonian</span><span class="p">,</span><span class="n">ObservableDerivatives</span>
-<span class="n">op</span> <span class="o">=</span> <span class="n">IsingHamiltonian</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ObservableDerivatives</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">(</span><span class="s2">&quot;dop&quot;</span><span class="p">))</span>
+<p><strong>Example: first-order derivatives of the Ising Hamiltonian</strong></p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">IsingHamiltonian</span>
+<span class="kn">from</span> <span class="nn">squlearn.observables.observable_derivatives</span> <span class="kn">import</span> <span class="n">ObservableDerivatives</span>
+<span class="n">ob</span> <span class="o">=</span> <span class="n">IsingHamiltonian</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ob</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gradient of the observable:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ObservableDerivatives</span><span class="p">(</span><span class="n">ob</span><span class="p">)</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">(</span><span class="s2">&quot;dop&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>To calculate the variance of an expectation value, the squared observable has to be computed.</p>
-<p><strong>Example: Squared summed Pauli Observable</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span><span class="p">,</span><span class="n">ObservableDerivatives</span>
-<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ObservableDerivatives</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">get_operator_squared</span><span class="p">())</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Observable:
+ SparsePauliOp([&#39;III&#39;, &#39;IIZ&#39;, &#39;IZI&#39;, &#39;ZII&#39;, &#39;IZZ&#39;, &#39;ZIZ&#39;, &#39;ZZI&#39;],
+              coeffs=[ParameterExpression(1.0*p[0]), ParameterExpression(1.0*p[1]),
+ ParameterExpression(1.0*p[2]), ParameterExpression(1.0*p[3]),
+ ParameterExpression(1.0*p[4]), ParameterExpression(1.0*p[5]),
+ ParameterExpression(1.0*p[6])]) 
+
+
+Gradient of the observable:
+ [1.0*SparsePauliOp([&#39;III&#39;],
+              coeffs=[1.+0.j]), 1.0*SparsePauliOp([&#39;IIZ&#39;],
+              coeffs=[1.+0.j]), 1.0*SparsePauliOp([&#39;IZI&#39;],
+              coeffs=[1.+0.j]), 1.0*SparsePauliOp([&#39;ZII&#39;],
+              coeffs=[1.+0.j]), 1.0*SparsePauliOp([&#39;IZZ&#39;],
+              coeffs=[1.+0.j]), 1.0*SparsePauliOp([&#39;ZIZ&#39;],
+              coeffs=[1.+0.j]), 1.0*SparsePauliOp([&#39;ZZI&#39;],
+              coeffs=[1.+0.j])]
 </pre></div>
 </div>
-<p>In principle, arbitrary derivatives can be computed by supplying a tuple, but often,
-the higher-order derivatives are zero. To achieve this, the function
-<a class="reference internal" href="../modules/generated/squlearn.observables.observable_derivatives.ObservableDerivatives.html#squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative" title="squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ObservableDerivatives.get_derivative()</span></code></a> can be used with a tuple
-of parameters <a class="reference internal" href="../modules/generated/squlearn.observables.observable_derivatives.ObservableDerivatives.html#squlearn.observables.observable_derivatives.ObservableDerivatives.parameter_vector" title="squlearn.observables.observable_derivatives.ObservableDerivatives.parameter_vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ObservableDerivatives.parameter_vector()</span></code></a>.</p>
+</div>
+</div>
 <p><strong>Example: higher-order derivative of the cubed SummedPaulis observable</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span><span class="p">,</span><span class="n">ObservableDerivatives</span>
+<p>Furthermore, arbitrary derivatives can be computed by supplying a tuple, although the
+higher-order derivatives are zero for linear parameters.
+To achieve this, the function <a class="reference internal" href="../modules/generated/squlearn.observables.observable_derivatives.ObservableDerivatives.html#squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative" title="squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ObservableDerivatives.get_derivative()</span></code></a> can be used with a tuple
+of parameters <a class="reference internal" href="../modules/generated/squlearn.observables.observable_derivatives.ObservableDerivatives.html#squlearn.observables.observable_derivatives.ObservableDerivatives.parameter_vector" title="squlearn.observables.observable_derivatives.ObservableDerivatives.parameter_vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ObservableDerivatives.parameter_vector()</span></code></a>.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
+<span class="kn">from</span> <span class="nn">squlearn.observables.observable_derivatives</span> <span class="kn">import</span> <span class="n">ObservableDerivatives</span>
 
 <span class="c1"># Build cubed SummedPaulis observable</span>
 <span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">op3</span> <span class="o">=</span> <span class="n">op</span><span class="o">*</span><span class="n">op</span><span class="o">*</span><span class="n">op</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">op3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cubed operator:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">op3</span><span class="p">)</span>
 
 <span class="c1"># Get the Hessian from a tuple</span>
 <span class="n">deriv</span> <span class="o">=</span> <span class="n">ObservableDerivatives</span><span class="p">(</span><span class="n">op3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">deriv</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">((</span><span class="n">deriv</span><span class="o">.</span><span class="n">parameter_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">deriv</span><span class="o">.</span><span class="n">parameter_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Second-order derivative w.r.t. p[0]:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+         <span class="n">deriv</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">((</span><span class="n">deriv</span><span class="o">.</span><span class="n">parameter_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">deriv</span><span class="o">.</span><span class="n">parameter_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Cubed operator:
+ SparsePauliOp([&#39;II&#39;, &#39;IZ&#39;, &#39;ZI&#39;, &#39;ZZ&#39;],
+              coeffs=[ParameterExpression(2.0*p[0]*p[1]*p[4] + 2.0*p[0]*p[2]*p[5] + 1.0*p[3]*(1.0*p[0]**2 + 1.0*p[1]**2 + 1.0*p[2]**2)),
+ ParameterExpression(2.0*p[0]*p[1]*p[3] + 2.0*p[1]*p[2]*p[5] + 1.0*p[4]*(1.0*p[0]**2 + 1.0*p[1]**2 + 1.0*p[2]**2)),
+ ParameterExpression(2.0*p[0]*p[2]*p[3] + 2.0*p[1]*p[2]*p[4] + 1.0*p[5]*(1.0*p[0]**2 + 1.0*p[1]**2 + 1.0*p[2]**2)),
+ ParameterExpression(2.0*p[0]*p[1]*p[5] + 2.0*p[0]*p[2]*p[4] + 2.0*p[1]*p[2]*p[3])])
+Second-order derivative w.r.t. p[0]:
+ [1.0*[1.0*SparsePauliOp([&#39;II&#39;, &#39;IZ&#39;, &#39;ZI&#39;],
+              coeffs=[ParameterExpression(2.0*p_op[3]), ParameterExpression(2.0*p_op[4]),
+ ParameterExpression(2.0*p_op[5])])]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example: Squared summed Pauli Observable</strong></p>
+<p>It is also possible to calculate the squared observable, which is needed for the
+calculation of the variance of the observable.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
+<span class="kn">from</span> <span class="nn">squlearn.observables.observable_derivatives</span> <span class="kn">import</span> <span class="n">ObservableDerivatives</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ObservableDerivatives</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">get_operator_squared</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;III&#39;, &#39;IIZ&#39;, &#39;IZI&#39;, &#39;ZII&#39;, &#39;IZZ&#39;, &#39;ZIZ&#39;, &#39;ZZI&#39;],
+              coeffs=[ParameterExpression(1.0*p_op[0]**2 + 1.0*p_op[1]**2 + 1.0*p_op[2]**2 + 1.0*p_op[3]**2),
+ ParameterExpression(2.0*p_op[0]*p_op[1]),
+ ParameterExpression(2.0*p_op[0]*p_op[2]),
+ ParameterExpression(2.0*p_op[0]*p_op[3]),
+ ParameterExpression(2.0*p_op[1]*p_op[2]),
+ ParameterExpression(2.0*p_op[1]*p_op[3]),
+ ParameterExpression(2.0*p_op[2]*p_op[3])])
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>

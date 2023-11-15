@@ -1,6 +1,0 @@
-﻿:mod:`squlearn.expectation_operator.expectation_operator_base`.\ :spelling:word:`ExpectationOperatorBase`
-================================================================================================================
-
-.. currentmodule:: squlearn.expectation_operator.expectation_operator_base
-
-.. autoclass:: ExpectationOperatorBase

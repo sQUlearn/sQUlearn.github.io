@@ -4,19 +4,26 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Executor Class &mdash; sQUlearn 0.4.0 documentation</title>
+  <title>The Executor Class &mdash; sQUlearn 0.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
+        <script src="../_static/documentation_options.js?v=1dd76d02"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -33,9 +40,13 @@
 
           
           
-          <a href="../index.html" class="icon icon-home">
-            sQUlearn
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.5.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -92,9 +103,9 @@
            <div itemprop="articleBody">
              
   <section id="the-executor-class">
-<span id="executor-user-guide"></span><h1>The Executor Class<a class="headerlink" href="#the-executor-class" title="Permalink to this heading"></a></h1>
+<span id="executor-user-guide"></span><h1>The Executor Class<a class="headerlink" href="#the-executor-class" title="Link to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>The <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> class is the central component of sQUlearn, responsible
 for running all quantum jobs.
 Both high- and low-level methods utilize the Executor class to execute circuits or other
@@ -112,7 +123,7 @@ Outgoing arrows indicate that the Executor class can return the corresponding ob
 <a class="reference internal image-reference" href="../_images/executor.png"><img alt="../_images/executor.png" class="align-center" src="../_images/executor.png" style="width: 525px;" /></a>
 </section>
 <section id="key-features-of-the-executor">
-<h2>Key Features of the Executor<a class="headerlink" href="#key-features-of-the-executor" title="Permalink to this heading"></a></h2>
+<h2>Key Features of the Executor<a class="headerlink" href="#key-features-of-the-executor" title="Link to this heading"></a></h2>
 <p>The Executor class provides the following key comfort features when executing a quantum job:</p>
 <ul class="simple">
 <li><p><strong>Session handling:</strong> Automatically manages the creation and handling of Qiskit sessions.
@@ -143,7 +154,7 @@ sub-programs.</p></li>
 </ul>
 </section>
 <section id="initialization-of-the-executor-class">
-<h2>Initialization of the Executor class<a class="headerlink" href="#initialization-of-the-executor-class" title="Permalink to this heading"></a></h2>
+<h2>Initialization of the Executor class<a class="headerlink" href="#initialization-of-the-executor-class" title="Link to this heading"></a></h2>
 <p>The Estimator can be initialized with various inputs (<code class="docutils literal notranslate"><span class="pre">execution=</span></code>) that specify the
 execution environment:</p>
 <ul>
@@ -244,15 +255,17 @@ and setting options for caching, logging and restarts:</p>
 </div>
 </section>
 <section id="utilizing-executor-primitives-in-qiskit-routines">
-<h2>Utilizing Executor Primitives in Qiskit Routines<a class="headerlink" href="#utilizing-executor-primitives-in-qiskit-routines" title="Permalink to this heading"></a></h2>
+<h2>Utilizing Executor Primitives in Qiskit Routines<a class="headerlink" href="#utilizing-executor-primitives-in-qiskit-routines" title="Link to this heading"></a></h2>
 <p>The Executor class provides an Estimator and Sampler primitive that are compatible with the
 Qiskit framework. The primitives can be obtained by the <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.get_estimator" title="squlearn.Executor.get_estimator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_estimator()</span></code></a> and
 <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.get_sampler" title="squlearn.Executor.get_sampler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sampler()</span></code></a> methods of the Executor class. The primitives automatically utilized the parent
 Executor class for all executions, and thus benefit from all comfort features of the Executor.</p>
 <p>The following example shows, how to evaluate the Quantum Fisher Information utilizing the
-Executor primitive.</p>
+Executor primitive (see <a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.algorithms.gradients.QFI.html">QFI in Qiskit</a>)</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<div><div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
 <span class="kn">from</span> <span class="nn">qiskit.algorithms.gradients</span> <span class="kn">import</span> <span class="n">LinCombQGT</span><span class="p">,</span> <span class="n">QFI</span>
 <span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Pauli</span>
 <span class="c1"># Executor intialization (other ways are possible, see above)</span>
@@ -262,6 +275,10 @@ Executor primitive.</p>
 <span class="c1"># Quantum Fischer Information can be evaluated as usual with qfi.run()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
 </div></blockquote>
 <p>If only the run function of the Executor Primitive is wanted, this can be achieved by utilizing the
 Executor class function <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.estimator_run" title="squlearn.Executor.estimator_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code></a> and <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor.sampler_run" title="squlearn.Executor.sampler_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sampler_run()</span></code></a>.</p>
@@ -270,7 +287,7 @@ not creating or referring to the Executor primitives! Instead they refer to the
 Qiskit Primitives used internally that do not utilize any caching, restarts, etc.</p>
 </section>
 <section id="setting-options-for-primitives">
-<h2>Setting Options for Primitives<a class="headerlink" href="#setting-options-for-primitives" title="Permalink to this heading"></a></h2>
+<h2>Setting Options for Primitives<a class="headerlink" href="#setting-options-for-primitives" title="Link to this heading"></a></h2>
 <p>Options for the Primitives can be provided through the <code class="docutils literal notranslate"><span class="pre">options_estimator</span></code> and
 <code class="docutils literal notranslate"><span class="pre">options_sampler</span></code> arguments, but they are also automatically copied from inputted primitives.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>

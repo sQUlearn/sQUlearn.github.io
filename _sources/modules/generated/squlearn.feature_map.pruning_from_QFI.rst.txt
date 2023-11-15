@@ -1,6 +1,0 @@
-﻿:mod:`squlearn.feature_map`.\ :spelling:word:`pruning_from_QFI`
-======================================================================
-
-.. currentmodule:: squlearn.feature_map
-
-.. autofunction:: pruning_from_QFI

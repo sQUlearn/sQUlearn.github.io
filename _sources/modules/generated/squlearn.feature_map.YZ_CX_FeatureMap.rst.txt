@@ -1,6 +1,0 @@
-﻿:mod:`squlearn.feature_map`.\ :spelling:word:`YZ_CX_FeatureMap`
-======================================================================
-
-.. currentmodule:: squlearn.feature_map
-
-.. autoclass:: YZ_CX_FeatureMap

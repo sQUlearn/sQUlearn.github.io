@@ -4,19 +4,26 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.encoding_circuit.EncodingCircuitDerivatives &mdash; sQUlearn 0.4.0 documentation</title>
+  <title>squlearn.encoding_circuit.EncodingCircuitDerivatives &mdash; sQUlearn 0.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/thebelab.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4e78f113"></script>
+        <script src="../../_static/documentation_options.js?v=1dd76d02"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,9 +42,13 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            sQUlearn
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.5.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -102,10 +113,10 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-encoding-circuit-encodingcircuitderivatives">
-<h1><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.EncodingCircuitDerivatives<a class="headerlink" href="#squlearn-encoding-circuit-encodingcircuitderivatives" title="Permalink to this heading"></a></h1>
+<h1><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.EncodingCircuitDerivatives<a class="headerlink" href="#squlearn-encoding-circuit-encodingcircuitderivatives" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.EncodingCircuitDerivatives">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">EncodingCircuitDerivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">optree_caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">EncodingCircuitDerivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">optree_caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="Link to this definition"></a></dt>
 <dd><p>Class for automatic differentiation of encoding circuits.</p>
 <p>This class allows to compute derivatives of a encoding circuit with respect to its parameters
 by utilizing the parameter-shift rule.
@@ -114,7 +125,7 @@ The type of derivative can be specified by either a string (see table below)
 or a ParameterVector or (a list) of ParameterElements that can be accessed
 via <code class="xref py py-meth docutils literal notranslate"><span class="pre">feature_vector()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">parameter_vector()</span></code>, respectively.</p>
 <table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Strings that are recognized by the <a class="reference internal" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives.get_derivative" title="squlearn.encoding_circuit.EncodingCircuitDerivatives.get_derivative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_derivative()</span></code></a> method</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Strings that are recognized by the <a class="reference internal" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives.get_derivative" title="squlearn.encoding_circuit.EncodingCircuitDerivatives.get_derivative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_derivative()</span></code></a> method</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -167,18 +178,32 @@ via <code class="xref py py-meth docutils literal notranslate"><span class="pre"
 </tbody>
 </table>
 <p><strong>Example: Encoding Circuit gradient with respect to the trainable parameters</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QEKEncodingCircuit</span><span class="p">,</span> <span class="n">EncodingCircuitDerivatives</span>
-<span class="n">fm</span> <span class="o">=</span> <span class="n">QEKEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit.encoding_circuit_derivatives</span> <span class="kn">import</span> <span class="n">EncodingCircuitDerivatives</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">fm_deriv</span> <span class="o">=</span> <span class="n">EncodingCircuitDerivatives</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
 <span class="n">grad</span> <span class="o">=</span> <span class="n">fm_deriv</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">(</span><span class="s2">&quot;dp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
 <p><strong>Example: Derivative with respect to only the first trainable parameter</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QEKEncodingCircuit</span><span class="p">,</span> <span class="n">EncodingCircuitDerivatives</span>
-<span class="n">fm</span> <span class="o">=</span> <span class="n">QEKEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit.encoding_circuit_derivatives</span> <span class="kn">import</span> <span class="n">EncodingCircuitDerivatives</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">fm_deriv</span> <span class="o">=</span> <span class="n">EncodingCircuitDerivatives</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
 <span class="n">dp0</span> <span class="o">=</span> <span class="n">fm_deriv</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">((</span><span class="n">fm_deriv</span><span class="o">.</span><span class="n">parameter_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">],))</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -191,7 +216,7 @@ evaluation. (default: True)</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.EncodingCircuitDerivatives.assign_parameters">
-<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeElementBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives.assign_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeElementBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives.assign_parameters" title="Link to this definition"></a></dt>
 <dd><p>Assigns numerical values to the ParameterVector elements of the encoding circuit circuit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -209,7 +234,7 @@ evaluation. (default: True)</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.EncodingCircuitDerivatives.get_derivative">
-<span class="sig-name descname"><span class="pre">get_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">derivative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives.get_derivative" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">derivative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.EncodingCircuitDerivatives.get_derivative" title="Link to this definition"></a></dt>
 <dd><p>Determine the derivative of the encoding circuit circuit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

@@ -4,19 +4,26 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference &mdash; sQUlearn 0.4.0 documentation</title>
+  <title>API Reference &mdash; sQUlearn 0.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
+        <script src="../_static/documentation_options.js?v=1dd76d02"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -33,9 +40,13 @@
 
           
           
-          <a href="../index.html" class="icon icon-home">
-            sQUlearn
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.5.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -66,12 +77,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-squlearn.encoding_circuit">Encoding Circuits</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.YZ_CX_EncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.YZ_CX_EncodingCircuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.HighDimEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HighDimEncodingCircuit</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.QEKEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QEKEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.HubregtsenEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HubregtsenEncodingCircuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevTower.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevTower</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebPQC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebPQC</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.HZCRxCRyCRz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HZCRxCRyCRz</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebRx</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ParamZEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ParamZEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevPQC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevPQC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.MultiControlEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.MultiControlEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevRx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ParamZFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ParamZFeatureMap</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QiskitEncodingCircuit</a></li>
 </ul>
 </li>
@@ -120,6 +131,11 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.VarianceLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ParameterRegularizationLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.get_variance_fac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.get_variance_fac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.get_lr_decay.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.get_lr_decay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.ShotsFromRSTD.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.ShotsFromRSTD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.training.train.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.training</span></code>.train</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.training.train_mini_batch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.training</span></code>.train_mini_batch</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-squlearn.optimizers">Implemented optimizers</a><ul>
@@ -184,9 +200,9 @@
            <div itemprop="articleBody">
              
   <section id="api-reference">
-<span id="id1"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
+<span id="id1"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
 <section id="qml-regressors">
-<h2>QML Regressors<a class="headerlink" href="#qml-regressors" title="Permalink to this heading"></a></h2>
+<h2>QML Regressors<a class="headerlink" href="#qml-regressors" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.ml.QSVR.html#squlearn.kernel.ml.QSVR" title="squlearn.kernel.ml.QSVR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.ml.QSVR</span></code></a></p></td>
@@ -205,7 +221,7 @@
 </table>
 </section>
 <section id="qml-classifiers">
-<h2>QML Classifiers<a class="headerlink" href="#qml-classifiers" title="Permalink to this heading"></a></h2>
+<h2>QML Classifiers<a class="headerlink" href="#qml-classifiers" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.ml.QSVC.html#squlearn.kernel.ml.QSVC" title="squlearn.kernel.ml.QSVC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.ml.QSVC</span></code></a></p></td>
@@ -221,34 +237,34 @@
 </table>
 </section>
 <section id="circuit-design">
-<h2>Circuit Design<a class="headerlink" href="#circuit-design" title="Permalink to this heading"></a></h2>
+<h2>Circuit Design<a class="headerlink" href="#circuit-design" title="Link to this heading"></a></h2>
 <section id="module-squlearn.encoding_circuit">
-<span id="id2"></span><span id="encoding-circuits"></span><h3>Encoding Circuits<a class="headerlink" href="#module-squlearn.encoding_circuit" title="Permalink to this heading"></a></h3>
+<span id="id2"></span><span id="encoding-circuits"></span><h3>Encoding Circuits<a class="headerlink" href="#module-squlearn.encoding_circuit" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.YZ_CX_EncodingCircuit.html#squlearn.encoding_circuit.YZ_CX_EncodingCircuit" title="squlearn.encoding_circuit.YZ_CX_EncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.YZ_CX_EncodingCircuit</span></code></a></p></td>
-<td><p>Creates the YZ-CX Encoding Circuit from Reference <a class="reference external" href="https://arxiv.org/abs/2108.01039v3">https://arxiv.org/abs/2108.01039v3</a></p></td>
+<td><p>Creates the YZ-CX Encoding Circuit from reference [1].</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.HighDimEncodingCircuit.html#squlearn.encoding_circuit.HighDimEncodingCircuit" title="squlearn.encoding_circuit.HighDimEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.HighDimEncodingCircuit</span></code></a></p></td>
-<td><p>The high-dimensional encoding circuit from Reference <a class="reference external" href="https://doi.org/10.1103/PhysRevA.106.042431">https://doi.org/10.1103/PhysRevA.106.042431</a></p></td>
+<td><p>The high-dimensional encoding circuit from reference [1].</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QEKEncodingCircuit.html#squlearn.encoding_circuit.QEKEncodingCircuit" title="squlearn.encoding_circuit.QEKEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QEKEncodingCircuit</span></code></a></p></td>
-<td><p>Creates the QEK encoding circuit as presented in Reference <a class="reference external" href="http://arxiv.org/pdf/2105.02276v1">http://arxiv.org/pdf/2105.02276v1</a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.HubregtsenEncodingCircuit.html#squlearn.encoding_circuit.HubregtsenEncodingCircuit" title="squlearn.encoding_circuit.HubregtsenEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.HubregtsenEncodingCircuit</span></code></a></p></td>
+<td><p>Creates the data reuploading encoding circuit as presented in reference [1].</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevTower.html#squlearn.encoding_circuit.ChebyshevTower" title="squlearn.encoding_circuit.ChebyshevTower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ChebyshevTower</span></code></a></p></td>
 <td><p>A feature-map that is based on the Chebyshev Tower encoding.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebPQC.html#squlearn.encoding_circuit.ChebPQC" title="squlearn.encoding_circuit.ChebPQC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ChebPQC</span></code></a></p></td>
-<td><p>Chebyshev Encoding Circuit from Reference <a class="reference external" href="https://arxiv.org/abs/2306.01639">https://arxiv.org/abs/2306.01639</a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevPQC.html#squlearn.encoding_circuit.ChebyshevPQC" title="squlearn.encoding_circuit.ChebyshevPQC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ChebyshevPQC</span></code></a></p></td>
+<td><p>Chebyshev Encoding Circuit from reference [1].</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.HZCRxCRyCRz.html#squlearn.encoding_circuit.HZCRxCRyCRz" title="squlearn.encoding_circuit.HZCRxCRyCRz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.HZCRxCRyCRz</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.MultiControlEncodingCircuit.html#squlearn.encoding_circuit.MultiControlEncodingCircuit" title="squlearn.encoding_circuit.MultiControlEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.MultiControlEncodingCircuit</span></code></a></p></td>
 <td><p>Encoding circuit with HZ encoding followed by controlled Rx, Ry Rz rotations.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebRx.html#squlearn.encoding_circuit.ChebRx" title="squlearn.encoding_circuit.ChebRx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ChebRx</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevRx.html#squlearn.encoding_circuit.ChebyshevRx" title="squlearn.encoding_circuit.ChebyshevRx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ChebyshevRx</span></code></a></p></td>
 <td><p>Simple Chebyshev encoding circuit build from  Rx gates</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ParamZEncodingCircuit.html#squlearn.encoding_circuit.ParamZEncodingCircuit" title="squlearn.encoding_circuit.ParamZEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ParamZEncodingCircuit</span></code></a></p></td>
-<td><p>Parameterized ZEncodingCircuit with optional CNOT gates between the default layers.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ParamZFeatureMap.html#squlearn.encoding_circuit.ParamZFeatureMap" title="squlearn.encoding_circuit.ParamZFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ParamZFeatureMap</span></code></a></p></td>
+<td><p>Parameterized Z feature map  with optional CNOT gates between the default layers.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html#squlearn.encoding_circuit.QiskitEncodingCircuit" title="squlearn.encoding_circuit.QiskitEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QiskitEncodingCircuit</span></code></a></p></td>
 <td><p>Wrapper to create sQUlearn encoding circuits from the <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p></td>
@@ -257,7 +273,7 @@
 </table>
 </section>
 <section id="encoding-circuit-tools">
-<h3>Encoding Circuit Tools<a class="headerlink" href="#encoding-circuit-tools" title="Permalink to this heading"></a></h3>
+<h3>Encoding Circuit Tools<a class="headerlink" href="#encoding-circuit-tools" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.encoding_circuit_base.EncodingCircuitBase</span></code></a></p></td>
@@ -289,8 +305,8 @@
 </table>
 </section>
 <section id="operators">
-<span id="id3"></span><h3>Operators<a class="headerlink" href="#operators" title="Permalink to this heading"></a></h3>
-<span class="target" id="module-squlearn.observables"></span><table class="autosummary longtable docutils align-default">
+<span id="id3"></span><h3>Operators<a class="headerlink" href="#operators" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.observables.SinglePauli.html#squlearn.observables.SinglePauli" title="squlearn.observables.SinglePauli"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observables.SinglePauli</span></code></a></p></td>
 <td><p>Observable constructed from a single Pauli operator of a single Qubit.</p></td>
@@ -314,7 +330,7 @@
 </table>
 </section>
 <section id="operator-tools">
-<h3>Operator Tools<a class="headerlink" href="#operator-tools" title="Permalink to this heading"></a></h3>
+<h3>Operator Tools<a class="headerlink" href="#operator-tools" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observables.observable_base.ObservableBase</span></code></a></p></td>
@@ -328,7 +344,7 @@
 </section>
 </section>
 <section id="execution-tools">
-<h2>Execution Tools<a class="headerlink" href="#execution-tools" title="Permalink to this heading"></a></h2>
+<h2>Execution Tools<a class="headerlink" href="#execution-tools" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a></p></td>
@@ -338,9 +354,9 @@
 </table>
 </section>
 <section id="core">
-<h2>Core<a class="headerlink" href="#core" title="Permalink to this heading"></a></h2>
+<h2>Core<a class="headerlink" href="#core" title="Link to this heading"></a></h2>
 <section id="module-squlearn.kernel.matrix">
-<span id="quantum-kernel-core"></span><h3>Quantum Kernel Core<a class="headerlink" href="#module-squlearn.kernel.matrix" title="Permalink to this heading"></a></h3>
+<span id="quantum-kernel-core"></span><h3>Quantum Kernel Core<a class="headerlink" href="#module-squlearn.kernel.matrix" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.matrix.FidelityKernel.html#squlearn.kernel.matrix.FidelityKernel" title="squlearn.kernel.matrix.FidelityKernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.matrix.FidelityKernel</span></code></a></p></td>
@@ -351,7 +367,7 @@
 </tr>
 </tbody>
 </table>
-<span class="target" id="module-squlearn.kernel.optimization"></span><table class="autosummary longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html#squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer" title="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.kernel_optimizer.KernelOptimizer</span></code></a></p></td>
 <td><p>Quantum kernel optimizer.</p></td>
@@ -366,7 +382,7 @@
 </table>
 </section>
 <section id="module-squlearn.qnn">
-<span id="qnn-core"></span><h3>QNN Core<a class="headerlink" href="#module-squlearn.qnn" title="Permalink to this heading"></a></h3>
+<span id="qnn-core"></span><h3>QNN Core<a class="headerlink" href="#module-squlearn.qnn" title="Link to this heading"></a></h3>
 <p>QNN module for classification and regression.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -387,9 +403,29 @@
 </tr>
 </tbody>
 </table>
+<p>Tools for training QNNs</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.get_variance_fac.html#squlearn.qnn.get_variance_fac" title="squlearn.qnn.get_variance_fac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.get_variance_fac</span></code></a></p></td>
+<td><p>Function for adjusting the variance regularization along the iterations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.get_lr_decay.html#squlearn.qnn.get_lr_decay" title="squlearn.qnn.get_lr_decay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.get_lr_decay</span></code></a></p></td>
+<td><p>Function for running an Adam optimization with a decay in the learning rate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.ShotsFromRSTD.html#squlearn.qnn.ShotsFromRSTD" title="squlearn.qnn.ShotsFromRSTD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.ShotsFromRSTD</span></code></a></p></td>
+<td><p>Shot control for setting the shots of the gradient evaluation after the RSTD of the loss.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.training.train.html#squlearn.qnn.training.train" title="squlearn.qnn.training.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.training.train</span></code></a></p></td>
+<td><p>Function for training a given QNN.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.training.train_mini_batch.html#squlearn.qnn.training.train_mini_batch" title="squlearn.qnn.training.train_mini_batch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.training.train_mini_batch</span></code></a></p></td>
+<td><p>Minimize a loss function using mini-batch gradient descent.</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="module-squlearn.optimizers">
-<span id="implemented-optimizers"></span><h3>Implemented optimizers<a class="headerlink" href="#module-squlearn.optimizers" title="Permalink to this heading"></a></h3>
+<span id="implemented-optimizers"></span><h3>Implemented optimizers<a class="headerlink" href="#module-squlearn.optimizers" title="Link to this heading"></a></h3>
 <p>Module for optimizer implementations and wrappers.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -409,7 +445,7 @@
 </table>
 </section>
 <section id="optree-data-structure">
-<h3>OpTree Data Structure<a class="headerlink" href="#optree-data-structure" title="Permalink to this heading"></a></h3>
+<h3>OpTree Data Structure<a class="headerlink" href="#optree-data-structure" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.util.OpTree.html#squlearn.util.OpTree" title="squlearn.util.OpTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">util.OpTree</span></code></a></p></td>
@@ -443,7 +479,7 @@
 </table>
 </section>
 <section id="base-classes">
-<h3>Base Classes<a class="headerlink" href="#base-classes" title="Permalink to this heading"></a></h3>
+<h3>Base Classes<a class="headerlink" href="#base-classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observables.observable_base.ObservableBase</span></code></a></p></td>

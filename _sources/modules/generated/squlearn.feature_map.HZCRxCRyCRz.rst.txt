@@ -1,6 +1,0 @@
-﻿:mod:`squlearn.feature_map`.\ :spelling:word:`HZCRxCRyCRz`
-=================================================================
-
-.. currentmodule:: squlearn.feature_map
-
-.. autoclass:: HZCRxCRyCRz

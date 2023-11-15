@@ -1,6 +1,0 @@
-﻿:mod:`squlearn.encoding_circuit`.\ :spelling:word:`QEKEncodingCircuit`
-=============================================================================
-
-.. currentmodule:: squlearn.encoding_circuit
-
-.. autoclass:: QEKEncodingCircuit

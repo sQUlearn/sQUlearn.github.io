@@ -1,6 +1,0 @@
-﻿:mod:`squlearn.expectation_operator`.\ :spelling:word:`SingleProbability`
-================================================================================
-
-.. currentmodule:: squlearn.expectation_operator
-
-.. autoclass:: SingleProbability

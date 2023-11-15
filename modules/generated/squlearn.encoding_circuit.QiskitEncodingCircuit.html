@@ -4,25 +4,32 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.encoding_circuit.QiskitEncodingCircuit &mdash; sQUlearn 0.4.0 documentation</title>
+  <title>squlearn.encoding_circuit.QiskitEncodingCircuit &mdash; sQUlearn 0.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/thebelab.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4e78f113"></script>
+        <script src="../../_static/documentation_options.js?v=1dd76d02"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html" />
-    <link rel="prev" title="squlearn.encoding_circuit.ParamZEncodingCircuit" href="squlearn.encoding_circuit.ParamZEncodingCircuit.html" /> 
+    <link rel="prev" title="squlearn.encoding_circuit.ParamZFeatureMap" href="squlearn.encoding_circuit.ParamZFeatureMap.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,9 +40,13 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            sQUlearn
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.5.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -55,12 +66,12 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit">Encoding Circuits</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.YZ_CX_EncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.YZ_CX_EncodingCircuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.HighDimEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HighDimEncodingCircuit</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.QEKEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QEKEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.HubregtsenEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HubregtsenEncodingCircuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebyshevTower.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevTower</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebPQC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebPQC</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.HZCRxCRyCRz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HZCRxCRyCRz</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebRx</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ParamZEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ParamZEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebyshevPQC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevPQC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.MultiControlEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.MultiControlEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebyshevRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevRx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ParamZFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ParamZFeatureMap</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QiskitEncodingCircuit</a></li>
 </ul>
 </li>
@@ -102,26 +113,37 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-encoding-circuit-qiskitencodingcircuit">
-<h1><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.QiskitEncodingCircuit<a class="headerlink" href="#squlearn-encoding-circuit-qiskitencodingcircuit" title="Permalink to this heading"></a></h1>
+<h1><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.QiskitEncodingCircuit<a class="headerlink" href="#squlearn-encoding-circuit-qiskitencodingcircuit" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.QiskitEncodingCircuit">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">QiskitEncodingCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qiskit_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BlueprintCircuit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'θp'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">QiskitEncodingCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qiskit_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BlueprintCircuit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.45)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'θp'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit" title="Link to this definition"></a></dt>
 <dd><p>Wrapper to create sQUlearn encoding circuits from the <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p>
 <p><strong>Example: create a encoding circuit from Qiskit TwoLocal map</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">TwoLocal</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QiskitEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">TwoLocal</span>
 <span class="n">local</span> <span class="o">=</span> <span class="n">TwoLocal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ry&#39;</span><span class="p">,</span> <span class="s1">&#39;cx&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">QiskitEncodingCircuit</span><span class="p">(</span><span class="n">local</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">QiskitEncodingCircuit</span><span class="p">(</span><span class="n">local</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../../_downloads/7e3a038e3a186f710f3cfc817f14fd27/squlearn-encoding_circuit-QiskitEncodingCircuit-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/e18c581cf43ebc094e3b22d05e2447ba/squlearn-encoding_circuit-QiskitEncodingCircuit-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/56f7423f1d5c7ef3ac7ceef2942b1665/squlearn-encoding_circuit-QiskitEncodingCircuit-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/8929eb636153a17eaa414c147f7a3de1/squlearn-encoding_circuit-QiskitEncodingCircuit-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../../_images/squlearn-encoding_circuit-QiskitEncodingCircuit-1.png" class="plot-directive" src="../../_images/squlearn-encoding_circuit-QiskitEncodingCircuit-1.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/squlearn.encoding_circuit.QiskitEncodingCircuit_0_0.png" src="../../_images/squlearn.encoding_circuit.QiskitEncodingCircuit_0_0.png" />
+</div>
+</div>
 <p>An alternative call can be made by passing the circuit library function and its arguments:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QiskitEncodingCircuit</span>
-<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">ZZEncodingCircuit</span>
-<span class="n">QiskitEncodingCircuit</span><span class="p">(</span><span class="n">ZZEncodingCircuit</span><span class="p">,</span><span class="n">feature_dimension</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QiskitEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">ZZFeatureMap</span>
+<span class="n">QiskitEncodingCircuit</span><span class="p">(</span><span class="n">ZZFeatureMap</span><span class="p">,</span><span class="n">feature_dimension</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/squlearn.encoding_circuit.QiskitEncodingCircuit_1_0.png" src="../../_images/squlearn.encoding_circuit.QiskitEncodingCircuit_1_0.png" />
+</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -145,7 +167,7 @@ parameters. (default: <code class="docutils literal notranslate"><span class="pr
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.QiskitEncodingCircuit.draw">
-<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'p'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.draw" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'p'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.draw" title="Link to this definition"></a></dt>
 <dd><p>Draws the encoding circuit circuit using the QuantumCircuit.draw() function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -164,7 +186,7 @@ parameters. (default: <code class="docutils literal notranslate"><span class="pr
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.QiskitEncodingCircuit.generate_initial_parameters">
-<span class="sig-name descname"><span class="pre">generate_initial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.generate_initial_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">generate_initial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.generate_initial_parameters" title="Link to this definition"></a></dt>
 <dd><p>Generates random parameters for the encoding circuit</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -178,7 +200,7 @@ parameters. (default: <code class="docutils literal notranslate"><span class="pr
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.QiskitEncodingCircuit.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.44)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.44)"><span class="pre">QuantumCircuit</span></a></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.45)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.ParameterVector.html#qiskit.circuit.ParameterVector" title="(in Qiskit v0.45)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="(in Qiskit v0.45)"><span class="pre">QuantumCircuit</span></a></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.get_circuit" title="Link to this definition"></a></dt>
 <dd><p>Returns the circuit of the Qiskit Encoding Circuit</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -197,7 +219,7 @@ from which the gate inputs are obtained.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.QiskitEncodingCircuit.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.get_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.get_params" title="Link to this definition"></a></dt>
 <dd><p>Returns hyper-parameters and their values of the Qiskit encoding circuit</p>
 <p>No hyper-parameters are available for the Qiskit encoding circuit!</p>
 <dl class="field-list simple">
@@ -213,7 +235,7 @@ contained objects are returned (default=True).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.QiskitEncodingCircuit.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.set_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QiskitEncodingCircuit.set_params" title="Link to this definition"></a></dt>
 <dd><p>Sets value of the encoding circuit hyper-parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -230,7 +252,7 @@ contained objects are returned (default=True).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="squlearn.encoding_circuit.ParamZEncodingCircuit.html" class="btn btn-neutral float-left" title="squlearn.encoding_circuit.ParamZEncodingCircuit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.encoding_circuit.ParamZFeatureMap.html" class="btn btn-neutral float-left" title="squlearn.encoding_circuit.ParamZFeatureMap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html" class="btn btn-neutral float-right" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

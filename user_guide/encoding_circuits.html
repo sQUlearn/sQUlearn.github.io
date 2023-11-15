@@ -4,19 +4,26 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Encoding Circuits &mdash; sQUlearn 0.4.0 documentation</title>
+  <title>Quantum Encoding Circuits &mdash; sQUlearn 0.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
+        <script src="../_static/documentation_options.js?v=1dd76d02"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,9 +42,13 @@
 
           
           
-          <a href="../index.html" class="icon icon-home">
-            sQUlearn
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.5.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -96,7 +107,7 @@
            <div itemprop="articleBody">
              
   <section id="quantum-encoding-circuits">
-<span id="id1"></span><h1>Quantum Encoding Circuits<a class="headerlink" href="#quantum-encoding-circuits" title="Permalink to this heading"></a></h1>
+<span id="id1"></span><h1>Quantum Encoding Circuits<a class="headerlink" href="#quantum-encoding-circuits" title="Link to this heading"></a></h1>
 <p>Quantum encoding circuits are used to embed classical data <span class="math notranslate nohighlight">\(x\)</span> into a quantum state and manipulate
 the quantum state via trainable parameters <span class="math notranslate nohighlight">\(p\)</span>.
 They are a key component of many quantum machine learning algorithms, and the design of a good
@@ -111,33 +122,33 @@ The package facilitate a fully automated pruning algorithm to remove redundant p
 enables the automatic differentiation of arbitrary derivative.</p>
 <p>The following functions and classes are are accessible via <a class="reference internal" href="../modules/classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.</p>
 <section id="implemented-quantum-encoding-circuits">
-<h2>Implemented Quantum Encoding Circuits<a class="headerlink" href="#implemented-quantum-encoding-circuits" title="Permalink to this heading"></a></h2>
+<h2>Implemented Quantum Encoding Circuits<a class="headerlink" href="#implemented-quantum-encoding-circuits" title="Link to this heading"></a></h2>
 <p>There are several Quantum Encoding Circuits implemented in sQUlearn:</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.YZ_CX_EncodingCircuit.html#squlearn.encoding_circuit.YZ_CX_EncodingCircuit" title="squlearn.encoding_circuit.YZ_CX_EncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">YZ_CX_EncodingCircuit</span></code></a></p></td>
-<td><p>Creates the YZ-CX Encoding Circuit from Reference <a class="reference external" href="https://arxiv.org/abs/2108.01039v3">https://arxiv.org/abs/2108.01039v3</a></p></td>
+<td><p>Creates the YZ-CX Encoding Circuit from reference [1].</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.HighDimEncodingCircuit.html#squlearn.encoding_circuit.HighDimEncodingCircuit" title="squlearn.encoding_circuit.HighDimEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HighDimEncodingCircuit</span></code></a></p></td>
-<td><p>The high-dimensional encoding circuit from Reference <a class="reference external" href="https://doi.org/10.1103/PhysRevA.106.042431">https://doi.org/10.1103/PhysRevA.106.042431</a></p></td>
+<td><p>The high-dimensional encoding circuit from reference [1].</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.QEKEncodingCircuit.html#squlearn.encoding_circuit.QEKEncodingCircuit" title="squlearn.encoding_circuit.QEKEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QEKEncodingCircuit</span></code></a></p></td>
-<td><p>Creates the QEK encoding circuit as presented in Reference <a class="reference external" href="http://arxiv.org/pdf/2105.02276v1">http://arxiv.org/pdf/2105.02276v1</a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.HubregtsenEncodingCircuit.html#squlearn.encoding_circuit.HubregtsenEncodingCircuit" title="squlearn.encoding_circuit.HubregtsenEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HubregtsenEncodingCircuit</span></code></a></p></td>
+<td><p>Creates the data reuploading encoding circuit as presented in reference [1].</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ChebyshevTower.html#squlearn.encoding_circuit.ChebyshevTower" title="squlearn.encoding_circuit.ChebyshevTower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChebyshevTower</span></code></a></p></td>
 <td><p>A feature-map that is based on the Chebyshev Tower encoding.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ChebPQC.html#squlearn.encoding_circuit.ChebPQC" title="squlearn.encoding_circuit.ChebPQC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChebPQC</span></code></a></p></td>
-<td><p>Chebyshev Encoding Circuit from Reference <a class="reference external" href="https://arxiv.org/abs/2306.01639">https://arxiv.org/abs/2306.01639</a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ChebyshevPQC.html#squlearn.encoding_circuit.ChebyshevPQC" title="squlearn.encoding_circuit.ChebyshevPQC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChebyshevPQC</span></code></a></p></td>
+<td><p>Chebyshev Encoding Circuit from reference [1].</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.HZCRxCRyCRz.html#squlearn.encoding_circuit.HZCRxCRyCRz" title="squlearn.encoding_circuit.HZCRxCRyCRz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HZCRxCRyCRz</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.MultiControlEncodingCircuit.html#squlearn.encoding_circuit.MultiControlEncodingCircuit" title="squlearn.encoding_circuit.MultiControlEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiControlEncodingCircuit</span></code></a></p></td>
 <td><p>Encoding circuit with HZ encoding followed by controlled Rx, Ry Rz rotations.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ChebRx.html#squlearn.encoding_circuit.ChebRx" title="squlearn.encoding_circuit.ChebRx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChebRx</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ChebyshevRx.html#squlearn.encoding_circuit.ChebyshevRx" title="squlearn.encoding_circuit.ChebyshevRx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChebyshevRx</span></code></a></p></td>
 <td><p>Simple Chebyshev encoding circuit build from  Rx gates</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ParamZEncodingCircuit.html#squlearn.encoding_circuit.ParamZEncodingCircuit" title="squlearn.encoding_circuit.ParamZEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParamZEncodingCircuit</span></code></a></p></td>
-<td><p>Parameterized ZEncodingCircuit with optional CNOT gates between the default layers.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ParamZFeatureMap.html#squlearn.encoding_circuit.ParamZFeatureMap" title="squlearn.encoding_circuit.ParamZFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParamZFeatureMap</span></code></a></p></td>
+<td><p>Parameterized Z feature map  with optional CNOT gates between the default layers.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html#squlearn.encoding_circuit.QiskitEncodingCircuit" title="squlearn.encoding_circuit.QiskitEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QiskitEncodingCircuit</span></code></a></p></td>
 <td><p>Wrapper to create sQUlearn encoding circuits from the <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p></td>
@@ -145,19 +156,22 @@ enables the automatic differentiation of arbitrary derivative.</p>
 </tbody>
 </table>
 <p>Feel free to contribute to sQUlearn by adding your own encoding circuits in a Pull Request.</p>
-<p><strong>Example: Create a QEK encoding circuit</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QEKEncodingCircuit</span>
-<span class="n">pqc</span> <span class="o">=</span> <span class="n">QEKEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<p><strong>Example: Create a Hubregtsen encoding circuit</strong></p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span>
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/3d4cf8b941ca303c5519157b07fad8cf/encoding_circuits-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/dd8d3d1529ccaba3425ac70a3cf21662/encoding_circuits-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/4b9a5e63b4545c0629dafc6e2697ebe8/encoding_circuits-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/84f7c34539d81f5eba3aeb474edad95d/encoding_circuits-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../_images/encoding_circuits-1.png" class="plot-directive" src="../_images/encoding_circuits-1.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/encoding_circuits_0_0.png" src="../_images/encoding_circuits_0_0.png" />
+</div>
+</div>
 </section>
 <section id="combining-quantum-encoding-circuits">
-<h2>Combining Quantum Encoding Circuits<a class="headerlink" href="#combining-quantum-encoding-circuits" title="Permalink to this heading"></a></h2>
+<h2>Combining Quantum Encoding Circuits<a class="headerlink" href="#combining-quantum-encoding-circuits" title="Link to this heading"></a></h2>
 <p>In sQUlearn, quantum encoding circuits can be combined to create more sophisticated encoding circuits by
 utilizing the <code class="docutils literal notranslate"><span class="pre">+</span></code> operation between two encoding circuits. However, it is important to note that
 the number of qubits in both encoding circuits must match for successful combination.</p>
@@ -166,36 +180,42 @@ value from the two feature dimensions. The parameters of the individual encoding
 concatenated. Consequently, the total number of parameters in the combined encoding circuit is
 equal to the sum of the parameters in the two original encoding circuits.</p>
 <p><strong>Example: combine two quantum encoding circuits</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QEKEncodingCircuit</span><span class="p">,</span> <span class="n">ChebPQC</span>
-<span class="n">fm1</span> <span class="o">=</span> <span class="n">QEKEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">fm2</span> <span class="o">=</span> <span class="n">ChebPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">,</span> <span class="n">ChebyshevPQC</span>
+<span class="n">fm1</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fm2</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Combining both encoding circuits</span>
 <span class="n">fm3</span> <span class="o">=</span> <span class="n">fm1</span> <span class="o">+</span> <span class="n">fm2</span>
 <span class="n">fm3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/37b3308d8f0e1e0c675c4489ef272ff3/encoding_circuits-2.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/ba3a34f88ef0cc8b210aed5a4846951f/encoding_circuits-2.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/12959f0f323ba62573fe72972f495fea/encoding_circuits-2.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/93b295475ec7ecc707815ab52f00df55/encoding_circuits-2.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../_images/encoding_circuits-2.png" class="plot-directive" src="../_images/encoding_circuits-2.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/encoding_circuits_1_0.png" src="../_images/encoding_circuits_1_0.png" />
+</div>
+</div>
 </section>
 <section id="wrapping-qiskit-encoding-circuits">
-<h2>Wrapping Qiskit Encoding Circuits<a class="headerlink" href="#wrapping-qiskit-encoding-circuits" title="Permalink to this heading"></a></h2>
+<h2>Wrapping Qiskit Encoding Circuits<a class="headerlink" href="#wrapping-qiskit-encoding-circuits" title="Link to this heading"></a></h2>
 <p>It is also possible to utilize the wrapper <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html#squlearn.encoding_circuit.QiskitEncodingCircuit" title="squlearn.encoding_circuit.QiskitEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QiskitEncodingCircuit</span></code></a> to build Encoding Circuits from the
 <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QiskitEncodingCircuit</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QiskitEncodingCircuit</span>
 <span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">TwoLocal</span>
 <span class="n">local</span> <span class="o">=</span> <span class="n">TwoLocal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ry&#39;</span><span class="p">,</span> <span class="s1">&#39;cx&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">QiskitEncodingCircuit</span><span class="p">(</span><span class="n">local</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/bcba69274a79ab8b25b5a61013a7edc3/encoding_circuits-3.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/610ee200665d3dfd1707a56cd5198e10/encoding_circuits-3.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/3b7b55294597a1ced76fd12f00711edb/encoding_circuits-3.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/3a8cd1dcf8529203af79d7b57cf84408/encoding_circuits-3.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../_images/encoding_circuits-3.png" class="plot-directive" src="../_images/encoding_circuits-3.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/encoding_circuits_2_0.png" src="../_images/encoding_circuits_2_0.png" />
+</div>
+</div>
 </section>
 <section id="create-your-custom-encoding-circuit-via-layeredencodingcircuit">
-<h2>Create your custom Encoding Circuit via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.LayeredEncodingCircuit.html#squlearn.encoding_circuit.LayeredEncodingCircuit" title="squlearn.encoding_circuit.LayeredEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayeredEncodingCircuit</span></code></a><a class="headerlink" href="#create-your-custom-encoding-circuit-via-layeredencodingcircuit" title="Permalink to this heading"></a></h2>
+<h2>Create your custom Encoding Circuit via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.LayeredEncodingCircuit.html#squlearn.encoding_circuit.LayeredEncodingCircuit" title="squlearn.encoding_circuit.LayeredEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayeredEncodingCircuit</span></code></a><a class="headerlink" href="#create-your-custom-encoding-circuit-via-layeredencodingcircuit" title="Link to this heading"></a></h2>
 <p>sQUlearn offers a user-friendly solution for creating custom layered encoding circuits effortlessly.
 Layered encoding circuits involve the application of gates to all qubits, ensuring a comprehensive
 approach. This method allows for the creation of encoding circuits in a structured manner,
@@ -207,7 +227,9 @@ or by providing a string using the
 method. For detailed instructions on the string format, please refer to the documentation of
 the <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.LayeredEncodingCircuit.html#squlearn.encoding_circuit.LayeredEncodingCircuit" title="squlearn.encoding_circuit.LayeredEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayeredEncodingCircuit</span></code></a> class.</p>
 <p><strong>Example: Create your custom layered encoding circuit</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
 <span class="kn">from</span> <span class="nn">squlearn.encoding_circuit.layered_encoding_circuit</span> <span class="kn">import</span> <span class="n">Layer</span>
 <span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">encoding_circuit</span><span class="o">.</span><span class="n">H</span><span class="p">()</span>
@@ -219,25 +241,29 @@ the <a class="reference internal" href="../modules/generated/squlearn.encoding_c
 <span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/7b4eb816addea4e66b762d1869d4bee2/encoding_circuits-4.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/7dad8b832e95f26a10af73accac52e8a/encoding_circuits-4.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/df23c4306a7df8b2892fcba7241e6db6/encoding_circuits-4.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/c9fecb72863f339aacdffa9b6f7d4723/encoding_circuits-4.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../_images/encoding_circuits-4.png" class="plot-directive" src="../_images/encoding_circuits-4.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/encoding_circuits_3_0.png" src="../_images/encoding_circuits_3_0.png" />
+</div>
+</div>
 <p><strong>Example: Create your custom layered encoding circuit from a string</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
 <span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span>
    <span class="s2">&quot;Ry(p)-3[Rx(p,x;=y*np.arccos(x),{y,x})-crz(p)]-Ry(p)&quot;</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
 <span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/bb155e5982ebfbef8df1639253858461/encoding_circuits-5.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/e788f555ef3ac1cd264ed9055c5ae65f/encoding_circuits-5.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/2d33677a5596cc40a80db2ae0231d0ca/encoding_circuits-5.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/33e400be4c2c2a8b805c03d758363481/encoding_circuits-5.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../_images/encoding_circuits-5.png" class="plot-directive" src="../_images/encoding_circuits-5.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/encoding_circuits_4_0.png" src="../_images/encoding_circuits_4_0.png" />
+</div>
+</div>
 </section>
 <section id="pruning-of-quantum-encoding-circuits">
-<h2>Pruning of Quantum Encoding Circuits<a class="headerlink" href="#pruning-of-quantum-encoding-circuits" title="Permalink to this heading"></a></h2>
+<h2>Pruning of Quantum Encoding Circuits<a class="headerlink" href="#pruning-of-quantum-encoding-circuits" title="Link to this heading"></a></h2>
 <p>It is also possible to remove parameterized gates from a quantum encoding circuit by using the
 <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.PrunedEncodingCircuit.html#squlearn.encoding_circuit.PrunedEncodingCircuit" title="squlearn.encoding_circuit.PrunedEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrunedEncodingCircuit</span></code></a> class.
 This class accepts a quantum encoding circuit as input and removes the parameterized gates
@@ -249,20 +275,26 @@ the Quantum Fisher Information Matrix (QFIM) of the encoding circuit.</p>
 <p>sQUlearn features a fully automated pruning algorithm which can be used by calling the routine
 <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.automated_pruning.html#squlearn.encoding_circuit.automated_pruning" title="squlearn.encoding_circuit.automated_pruning"><code class="xref py py-meth docutils literal notranslate"><span class="pre">automated_pruning()</span></code></a> that returns a pruned encoding circuit without the redundant parameters.</p>
 <p><strong>Example: Pruning a encoding circuit with redundant parameters</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span><span class="p">,</span> <span class="n">automated_pruning</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span><span class="p">,</span> <span class="n">automated_pruning</span>
 <span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
 <span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;Rz(p)-Ry(p)-Z-Ry(p)-Rz(p)&quot;</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">pruned_encoding_circuit</span> <span class="o">=</span> <span class="n">automated_pruning</span><span class="p">(</span><span class="n">encoding_circuit</span><span class="p">,</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">))</span>
 <span class="n">pruned_encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/bfe6772cb44b5c09021fb6698faf56c6/encoding_circuits-6.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/87ddbebf7be523723f0c84bed9a09b5a/encoding_circuits-6.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/a52f81b879a0e1c0220af9dd5587fcdb/encoding_circuits-6.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/9f134657d324898f6641a878b4203bb5/encoding_circuits-6.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../_images/encoding_circuits-6.png" class="plot-directive" src="../_images/encoding_circuits-6.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Pruned parameters: [0 1 2 5]
+</pre></div>
+</div>
+<img alt="../_images/encoding_circuits_5_1.png" src="../_images/encoding_circuits_5_1.png" />
+</div>
+</div>
 </section>
 <section id="different-quantum-encoding-circuits-via-encodingcircuitderivatives">
-<h2>Different Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.EncodingCircuitDerivatives.html#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="squlearn.encoding_circuit.EncodingCircuitDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuitDerivatives</span></code></a><a class="headerlink" href="#different-quantum-encoding-circuits-via-encodingcircuitderivatives" title="Permalink to this heading"></a></h2>
+<h2>Different Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.EncodingCircuitDerivatives.html#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="squlearn.encoding_circuit.EncodingCircuitDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuitDerivatives</span></code></a><a class="headerlink" href="#different-quantum-encoding-circuits-via-encodingcircuitderivatives" title="Link to this heading"></a></h2>
 <p>The calculation of derivatives for quantum encoding circuits is often essential in training a
 Quantum Machine Learning model. In sQUlearn, we offer a straightforward approach to compute
 these derivatives using the <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.EncodingCircuitDerivatives.html#squlearn.encoding_circuit.EncodingCircuitDerivatives" title="squlearn.encoding_circuit.EncodingCircuitDerivatives"><code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuitDerivatives</span></code></a> class.
@@ -282,9 +314,11 @@ This can also be placed in the tuple.</p></li>
 </ol>
 <p>The derivatives are stored in sQUlearn’s proprietary OpTree structure, which
 is utilized for the arithmetic operations of the derivatives.</p>
-<p><strong>Example: Obtain the derivative of a QEK encoding circuit</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">QEKEncodingCircuit</span><span class="p">,</span> <span class="n">EncodingCircuitDerivatives</span>
-<span class="n">fm</span> <span class="o">=</span> <span class="n">QEKEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<p><strong>Example: Obtain the derivative of a Hubregtsen encoding circuit</strong></p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">,</span> <span class="n">EncodingCircuitDerivatives</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">fm_deriv</span> <span class="o">=</span> <span class="n">EncodingCircuitDerivatives</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
 <span class="c1"># From String (gradient of the parameter vector)</span>
 <span class="n">grad_from_string</span> <span class="o">=</span> <span class="n">fm_deriv</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">(</span><span class="s2">&quot;dp&quot;</span><span class="p">)</span>
@@ -296,9 +330,13 @@ is utilized for the arithmetic operations of the derivatives.</p>
                                           <span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
 </section>
 <section id="transpile-quantum-encoding-circuits-via-transpiledencodingcircuit">
-<h2>Transpile Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.TranspiledEncodingCircuit.html#squlearn.encoding_circuit.TranspiledEncodingCircuit" title="squlearn.encoding_circuit.TranspiledEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledEncodingCircuit</span></code></a><a class="headerlink" href="#transpile-quantum-encoding-circuits-via-transpiledencodingcircuit" title="Permalink to this heading"></a></h2>
+<h2>Transpile Quantum Encoding Circuits via <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.TranspiledEncodingCircuit.html#squlearn.encoding_circuit.TranspiledEncodingCircuit" title="squlearn.encoding_circuit.TranspiledEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledEncodingCircuit</span></code></a><a class="headerlink" href="#transpile-quantum-encoding-circuits-via-transpiledencodingcircuit" title="Link to this heading"></a></h2>
 <p>To transpile a quantum encoding circuit, you can leverage the functionality provided by the
 <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.TranspiledEncodingCircuit.html#squlearn.encoding_circuit.TranspiledEncodingCircuit" title="squlearn.encoding_circuit.TranspiledEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledEncodingCircuit</span></code></a> class. By utilizing this class, you can input an existing
 quantum encoding circuit and have its circuit transpiled according to the specified backend and
@@ -306,17 +344,20 @@ transpiler settings, which are the same settings used in Qiskit.
 The transpiled encoding circuit is internally employed in the QNN program and projected kernels,
 where it is employed internally.</p>
 <p><strong>Example: Transpile a existing Encoding Circuit to a fake backend</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">,</span><span class="n">ChebRx</span>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">,</span><span class="n">ChebyshevRx</span>
 <span class="kn">from</span> <span class="nn">qiskit.providers.fake_provider</span> <span class="kn">import</span> <span class="n">FakeManilaV2</span>
 
-<span class="n">fm</span> <span class="o">=</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">(</span><span class="n">ChebRx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">backend</span><span class="o">=</span><span class="n">FakeManilaV2</span><span class="p">(),</span><span class="n">initial_layout</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">(</span><span class="n">ChebyshevRx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">backend</span><span class="o">=</span><span class="n">FakeManilaV2</span><span class="p">(),</span><span class="n">initial_layout</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 <span class="n">fm</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/759f2259cbbb4268c1bda4343b6addfb/encoding_circuits-7.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/ee97b8109f0b66b1b767c7ea0dcf2093/encoding_circuits-7.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/dc1820294b3df2350bcdcffd1935d0ba/encoding_circuits-7.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/cbb279260271b7c1687bed0aa5f0bf66/encoding_circuits-7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
-<figure class="align-default">
-<img alt="../_images/encoding_circuits-7.png" class="plot-directive" src="../_images/encoding_circuits-7.png" />
-</figure>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/encoding_circuits_7_0.png" src="../_images/encoding_circuits_7_0.png" />
+</div>
+</div>
 </section>
 </section>
 

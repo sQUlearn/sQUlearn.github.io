@@ -4,20 +4,27 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Handwritten Digit Recognition with Projected Quantum Kernels &mdash; sQUlearn 0.4.0 documentation</title>
+  <title>Handwritten Digit Recognition with Projected Quantum Kernels &mdash; sQUlearn 0.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
       <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4e78f113"></script>
+        <script src="../_static/documentation_options.js?v=1dd76d02"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -36,9 +43,13 @@
 
           
           
-          <a href="../index.html" class="icon icon-home">
-            sQUlearn
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.5.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -73,6 +84,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="example_kernel_grid_search.html">Hyperparameter Optimization and Pipelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_quantum_bayesian_optimization.html">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_qnn_backend_mitigation.html">Error Mitigation for QNNs on IBM Devices</a></li>
 </ul>
 </li>
 </ul>
@@ -103,7 +115,7 @@
            <div itemprop="articleBody">
              
   <section id="Handwritten-Digit-Recognition-with-Projected-Quantum-Kernels">
-<h1>Handwritten Digit Recognition with Projected Quantum Kernels<a class="headerlink" href="#Handwritten-Digit-Recognition-with-Projected-Quantum-Kernels" title="Permalink to this heading"></a></h1>
+<h1>Handwritten Digit Recognition with Projected Quantum Kernels<a class="headerlink" href="#Handwritten-Digit-Recognition-with-Projected-Quantum-Kernels" title="Link to this heading"></a></h1>
 <p>In this notebook, images of handwritten digits are classified by a quantum computer. Quantum machine learning methods promise advantages over conventional algorithms because they can map data into an exponentially large state space. However, the size of the space can also have disadvantages. In this notebook, the data is projected back into a classical space after being mapped into the Hilbert space, in order to take advantage of the benefits of QML without its drawbacks.</p>
 <p>This notebook will make use of sQUlearn’s implementations of Quantum Support Vector Classification <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.ml.QSVC.html">squlearn.kernel.QSVC</a> and Projected Quantum Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html">squlearn.kernel.ProjectedQuantumKernel</a>.</p>
 <p>The data set used here is well known from conventional machine learning and easily solvable with conventional methods. The workflow that that is applied to solve the classification with a quantum computer is representative for this kind of task and can be transferred to more complex data sets.</p>
@@ -111,7 +123,7 @@
 <p><em>Fig. 1: Pipeline used in this notebook.</em></p>
 </center><p>Let’s start off by doing some imports and defining helper functions.</p>
 <section id="Imports-and-Definitions">
-<h2>Imports and Definitions<a class="headerlink" href="#Imports-and-Definitions" title="Permalink to this heading"></a></h2>
+<h2>Imports and Definitions<a class="headerlink" href="#Imports-and-Definitions" title="Link to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -127,16 +139,16 @@
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
 
 <span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
-<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebPQC</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
 <span class="kn">from</span> <span class="nn">squlearn.kernel.ml.qsvc</span> <span class="kn">import</span> <span class="n">QSVC</span>
 <span class="kn">from</span> <span class="nn">squlearn.kernel.matrix</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
 </pre></div>
 </div>
 </div>
-<p>The definitions of the helper functions are hidden on the website for sake of readability. If you want to replicate this code, please see the definitions of the helper functions at <a class="reference external" href="https://github.com/sQUlearn/squlearn/blob/main/examples/tutorials/kernel_classification_mnist.ipynb">the original notebook</a></p>
+<p>The definitions of the helper functions are hidden on the website for sake of readability. If you want to replicate this code, please see the definitions of the helper functions at <a class="reference external" href="https://github.com/sQUlearn/squlearn/blob/main/examples/tutorials/kernel_digit_classification.ipynb">the original notebook</a></p>
 </section>
 <section id="The-Data">
-<h2>The Data<a class="headerlink" href="#The-Data" title="Permalink to this heading"></a></h2>
+<h2>The Data<a class="headerlink" href="#The-Data" title="Link to this heading"></a></h2>
 <p>Classification of handwritten digits is a widely known task in machine learning. We utilize the data set included in scikit-learn. The data set is comprised of pictures of the size <span class="math notranslate nohighlight">\(8 \times 8\)</span> pixels that contain one single digit each as well as their according label, the numeric digit, depicted. We start by loading the data set and display the data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -164,10 +176,10 @@
 </div>
 </section>
 <section id="Preprocessing">
-<h2>Preprocessing<a class="headerlink" href="#Preprocessing" title="Permalink to this heading"></a></h2>
+<h2>Preprocessing<a class="headerlink" href="#Preprocessing" title="Link to this heading"></a></h2>
 <p>To make the data readable by the machine learning model, we need to perform a couple of preprocessing step, starting with dimensionality reduction.</p>
 <section id="Dimensionality-Reduction">
-<h3>Dimensionality Reduction<a class="headerlink" href="#Dimensionality-Reduction" title="Permalink to this heading"></a></h3>
+<h3>Dimensionality Reduction<a class="headerlink" href="#Dimensionality-Reduction" title="Link to this heading"></a></h3>
 <p>State of the art quantum computers can perform computations on a limited set of qubits. Also simulating them on classical hardware is only possible for a few such qubits. Handling our <span class="math notranslate nohighlight">\(64\)</span> input features (one for every pixel) would result in either a very wide (not possible yet) or very deep (very noisy) quantum circuit for our encoding circuit. Therefore we perform dimensionality reduction in form of T-SNE. This leaves us with two features for every input image.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -207,7 +219,7 @@
 <p>We can clearly see the different clusters of numbers in the new feature space. We also see the location of our samples marked by 🞭 with their true label.</p>
 </section>
 <section id="Split-Data-sets">
-<h3>Split Data sets<a class="headerlink" href="#Split-Data-sets" title="Permalink to this heading"></a></h3>
+<h3>Split Data sets<a class="headerlink" href="#Split-Data-sets" title="Link to this heading"></a></h3>
 <p>Lastly we select <span class="math notranslate nohighlight">\(n\)</span> samples and split the data set into one for training and one for testing.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -226,7 +238,7 @@
 </div>
 </section>
 <section id="Min-Max-Scaling">
-<h3>Min Max Scaling<a class="headerlink" href="#Min-Max-Scaling" title="Permalink to this heading"></a></h3>
+<h3>Min Max Scaling<a class="headerlink" href="#Min-Max-Scaling" title="Link to this heading"></a></h3>
 <p>Next we continue to scale the data to be in the interval <span class="math notranslate nohighlight">\(\left[-0.9, 0.9\right]\)</span> for both dimensions. This improves performance of the machine learning model by not overly considering one of the features.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -242,10 +254,10 @@
 </section>
 </section>
 <section id="Classification">
-<h2>Classification<a class="headerlink" href="#Classification" title="Permalink to this heading"></a></h2>
+<h2>Classification<a class="headerlink" href="#Classification" title="Link to this heading"></a></h2>
 <p>We are now set to continue learning a model to classify the numbers.</p>
 <section id="Quantum-Kernel-Methods">
-<h3>Quantum Kernel Methods<a class="headerlink" href="#Quantum-Kernel-Methods" title="Permalink to this heading"></a></h3>
+<h3>Quantum Kernel Methods<a class="headerlink" href="#Quantum-Kernel-Methods" title="Link to this heading"></a></h3>
 <p>Kernel methods are a set of powerful techniques used in machine learning for solving various problems, such as classification, regression, and clustering.</p>
 <center><p><img alt="encoding circuit" class="no-scaled-link" src="../_images/encoding_circuit.png" style="width: 800px;" /></p>
 <p><em>Fig. 2: Example of a encoding circuit.</em></p>
@@ -253,14 +265,14 @@
 space by evaluating the scalar product <span class="math notranslate nohighlight">\(\langle \phi\left(x\right), \phi\left(y\right) \rangle\)</span>. The classical kernel trick allows us to directly compute the similarity between the data points without explicitly calculating the encoding circuits.</p>
 </section>
 <section id="Quantum-Kernels">
-<h3>Quantum Kernels<a class="headerlink" href="#Quantum-Kernels" title="Permalink to this heading"></a></h3>
+<h3>Quantum Kernels<a class="headerlink" href="#Quantum-Kernels" title="Link to this heading"></a></h3>
 <p>Quantum kernels leverage parameterized quantum circuits (PQC) to map an input <span class="math notranslate nohighlight">\(x\)</span> to a quantum state <span class="math notranslate nohighlight">\(\ket{\phi\left(x\right)}\)</span> in a potentially high dimensional quantum Hilbert space. In this case, the encoding circuit (cf. Fig. 2) is the data encoding map. We obtain a quantum kernel by measuring the similarity between the wave functions created by encoding two different values <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span></p>
 <div class="math notranslate nohighlight">
 \[k\left(x, y\right) = \left\vert\left\langle\phi(x)\vert \phi(y)\right\rangle\right\vert^2\text{.}\]</div>
 <p>Calculating quantum kernels by encoding the features separately has several drawbacks. For example, each element of the kernel matrix has to be calculated separately, such that the overall calculation of the kernel matrix scales quadratically with the size of the data set. In this demonstrator, we projected quantum kernels instead. They have some intriguing properties.</p>
 </section>
 <section id="Projected-Quantum-Kernel">
-<h3>Projected Quantum Kernel<a class="headerlink" href="#Projected-Quantum-Kernel" title="Permalink to this heading"></a></h3>
+<h3>Projected Quantum Kernel<a class="headerlink" href="#Projected-Quantum-Kernel" title="Link to this heading"></a></h3>
 <p>With large effective dimensions (the dimension of the feature space), quantum kernels will see all data far from each other and thus have bad learning performance. Projected quantum kernels alleviate this problem by projecting the feature back to a classical space and computing the kernel there. This also comes with the advantage of needing to encode each input into quantum Hilbert space only once which leads to a linear scaling with the number of data points.</p>
 <center><p><img alt="projected quantum kernel" class="no-scaled-link" src="../_images/projected_quantum_kernel.png" style="width: 600px;" /></p>
 <p>Fig. 3: Visualization of a projected quantum kernel.
@@ -272,7 +284,7 @@ Reprinted from Huang, HY., Broughton, M., Mohseni, M. <em>et al.</em> Power of d
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">ChebPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -307,7 +319,7 @@ Reprinted from Huang, HY., Broughton, M., Mohseni, M. <em>et al.</em> Power of d
 </div>
 </section>
 <section id="Support-Vector-Machine">
-<h3>Support Vector Machine<a class="headerlink" href="#Support-Vector-Machine" title="Permalink to this heading"></a></h3>
+<h3>Support Vector Machine<a class="headerlink" href="#Support-Vector-Machine" title="Link to this heading"></a></h3>
 <p>We are now ready to train a Support Vector Machine (SVM) with our quantum kernel.</p>
 <p>A Support Vector Machine (SVM) is a machine learning algorithm used for classification or regression tasks. It works by finding a hyperplane that separates data points into different categories. The hyperplane is chosen so that it maximizes the distance between the closest data points from each category. These closest points are called support vectors, and they help define the decision boundary. Once the decision boundary is established, new data points can be classified based on which side of
 the boundary they fall on.</p>

@@ -12,15 +12,16 @@
       <link rel="stylesheet" href="../../_static/thebelab.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="canonical" href="https://squlearn.github.io/modules/generated/squlearn.qnn.loss.SquaredLoss.html" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=1dd76d02"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=3fadbb4a"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="../../_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
@@ -117,14 +118,14 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-qnn-loss-squaredloss">
-<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss<a class="headerlink" href="#squlearn-qnn-loss-squaredloss" title="Link to this heading"></a></h1>
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss<a class="headerlink" href="#squlearn-qnn-loss-squaredloss" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.qnn.loss.SquaredLoss">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.loss.</span></span><span class="sig-name descname"><span class="pre">SquaredLoss</span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.loss.</span></span><span class="sig-name descname"><span class="pre">SquaredLoss</span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss" title="Permalink to this definition"></a></dt>
 <dd><p>Squared loss for regression.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.loss.SquaredLoss.gradient">
-<span class="sig-name descname"><span class="pre">gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.gradient" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.gradient" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the gradient of the squared loss.</p>
 <p>This function calculates the gradient of the squared loss between the values in value_dict
 and ground_truth as</p>
@@ -147,7 +148,7 @@ and ground_truth as</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.loss.SquaredLoss.set_opt_param_op">
-<span class="sig-name descname"><span class="pre">set_opt_param_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt_param_op</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.set_opt_param_op" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_opt_param_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt_param_op</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.set_opt_param_op" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the <cite>opt_param_op</cite> flag.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -158,7 +159,7 @@ and ground_truth as</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.loss.SquaredLoss.value">
-<span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.value" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.value" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the squared loss.</p>
 <p>This function calculates the squared loss between the values in value_dict and ground_truth
 as</p>
@@ -180,7 +181,7 @@ as</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qnn.loss.SquaredLoss.variance">
-<span class="sig-name descname"><span class="pre">variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.variance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.qnn.loss.SquaredLoss.variance" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the approximated variance of the squared loss.</p>
 <p>This function calculates the approximated variance of the squared loss</p>
 <div class="math notranslate nohighlight">

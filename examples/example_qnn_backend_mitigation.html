@@ -13,15 +13,16 @@
       <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="https://squlearn.github.io/examples/example_qnn_backend_mitigation.html" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=1dd76d02"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=3fadbb4a"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="../_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
@@ -118,16 +119,16 @@
            <div itemprop="articleBody">
              
   <section id="Error-Mitigation-for-QNNs-on-IBM-Devices">
-<h1>Error Mitigation for QNNs on IBM Devices<a class="headerlink" href="#Error-Mitigation-for-QNNs-on-IBM-Devices" title="Link to this heading"></a></h1>
+<h1>Error Mitigation for QNNs on IBM Devices<a class="headerlink" href="#Error-Mitigation-for-QNNs-on-IBM-Devices" title="Permalink to this heading"></a></h1>
 <section id="Introduction">
-<h2>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this heading"></a></h2>
 <p>This tutorial demonstrates the setup and implementation of error mitigation techniques for Qiskit’s primitives within the context of Quantum Neural Networks (QNNs) in sQUlearn. Firstly, we will train a small QNN using a noise-free and error-free simulator to fit a parabolic dataset. Subsequently, we will illustrate how to configure the <code class="docutils literal notranslate"><span class="pre">Executor</span></code> class to establish a connection with IBM Quantum devices. We assume that you have already set up an IBM account and have access to IBM Quantum
 devices. For detailed instructions on registering and configuring your IBM Quantum account, please refer to the following link: <a class="reference external" href="https://qiskit.org/ecosystem/ibm-runtime/how_to/account-management.html">IBM Quantum Account Management</a>.</p>
 <p>Given the potentially lengthy queuing times for the free quantum devices, we will replicate the noise model of a quantum device and use the QASM simulator to emulate the real characteristics of a quantum computer. The simulator employed in this task, known as the <code class="docutils literal notranslate"><span class="pre">ibmq_qasm_simulator</span></code>, operates within the IBM Quantum cloud and can be accessed similarly to the actual quantum devices.</p>
 <p>We will explore various error mitigation options for both the Estimator and Sampler primitives. Finally, we will demonstrate how to train the QNN on the quantum device (simulator) to adapt to noisy configurations and reduce finite sampling noise through variance regularization [1].</p>
 </section>
 <section id="Importing-Libraries">
-<h2>Importing Libraries<a class="headerlink" href="#Importing-Libraries" title="Link to this heading"></a></h2>
+<h2>Importing Libraries<a class="headerlink" href="#Importing-Libraries" title="Permalink to this heading"></a></h2>
 <p>The first step involves importing the necessary libraries for this tutorial. We will be using the <code class="docutils literal notranslate"><span class="pre">qiskit-ibm-runtime</span></code> package to establish connections with IBM Quantum devices and <code class="docutils literal notranslate"><span class="pre">qiskit-aer</span></code> to simulate the noise model of these quantum devices. Additionally, we will employ the <code class="docutils literal notranslate"><span class="pre">squlearn</span></code> library to configure and train the QNN on the quantum device.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -149,7 +150,7 @@ devices. For detailed instructions on registering and configuring your IBM Quant
 </div>
 </section>
 <section id="Set-up-of-the-QNN">
-<h2>Set-up of the QNN<a class="headerlink" href="#Set-up-of-the-QNN" title="Link to this heading"></a></h2>
+<h2>Set-up of the QNN<a class="headerlink" href="#Set-up-of-the-QNN" title="Permalink to this heading"></a></h2>
 <p>We first set-up the data encoding circuit of the QNN. Here we utilize the <code class="docutils literal notranslate"><span class="pre">ChebyshevPQC</span></code> encoding circuit for 2 qubits and 2 layers.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -215,7 +216,7 @@ training environment.</p>
 </div>
 </section>
 <section id="Training-of-the-QNN-with-a-noise-free-simulator">
-<h2>Training of the QNN with a noise free simulator<a class="headerlink" href="#Training-of-the-QNN-with-a-noise-free-simulator" title="Link to this heading"></a></h2>
+<h2>Training of the QNN with a noise free simulator<a class="headerlink" href="#Training-of-the-QNN-with-a-noise-free-simulator" title="Permalink to this heading"></a></h2>
 <p>In this cell, we set-up the data <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> for training the QNN. The values are obtained by calculating the values of the simple parametric function <span class="math notranslate nohighlight">\(f(x) = x^2\)</span> with the <code class="docutils literal notranslate"><span class="pre">square</span></code> function of <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -290,7 +291,7 @@ Result observable parameters: [0.94664274 0.41717632 0.89088529]
 </div>
 </section>
 <section id="Evaluating-the-QNN-on-the-IBM-backend-with-error-mitigation">
-<h2>Evaluating the QNN on the IBM backend with error mitigation<a class="headerlink" href="#Evaluating-the-QNN-on-the-IBM-backend-with-error-mitigation" title="Link to this heading"></a></h2>
+<h2>Evaluating the QNN on the IBM backend with error mitigation<a class="headerlink" href="#Evaluating-the-QNN-on-the-IBM-backend-with-error-mitigation" title="Permalink to this heading"></a></h2>
 <p>The subsequent phase involves assessing the noisy outcomes on the IBM backend by leveraging the Qiskit runtime environment. To mitigate queuing delays, we replicate the noise model of a physical quantum device and establish a QASM simulator that replicates its characteristics. To initiate the QiskitRuntimeService function, you must configure an access token outside this notebook. Throughout the execution of all interactions with the Qiskit runtime environment, a session is established that is
 linked to the QASM simulator backend of the IBM Quantum cloud.</p>
 <div class="nbinput nblast docutils container">
@@ -343,7 +344,7 @@ linked to the QASM simulator backend of the IBM Quantum cloud.</p>
 </div>
 </div>
 <section id="Without-error-mitigation">
-<h3>Without error mitigation<a class="headerlink" href="#Without-error-mitigation" title="Link to this heading"></a></h3>
+<h3>Without error mitigation<a class="headerlink" href="#Without-error-mitigation" title="Permalink to this heading"></a></h3>
 <p>In our first example, we turn off all error mitigation techniques and test the QNN on the IBM backend. We notice that the QNN’s output differs noticeably from the output of the noise-free simulator.</p>
 <p>The primary differences are that the QNN’s output is no longer smooth; it shows zigzag patterns. This occurs because the QNN is evaluated with a limited number of shots, which introduces sampling noise to each QNN output. Additionally, the shape of the QNN function changes, as if an offset has been added. Upon closer examination, we can see that this offset is not constant.</p>
 <p>The reason for these differences is that the applied gates are no longer perfect; they have some error rates that affect the QNN’s shape. This issue can be significantly reduced by training the QNN on the same IBM backend where it is evaluated.</p>
@@ -376,7 +377,7 @@ linked to the QASM simulator backend of the IBM Quantum cloud.</p>
 </div>
 </section>
 <section id="Dynamic-decoupling-and-TREX-error-mitigation">
-<h3>Dynamic decoupling and TREX error mitigation<a class="headerlink" href="#Dynamic-decoupling-and-TREX-error-mitigation" title="Link to this heading"></a></h3>
+<h3>Dynamic decoupling and TREX error mitigation<a class="headerlink" href="#Dynamic-decoupling-and-TREX-error-mitigation" title="Permalink to this heading"></a></h3>
 <p>In the following cell, we present the results obtained with Qiskit’s default error mitigation setup. This setup is achieved by configuring the resilience level and optimization level in the primitive options to 1. For the estimator primitive, this translates to implementing dynamic decoupling for the circuits and employing TREX error mitigation for the expectation values. For more in-depth information on Qiskit error mitigation, please refer to <a class="reference external" href="https://qiskit.org/ecosystem/ibm-runtime/how_to/error-mitigation.html">this
 link</a>.</p>
 <p>Upon examination, we notice that the output’s shape is now more closely aligned with that of the noise-free simulator. Nevertheless, it’s important to mention that error mitigation leads to a slight increase in noise levels, which is also observable in the output.</p>
@@ -408,7 +409,7 @@ link</a>.</p>
 </div>
 </section>
 <section id="Dynamic-decoupling-and-zero-noise-extrapolation-(ZNE)-for-error-mitigation">
-<h3>Dynamic decoupling and zero-noise extrapolation (ZNE) for error mitigation<a class="headerlink" href="#Dynamic-decoupling-and-zero-noise-extrapolation-(ZNE)-for-error-mitigation" title="Link to this heading"></a></h3>
+<h3>Dynamic decoupling and zero-noise extrapolation (ZNE) for error mitigation<a class="headerlink" href="#Dynamic-decoupling-and-zero-noise-extrapolation-(ZNE)-for-error-mitigation" title="Permalink to this heading"></a></h3>
 <p>In the last example using the Estimator primitive, we employed dynamic decoupling to mitigate circuit errors and zero-noise extrapolation (ZNE) for expectation value error mitigation. ZNE entails running quantum circuits with artificially increased noise levels and then extrapolating the results to a noise-free scenario.</p>
 <p>Qiskit’s zero-noise extrapolation implementation offers several options to fine-tune the error mitigation process. For detailed information on ZNE and advanced resilience options, please consult <a class="reference external" href="https://qiskit.org/ecosystem/ibm-runtime/how_to/error-mitigation.html#advanced-resilience-options">this link</a>.</p>
 <p>In this specific example, the ZNE did not completely align the QNN’s output with the noise-free results, but the shape of the QNN’s output is closer to the noise-free simulator’s output. However, the noise levels are significantly increased by the ZNE.</p>
@@ -444,7 +445,7 @@ link</a>.</p>
 </section>
 </section>
 <section id="Assessing-the-QNN-on-the-IBM-backend-using-the-sampler-primitive">
-<h2>Assessing the QNN on the IBM backend using the sampler primitive<a class="headerlink" href="#Assessing-the-QNN-on-the-IBM-backend-using-the-sampler-primitive" title="Link to this heading"></a></h2>
+<h2>Assessing the QNN on the IBM backend using the sampler primitive<a class="headerlink" href="#Assessing-the-QNN-on-the-IBM-backend-using-the-sampler-primitive" title="Permalink to this heading"></a></h2>
 <p>In the forthcoming cells, we assess the QNN’s performance by employing the Sampler primitive. The Sampler primitive gathers probabilities from the encoding circuits, the QNN then computes the expectation values of observables based on these probabilities. Consequently, the Sampler primitive provides distinct error mitigation options compared to the Estimator primitive.</p>
 <p>In the subsequent cell, we reset the session and establish a fresh Executor that relies on the Sampler primitive. This setup ensures that the QNN utilizes the Sampler primitive for all its evaluations. Subsequently, we proceed to create a new QNNRegressor, rooted in this updated Executor, and initialize it with the optimized parameter set.</p>
 <div class="nbinput nblast docutils container">
@@ -468,7 +469,7 @@ link</a>.</p>
 </div>
 </div>
 <section id="Run-the-Sampler-primitive-without-error-mitigation">
-<h3>Run the Sampler primitive without error mitigation<a class="headerlink" href="#Run-the-Sampler-primitive-without-error-mitigation" title="Link to this heading"></a></h3>
+<h3>Run the Sampler primitive without error mitigation<a class="headerlink" href="#Run-the-Sampler-primitive-without-error-mitigation" title="Permalink to this heading"></a></h3>
 <p>The following cell computes the inference with the Sampler primitive without error mitigation. Results are comparable to the Estimator primitive without error mitigation.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
@@ -498,7 +499,7 @@ link</a>.</p>
 </div>
 </section>
 <section id="Run-the-Sampler-primitive-with-dynamic-decoupling-and-M3-error-mitigation">
-<h3>Run the Sampler primitive with dynamic decoupling and M3 error mitigation<a class="headerlink" href="#Run-the-Sampler-primitive-with-dynamic-decoupling-and-M3-error-mitigation" title="Link to this heading"></a></h3>
+<h3>Run the Sampler primitive with dynamic decoupling and M3 error mitigation<a class="headerlink" href="#Run-the-Sampler-primitive-with-dynamic-decoupling-and-M3-error-mitigation" title="Permalink to this heading"></a></h3>
 <p>The last inference calculation utilizes the dynamic decoupling for the circuits and employs the M3 error mitigation to mitigate readout errors. This is the default set-up for the Sampler primitive.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
@@ -529,7 +530,7 @@ link</a>.</p>
 </section>
 </section>
 <section id="Retraining-the-QNN-on-the-IBM-Backend-without-Error-Mitigation-using-Variance-Regularization">
-<h2>Retraining the QNN on the IBM Backend without Error Mitigation using Variance Regularization<a class="headerlink" href="#Retraining-the-QNN-on-the-IBM-Backend-without-Error-Mitigation-using-Variance-Regularization" title="Link to this heading"></a></h2>
+<h2>Retraining the QNN on the IBM Backend without Error Mitigation using Variance Regularization<a class="headerlink" href="#Retraining-the-QNN-on-the-IBM-Backend-without-Error-Mitigation-using-Variance-Regularization" title="Permalink to this heading"></a></h2>
 <p>In the subsequent section, we illustrate the process of retraining the Quantum Neural Network (QNN) to achieve improved results on real quantum hardware. A crucial aspect of this approach is that we train the QNN on the same hardware on which it is subsequently evaluated.</p>
 <p>Because the training process is capable of adapting to the hardware’s imperfections, the need for error mitigation diminishes, allowing the final inference to align closely with real-world data. To address the noise stemming from finite sampling on real hardware, we employ variance regularization (as detailed in [1]). This regularization technique reduces the variance of the expectation value in addition to the L2 Loss, thereby ensuring a lower variance of the final inference.</p>
 <p>In the initial step, we disable any error mitigation techniques. Throughout the optimization process, we utilize the <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> primitive since it enables us to compute the additional expectation values needed for variance computation from the same set of circuits, eliminating the necessity for additional, costly circuit evaluations.</p>
@@ -594,7 +595,7 @@ link</a>.</p>
 </div>
 </div>
 <section id="Literature:">
-<h3>Literature:<a class="headerlink" href="#Literature:" title="Link to this heading"></a></h3>
+<h3>Literature:<a class="headerlink" href="#Literature:" title="Permalink to this heading"></a></h3>
 <p>[1]: David A. Kreplin, and Marco Roth. “Reduction of finite sampling noise in quantum neural networks.” <a class="reference external" href="https://arxiv.org/abs/2306.01639v2">arXiv preprint arXiv:2306.01639</a> (2023)</p>
 </section>
 </section>

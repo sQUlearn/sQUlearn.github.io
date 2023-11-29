@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.kernel.matrix.ProjectedQuantumKernel &mdash; sQUlearn 0.5.0 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/jupyter-sphinx.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/thebelab.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <title>squlearn.kernel.matrix.ProjectedQuantumKernel &mdash; sQUlearn 0.5.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css?v=572af1d6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a63e3025" />
+
+  
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="canonical" href="https://squlearn.github.io/modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html" />
   <!--[if lt IE 9]>
@@ -19,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=3fadbb4a"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=9bd53f53"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -48,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -372,36 +374,36 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 6.87671384e-03 3.39336076e-02 6.31179132e-01
-  1.06795978e-02 3.52095634e-01 9.54573185e-02 5.74099501e-01
-  3.48853940e-01 6.19692185e-01]
- [6.87671384e-03 1.00000000e+00 3.68644975e-05 5.69917661e-02
-  2.27503311e-05 1.48867629e-01 4.78976110e-01 6.92151078e-02
-  1.50643776e-01 7.54374816e-04]
- [3.39336076e-02 3.68644975e-05 1.00000000e+00 3.89932019e-03
-  8.72184111e-01 1.25340733e-03 2.43547585e-04 3.12927395e-03
-  1.23489995e-03 2.20573868e-01]
- [6.31179132e-01 5.69917661e-02 3.89932019e-03 1.00000000e+00
-  1.19903016e-03 8.81173531e-01 4.42989930e-01 9.95344333e-01
-  8.78189055e-01 1.66784061e-01]
- [1.06795978e-02 2.27503311e-05 8.72184111e-01 1.19903016e-03
-  1.00000000e+00 4.11051858e-04 9.66595394e-05 9.70432173e-04
-  4.05464350e-04 8.69912738e-02]
- [3.52095634e-01 1.48867629e-01 1.25340733e-03 8.81173531e-01
-  4.11051858e-04 1.00000000e+00 7.34448995e-01 9.20560733e-01
-  9.99977266e-01 6.50216556e-02]
- [9.54573185e-02 4.78976110e-01 2.43547585e-04 4.42989930e-01
-  9.66595394e-05 7.34448995e-01 1.00000000e+00 4.96635354e-01
-  7.38274713e-01 1.19136127e-02]
- [5.74099501e-01 6.92151078e-02 3.12927395e-03 9.95344333e-01
-  9.70432173e-04 9.20560733e-01 4.96635354e-01 1.00000000e+00
-  9.18028351e-01 1.40837454e-01]
- [3.48853940e-01 1.50643776e-01 1.23489995e-03 8.78189055e-01
-  4.05464350e-04 9.99977266e-01 7.38274713e-01 9.18028351e-01
-  1.00000000e+00 6.41485127e-02]
- [6.19692185e-01 7.54374816e-04 2.20573868e-01 1.66784061e-01
-  8.69912738e-02 6.50216556e-02 1.19136127e-02 1.40837454e-01
-  6.41485127e-02 1.00000000e+00]]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 5.52469778e-03 1.60771570e-05 2.62234389e-05
+  1.84230752e-05 1.61251895e-05 6.82945324e-01 9.92830835e-01
+  6.27765865e-01 6.81572110e-01]
+ [5.52469778e-03 1.00000000e+00 1.61260258e-03 1.97844597e-02
+  5.84894796e-03 1.12393224e-03 3.89366373e-02 4.20148957e-03
+  4.73556151e-02 3.91297324e-02]
+ [1.60771570e-05 1.61260258e-03 1.00000000e+00 5.47455532e-01
+  8.51645040e-01 9.86799971e-01 2.19616490e-05 1.60844795e-05
+  2.34914828e-05 2.19969451e-05]
+ [2.62234389e-05 1.97844597e-02 5.47455532e-01 1.00000000e+00
+  8.64652825e-01 4.54908068e-01 7.42596873e-05 2.37859647e-05
+  8.56753509e-05 7.45209879e-05]
+ [1.84230752e-05 5.84894796e-03 8.51645040e-01 8.64652825e-01
+  1.00000000e+00 7.67167853e-01 3.66125687e-05 1.75527868e-05
+  4.07663238e-05 3.67084003e-05]
+ [1.61251895e-05 1.12393224e-03 9.86799971e-01 4.54908068e-01
+  7.67167853e-01 1.00000000e+00 1.98450732e-05 1.63437645e-05
+  2.09821186e-05 1.98711847e-05]
+ [6.82945324e-01 3.89366373e-02 2.19616490e-05 7.42596873e-05
+  3.66125687e-05 1.98450732e-05 1.00000000e+00 6.12171837e-01
+  9.95627653e-01 9.99997248e-01]
+ [9.92830835e-01 4.20148957e-03 1.60844795e-05 2.37859647e-05
+  1.75527868e-05 1.63437645e-05 6.12171837e-01 1.00000000e+00
+  5.57012957e-01 6.10783695e-01]
+ [6.27765865e-01 4.73556151e-02 2.34914828e-05 8.56753509e-05
+  4.07663238e-05 2.09821186e-05 9.95627653e-01 5.57012957e-01
+  1.00000000e+00 9.95843566e-01]
+ [6.81572110e-01 3.91297324e-02 2.19969451e-05 7.45209879e-05
+  3.67084003e-05 1.98711847e-05 9.99997248e-01 6.10783695e-01
+  9.95843566e-01 1.00000000e+00]]
 </pre></div>
 </div>
 </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model &mdash; sQUlearn 0.5.2 documentation</title>
+  <title>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model &mdash; sQUlearn 0.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -22,7 +22,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ac2db539"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=add265a1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -51,7 +51,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.5.2
+                0.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -104,13 +104,13 @@
 <h1>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model<a class="headerlink" href="#Bayesian-Optimization-using-a-Quantum-Gaussian-Process-Surrogate-Model" title="Permalink to this heading"></a></h1>
 <p>In this notebook, we will perform a Bayesian Optimization by using sQUlearn’s implementations of Quantum Gaussian Processes <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.ml.QGPR.html">squlearn.kernel.QGPR</a> and Fidelity Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.matrix.FidelityKernel.html">squlearn.kernel.FidelityKernel</a>.</p>
 <center><p><img alt="quantum_bo" class="no-scaled-link" src="../_images/quantum_bo.png" style="width: 800px;" /></p>
-<p><em>Fig. 1: Conceptual layout of a quantum Bayesian optimization using a QGPR surrogate, taken from</em> <a class="reference external" href="https://arxiv.org/abs/2304.12923">Rapp, F., Roth, M.</a></p>
+<p><em>Fig. 1: Conceptual layout of a quantum Bayesian optimization using a QGPR surrogate, taken from</em> <a class="reference external" href="https://link.springer.com/article/10.1007/s42484-023-00138-9">Rapp, F., Roth, M.</a></p>
 </center><p>Bayesian optimization is a global optimization method that solves problems of the form</p>
 <div class="math notranslate nohighlight">
 \[\boldsymbol{x}^* = \text{arg} \min_{\boldsymbol{x}} g(\boldsymbol{x})\,.\]</div>
-<p>The optimization is performed iteratively where the next sample is chosen using information obtained from previous iterations. Through this informed guidance, Bayesian optimization usually requires a modest amount of samples which makes it attractive for problems where the evaluation of <span class="math notranslate nohighlight">\(g\)</span> is expensive. Bayesian optimization treats <span class="math notranslate nohighlight">\(g\)</span> as a black-box such that there are no further restrictions regarding its functional form.</p>
-<p>The algorithm is initialized by drawing a random sample and fitting a <em>surrogate model</em> as a proxy for <span class="math notranslate nohighlight">\(g\)</span>. The next sample is then chosen by considering an exploitation-exploration trade-off which is quantified by an <em>acquisition function</em>. This procedure is then repeated such that the surrogate model approximates the true function increasingly well. Due to their posterior variance output GP models are popular choices for surrogates. A common choice for an acquisition function is the
-expected improvement (EI)</p>
+<p>The optimization proceeds iteratively, selecting the next sample based on information gathered from previous iterations. This informed approach typically demands only a modest number of samples, rendering it appealing for scenarios where evaluating <span class="math notranslate nohighlight">\(g\)</span> is expensive. By treating <span class="math notranslate nohighlight">\(g\)</span> as a black-box, Bayesian optimization imposes no constraints on its functional form.</p>
+<p>The algorithm starts by randomly selecting a sample and creating a <em>surrogate model</em> to represent <span class="math notranslate nohighlight">\(g\)</span>. Subsequent samples are chosen based on a balance between exploiting known information and exploring new areas, quantified by an <em>acquisition function</em>. This process is iterated to improve the accuracy of the surrogate model in approximating the true function. Gaussian process models are often preferred for surrogates due to their posterior variance output. A common choice for an
+acquisition function is the expected improvement (EI)</p>
 <div class="math notranslate nohighlight">
 \[\mathrm{EI}(\boldsymbol{x}) =
         [g(\boldsymbol{x}^+) - \mu(\boldsymbol{x}) - \lambda] \boldsymbol{\Phi}(Z) + \Sigma(\boldsymbol{x}) \varphi(Z)\,\]</div>
@@ -521,7 +521,7 @@ next sample X position:  [0.49091803]
 <img alt="../_images/examples_example_quantum_bayesian_optimization_9_20.png" src="../_images/examples_example_quantum_bayesian_optimization_9_20.png" />
 </div>
 </div>
-<p>For the QGPR the choice of Projected Quantum Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html">squlearn.kernel.ProjectedQuantumKernel</a> is also possible. The algorithm can also be applied to more sophisticated problems. E.g., we used it to optimize the price prediction of industrial machinery. The intrested reader can learn more about it from our pre-print <a class="reference external" href="https://arxiv.org/abs/2304.12923.pdf">Quantum Gaussian Process Regression for Bayesian
+<p>For the QGPR the choice of Projected Quantum Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html">squlearn.kernel.ProjectedQuantumKernel</a> is also possible. The algorithm can also be applied to more sophisticated problems. E.g., we used it to optimize the price prediction of industrial machinery. The intrested reader can learn more about it from our pre-print <a class="reference external" href="https://link.springer.com/article/10.1007/s42484-023-00138-9">Quantum Gaussian Process Regression for Bayesian
 Optimization</a>.</p>
 </section>
 

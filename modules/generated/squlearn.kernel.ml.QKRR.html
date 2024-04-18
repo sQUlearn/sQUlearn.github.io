@@ -173,7 +173,7 @@ chapter 14.4.3, pp. 493-493</p>
 <span class="n">enc_circ</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">q_kernel_pqk</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
     <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">),</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span>
     <span class="n">measurement</span><span class="o">=</span><span class="s2">&quot;XYZ&quot;</span><span class="p">,</span>
     <span class="n">outer_kernel</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
     <span class="n">initial_parameters</span><span class="o">=</span><span class="n">param</span><span class="p">,</span>

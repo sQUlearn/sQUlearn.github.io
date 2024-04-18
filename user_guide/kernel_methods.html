@@ -285,7 +285,7 @@ the following example:</p>
 <span class="n">enc_circ</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
     <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">),</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span>
     <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
     <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span>
 <span class="p">)</span>
@@ -327,7 +327,7 @@ training and test data and shows how to optimize kernels.</p>
 <span class="n">enc_circ</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
     <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="n">Estimator</span><span class="p">()),</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span>
     <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
     <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
     <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
@@ -357,7 +357,7 @@ training and test data and shows how to optimize kernels.</p>
 <span class="n">enc_circ</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
     <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="n">Estimator</span><span class="p">()),</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span>
     <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
     <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
     <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>

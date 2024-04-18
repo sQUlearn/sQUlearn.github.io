@@ -331,9 +331,7 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
 <span class="c1"># set up quantum kernel and qgpr</span>
 <span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">enc_circ</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">q_kernel</span> <span class="o">=</span> <span class="n">FidelityKernel</span><span class="p">(</span>
-    <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">),</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">)</span>
+<span class="n">q_kernel</span> <span class="o">=</span> <span class="n">FidelityKernel</span><span class="p">(</span><span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qgpr_model</span> <span class="o">=</span> <span class="n">QGPR</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">q_kernel</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.01</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -369,7 +367,7 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.18689176]
+next sample X position:  [1.59266487]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -384,7 +382,7 @@ next sample X position:  [1.18689176]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [0.1774259]
+next sample X position:  [-1.65935051]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -399,7 +397,7 @@ next sample X position:  [0.1774259]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [-1.89617324]
+next sample X position:  [1.99999685]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -414,7 +412,7 @@ next sample X position:  [-1.89617324]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.19732843]
+next sample X position:  [0.39188948]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -429,7 +427,7 @@ next sample X position:  [1.19732843]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.28305494]
+next sample X position:  [1.02765489]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -444,7 +442,7 @@ next sample X position:  [1.28305494]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [-1.84752248]
+next sample X position:  [-0.13690848]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -459,7 +457,7 @@ next sample X position:  [-1.84752248]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [-1.11968248]
+next sample X position:  [0.27936704]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -474,7 +472,7 @@ next sample X position:  [-1.11968248]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.08250642]
+next sample X position:  [1.99631079]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -489,7 +487,7 @@ next sample X position:  [1.08250642]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.48620317]
+next sample X position:  [-1.0862532]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -504,7 +502,7 @@ next sample X position:  [1.48620317]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [0.49091803]
+next sample X position:  [0.45667715]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">

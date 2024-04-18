@@ -164,7 +164,7 @@ the number of layers (<code class="docutils literal notranslate"><span class="pr
 <span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
     <span class="n">encoding_circuit</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">),</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span>
     <span class="n">initial_parameters</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">encoding_circuit</span><span class="o">.</span><span class="n">num_parameters</span><span class="p">)</span>
 <span class="p">)</span>
 

@@ -177,7 +177,7 @@ If None, the optimizers (default) callback will be used.</p></li>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">QNNClassifier</span><span class="p">(</span>
     <span class="n">ChebyshevRx</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
     <span class="n">SummedPaulis</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
-    <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">),</span>
+    <span class="n">Executor</span><span class="p">(),</span>
     <span class="n">SquaredLoss</span><span class="p">(),</span>
     <span class="n">SLSQP</span><span class="p">(),</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>

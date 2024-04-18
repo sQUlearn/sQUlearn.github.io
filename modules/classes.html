@@ -87,6 +87,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevRx</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ParamZFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ParamZFeatureMap</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QiskitEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.QCNNEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QCNNEncodingCircuit</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#encoding-circuit-tools">Encoding Circuit Tools</a><ul>
@@ -129,8 +130,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-squlearn.qnn">QNN Core</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.qnn.QNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.qnn</span></code>.QNN</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.qnn.Expec.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.qnn</span></code>.Expec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn.LowLevelQNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn</span></code>.LowLevelQNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn_qiskit</span></code>.LowLevelQNNQiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_qiskit.Expec.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn_qiskit</span></code>.Expec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn_pennylane</span></code>.LowLevelQNNPennyLane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_base.LowLevelQNNBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn_base</span></code>.LowLevelQNNBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.VarianceLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ParameterRegularizationLoss</a></li>
@@ -158,6 +162,10 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.util.optree.OpTreeMeasuredOperator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeMeasuredOperator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.util.optree.OpTreeContainer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeContainer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.util.optree.OpTreeValue.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.optree</span></code>.OpTreeValue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pennylane-interface">PennyLane interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.util.pennylane.PennyLaneCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.pennylane</span></code>.PennyLaneCircuit</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#base-classes">Base Classes</a><ul>
@@ -271,6 +279,9 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html#squlearn.encoding_circuit.QiskitEncodingCircuit" title="squlearn.encoding_circuit.QiskitEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QiskitEncodingCircuit</span></code></a></p></td>
 <td><p>Wrapper to create sQUlearn encoding circuits from the <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QCNNEncodingCircuit.html#squlearn.encoding_circuit.QCNNEncodingCircuit" title="squlearn.encoding_circuit.QCNNEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QCNNEncodingCircuit</span></code></a></p></td>
+<td><p>Encoding circuit for quantum convolutional neural networks (QCNN).</p></td>
 </tr>
 </tbody>
 </table>
@@ -389,19 +400,28 @@
 <p>QNN module for classification and regression.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.qnn.QNN.html#squlearn.qnn.qnn.QNN" title="squlearn.qnn.qnn.QNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.qnn.QNN</span></code></a></p></td>
-<td><p>A class for working with QNNs and its derivatives</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn.LowLevelQNN.html#squlearn.qnn.lowlevel_qnn.LowLevelQNN" title="squlearn.qnn.lowlevel_qnn.LowLevelQNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.lowlevel_qnn.LowLevelQNN</span></code></a></p></td>
+<td><p>Low-level QNN factory, which creates the specific low-level QNN based on the quantum framework.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.qnn.Expec.html#squlearn.qnn.qnn.Expec" title="squlearn.qnn.qnn.Expec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.qnn.Expec</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit.html#squlearn.qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit" title="squlearn.qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit</span></code></a></p></td>
+<td><p>Low level implementation of QNNs and its derivatives based on Qiskit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_qiskit.Expec.html#squlearn.qnn.lowlevel_qnn_qiskit.Expec" title="squlearn.qnn.lowlevel_qnn_qiskit.Expec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.lowlevel_qnn_qiskit.Expec</span></code></a></p></td>
 <td><p>Data structure that holds the set-up of derivative of the expectation value.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.SquaredLoss.html#squlearn.qnn.loss.SquaredLoss" title="squlearn.qnn.loss.SquaredLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.SquaredLoss</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.html#squlearn.qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane" title="squlearn.qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane</span></code></a></p></td>
+<td><p>Low level implementation of QNNs and its derivatives based on PennyLane.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_base.LowLevelQNNBase.html#squlearn.qnn.lowlevel_qnn_base.LowLevelQNNBase" title="squlearn.qnn.lowlevel_qnn_base.LowLevelQNNBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.lowlevel_qnn_base.LowLevelQNNBase</span></code></a></p></td>
+<td><p>Base class for low-level QNNs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.SquaredLoss.html#squlearn.qnn.loss.SquaredLoss" title="squlearn.qnn.loss.SquaredLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.SquaredLoss</span></code></a></p></td>
 <td><p>Squared loss for regression.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html#squlearn.qnn.loss.VarianceLoss" title="squlearn.qnn.loss.VarianceLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.VarianceLoss</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html#squlearn.qnn.loss.VarianceLoss" title="squlearn.qnn.loss.VarianceLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.VarianceLoss</span></code></a></p></td>
 <td><p>Variance loss for regression.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html#squlearn.qnn.loss.ParameterRegularizationLoss" title="squlearn.qnn.loss.ParameterRegularizationLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.ParameterRegularizationLoss</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html#squlearn.qnn.loss.ParameterRegularizationLoss" title="squlearn.qnn.loss.ParameterRegularizationLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.ParameterRegularizationLoss</span></code></a></p></td>
 <td><p>Loss for parameter regularization.</p></td>
 </tr>
 </tbody>
@@ -477,6 +497,16 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.util.optree.OpTreeValue.html#squlearn.util.optree.OpTreeValue" title="squlearn.util.optree.OpTreeValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">util.optree.OpTreeValue</span></code></a></p></td>
 <td><p>A leaf that contains an evaluated value.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pennylane-interface">
+<h3>PennyLane interface<a class="headerlink" href="#pennylane-interface" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.util.pennylane.PennyLaneCircuit.html#squlearn.util.pennylane.PennyLaneCircuit" title="squlearn.util.pennylane.PennyLaneCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">util.pennylane.PennyLaneCircuit</span></code></a></p></td>
+<td><p>Class for converting a Qiskit circuit to a PennyLane circuit.</p></td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.util.pennylane`.\ :spelling:word:`PennyLaneCircuit`
+=========================================================================
+
+.. currentmodule:: squlearn.util.pennylane
+
+.. autoclass:: PennyLaneCircuit

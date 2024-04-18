@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.encoding_circuit.QCNNEncodingCircuit &mdash; sQUlearn 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css?v=572af1d6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a63e3025" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="canonical" href="https://squlearn.github.io/modules/generated/squlearn.encoding_circuit.QCNNEncodingCircuit.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=add265a1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html" />
+    <link rel="prev" title="squlearn.encoding_circuit.QiskitEncodingCircuit" href="squlearn.encoding_circuit.QiskitEncodingCircuit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.6.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit">Encoding Circuits</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.YZ_CX_EncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.YZ_CX_EncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.HighDimEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HighDimEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.HubregtsenEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.HubregtsenEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebyshevTower.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevTower</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebyshevPQC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevPQC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.MultiControlEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.MultiControlEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ChebyshevRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevRx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.ParamZFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ParamZFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.QiskitEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QiskitEncodingCircuit</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QCNNEncodingCircuit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#encoding-circuit-tools">Encoding Circuit Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#operators">Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#operator-tools">Operator Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#core">Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QCNNEncodingCircuit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.encoding_circuit.QCNNEncodingCircuit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-encoding-circuit-qcnnencodingcircuit">
+<h1><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.QCNNEncodingCircuit<a class="headerlink" href="#squlearn-encoding-circuit-qcnnencodingcircuit" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">QCNNEncodingCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit" title="Permalink to this definition"></a></dt>
+<dd><p>Encoding circuit for quantum convolutional neural networks (QCNN).</p>
+<p>The structure is inspired by classical convolutional neural networks. The number of active
+qubits reduces with each layer. The design idea was initially proposed in reference [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_qubits</strong> (<em>int</em>) – Number of initial qubits of the QCNN encoding circuit.</p></li>
+<li><p><strong>num_features</strong> (<em>int</em>) – Dimension of the feature vector.
+By default this is 0, so a feature map must be provided.
+If the number of features is bigger then 0,
+then in the get_circuit function a ZFeatureMap is built to encode the features.</p></li>
+<li><p><strong>default</strong> (<em>bool</em>) – If True, the default circuit is built.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1]: <a class="reference external" href="https://doi.org/10.1038/s41567-019-0648-8">Cong, I., Choi, S. &amp; Lukin, M.D. Quantum convolutional neural networks. Nat. Phys. 15,
+1273–1278 (2019).</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.QCNNObservable">
+<span class="sig-name descname"><span class="pre">QCNNObservable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Z'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.QCNNObservable" title="Permalink to this definition"></a></dt>
+<dd><p>Build a fitting observable for the current circuit.</p>
+<p>This function should be called after beeing finished building the circuit.
+It maps the supplied observable on the circuit, so that only the left qubits
+are measured.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>ObservableBase</strong> (<em>obs</em>) – A squlearn observable can be supplied
+with n-qubit measurements, where n can not exceed the number of left qubits.
+Alternatively, a string of a pauli gate (X, Y or Z) can be supplied and
+an observable of single qubit measurements, mapped on the left qubits,
+is build.</p></li>
+<li><p><strong>str</strong><strong>]</strong> – A squlearn observable can be supplied
+with n-qubit measurements, where n can not exceed the number of left qubits.
+Alternatively, a string of a pauli gate (X, Y or Z) can be supplied and
+an observable of single qubit measurements, mapped on the left qubits,
+is build.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the fitting observable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.build_circuit">
+<span class="sig-name descname"><span class="pre">build_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">final_num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.build_circuit" title="Permalink to this definition"></a></dt>
+<dd><p>Build the circuit “backwards”.</p>
+<p>Build the circuit by supplying the number of qubits which should be left
+after the already supplied gates. This function then generates the necessary number
+of initial qubits and applies the supplied gates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>final_num_qubits</strong> (<em>int</em>) – The number of qubits which should be left after applying the supplied gates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.convolution">
+<span class="sig-name descname"><span class="pre">convolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.0)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Conv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternating</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.convolution" title="Permalink to this definition"></a></dt>
+<dd><p>Add a convolution layer to the encoding circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>EncodingCircuitBase</strong> (<em>quantum_circuit</em>) – The quantum circuit, which is applied in this layer.</p></li>
+<li><p><strong>QuantumCircuit</strong> – The quantum circuit, which is applied in this layer.</p></li>
+<li><p><strong>None</strong><strong>]</strong> – The quantum circuit, which is applied in this layer.</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – The name of the layer.</p></li>
+<li><p><strong>alternating</strong> (<em>bool</em>) – The gate is applied on every qubit modulo qubits of this circuit
+beginning at 0. If True it applies the gate on every qubit beginning at 1 again.</p></li>
+<li><p><strong>share_params</strong> (<em>bool</em>) – If False,
+different parameters are used for the gates in this layer.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.default_circuit">
+<span class="sig-name descname"><span class="pre">default_circuit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.default_circuit" title="Permalink to this definition"></a></dt>
+<dd><p>A default circuit for quickly building a QCNN.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'p'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.draw" title="Permalink to this definition"></a></dt>
+<dd><p>Draws the encoding circuit circuit using the QuantumCircuit.draw() function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>feature_label</strong> (<em>str</em>) – Label for the feature vector (default:”x”).</p></li>
+<li><p><strong>parameter_label</strong> (<em>str</em>) – Label for the parameter vector (default:”p”).</p></li>
+<li><p><strong>decompose</strong> (<em>bool</em>) – If True, the circuit is decomposed before printing (default: False).</p></li>
+<li><p><strong>kwargs</strong> – Additional arguments from Qiskit’s QuantumCircuit.draw() function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the circuit in qiskit QuantumCircuit.draw() format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.fully_connected">
+<span class="sig-name descname"><span class="pre">fully_connected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.0)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'FC'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.fully_connected" title="Permalink to this definition"></a></dt>
+<dd><p>Add a fully connected layer to the encoding circuit.</p>
+<p>The fully connected layer should be placed at the end
+and operates on all qubits remaining in the circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>EncodingCircuitBase</strong> (<em>quantum_circuit</em>) – The quantum circuit, which is applied in this layer.</p></li>
+<li><p><strong>QuantumCircuit</strong> – The quantum circuit, which is applied in this layer.</p></li>
+<li><p><strong>None</strong><strong>]</strong> – The quantum circuit, which is applied in this layer.</p></li>
+<li><p><strong>label</strong> – The name of the layer.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.generate_initial_parameters">
+<span class="sig-name descname"><span class="pre">generate_initial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.generate_initial_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Generates random parameters for the encoding circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>None</em><em>]</em>) – Seed for the random number generator (default: None)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The randomly generated parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.get_circuit">
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.ParameterVector" title="(in Qiskit v1.0)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.ParameterVector" title="(in Qiskit v1.0)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.0)"><span class="pre">QuantumCircuit</span></a></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.get_circuit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the circuit of the QCNN encoding circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>ParameterVector</strong> (<em>param_vec</em>) – Input vector of the features
+from which the gate inputs are obtained.</p></li>
+<li><p><strong>np.ndarray</strong><strong>]</strong> – Input vector of the features
+from which the gate inputs are obtained.</p></li>
+<li><p><strong>Union</strong><strong>[</strong><strong>ParameterVector</strong> – Input vector of the parameters
+from which the gate inputs are obtained.</p></li>
+<li><p><strong>np.ndarray</strong><strong>]</strong> – Input vector of the parameters
+from which the gate inputs are obtained.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the circuit in Qiskit’s QuantumCircuit format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.get_params" title="Permalink to this definition"></a></dt>
+<dd><p>Returns hyper-parameters and their values of the encoding circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em>) – If True, also the parameters for
+contained objects are returned (default=True).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with hyper-parameters and values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.pooling">
+<span class="sig-name descname"><span class="pre">pooling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.0)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Pool'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.pooling" title="Permalink to this definition"></a></dt>
+<dd><p>Add a pooling layer to the encoding circuit.</p>
+<p>This reduces the number of qubits to operate on from here on in this circuit
+by at least one for each circuit applied.
+Default circuit: Entangles qubit i and qubit i+1.
+Only qubit i stays in the circuit for further operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>EncodingCircuitBase</strong> (<em>quantum_circuit</em>) – The quantum circuit, which is applied in this layer.
+Must be an entangling layer, which entangles qubits.</p></li>
+<li><p><strong>QuantumCircuit</strong> – The quantum circuit, which is applied in this layer.
+Must be an entangling layer, which entangles qubits.</p></li>
+<li><p><strong>None</strong><strong>]</strong> – The quantum circuit, which is applied in this layer.
+Must be an entangling layer, which entangles qubits.</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – The name of the layer.</p></li>
+<li><p><strong>measurement</strong> (<em>bool</em>) – Sets whether the qubits,
+which are not used anymore after this layer, are measured.
+If True, quantum_circuit must consist of exactly one classical bit
+additionally to the quantum bits.</p></li>
+<li><p><strong>input_list</strong> (<em>list</em>) – Optionally one can pass the structure of the gates operating.
+The input list defines the qubits the input circuit acts on.
+The list should be structured as: [[qubit1,qubit2,..],[qubit3,qubit4,..],..].
+Every qubit can only be adressed once and the number of qubits in each list
+within the list must be equal to the number of qubits of input circuit.
+THE QUBIT NUMBERS IN THE SUBLISTS REFER TO THE INITIAL QUBIT NUMBERS!</p></li>
+<li><p><strong>output_list</strong> (<em>list</em>) – Exactly if an input list is entered, an output list must be entered.
+The output list defines the qubits which are left in the circuit to operate on.
+The list should be structured as: [[qubit1,qubit2,..],[qubit3,qubit4,..],..].
+It must have the same length as the input list and in each sublist
+its elements must be in the corresponding input sublist
+while beeing at least one element less.
+THE QUBIT NUMBERS IN THE SUBLISTS REFER TO THE INITIAL QUBIT NUMBERS!</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.repeat_layers">
+<span class="sig-name descname"><span class="pre">repeat_layers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.repeat_layers" title="Permalink to this definition"></a></dt>
+<dd><p>Repeat the already applied gates to simply build the circuit.</p>
+<p>This does not work with a pooling layer with supplied in- and output lists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_times</strong> (<em>int</em>) – The number of times the already applied gates are repeatedly applied.</p></li>
+<li><p><strong>configuration</strong> (<em>default</em>) – At least once applied and until less then 4 qubits are left
+and only once if there is no pooling gate applied.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.encoding_circuit.QCNNEncodingCircuit.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.QCNNEncodingCircuit.set_params" title="Permalink to this definition"></a></dt>
+<dd><p>Sets value of the encoding circuit hyper-parameters.</p>
+<p>If the number of qubits is reduced and the supplied pooling gates do not fit to this,
+this will throw a error in the troubling layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – Hyper-parameters (num_qubits or num_features)
+and their values, e.g. <code class="docutils literal notranslate"><span class="pre">num_qubits=2</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.encoding_circuit.QiskitEncodingCircuit.html" class="btn btn-neutral float-left" title="squlearn.encoding_circuit.QiskitEncodingCircuit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html" class="btn btn-neutral float-right" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

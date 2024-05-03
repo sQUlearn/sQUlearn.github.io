@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Executor Class &mdash; sQUlearn 0.7.1 documentation</title>
+  <title>The Executor Class &mdash; sQUlearn 0.7.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,9 +21,9 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=787fabe1"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/documentation_options.js?v=6dfdf7c3"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
@@ -48,7 +48,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.1
+                0.7.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -106,9 +106,9 @@
            <div itemprop="articleBody">
              
   <section id="the-executor-class">
-<span id="executor-user-guide"></span><h1>The Executor Class<a class="headerlink" href="#the-executor-class" title="Permalink to this heading"></a></h1>
+<span id="executor-user-guide"></span><h1>The Executor Class<a class="headerlink" href="#the-executor-class" title="Link to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>The <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> class is the central component of sQUlearn, responsible
 for running all quantum jobs.
 Both high- and low-level methods utilize the Executor class to execute circuits or to run other
@@ -125,7 +125,7 @@ Outgoing arrows indicate that the Executor class can return the corresponding ob
 <a class="reference internal image-reference" href="../_images/executor.png"><img alt="../_images/executor.png" class="align-center" src="../_images/executor.png" style="width: 525px;" /></a>
 </section>
 <section id="key-features-of-the-executor">
-<h2>Key Features of the Executor<a class="headerlink" href="#key-features-of-the-executor" title="Permalink to this heading"></a></h2>
+<h2>Key Features of the Executor<a class="headerlink" href="#key-features-of-the-executor" title="Link to this heading"></a></h2>
 <p>The Executor class provides the following key comfort features when executing a quantum job:</p>
 <ul class="simple">
 <li><p><strong>Result caching:</strong> Enables caching of results to avoid redundant job executions, and enable
@@ -160,7 +160,7 @@ job.</p></li>
 </ul>
 </section>
 <section id="initialization-of-the-executor-class">
-<h2>Initialization of the Executor class<a class="headerlink" href="#initialization-of-the-executor-class" title="Permalink to this heading"></a></h2>
+<h2>Initialization of the Executor class<a class="headerlink" href="#initialization-of-the-executor-class" title="Link to this heading"></a></h2>
 <p>The Estimator can be initialized with various inputs (<code class="docutils literal notranslate"><span class="pre">execution=</span></code>) that specify the
 execution environment:</p>
 <ul>
@@ -326,7 +326,7 @@ backend from the Qiskit Runtime Service and setting options for caching, logging
 </div>
 </section>
 <section id="utilizing-executor-primitives-in-qiskit-routines">
-<h2>Utilizing Executor Primitives in Qiskit Routines<a class="headerlink" href="#utilizing-executor-primitives-in-qiskit-routines" title="Permalink to this heading"></a></h2>
+<h2>Utilizing Executor Primitives in Qiskit Routines<a class="headerlink" href="#utilizing-executor-primitives-in-qiskit-routines" title="Link to this heading"></a></h2>
 <p>The Executor class provides an Estimator and Sampler primitive that are compatible with the
 Qiskit framework. This is only possible, in case the Executor class is initialized with a backend
 compatible with Qiskit (and not PennyLane). The primitives can be obtained by the
@@ -360,7 +360,7 @@ not creating or referring to the Executor primitives! Instead they refer to the
 Qiskit Primitives used internally that do not utilize any caching, restarts, etc.</p>
 </section>
 <section id="setting-options-for-qiskit-primitives">
-<h2>Setting Options for Qiskit Primitives<a class="headerlink" href="#setting-options-for-qiskit-primitives" title="Permalink to this heading"></a></h2>
+<h2>Setting Options for Qiskit Primitives<a class="headerlink" href="#setting-options-for-qiskit-primitives" title="Link to this heading"></a></h2>
 <p>Options for the Primitives can be provided through the <code class="docutils literal notranslate"><span class="pre">options_estimator</span></code> and
 <code class="docutils literal notranslate"><span class="pre">options_sampler</span></code> arguments, but they are also automatically copied from inputted primitives.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>

@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.optimizers`.\ :spelling:word:`SGLBO`
+==========================================================
+
+.. currentmodule:: squlearn.optimizers
+
+.. autoclass:: SGLBO

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase &mdash; sQUlearn 0.7.1 documentation</title>
+  <title>squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase &mdash; sQUlearn 0.7.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,9 +21,9 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=787fabe1"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/documentation_options.js?v=6dfdf7c3"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.1
+                0.7.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -117,10 +117,10 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-kernel-matrix-kernel-matrix-base-kernelmatrixbase">
-<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base</span></code>.KernelMatrixBase<a class="headerlink" href="#squlearn-kernel-matrix-kernel-matrix-base-kernelmatrixbase" title="Permalink to this heading"></a></h1>
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base</span></code>.KernelMatrixBase<a class="headerlink" href="#squlearn-kernel-matrix-kernel-matrix-base-kernelmatrixbase" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base.</span></span><span class="sig-name descname"><span class="pre">KernelMatrixBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base.</span></span><span class="sig-name descname"><span class="pre">KernelMatrixBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase" title="Link to this definition"></a></dt>
 <dd><p>Base class for defining quantum kernels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -138,7 +138,7 @@ options.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.assign_parameters">
-<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.assign_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.assign_parameters" title="Link to this definition"></a></dt>
 <dd><p>Fix the training parameters of the encoding circuit to numerical values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -150,7 +150,7 @@ of the encoding circuit</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate">
-<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate" title="Link to this definition"></a></dt>
 <dd><p>Computes the quantum kernel matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -167,7 +167,7 @@ of the encoding circuit</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate_pairwise">
-<span class="sig-name descname"><span class="pre">evaluate_pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate_pairwise" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">evaluate_pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate_pairwise" title="Link to this definition"></a></dt>
 <dd><p>Computes the quantum kernel matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -181,7 +181,7 @@ of the encoding circuit</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate_with_parameters">
-<span class="sig-name descname"><span class="pre">evaluate_with_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate_with_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">evaluate_with_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.evaluate_with_parameters" title="Link to this definition"></a></dt>
 <dd><p>Computes the quantum kernel matrix with assigned parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -197,7 +197,7 @@ of the encoding circuit</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.get_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.get_params" title="Link to this definition"></a></dt>
 <dd><p>Returns hyper-parameters and their values of the kernel method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -212,7 +212,7 @@ contained objects are returned (default=True).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.set_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.set_params" title="Link to this definition"></a></dt>
 <dd><p>Sets value of the fidelity kernel hyper-parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

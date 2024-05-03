@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.observables.observable_derivatives.ObservableDerivatives &mdash; sQUlearn 0.7.1 documentation</title>
+  <title>squlearn.observables.observable_derivatives.ObservableDerivatives &mdash; sQUlearn 0.7.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,9 +21,9 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=787fabe1"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/documentation_options.js?v=6dfdf7c3"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.1
+                0.7.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -111,10 +111,10 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-observables-observable-derivatives-observablederivatives">
-<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables.observable_derivatives</span></code>.ObservableDerivatives<a class="headerlink" href="#squlearn-observables-observable-derivatives-observablederivatives" title="Permalink to this heading"></a></h1>
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables.observable_derivatives</span></code>.ObservableDerivatives<a class="headerlink" href="#squlearn-observables-observable-derivatives-observablederivatives" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.observables.observable_derivatives.</span></span><span class="sig-name descname"><span class="pre">ObservableDerivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optree_caching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_paulis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.observables.observable_derivatives.</span></span><span class="sig-name descname"><span class="pre">ObservableDerivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optree_caching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_paulis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives" title="Link to this definition"></a></dt>
 <dd><p>Class for calculating derivatives of observables.</p>
 <p>The derivatives are calculated by automatic differentiation of parameter in the expectation
 operator. Also, squaring of the operator is implemented.
@@ -132,7 +132,7 @@ obtained.</p></li>
 </dd>
 </dl>
 <table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Strings that are recognized by the <a class="reference internal" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative" title="squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_derivative()</span></code></a> method</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Strings that are recognized by the <a class="reference internal" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative" title="squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_derivative()</span></code></a> method</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 75.0%" />
@@ -218,10 +218,10 @@ observable</p></td>
 </div>
 </div>
 <section id="attributes">
-<h2>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives.parameter_vector">
-<span class="sig-name descname"><span class="pre">parameter_vector</span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.parameter_vector" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">parameter_vector</span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.parameter_vector" title="Link to this definition"></a></dt>
 <dd><p>Parameter vector used in the observable</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -232,7 +232,7 @@ observable</p></td>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives.num_parameters">
-<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.num_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.num_parameters" title="Link to this definition"></a></dt>
 <dd><p>Total number of trainable parameters in the observable</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -243,7 +243,7 @@ observable</p></td>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives.num_operators">
-<span class="sig-name descname"><span class="pre">num_operators</span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.num_operators" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_operators</span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.num_operators" title="Link to this definition"></a></dt>
 <dd><p>Number operators in case of multiple observables</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -254,10 +254,10 @@ observable</p></td>
 
 </section>
 <section id="methods">
-<h2>Methods:<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<h2>Methods:<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives.assign_parameters">
-<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeElementBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.assign_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpTreeElementBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.assign_parameters" title="Link to this definition"></a></dt>
 <dd><p>Assign parameters to a derivative that is obtained from this class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -274,7 +274,7 @@ observable</p></td>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative">
-<span class="sig-name descname"><span class="pre">get_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">derivative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">derivative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpTreeElementBase</span></span></span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_derivative" title="Link to this definition"></a></dt>
 <dd><p>Determine the derivative of the observable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -290,13 +290,13 @@ information.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives.get_operator">
-<span class="sig-name descname"><span class="pre">get_operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_operator" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_operator" title="Link to this definition"></a></dt>
 <dd><p>Returns the observable operator</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.observables.observable_derivatives.ObservableDerivatives.get_operator_squared">
-<span class="sig-name descname"><span class="pre">get_operator_squared</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_operator_squared" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_operator_squared</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.observables.observable_derivatives.ObservableDerivatives.get_operator_squared" title="Link to this definition"></a></dt>
 <dd><p>Returns the squared form of the observable OO=O^2</p>
 </dd></dl>
 

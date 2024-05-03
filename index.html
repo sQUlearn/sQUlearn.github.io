@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the sQUlearn documentation! &mdash; sQUlearn 0.7.1 documentation</title>
+  <title>Welcome to the sQUlearn documentation! &mdash; sQUlearn 0.7.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
@@ -21,13 +21,15 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=787fabe1"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/documentation_options.js?v=6dfdf7c3"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -47,7 +49,7 @@
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.1
+                0.7.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -90,7 +92,7 @@
            <div itemprop="articleBody">
              
   <section id="welcome-to-the-squlearn-documentation">
-<h1>Welcome to the sQUlearn documentation!<a class="headerlink" href="#welcome-to-the-squlearn-documentation" title="Permalink to this heading"></a></h1>
+<h1>Welcome to the sQUlearn documentation!<a class="headerlink" href="#welcome-to-the-squlearn-documentation" title="Link to this heading"></a></h1>
 <p>sQUlearn is a user-friendly, NISQ-ready Python library for quantum machine learning (QML), designed for seamless integration with classical machine learning tools like scikit-learn. The library’s dual-layer architecture serves both QML researchers and practitioners, enabling efficient prototyping, experimentation, and pipelining. sQUlearn provides a comprehensive toolset that includes both quantum kernel methods and quantum neural networks, along with features like customizable data encoding strategies, automated execution handling, and specialized kernel regularization techniques. By focusing on NISQ-compatibility and end-to-end automation, sQUlearn aims to bridge the gap between current quantum computing capabilities and practical machine learning applications.</p>
 <p>sQUlearn offers scikit-learn compatible high-level interfaces for various kernel methods and QNNs. They build on top of the low-level interfaces of the QNN engine and the quantum kernel engine. The executor is used to run experiments on simulated and real backends of the Qiskit or PennyLane frameworks.</p>
 <p align="center">
@@ -98,13 +100,13 @@
 </p>
 <hr class="docutils" />
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <p>The package requires <strong>at least Python 3.9</strong>.</p>
 </section>
 <section id="install-squlearn">
-<h2>Install sQUlearn<a class="headerlink" href="#install-squlearn" title="Permalink to this heading"></a></h2>
+<h2>Install sQUlearn<a class="headerlink" href="#install-squlearn" title="Link to this heading"></a></h2>
 <section id="stable-release">
-<h3>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this heading"></a></h3>
+<h3>Stable Release<a class="headerlink" href="#stable-release" title="Link to this heading"></a></h3>
 <p>To install the stable release version of sQUlearn, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>squlearn
 </pre></div>
@@ -116,7 +118,7 @@
 </section>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <p>There are several more elaborate examples available in the folder <code class="docutils literal notranslate"><span class="pre">./examples</span></code> which display the features of this package.
 Tutorials for beginners can be found at <code class="docutils literal notranslate"><span class="pre">./examples/tutorials</span></code>.</p>
 <p>To install the required packages, run</p>
@@ -125,30 +127,30 @@ Tutorials for beginners can be found at <code class="docutils literal notranslat
 </div>
 </section>
 <section id="contribute-to-squlearn">
-<h2>Contribute to sQUlearn<a class="headerlink" href="#contribute-to-squlearn" title="Permalink to this heading"></a></h2>
+<h2>Contribute to sQUlearn<a class="headerlink" href="#contribute-to-squlearn" title="Link to this heading"></a></h2>
 <p>Thanks for considering to contribute to sQUlearn! Please read our <a class="reference external" href="https://github.com/sQUlearn/squlearn/blob/main/.github/CONTRIBUTING.md">contribution guidelines</a> before you submit a pull request.</p>
 </section>
 <hr class="docutils" />
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
 <p>sQUlearn is released under the <a class="reference external" href="https://github.com/sQUlearn/squlearn/blob/main/LICENSE.txt">Apache License 2.0</a></p>
 </section>
 <section id="cite-squlearn">
-<h2>Cite sQUlearn<a class="headerlink" href="#cite-squlearn" title="Permalink to this heading"></a></h2>
+<h2>Cite sQUlearn<a class="headerlink" href="#cite-squlearn" title="Link to this heading"></a></h2>
 <p>If you use sQUlearn in your work, please cite our paper:</p>
 <blockquote>
 <div><p>Kreplin, D. A., Willmann, M., Schnabel, J., Rapp, F., &amp; Roth, M. (2023). sQUlearn - A Python Library for Quantum Machine Learning. <a class="reference external" href="https://doi.org/10.48550/arXiv.2311.08990">https://doi.org/10.48550/arXiv.2311.08990</a></p>
 </div></blockquote>
 </section>
 <section id="contact">
-<h2>Contact<a class="headerlink" href="#contact" title="Permalink to this heading"></a></h2>
+<h2>Contact<a class="headerlink" href="#contact" title="Link to this heading"></a></h2>
 <p>This project is maintained by the quantum computing group at the Fraunhofer Institute for Manufacturing Engineering and Automation IPA.</p>
 <p><a class="reference external" href="http://www.ipa.fraunhofer.de/quantum">http://www.ipa.fraunhofer.de/quantum</a></p>
 <p>For general questions regarding sQUlearn, use the <a class="reference external" href="https://github.com/sQUlearn/squlearn/discussions">GitHub Discussions</a> or feel free to contact <a class="reference external" href="mailto:sQUlearn&#37;&#52;&#48;gmail&#46;com">sQUlearn<span>&#64;</span>gmail<span>&#46;</span>com</a>.</p>
 </section>
 <hr class="docutils" />
 <section id="acknowledgements">
-<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading"></a></h2>
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h2>
 <p>This project was supported by the German Federal Ministry
 of Economic Affairs and Climate Action through the
 projects AutoQML (grant no. 01MQ22002A) and AQUAS

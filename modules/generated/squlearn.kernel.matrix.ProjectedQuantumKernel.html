@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.kernel.matrix.ProjectedQuantumKernel &mdash; sQUlearn 0.7.1 documentation</title>
+  <title>squlearn.kernel.matrix.ProjectedQuantumKernel &mdash; sQUlearn 0.7.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,9 +21,9 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=787fabe1"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/documentation_options.js?v=6dfdf7c3"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.1
+                0.7.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -116,10 +116,10 @@
            <div itemprop="articleBody">
              
   <section id="squlearn-kernel-matrix-projectedquantumkernel">
-<h1><a class="reference internal" href="../classes.html#module-squlearn.kernel.matrix" title="squlearn.kernel.matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code></a>.ProjectedQuantumKernel<a class="headerlink" href="#squlearn-kernel-matrix-projectedquantumkernel" title="Permalink to this heading"></a></h1>
+<h1><a class="reference internal" href="../classes.html#module-squlearn.kernel.matrix" title="squlearn.kernel.matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code></a>.ProjectedQuantumKernel<a class="headerlink" href="#squlearn-kernel-matrix-projectedquantumkernel" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.matrix.</span></span><span class="sig-name descname"><span class="pre">ProjectedQuantumKernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'XYZ'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_kernel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">OuterKernelBase</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.matrix.</span></span><span class="sig-name descname"><span class="pre">ProjectedQuantumKernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'XYZ'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_kernel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">OuterKernelBase</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel" title="Link to this definition"></a></dt>
 <dd><p>Projected Quantum Kernel for Quantum Kernel Algorithms</p>
 <p>The Projected Quantum Kernel embeds classical data into a quantum Hilbert space first and
 than projects down into a real space by measurements. The real space is than used to
@@ -155,10 +155,10 @@ linear system in the <code class="docutils literal notranslate"><span class="pre
 </dd>
 </dl>
 <section id="attributes">
-<h2>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.num_qubits">
-<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_qubits" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_qubits" title="Link to this definition"></a></dt>
 <dd><p>Number of qubits of the encoding circuit and the operators</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -169,7 +169,7 @@ linear system in the <code class="docutils literal notranslate"><span class="pre
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.num_features">
-<span class="sig-name descname"><span class="pre">num_features</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_features" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_features</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_features" title="Link to this definition"></a></dt>
 <dd><p>Number of features of the encoding circuit</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -180,7 +180,7 @@ linear system in the <code class="docutils literal notranslate"><span class="pre
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.num_parameters">
-<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_parameters" title="Link to this definition"></a></dt>
 <dd><p>Number of trainable parameters of the encoding circuit</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -191,7 +191,7 @@ linear system in the <code class="docutils literal notranslate"><span class="pre
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.encoding_circuit">
-<span class="sig-name descname"><span class="pre">encoding_circuit</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.encoding_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">encoding_circuit</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.encoding_circuit" title="Link to this definition"></a></dt>
 <dd><p>Encoding circuit that is evaluated</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -202,7 +202,7 @@ linear system in the <code class="docutils literal notranslate"><span class="pre
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.measurement">
-<span class="sig-name descname"><span class="pre">measurement</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.measurement" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">measurement</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.measurement" title="Link to this definition"></a></dt>
 <dd><p>Measurements that are
 performed on the encoding circuit</p>
 <dl class="field-list simple">
@@ -214,7 +214,7 @@ performed on the encoding circuit</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.outer_kernel">
-<span class="sig-name descname"><span class="pre">outer_kernel</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.outer_kernel" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">outer_kernel</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.outer_kernel" title="Link to this definition"></a></dt>
 <dd><p>OuterKernel that is applied to the expectation
 values</p>
 <dl class="field-list simple">
@@ -226,7 +226,7 @@ values</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.num_hyper_parameters">
-<span class="sig-name descname"><span class="pre">num_hyper_parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_hyper_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">num_hyper_parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.num_hyper_parameters" title="Link to this definition"></a></dt>
 <dd><p>Number of hyper parameters of the outer kernel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -237,7 +237,7 @@ values</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.name_hyper_parameters">
-<span class="sig-name descname"><span class="pre">name_hyper_parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.name_hyper_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name_hyper_parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.name_hyper_parameters" title="Link to this definition"></a></dt>
 <dd><p>Names of the hyper parameters of the outer kernel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -248,7 +248,7 @@ values</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.parameters">
-<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.parameters" title="Link to this definition"></a></dt>
 <dd><p>Parameters of the encoding circuit and the
 operator (if parameterized)</p>
 <dl class="field-list simple">
@@ -259,12 +259,12 @@ operator (if parameterized)</p>
 </dd></dl>
 
 <section id="outer-kernels-are-implemented-as-follows">
-<h3>Outer Kernels are implemented as follows:<a class="headerlink" href="#outer-kernels-are-implemented-as-follows" title="Permalink to this heading"></a></h3>
+<h3>Outer Kernels are implemented as follows:<a class="headerlink" href="#outer-kernels-are-implemented-as-follows" title="Link to this heading"></a></h3>
 <p><span class="math notranslate nohighlight">\(d(\cdot,\cdot)\)</span> is the Euclidean distance between two vectors.</p>
 </section>
 </section>
 <section id="gaussian">
-<h2>Gaussian:<a class="headerlink" href="#gaussian" title="Permalink to this heading"></a></h2>
+<h2>Gaussian:<a class="headerlink" href="#gaussian" title="Link to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[k(x_i, x_j) = \text{exp}\left(-\gamma |(QNN(x_i)- QNN(x_j)|^2 \right)\]</div>
 <p><em>Keyword Args:</em></p>
@@ -275,7 +275,7 @@ operator (if parameterized)</p>
 </dl>
 </section>
 <section id="matern">
-<h2>Matern:<a class="headerlink" href="#matern" title="Permalink to this heading"></a></h2>
+<h2>Matern:<a class="headerlink" href="#matern" title="Link to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[k(x_i, x_j) =  \frac{1}{\Gamma(\nu)2^{\nu-1}}\Bigg(
 \!\frac{\sqrt{2\nu}}{l} d(QNN(x_i) , QNN(x_j))\!
@@ -293,7 +293,7 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </dl>
 </section>
 <section id="expsinesquared">
-<h2>ExpSineSquared:<a class="headerlink" href="#expsinesquared" title="Permalink to this heading"></a></h2>
+<h2>ExpSineSquared:<a class="headerlink" href="#expsinesquared" title="Link to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[k(x_i, x_j) = \text{exp}\left(-
 \frac{ 2\sin^2(\pi d(QNN(x_i), QNN(x_j))/p) }{ l^ 2} \right)\]</div>
@@ -308,7 +308,7 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </dl>
 </section>
 <section id="rationalquadratic">
-<h2>RationalQuadratic:<a class="headerlink" href="#rationalquadratic" title="Permalink to this heading"></a></h2>
+<h2>RationalQuadratic:<a class="headerlink" href="#rationalquadratic" title="Link to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[k(x_i, x_j) = \left(
 1 + \frac{d(QNN(x_i), QNN(x_j))^2 }{ 2\alpha  l^2}\right)^{-\alpha}\]</div>
@@ -323,7 +323,7 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </dl>
 </section>
 <section id="dotproduct">
-<h2>DotProduct:<a class="headerlink" href="#dotproduct" title="Permalink to this heading"></a></h2>
+<h2>DotProduct:<a class="headerlink" href="#dotproduct" title="Link to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[k(x_i, x_j) = \sigma_0 ^ 2 + x_i \cdot x_j\]</div>
 <p><em>Keyword Args:</em></p>
@@ -334,7 +334,7 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </dl>
 </section>
 <section id="pairwisekernel">
-<h2>PairwiseKernel:<a class="headerlink" href="#pairwisekernel" title="Permalink to this heading"></a></h2>
+<h2>PairwiseKernel:<a class="headerlink" href="#pairwisekernel" title="Link to this heading"></a></h2>
 <p>scikit-learn’s PairwiseKernel is used.</p>
 <p><em>Keyword Args:</em></p>
 <dl class="field-list simple">
@@ -375,36 +375,36 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 5.87046872e-02 3.77103887e-01 2.59309151e-02
-  8.54262879e-01 2.76439206e-02 1.81377458e-05 8.36868139e-01
-  8.59280797e-01 1.82334336e-04]
- [5.87046872e-02 1.00000000e+00 5.59785653e-01 1.24318555e-04
-  1.69084507e-01 1.30750536e-04 4.36065763e-05 1.79716445e-01
-  1.80921705e-02 1.60905547e-05]
- [3.77103887e-01 5.59785653e-01 1.00000000e+00 1.06520185e-03
-  6.95621453e-01 1.13635340e-03 1.99718848e-05 7.16359540e-01
-  1.61361249e-01 2.61777343e-05]
- [2.59309151e-02 1.24318555e-04 1.06520185e-03 1.00000000e+00
-  7.36942591e-03 9.99565001e-01 1.13950729e-03 6.79194351e-03
-  8.13229242e-02 9.01191252e-02]
- [8.54262879e-01 1.69084507e-01 6.95621453e-01 7.36942591e-03
-  1.00000000e+00 7.88110732e-03 1.60641209e-05 9.99358509e-01
-  5.43940518e-01 7.16802063e-05]
- [2.76439206e-02 1.30750536e-04 1.13635340e-03 9.99565001e-01
-  7.88110732e-03 1.00000000e+00 1.06814778e-03 7.26404505e-03
-  8.61124129e-02 8.51378621e-02]
- [1.81377458e-05 4.36065763e-05 1.99718848e-05 1.13950729e-03
-  1.60641209e-05 1.06814778e-03 1.00000000e+00 1.60617968e-05
-  2.56857832e-05 1.55210286e-01]
- [8.36868139e-01 1.79716445e-01 7.16359540e-01 6.79194351e-03
-  9.99358509e-01 7.26404505e-03 1.60617968e-05 1.00000000e+00
-  5.23187951e-01 6.80069576e-05]
- [8.59280797e-01 1.80921705e-02 1.61361249e-01 8.13229242e-02
-  5.43940518e-01 8.61124129e-02 2.56857832e-05 5.23187951e-01
-  1.00000000e+00 5.38893462e-04]
- [1.82334336e-04 1.60905547e-05 2.61777343e-05 9.01191252e-02
-  7.16802063e-05 8.51378621e-02 1.55210286e-01 6.80069576e-05
-  5.38893462e-04 1.00000000e+00]]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 4.87684165e-01 7.93201381e-04 2.03556262e-01
+  2.26389174e-01 8.66006118e-01 1.82020259e-02 9.10471547e-01
+  5.89068908e-01 5.58332949e-02]
+ [4.87684165e-01 1.00000000e+00 1.21275148e-02 8.25489244e-01
+  2.15049479e-02 2.32895358e-01 2.00303197e-01 7.40412140e-01
+  9.72102917e-02 4.29209090e-01]
+ [7.93201381e-04 1.21275148e-02 1.00000000e+00 4.68686057e-02
+  3.85587441e-05 2.63991662e-04 3.89861385e-01 2.06492028e-03
+  1.07611169e-04 1.76604906e-01]
+ [2.03556262e-01 8.25489244e-01 4.68686057e-02 1.00000000e+00
+  5.30453939e-03 7.69549321e-02 4.82170272e-01 3.86900791e-01
+  2.72947802e-02 7.85297303e-01]
+ [2.26389174e-01 2.15049479e-02 3.85587441e-05 5.30453939e-03
+  1.00000000e+00 4.77663043e-01 3.64409107e-04 1.06539398e-01
+  7.67567859e-01 1.10056955e-03]
+ [8.66006118e-01 2.32895358e-01 2.63991662e-04 7.69549321e-02
+  4.77663043e-01 1.00000000e+00 5.40284344e-03 6.28376660e-01
+  8.82838279e-01 1.76864160e-02]
+ [1.82020259e-02 2.00303197e-01 3.89861385e-01 4.82170272e-01
+  3.64409107e-04 5.40284344e-03 1.00000000e+00 4.63060200e-02
+  1.73683345e-03 8.71932650e-01]
+ [9.10471547e-01 7.40412140e-01 2.06492028e-03 3.86900791e-01
+  1.06539398e-01 6.28376660e-01 4.63060200e-02 1.00000000e+00
+  3.51639750e-01 1.28966609e-01]
+ [5.89068908e-01 9.72102917e-02 1.07611169e-04 2.72947802e-02
+  7.67567859e-01 8.82838279e-01 1.73683345e-03 3.51639750e-01
+  1.00000000e+00 5.71305173e-03]
+ [5.58332949e-02 4.29209090e-01 1.76604906e-01 7.85297303e-01
+  1.10056955e-03 1.76864160e-02 8.71932650e-01 1.28966609e-01
+  5.71305173e-03 1.00000000e+00]]
 </pre></div>
 </div>
 </div>
@@ -442,10 +442,10 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </div>
 </section>
 <section id="methods">
-<h2>Methods:<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<h2>Methods:<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.assign_parameters">
-<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.assign_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">assign_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.assign_parameters" title="Link to this definition"></a></dt>
 <dd><p>Fix the training parameters of the encoding circuit to numerical values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -457,7 +457,7 @@ of the encoding circuit</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate">
-<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate" title="Link to this definition"></a></dt>
 <dd><p>Evaluates the Projected Quantum Kernel for the given data points x and y.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -474,7 +474,7 @@ of the encoding circuit</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_pairwise">
-<span class="sig-name descname"><span class="pre">evaluate_pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_pairwise" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">evaluate_pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_pairwise" title="Link to this definition"></a></dt>
 <dd><p>Computes the quantum kernel matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -488,7 +488,7 @@ of the encoding circuit</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_qnn">
-<span class="sig-name descname"><span class="pre">evaluate_qnn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_qnn" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">evaluate_qnn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_qnn" title="Link to this definition"></a></dt>
 <dd><p>Evaluates the QNN for the given data x.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -502,7 +502,7 @@ of the encoding circuit</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_with_parameters">
-<span class="sig-name descname"><span class="pre">evaluate_with_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_with_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">evaluate_with_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_with_parameters" title="Link to this definition"></a></dt>
 <dd><p>Computes the quantum kernel matrix with assigned parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -518,7 +518,7 @@ of the encoding circuit</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.get_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.get_params" title="Link to this definition"></a></dt>
 <dd><p>Returns hyper-parameters and their values of the Projected Quantum Kernel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -533,7 +533,7 @@ contained objects are returned (default=True).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.set_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.set_params" title="Link to this definition"></a></dt>
 <dd><p>Sets value of the Projected Quantum Kernel hyper-parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

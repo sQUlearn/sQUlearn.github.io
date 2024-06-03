@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.optimizers.SGLBO &mdash; sQUlearn 0.7.3 documentation</title>
+  <title>squlearn.optimizers.SGLBO &mdash; sQUlearn 0.7.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=c98573da"></script>
+        <script src="../../_static/documentation_options.js?v=020ce317"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.3
+                0.7.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -128,13 +128,9 @@
 <li><p><strong>num_average</strong> (int): Number of gradients to average (default: 1)</p></li>
 <li><p><strong>bo_n_calls</strong> (int): Number of iterations for the Bayesian Optimization (default: 20)</p></li>
 <li><p><strong>bo_bounds</strong> (List): Lower and upper bound for the search space for the Bayesian Optimization for each dimension. Each bound should be provided as a tupel (default: (0.0, 0.3))</p></li>
-<li><p><strong>bo_bounds_fac</strong> (float): Factor to adapt the bounds based on the gradient information (default: None)</p></li>
 <li><p><strong>bo_n_initial_points</strong> (int): Number of initial points for the Bayesian Optimization (default: 10)</p></li>
-<li><p><strong>bo_x0_points</strong> (list of lists): Initial input points (default: None)</p></li>
-<li><p><strong>bo_aqc_optimizer</strong> (str): Method to minimize the acquisition function. “sampling” or “lbfgs” (default: “lbfgs”)</p></li>
-<li><p><strong>bo_acq_func</strong> (str): Acquisition function for the Bayesian Optimization (default: “EI”). Valid values are: “LCB”, “EI”, “PI”, “gp_hedge”</p></li>
-<li><p><strong>bo_noise</strong> (float): Noise for noisy observations (default: “gaussian”)</p></li>
-<li><p><strong>min_surrogate</strong> (bool): If True, the surrogate model is minimized to find the optimal step size (default: False)</p></li>
+<li><p><strong>bo_acq_func</strong> (str): Acquisition function for the Bayesian Optimization (default: “ei”). Valid values are: “ucb”, “ei”, “poi”</p></li>
+<li><p><strong>bo_xi</strong> (float): Exploration-exploitation trade-off parameter for the Bayesian Optimization (default: 0.01)</p></li>
 <li><p><strong>log_file</strong> (str): File to log the optimization (default: None)</p></li>
 </ul>
 <dl class="field-list simple">

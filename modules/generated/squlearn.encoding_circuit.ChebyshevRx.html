@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.encoding_circuit.ChebyshevRx &mdash; sQUlearn 0.7.4 documentation</title>
+  <title>squlearn.encoding_circuit.ChebyshevRx &mdash; sQUlearn 0.7.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=020ce317"></script>
+        <script src="../../_static/documentation_options.js?v=a674670e"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.4
+                0.7.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -120,7 +120,7 @@
 <h1><a class="reference internal" href="../classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.ChebyshevRx<a class="headerlink" href="#squlearn-encoding-circuit-chebyshevrx" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.ChebyshevRx">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">ChebyshevRx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.ChebyshevRx" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.encoding_circuit.</span></span><span class="sig-name descname"><span class="pre">ChebyshevRx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonlinearity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'arccos'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.encoding_circuit.ChebyshevRx" title="Link to this definition"></a></dt>
 <dd><p>Simple Chebyshev encoding circuit build from  Rx gates</p>
 <p><strong>Example for 4 qubits, a 2 dimensional feature vector and 2 layers:</strong></p>
 <p>(<a class="reference download internal" download="" href="../../_downloads/3d0ab1dcf5b7b3bd2ffcf3943077ebc6/squlearn-encoding_circuit-ChebyshevRx-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/c322720507881c4adb48faa0c04bf466/squlearn-encoding_circuit-ChebyshevRx-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/43a95d0d6046c7bea5cfaf5f64d45225/squlearn-encoding_circuit-ChebyshevRx-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/cbbb0f7b3a1b5a87b064b1ed676c9e52/squlearn-encoding_circuit-ChebyshevRx-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
@@ -136,6 +136,8 @@
 <li><p><strong>closed</strong> (<em>bool</em>) – If true, the last and the first qubit are entangled (default: false)</p></li>
 <li><p><strong>alpha</strong> (<em>float</em>) – Maximum value of the Chebyshev Tower initial parameters, i.e. parameters
 that appear in the arccos encoding. (default: 4.0)</p></li>
+<li><p><strong>nonlinearity</strong> (<em>str</em>) – Mapping function to use for the feature encoding. Either <code class="docutils literal notranslate"><span class="pre">arccos</span></code>
+or <code class="docutils literal notranslate"><span class="pre">arctan</span></code> (default: <code class="docutils literal notranslate"><span class="pre">arccos</span></code>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -225,7 +227,7 @@ contained objects are returned (default=True).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.ChebyshevRx.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.ChebyshevRx.set_params" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#squlearn.encoding_circuit.ChebyshevRx" title="squlearn.encoding_circuit.circuit_library.chebyshev_rx.ChebyshevRx"><span class="pre">ChebyshevRx</span></a></span></span><a class="headerlink" href="#squlearn.encoding_circuit.ChebyshevRx.set_params" title="Link to this definition"></a></dt>
 <dd><p>Sets value of the encoding circuit hyper-parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

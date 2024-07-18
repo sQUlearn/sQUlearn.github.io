@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Neural Networks &mdash; sQUlearn 0.7.4 documentation</title>
+  <title>Quantum Neural Networks &mdash; sQUlearn 0.7.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=020ce317"></script>
+        <script src="../_static/documentation_options.js?v=a674670e"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.4
+                0.7.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -130,7 +130,7 @@ be somewhat misleading, as QNNs do not conform to the traditional neural network
 Nevertheless, their application domain closely resembles that of classical neural networks,
 which explains the established nomenclature.</p>
 <figure class="align-center" id="id3">
-<span id="figure-1"></span><a class="reference internal image-reference" href="../_images/qnn.svg"><img alt="Quantum Neural Network (QNN)" src="../_images/qnn.svg" width="600" /></a>
+<span id="figure-1"></span><a class="reference internal image-reference" href="../_images/qnn.svg"><img alt="Quantum Neural Network (QNN)" src="../_images/qnn.svg" style="width: 600px;" /></a>
 <figcaption>
 <p><span class="caption-text"><strong>Figure 1</strong> Layered design of a QNN with alternating encoding (orange) and parameter (blue) layers.
 The QNN is trained in a hybrid quantum-classical scheme by optimizing the QNN’s parameters
@@ -289,7 +289,7 @@ in the following code block, other optimization methods can be used analogously.
 </pre></div>
 </div>
 <p>With this configuration, <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> will use scipy’s
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.13.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.14.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
 The wrapper Class <a class="reference internal" href="../modules/generated/squlearn.optimizers.SLSQP.html#squlearn.optimizers.SLSQP" title="squlearn.optimizers.optimizers_wrapper.SLSQP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SLSQP</span></code></a>
 allows to specify hyper parameters in a <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> that get passed on to the function.</p>
 </section>

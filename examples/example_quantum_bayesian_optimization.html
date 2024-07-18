@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model &mdash; sQUlearn 0.7.4 documentation</title>
+  <title>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model &mdash; sQUlearn 0.7.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -22,7 +22,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=020ce317"></script>
+        <script src="../_static/documentation_options.js?v=a674670e"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -51,7 +51,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.4
+                0.7.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -125,9 +125,8 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span><span class="p">,</span> <span class="n">OptimizeResult</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span><span class="p">,</span> <span class="n">OptimizeResult</span><span class="p">,</span> <span class="n">Bounds</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">skopt.space</span> <span class="kn">import</span> <span class="n">Space</span>
 
 
 <span class="k">class</span> <span class="nc">BayesOpt</span><span class="p">:</span>
@@ -150,11 +149,10 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
         <span class="bp">self</span><span class="o">.</span><span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rnd</span> <span class="o">=</span> <span class="n">random_state</span>
 
-        <span class="c1"># preparation of the search space</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="n">Space</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">Bounds</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">],</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">])</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_initial_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span>
-            <span class="n">n_samples</span><span class="o">=</span><span class="n">nr_initial_points</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initial_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">ub</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">nr_initial_points</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">domain</span><span class="p">))</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_samples</span>
@@ -179,9 +177,8 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
 
         <span class="k">return</span> <span class="n">ei</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">propose_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acquisition</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="n">gpr</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-        <span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">n_dims</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">propose_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acquisition</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="n">gpr</span><span class="p">):</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lb</span><span class="p">)</span>
         <span class="n">min_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
         <span class="n">min_x</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -190,19 +187,19 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
             <span class="k">return</span> <span class="o">-</span><span class="n">acquisition</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="n">gpr</span><span class="p">)</span>
 
         <span class="c1"># Find the best optimum by starting from n_restart different random points.</span>
-        <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">bounds</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">restarts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">ub</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">restarts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)):</span>
             <span class="c1"># add a maxiter of 10 to the optimizer</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
-                <span class="n">min_obj</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+                <span class="n">min_obj</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">min_val</span><span class="p">:</span>
                 <span class="n">min_val</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fun</span>
                 <span class="n">min_x</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
+
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;next sample X position: &quot;</span><span class="p">,</span> <span class="n">min_x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">min_x</span>
 
     <span class="k">def</span> <span class="nf">run_optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">,</span> <span class="n">n_restarts</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
         <span class="n">X_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
         <span class="n">Y_sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span>
 
@@ -216,9 +213,7 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
             <span class="c1"># Update Gaussian process with existing samples</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surrogate</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">)</span>
 
-            <span class="n">X_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propose_location</span><span class="p">(</span>
-                <span class="n">acq_func</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrogate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">bounds</span>
-            <span class="p">)</span>
+            <span class="n">X_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propose_location</span><span class="p">(</span><span class="n">acq_func</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">,</span> <span class="n">Y_sample</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrogate</span><span class="p">)</span>
             <span class="n">X_next</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X_next</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
             <span class="n">Y_next</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">blackbox_function</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">X_next</span><span class="p">]</span>
@@ -236,7 +231,7 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
         <span class="n">result</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">X_sample</span><span class="p">[</span><span class="n">best</span><span class="p">]</span>
         <span class="n">result</span><span class="o">.</span><span class="n">fun</span> <span class="o">=</span> <span class="n">Y_sample</span><span class="p">[</span><span class="n">best</span><span class="p">]</span>
         <span class="n">result</span><span class="o">.</span><span class="n">func_vals</span> <span class="o">=</span> <span class="n">Y_sample</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
         <span class="n">result</span><span class="o">.</span><span class="n">x_iters</span> <span class="o">=</span> <span class="n">X_sample</span>
         <span class="k">return</span> <span class="n">result</span>
 
@@ -367,7 +362,7 @@ standardized prediction error <span class="math notranslate nohighlight">\(Z\)</
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.59266487]
+next sample X position:  [1.27450689]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -382,7 +377,7 @@ next sample X position:  [1.59266487]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [-1.65935051]
+next sample X position:  [-1.02812614]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -397,7 +392,7 @@ next sample X position:  [-1.65935051]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.99999685]
+next sample X position:  [1.64835895]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -412,7 +407,7 @@ next sample X position:  [1.99999685]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [0.39188948]
+next sample X position:  [-1.6014398]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -427,7 +422,7 @@ next sample X position:  [0.39188948]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.02765489]
+next sample X position:  [-1.40881658]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -442,7 +437,7 @@ next sample X position:  [1.02765489]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [-0.13690848]
+next sample X position:  [0.57360683]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -457,7 +452,7 @@ next sample X position:  [-0.13690848]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [0.27936704]
+next sample X position:  [-1.63637404]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -472,7 +467,7 @@ next sample X position:  [0.27936704]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [1.99631079]
+next sample X position:  [0.80246877]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -487,7 +482,7 @@ next sample X position:  [1.99631079]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [-1.0862532]
+next sample X position:  [1.98504697]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -502,7 +497,7 @@ next sample X position:  [-1.0862532]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-next sample X position:  [0.45667715]
+next sample X position:  [1.7928485]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">

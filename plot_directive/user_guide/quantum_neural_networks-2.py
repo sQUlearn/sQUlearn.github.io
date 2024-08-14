@@ -16,7 +16,7 @@ param = np.array([ 3.41062806,  0.63125445,  4.40119971,  1.25919873, -2.3542094
 -0.52783347, -1.55477309, -2.08338942, -0.29088459])
 param_op = np.array([-1.57350653,  0.87778247, -0.26884315])
 qnn_qasm = QNNRegressor(pqc, ising_op, qasm, SquaredLoss, SLSQP(), param, param_op, pretrained=True)
-x = np.arange(np.min(0.1), np.max(0.8), 0.005)
+x = np.arange(np.min(0.1), np.max(0.8), 0.005).reshape(-1, 1)
 y = qnn_qasm.predict(x)
 plt.plot(x, np.log(x))
 plt.plot(x, y)

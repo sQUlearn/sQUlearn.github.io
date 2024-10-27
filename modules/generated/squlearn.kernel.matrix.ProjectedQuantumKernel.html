@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.kernel.matrix.ProjectedQuantumKernel &mdash; sQUlearn 0.7.6 documentation</title>
+  <title>squlearn.kernel.matrix.ProjectedQuantumKernel &mdash; sQUlearn 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=918ced64"></script>
+        <script src="../../_static/documentation_options.js?v=486e5634"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -33,7 +33,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer" href="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html" />
+    <link rel="next" title="squlearn.kernel.loss.negative_log_likelihood.NLL" href="squlearn.kernel.loss.negative_log_likelihood.NLL.html" />
     <link rel="prev" title="squlearn.kernel.matrix.FidelityKernel" href="squlearn.kernel.matrix.FidelityKernel.html" /> 
 </head>
 
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.6
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -73,9 +73,8 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.kernel.matrix">Quantum Kernel Core</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.matrix.FidelityKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code>.FidelityKernel</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code>.ProjectedQuantumKernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimizer</span></code>.KernelOptimizer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.optimization.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.negative_log_likelihood</span></code>.NLL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.optimization.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.target_alignment</span></code>.TargetAlignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.negative_log_likelihood</span></code>.NLL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.target_alignment</span></code>.TargetAlignment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a></li>
@@ -375,36 +374,36 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 2.61918080e-02 8.87152953e-01 6.31728216e-03
-  4.76941136e-02 4.73198175e-03 4.63879573e-02 3.91728497e-03
-  8.89941938e-03 6.88482712e-02]
- [2.61918080e-02 1.00000000e+00 7.26916778e-02 8.18523855e-01
-  1.05751658e-04 7.50320697e-01 9.64554501e-01 2.57250595e-05
-  8.89715235e-01 8.98724664e-01]
- [8.87152953e-01 7.26916778e-02 1.00000000e+00 1.90761229e-02
-  1.65698170e-02 1.43919796e-02 1.21328096e-01 1.29771953e-03
-  2.65331064e-02 1.71107540e-01]
- [6.31728216e-03 8.18523855e-01 1.90761229e-02 1.00000000e+00
-  4.26211709e-05 9.92017040e-01 6.68335046e-01 1.75721105e-05
-  9.88730117e-01 5.53840133e-01]
- [4.76941136e-02 1.05751658e-04 1.65698170e-02 4.26211709e-05
-  1.00000000e+00 3.67845599e-05 1.68048299e-04 5.37111628e-01
-  5.15554164e-05 2.40829337e-04]
- [4.73198175e-03 7.50320697e-01 1.43919796e-02 9.92017040e-01
-  3.67845599e-05 1.00000000e+00 5.93514152e-01 1.68866580e-05
-  9.62352025e-01 4.81186487e-01]
- [4.63879573e-02 9.64554501e-01 1.21328096e-01 6.68335046e-01
-  1.68048299e-04 5.93514152e-01 1.00000000e+00 3.31519929e-05
-  7.55016198e-01 9.81347238e-01]
- [3.91728497e-03 2.57250595e-05 1.29771953e-03 1.75721105e-05
-  5.37111628e-01 1.68866580e-05 3.31519929e-05 1.00000000e+00
-  1.87111837e-05 4.11783785e-05]
- [8.89941938e-03 8.89715235e-01 2.65331064e-02 9.88730117e-01
-  5.15554164e-05 9.62352025e-01 7.55016198e-01 1.87111837e-05
-  1.00000000e+00 6.42663813e-01]
- [6.88482712e-02 8.98724664e-01 1.71107540e-01 5.53840133e-01
-  2.40829337e-04 4.81186487e-01 9.81347238e-01 4.11783785e-05
-  6.42663813e-01 1.00000000e+00]]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 9.37039000e-01 7.45993522e-03 2.64031031e-05
+  9.86694741e-05 6.15082666e-05 9.15087431e-01 2.65386260e-01
+  3.80990397e-05 6.18786411e-01]
+ [9.37039000e-01 1.00000000e+00 1.68358480e-02 2.10478362e-05
+  1.83891746e-04 1.06825951e-04 9.98149636e-01 4.36702453e-01
+  6.02654557e-05 8.22772938e-01]
+ [7.45993522e-03 1.68358480e-02 1.00000000e+00 8.88148150e-05
+  1.31069756e-01 7.25466019e-02 1.92679992e-02 2.19857474e-01
+  3.34620771e-02 6.39076129e-02]
+ [2.64031031e-05 2.10478362e-05 8.88148150e-05 1.00000000e+00
+  6.41838377e-03 1.30273302e-02 2.03760543e-05 1.68546444e-05
+  2.98136648e-02 1.65699869e-05]
+ [9.86694741e-05 1.83891746e-04 1.31069756e-01 6.41838377e-03
+  1.00000000e+00 9.52474685e-01 2.05745694e-04 2.84375660e-03
+  7.90757301e-01 6.36306418e-04]
+ [6.15082666e-05 1.06825951e-04 7.25466019e-02 1.30273302e-02
+  9.52474685e-01 1.00000000e+00 1.18215615e-04 1.40939215e-03
+  9.32054449e-01 3.35175322e-04]
+ [9.15087431e-01 9.98149636e-01 1.92679992e-02 2.03760543e-05
+  2.05745694e-04 1.18215615e-04 1.00000000e+00 4.70026560e-01
+  6.57024715e-05 8.52817110e-01]
+ [2.65386260e-01 4.36702453e-01 2.19857474e-01 1.68546444e-05
+  2.84375660e-03 1.40939215e-03 4.70026560e-01 1.00000000e+00
+  6.24124870e-04 7.95643135e-01]
+ [3.80990397e-05 6.02654557e-05 3.34620771e-02 2.98136648e-02
+  7.90757301e-01 9.32054449e-01 6.57024715e-05 6.24124870e-04
+  1.00000000e+00 1.64577632e-04]
+ [6.18786411e-01 8.22772938e-01 6.39076129e-02 1.65699869e-05
+  6.36306418e-04 3.35175322e-04 8.52817110e-01 7.95643135e-01
+  1.64577632e-04 1.00000000e+00]]
 </pre></div>
 </div>
 </div>
@@ -468,6 +467,25 @@ of the encoding circuit</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The evaluated projected quantum kernel as numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_derivatives">
+<span class="sig-name descname"><span class="pre">evaluate_derivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dKdx'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.kernel.matrix.ProjectedQuantumKernel.evaluate_derivatives" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the Projected Quantum Kernel and its derivatives for the given data points x and y.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Data points x</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Data points y, if None y = x is used</p></li>
+<li><p><strong>values</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>tuple</em><em>]</em>) – Values to evaluate. Can be a string or a tuple of strings.
+Possible values are: <code class="docutils literal notranslate"><span class="pre">dKdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdy</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdxdx</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with the evaluated values</p>
 </dd>
 </dl>
 </dd></dl>
@@ -552,7 +570,7 @@ contained objects are returned (default=True).</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="squlearn.kernel.matrix.FidelityKernel.html" class="btn btn-neutral float-left" title="squlearn.kernel.matrix.FidelityKernel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html" class="btn btn-neutral float-right" title="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="squlearn.kernel.loss.negative_log_likelihood.NLL.html" class="btn btn-neutral float-right" title="squlearn.kernel.loss.negative_log_likelihood.NLL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

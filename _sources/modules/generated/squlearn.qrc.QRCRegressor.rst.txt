@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qrc`.\ :spelling:word:`QRCRegressor`
+==========================================================
+
+.. currentmodule:: squlearn.qrc
+
+.. autoclass:: QRCRegressor

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.Executor &mdash; sQUlearn 0.7.6 documentation</title>
+  <title>squlearn.Executor &mdash; sQUlearn 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=918ced64"></script>
+        <script src="../../_static/documentation_options.js?v=486e5634"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -31,7 +31,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="squlearn.kernel.matrix.FidelityKernel" href="squlearn.kernel.matrix.FidelityKernel.html" />
+    <link rel="next" title="squlearn.util.executor.ExecutorEstimator" href="squlearn.util.executor.ExecutorEstimator.html" />
     <link rel="prev" title="squlearn.observables.observable_derivatives.ObservableDerivatives" href="squlearn.observables.observable_derivatives.ObservableDerivatives.html" /> 
 </head>
 
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.6
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -71,6 +71,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#squlearn.Executor"><code class="docutils literal notranslate"><span class="pre">Executor</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="squlearn.util.executor.ExecutorEstimator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.executor</span></code>.ExecutorEstimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="squlearn.util.executor.ExecutorSampler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.executor</span></code>.ExecutorSampler</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../classes.html#core">Core</a></li>
@@ -108,41 +110,54 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn</span></code>.Executor<a class="headerlink" href="#squlearn-executor" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.Executor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.</span></span><span class="sig-name descname"><span class="pre">Executor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">execution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend" title="(in Qiskit v1.1)"><span class="pre">Backend</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">QiskitRuntimeService</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Session</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.primitives.BaseEstimatorV1" title="(in Qiskit v1.1)"><span class="pre">BaseEstimatorV1</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.primitives.BaseSamplerV1" title="(in Qiskit v1.1)"><span class="pre">BaseSamplerV1</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Device</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pennylane'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend" title="(in Qiskit v1.1)"><span class="pre">Backend</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Options" title="(in Qiskit v1.1)"><span class="pre">Options</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Options</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_sampler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Options" title="(in Qiskit v1.1)"><span class="pre">Options</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Options</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'_cache'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_session_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'8h'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_jobs_retries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_restart</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.</span></span><span class="sig-name descname"><span class="pre">Executor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">execution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend" title="(in Qiskit v1.2)"><span class="pre">Backend</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend" title="(in Qiskit v1.2)"><span class="pre">Backend</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService" title="(in Qiskit Runtime IBM Client)"><span class="pre">QiskitRuntimeService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session" title="(in Qiskit Runtime IBM Client)"><span class="pre">Session</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.primitives.BaseEstimatorV1" title="(in Qiskit v1.2)"><span class="pre">BaseEstimatorV1</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.primitives.BaseSamplerV1" title="(in Qiskit v1.2)"><span class="pre">BaseSamplerV1</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.primitives.BaseEstimatorV2" title="(in Qiskit v1.2)"><span class="pre">BaseEstimatorV2</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.primitives.BaseSamplerV2" title="(in Qiskit v1.2)"><span class="pre">BaseSamplerV2</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Device</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pennylane'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend" title="(in Qiskit v1.2)"><span class="pre">Backend</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_sampler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'_cache'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_session_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'8h'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_jobs_retries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_restart</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qpu_parallelization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_backend_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'quality'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor" title="Link to this definition"></a></dt>
 <dd><p>A class for executing quantum jobs on IBM Quantum systems or simulators.</p>
 <p>The Executor class is the central component of sQUlearn, responsible for running quantum jobs.
 Both high- and low-level methods utilize the Executor class to execute jobs seamlessly.
-It automatically creates the necessary primitives when they are required in the sQUlearn
-sub-program. The Executor takes care about session handling, result caching, and automatic
+It for example automatically creates the necessary Qiskit primitives when they are
+required in the sQUlearn sub-program or takes care of the execution of PennyLane circuits.
+The Executor takes care about Qiskit Runtime session handling, result caching, and automatic
 restarts of failed jobs.</p>
 <p>The Estimator can be initialized with various objects that specify the execution environment,
-as for example a Qiskit backend either from IBM Quantum or a Aer simulator.</p>
+as for example a Qiskit backend or a PennyLane device.</p>
 <p>A detailed introduction to the Executor can be found in the
 <a class="reference internal" href="../../user_guide/executor.html"><span class="doc">User Guide: The Executor Class</span></a></p>
+<p>The version of Qiskit Primitives used by the Executor depends on the installed Qiskit version:
+- For Qiskit versions 1.2 and above, the Executor uses Qiskit Primitives V2.
+- For versions below 1.2, it defaults to Primitives V1.</p>
+<p>Note: The Sampler in Primitives V2 uses shots, even with statevector simulators, whereas
+Primitives V1 provides exact probabilities.</p>
+<p><strong>Important</strong>: When using the Executor to run jobs on IBM Quantum systems, sessions are
+created automatically. If you are working in a Jupyter notebook, ensure you close the session
+once calculations are complete to avoid unnecessary open sessions (<a class="reference internal" href="#squlearn.Executor.close_session" title="squlearn.Executor.close_session"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close_session()</span></code></a>),
+to avoide being charged for the opened but unused session.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>execution</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Backend</em><em>, </em><em>QiskitRuntimeService</em><em>, </em><em>Session</em><em>, </em><em>BaseEstimator</em><em>, </em><em>BaseSampler</em><em>]</em>) – <p>The execution environment, possible inputs are:</p>
-<ul>
-<li><p>A string, that specifics the simulator
-backend. For Qiskit this can be <code class="docutils literal notranslate"><span class="pre">&quot;qiskit&quot;</span></code>,``”statevector_simulator”`` or <code class="docutils literal notranslate"><span class="pre">&quot;qasm_simulator&quot;</span></code>.
+<li><p><strong>execution</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Backend</em><em>, </em><em>List</em><em>[</em><em>Backend</em><em>]</em><em>, </em><em>QiskitRuntimeService</em><em>, </em><em>Session</em><em>,</em><em>BaseEstimatorV1</em><em>, </em><em>BaseSamplerV1</em><em>, </em><em>BaseEstimatorV2</em><em>, </em><em>BaseSamplerV2</em><em>, </em><em>PennylaneDevice</em><em>]</em>) – <p>The execution environment, possible inputs are:</p>
+<blockquote>
+<div><ul>
+<li><p>A string, that specifics the simulator backend. For Qiskit this can be
+<code class="docutils literal notranslate"><span class="pre">&quot;qiskit&quot;</span></code>,``”statevector_simulator”`` or <code class="docutils literal notranslate"><span class="pre">&quot;qasm_simulator&quot;</span></code>.
 For PennyLane this can be <code class="docutils literal notranslate"><span class="pre">&quot;pennylane&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;default.qubit&quot;</span></code>.</p></li>
-<li><p>A Qiskit backend, to run the jobs on IBM Quantum
-systems or simulators</p></li>
-<li><p>A QiskitRuntimeService, to run the jobs on the Qiskit Runtime service
+<li><p>A PennyLane device, to run the jobs with PennyLane (e.g. AWS Braket plugin
+for PennyLane)</p></li>
+<li><p>A Qiskit backend, to run the jobs on IBM Quantum systems or simulators</p></li>
+<li><p>A list of Qiskit backends for automatic backend selection later on</p></li>
+<li><p>A QiskitRuntimeService, to run the jobs on the Qiskit Runtime service.
 In this case the backend has to be provided separately via <code class="docutils literal notranslate"><span class="pre">backend=</span></code></p></li>
 <li><p>A Session, to run the jobs on the Qiskit Runtime service</p></li>
-<li><p>A Estimator primitive (either simulator or Qiskit Runtime primitive)</p></li>
-<li><p>A Sampler primitive (either simulator or Qiskit Runtime primitive)</p></li>
+<li><p>A Estimator primitive (either simulator or Qiskit Runtime primitive - V1 or V2)</p></li>
+<li><p>A Sampler primitive (either simulator or Qiskit Runtime primitive - V1 or V2)</p></li>
 </ul>
-<p>Default is the initialization with the <code class="xref py py-class docutils literal notranslate"><span class="pre">StatevectorSimulator</span></code>.</p>
+</div></blockquote>
+<p>Default is the initialization with PennyLane’s
+<a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.devices.default_qubit.DefaultQubit.html#pennylane.devices.default_qubit.DefaultQubit" title="(in PennyLane v0.38)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DefaultQubit</span></code></a> simulator.</p>
 </p></li>
 <li><p><strong>backend</strong> (<em>Union</em><em>[</em><em>Backend</em><em>, </em><em>str</em><em>, </em><em>None</em><em>]</em>) – The backend that is used for the execution.
 Only mandatory if a service is provided.</p></li>
-<li><p><strong>options_estimator</strong> (<em>Union</em><em>[</em><em>Options</em><em>, </em><em>Options</em><em>, </em><em>None</em><em>]</em>) – The options for the created estimator
-primitives.</p></li>
-<li><p><strong>options_sampler</strong> (<em>Union</em><em>[</em><em>Options</em><em>, </em><em>Options</em><em>, </em><em>None</em><em>]</em>) – The options for the created sampler
-primitives.</p></li>
+<li><p><strong>options_estimator</strong> (<em>Union</em><em>[</em><em>Any</em><em>]</em>) – The options for the created estimator primitives.</p></li>
+<li><p><strong>options_sampler</strong> (<em>Union</em><em>[</em><em>Any</em><em>]</em>) – The options for the created sampler primitives.</p></li>
 <li><p><strong>log_file</strong> (<em>str</em>) – The name of the log file, if empty, no log file is created.</p></li>
 <li><p><strong>caching</strong> (<em>Union</em><em>[</em><em>bool</em><em>, </em><em>None</em><em>]</em>) – Whether to cache the results of the jobs.</p></li>
 <li><p><strong>cache_dir</strong> (<em>str</em>) – The directory where to cache the results of the jobs.</p></li>
@@ -152,6 +167,19 @@ until the execution is aborted.</p></li>
 <li><p><strong>wait_restart</strong> (<em>int</em>) – The time to wait before restarting a job in seconds.</p></li>
 <li><p><strong>shots</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>None</em><em>]</em>) – The number of initial shots that is used for the execution.</p></li>
 <li><p><strong>seed</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>None</em><em>]</em>) – The seed that is used for finite samples in the execution.</p></li>
+<li><p><strong>qpu_parallelization</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>, </em><em>None</em><em>]</em>) – The number of parallel executions on the QPU.
+If set to <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>, the number of parallel executions is automatically determined.
+If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, no parallelization is used. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>auto_backend_mode</strong> (<em>str</em>) – <p>The mode for automatic backend selection. Possible values are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;quality&quot;</span></code>: Automatically selects the best backend for the provided circuit using
+the mapomatic tool. This is the default value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;quality_hqaa&quot;</span></code>: Same as <code class="docutils literal notranslate"><span class="pre">&quot;quality&quot;</span></code>, but uses the HQAA algorithm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;speed&quot;</span></code>: Automatically selects the backend with the smallest queue using the
+mapomatic tool.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;speed_hqaa&quot;</span></code>: Same as <code class="docutils literal notranslate"><span class="pre">&quot;speed&quot;</span></code>, but uses the HQAA algorithm.</p></li>
+</ul>
+</p></li>
 </ul>
 </dd>
 </dl>
@@ -180,6 +208,62 @@ until the execution is aborted.</p></li>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.backend_list">
+<span class="sig-name descname"><span class="pre">backend_list</span></span><a class="headerlink" href="#squlearn.Executor.backend_list" title="Link to this definition"></a></dt>
+<dd><p>The list of backends used for the automatic backend
+selection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Backend]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.backend_chosen">
+<span class="sig-name descname"><span class="pre">backend_chosen</span></span><a class="headerlink" href="#squlearn.Executor.backend_chosen" title="Link to this definition"></a></dt>
+<dd><p>True, if the backend was chosen automatically.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.backend_name">
+<span class="sig-name descname"><span class="pre">backend_name</span></span><a class="headerlink" href="#squlearn.Executor.backend_name" title="Link to this definition"></a></dt>
+<dd><p>The name of the backend that is used in the Executor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.is_statevector">
+<span class="sig-name descname"><span class="pre">is_statevector</span></span><a class="headerlink" href="#squlearn.Executor.is_statevector" title="Link to this definition"></a></dt>
+<dd><p>Returns true if the backend is a statevector simulator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.qpu_parallelization">
+<span class="sig-name descname"><span class="pre">qpu_parallelization</span></span><a class="headerlink" href="#squlearn.Executor.qpu_parallelization" title="Link to this definition"></a></dt>
+<dd><p>Returns true if QPU parallelization is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.Executor.session">
 <span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#squlearn.Executor.session" title="Link to this definition"></a></dt>
 <dd><p>The session that is used in the Executor.</p>
@@ -202,16 +286,40 @@ until the execution is aborted.</p></li>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.quantum_framework">
+<span class="sig-name descname"><span class="pre">quantum_framework</span></span><a class="headerlink" href="#squlearn.Executor.quantum_framework" title="Link to this definition"></a></dt>
+<dd><p>The framework used in the Executor (<code class="docutils literal notranslate"><span class="pre">&quot;qiskit&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;pennylane&quot;</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.IBMQuantum">
+<span class="sig-name descname"><span class="pre">IBMQuantum</span></span><a class="headerlink" href="#squlearn.Executor.IBMQuantum" title="Link to this definition"></a></dt>
+<dd><p>Whether the backend is an IBM Quantum backend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.Executor.estimator">
 <span class="sig-name descname"><span class="pre">estimator</span></span><a class="headerlink" href="#squlearn.Executor.estimator" title="Link to this definition"></a></dt>
-<dd><p>The Qiskit estimator primitive that is used in the Executor.
+<dd><p>The Qiskit estimator primitive that is used
+in the Executor.
 Different to <a class="reference internal" href="#squlearn.Executor.get_estimator" title="squlearn.Executor.get_estimator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_estimator()</span></code></a>,
 which creates a new estimator object with overwritten methods
 that runs everything through the Executor with
-<a class="reference internal" href="#squlearn.Executor.estimator_run" title="squlearn.Executor.estimator_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code></a>.</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>BaseEstimator</p>
+<dd class="field-odd"><p>BaseEstimatorV1, BaseEstimatorV2</p>
 </dd>
 </dl>
 </dd></dl>
@@ -219,14 +327,14 @@ that runs everything through the Executor with
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squlearn.Executor.sampler">
 <span class="sig-name descname"><span class="pre">sampler</span></span><a class="headerlink" href="#squlearn.Executor.sampler" title="Link to this definition"></a></dt>
-<dd><p>The Qiskit sampler primitive that is used in the Executor.
-Different to <a class="reference internal" href="#squlearn.Executor.get_sampler" title="squlearn.Executor.get_sampler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sampler()</span></code></a>,
+<dd><p>The Qiskit sampler primitive that is used in the
+Executor. Different to <a class="reference internal" href="#squlearn.Executor.get_sampler" title="squlearn.Executor.get_sampler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sampler()</span></code></a>,
 which creates a new sampler object with overwritten methods
 that runs everything through the Executor with
-<a class="reference internal" href="#squlearn.Executor.estimator_run" title="squlearn.Executor.estimator_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code></a>.</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">estimator_run()</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>BaseSampler</p>
+<dd class="field-odd"><p>BaseSamplerV1, BaseEstimatorV2</p>
 </dd>
 </dl>
 </dd></dl>
@@ -242,12 +350,25 @@ that runs everything through the Executor with
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.estimator_options">
+<span class="sig-name descname"><span class="pre">estimator_options</span></span><a class="headerlink" href="#squlearn.Executor.estimator_options" title="Link to this definition"></a></dt>
+<dd><p>Options of the Runtime Estiamtor V2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.Executor.sampler_options">
+<span class="sig-name descname"><span class="pre">sampler_options</span></span><a class="headerlink" href="#squlearn.Executor.sampler_options" title="Link to this definition"></a></dt>
+<dd><p>Options of the Runtime Sampler V2</p>
+</dd></dl>
+
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../user_guide/executor.html"><span class="doc">User Guide: The Executor Class</span></a></p></li>
-<li><p><a class="reference external" href="https://quantum-computing.ibm.com/lab/docs/iql/runtime">Qiskit Runtime</a></p></li>
-<li><p><a class="reference external" href="https://qiskit.org/documentation/apidoc/primitives.html">Qsikit Primitives</a></p></li>
+<li><p><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit-ibm-runtime">Qiskit Runtime</a></p></li>
+<li><p><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/primitives">Qsikit Primitives</a></p></li>
+<li><p><a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.device.html">PennyLane Devices</a></p></li>
 </ul>
 </div>
 <p><strong>Example: Different PennyLane based initializations of the Executor</strong></p>
@@ -263,8 +384,13 @@ that runs everything through the Executor with
 <span class="c1"># Executor with a PennyLane lightining device</span>
 <span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">qml</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;lightning.qubit&quot;</span><span class="p">))</span>
 
-<span class="c1"># Executor with a AWS Braket device with 4 qubits (requires a valid AWS credential to be set)</span>
-<span class="n">dev</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;braket.aws.qubit&quot;</span><span class="p">,</span> <span class="n">device_arn</span><span class="o">=</span><span class="s2">&quot;arn:aws:braket:::device/quantum-simulator/amazon/sv1&quot;</span><span class="p">,</span> <span class="n">wires</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Executor with a AWS Braket device with 4 qubits</span>
+<span class="c1"># (requires a valid AWS credential to be set)</span>
+<span class="n">dev</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">device</span><span class="p">(</span>
+    <span class="s2">&quot;braket.aws.qubit&quot;</span><span class="p">,</span>
+    <span class="n">device_arn</span><span class="o">=</span><span class="s2">&quot;arn:aws:braket:::device/quantum-simulator/amazon/sv1&quot;</span><span class="p">,</span>
+    <span class="n">wires</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
 <span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -281,11 +407,11 @@ that runs everything through the Executor with
 
 <span class="c1"># Executor with a IBM Quantum backend</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
-<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_nairobi&#39;</span><span class="p">))</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_brisbane&#39;</span><span class="p">))</span>
 
 <span class="c1"># Executor with a IBM Quantum backend and caching and logging</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
-<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_nairobi&#39;</span><span class="p">),</span> <span class="n">caching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_brisbane&#39;</span><span class="p">),</span> <span class="n">caching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                      <span class="n">cache_dir</span><span class="o">=</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="s2">&quot;log.log&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -297,18 +423,59 @@ that runs everything through the Executor with
 <span class="c1"># Initialize the Executor</span>
 <span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">)</span>
 
-<span class="c1"># Get the Executor based Estimator - can be used as a normal Qiskit Estimator</span>
+<span class="c1"># Get the Executor based Estimator with all execusions routed through the Executor</span>
 <span class="n">estimator</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">get_estimator</span><span class="p">()</span>
 
-<span class="c1"># Get the Executor based Sampler - can be used as a normal Qiskit Sampler</span>
+<span class="c1"># Get the Executor based Sampler with all execusions routed through the Executor</span>
 <span class="n">sampler</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">get_sampler</span><span class="p">()</span>
-
 
 <span class="c1"># Run a circuit with the Executor based Sampler</span>
 <span class="kn">from</span> <span class="nn">qiskit.circuit.random</span> <span class="kn">import</span> <span class="n">random_circuit</span>
 <span class="n">circuit</span> <span class="o">=</span> <span class="n">random_circuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">circuit</span><span class="p">,)])</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<p><strong>Example: Automatic backend selection</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevRx</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">FidelityKernel</span><span class="p">,</span> <span class="n">QKRR</span>
+
+<span class="c1"># Executor is initialized with a service, and considers all available backends</span>
+<span class="c1"># (except simulators)</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;INSERT_YOUR_TOKEN_HERE&quot;</span><span class="p">)</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">auto_backend_mode</span><span class="o">=</span><span class="s2">&quot;quality&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a QKRR model with a FidelityKernel and the ChebyshevRx encoding circuit</span>
+<span class="n">qkrr</span> <span class="o">=</span> <span class="n">QKRR</span><span class="p">(</span><span class="n">FidelityKernel</span><span class="p">(</span><span class="n">ChebyshevRx</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">executor</span><span class="p">))</span>
+
+<span class="c1"># Backend is automatically selected based on the encoding circuit</span>
+<span class="c1"># All the following functions will be executed on the selected backend</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">])</span>
+<span class="n">qkrr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Close the session to avoid being charged for the opened but unused session</span>
+<span class="n">executor</span><span class="o">.</span><span class="n">close_session</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Example: QPU parallelization</strong></p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+
+<span class="c1"># All circuit executions are copied four times and are executed in parallel</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">,</span> <span class="n">qpu_parallelization</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># The level of parallelization is determined automatically to reach a maximum</span>
+<span class="c1"># parallelization level of number of qubits of the backend divided by the number of qubits</span>
+<span class="c1"># of the circuit</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">,</span> <span class="n">qpu_parallelization</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -321,13 +488,13 @@ that runs everything through the Executor with
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.Executor.clear_estimator_cache">
 <span class="sig-name descname"><span class="pre">clear_estimator_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.Executor.clear_estimator_cache" title="Link to this definition"></a></dt>
-<dd><p>Function for clearing the cache of the estimator primitive to avoid memory overflow.</p>
+<dd><p>Function for clearing the cache of the EstimatorV1 primitive to avoid memory overflow.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.Executor.clear_sampler_cache">
 <span class="sig-name descname"><span class="pre">clear_sampler_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.Executor.clear_sampler_cache" title="Link to this definition"></a></dt>
-<dd><p>Function for clearing the cache of the sampler primitive to avoid memory overflow.</p>
+<dd><p>Function for clearing the cache of the SamplerV1 primitive to avoid memory overflow.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -343,9 +510,9 @@ that runs everything through the Executor with
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="squlearn.Executor.estimator_run">
-<span class="sig-name descname"><span class="pre">estimator_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobV1" title="(in Qiskit v1.1)"><span class="pre">JobV1</span></a></span></span><a class="headerlink" href="#squlearn.Executor.estimator_run" title="Link to this definition"></a></dt>
-<dd><p>Function similar to the Qiskit Sampler run function, but this one includes caching,
+<dt class="sig sig-object py" id="squlearn.Executor.estimator_run_v1">
+<span class="sig-name descname"><span class="pre">estimator_run_v1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobV1" title="(in Qiskit v1.2)"><span class="pre">JobV1</span></a></span></span><a class="headerlink" href="#squlearn.Executor.estimator_run_v1" title="Link to this definition"></a></dt>
+<dd><p>Function similar to the Qiskit Estimator V1 run function, but this one includes caching,
 automatic session handling, and restarts of failed jobs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -363,19 +530,42 @@ automatic session handling, and restarts of failed jobs.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.estimator_run_v2">
+<span class="sig-name descname"><span class="pre">estimator_run_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pubs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">EstimatorPub</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.2)"><span class="pre">QuantumCircuit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Pauli" title="(in Qiskit v1.2)"><span class="pre">Pauli</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v1.2)"><span class="pre">SparsePauliOp</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Pauli" title="(in Qiskit v1.2)"><span class="pre">Pauli</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.2)"><span class="pre">QuantumCircuit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Pauli" title="(in Qiskit v1.2)"><span class="pre">Pauli</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v1.2)"><span class="pre">SparsePauliOp</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Pauli" title="(in Qiskit v1.2)"><span class="pre">Pauli</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.2)"><span class="pre">QuantumCircuit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Pauli" title="(in Qiskit v1.2)"><span class="pre">Pauli</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v1.2)"><span class="pre">SparsePauliOp</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Pauli" title="(in Qiskit v1.2)"><span class="pre">Pauli</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Real</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.estimator_run_v2" title="Link to this definition"></a></dt>
+<dd><p>Function similar to the Qiskit Estimator V2 run function, but this one includes caching,
+automatic session handling, and restarts of failed jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pubs</strong> (<em>Iterable</em><em>[</em><em>EstimatorPubLike</em><em>]</em>) – An iterable of pub-like objects, such as
+tuples <code class="docutils literal notranslate"><span class="pre">(circuit,</span> <span class="pre">observables)</span></code> or <code class="docutils literal notranslate"><span class="pre">(circuit,</span> <span class="pre">observables,</span> <span class="pre">parameter_values)</span></code>.</p></li>
+<li><p><strong>precision</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>None</em><em>]</em>) – The target precision for expectation value estimates
+of each run Estimator Pub that does not specify its own precision. If None
+the the precision is set by the executor number of shots.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A qiskit job containing the results of the run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="squlearn.Executor.get_estimator">
 <span class="sig-name descname"><span class="pre">get_estimator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.get_estimator" title="Link to this definition"></a></dt>
-<dd><p>Returns a Estimator primitive that overwrites the Qiskit Estimator primitive.
-This Estimator runs all executions through the Executor and
+<dd><p>Returns a Estimator primitive that overwrites the Qiskit Estimator primitive.</p>
+<p>This Estimator runs all executions through the Executor and
 includes result caching, automatic session handling, and restarts of failed jobs.</p>
+<p>For Qiskit &gt;= 1.2 the Estimator V2 is used, for Qiskit &lt; 1.2 the Estimator V1 is returned.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.Executor.get_sampler">
 <span class="sig-name descname"><span class="pre">get_sampler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.get_sampler" title="Link to this definition"></a></dt>
-<dd><p>Returns a Sampler primitive that overwrites the Qiskit Sampler primitive.
-This Sampler runs all executions through the Executor and
+<dd><p>Returns a Sampler primitive that overwrites the Qiskit Sampler primitive.</p>
+<p>This Sampler runs all executions through the Executor and
 includes result caching, automatic session handling, and restarts of failed jobs.</p>
+<p>For Qiskit &gt;= 1.2 the Sampler V2 is used, for Qiskit &lt; 1.2 the Sampler V1 is returned.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -443,48 +633,15 @@ includes result caching, automatic session handling, and restarts of failed jobs
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="squlearn.Executor.reset_options">
-<span class="sig-name descname"><span class="pre">reset_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Options" title="(in Qiskit v1.1)"><span class="pre">Options</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.reset_options" title="Link to this definition"></a></dt>
-<dd><p>Overwrites the options for the sampler and estimator primitive.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>options</strong> – Options for the sampler and estimator</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="squlearn.Executor.reset_options_estimator">
-<span class="sig-name descname"><span class="pre">reset_options_estimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Options" title="(in Qiskit v1.1)"><span class="pre">Options</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.reset_options_estimator" title="Link to this definition"></a></dt>
-<dd><p>Overwrites the options for the estimator primitive.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>options</strong> – Options for the estimator</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="squlearn.Executor.reset_options_sampler">
-<span class="sig-name descname"><span class="pre">reset_options_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Options" title="(in Qiskit v1.1)"><span class="pre">Options</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.reset_options_sampler" title="Link to this definition"></a></dt>
-<dd><p>Overwrites the options for the sampler primitive.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>options</strong> – Options for the sampler</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="squlearn.Executor.reset_shots">
 <span class="sig-name descname"><span class="pre">reset_shots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.Executor.reset_shots" title="Link to this definition"></a></dt>
 <dd><p>Resets the shots to the initial values when the executor was created.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="squlearn.Executor.sampler_run">
-<span class="sig-name descname"><span class="pre">sampler_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobV1" title="(in Qiskit v1.1)"><span class="pre">JobV1</span></a></span></span><a class="headerlink" href="#squlearn.Executor.sampler_run" title="Link to this definition"></a></dt>
-<dd><p>Function similar to the Qiskit Sampler run function, but this one includes caching,
+<dt class="sig sig-object py" id="squlearn.Executor.sampler_run_v1">
+<span class="sig-name descname"><span class="pre">sampler_run_v1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobV1" title="(in Qiskit v1.2)"><span class="pre">JobV1</span></a></span></span><a class="headerlink" href="#squlearn.Executor.sampler_run_v1" title="Link to this definition"></a></dt>
+<dd><p>Function similar to the Qiskit Sampler V1 run function, but this one includes caching,
 automatic session handling, and restarts of failed jobs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -501,9 +658,71 @@ automatic session handling, and restarts of failed jobs.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.sampler_run_v2">
+<span class="sig-name descname"><span class="pre">sampler_run_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pubs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.2)"><span class="pre">QuantumCircuit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.2)"><span class="pre">QuantumCircuit</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.2)"><span class="pre">QuantumCircuit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v1.2)"><span class="pre">QuantumCircuit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Parameter" title="(in Qiskit v1.2)"><span class="pre">Parameter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Integral</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.sampler_run_v2" title="Link to this definition"></a></dt>
+<dd><p>Function similar to the Qiskit Sampler V2 run function, but this one includes caching,
+automatic session handling, and restarts of failed jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pubs</strong> (<em>Iterable</em><em>[</em><em>EstimatorPubLike</em><em>]</em>) – An iterable of pub-like objects, such as
+tuples <code class="docutils literal notranslate"><span class="pre">(circuit,)</span></code> or <code class="docutils literal notranslate"><span class="pre">(circuit,</span> <span class="pre">parameter_values)</span></code>.</p></li>
+<li><p><strong>shots</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>None</em><em>]</em>) – The number of shots used for the sampling. If None
+the Executors numer of shot will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A qiskit job containing the results of the run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.select_backend">
+<span class="sig-name descname"><span class="pre">select_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.select_backend" title="Link to this definition"></a></dt>
+<dd><p>Selects the best backend for a given circuit and options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – Either a QuantumCircuit or an EncodingCircuitBase</p></li>
+<li><p><strong>**options</strong> – <p>Additional options for backend selection. Possible options:</p>
+<ul>
+<li><p>min_num_qubits: Minimum number of qubits in the circuit (default: None)</p></li>
+<li><p>max_num_qubits: Maximum number of qubits in the circuit (default: None)</p></li>
+<li><p>cost_function: Cost function to use (default: None)</p></li>
+<li><p>optimization_level: Optimization level (default: 3)</p></li>
+<li><p>n_trials_transpile: Number of trials to transpile (default: 1)</p></li>
+<li><p>call_limit: Call limit (default: int(3e7))</p></li>
+<li><p>verbose: Whether to print information (default: False)</p></li>
+<li><p>mode: Mode for the backend selection. Overwrites the option provided to the
+constructor.</p></li>
+<li><p>use_hqaa: Whether to use HQAA. Overwrites the option provided to the
+constructor.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the best backend and the transpiled circuit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.set_backend">
+<span class="sig-name descname"><span class="pre">set_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend" title="(in Qiskit v1.2)"><span class="pre">Backend</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.set_backend" title="Link to this definition"></a></dt>
+<dd><p>Sets the backend that is used for the execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>backend</strong> (<em>Backend</em>) – Backend that is used for the execution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="squlearn.Executor.set_options_estimator">
 <span class="sig-name descname"><span class="pre">set_options_estimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.set_options_estimator" title="Link to this definition"></a></dt>
-<dd><p>Set options values for the estimator.</p>
+<dd><p>Set options values for the estimator (V1 and V2).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>**fields</strong> – The fields to update the options</p>
@@ -514,7 +733,7 @@ automatic session handling, and restarts of failed jobs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.Executor.set_options_sampler">
 <span class="sig-name descname"><span class="pre">set_options_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.set_options_sampler" title="Link to this definition"></a></dt>
-<dd><p>Set options values for the sampler.</p>
+<dd><p>Set options values for the sampler (V1 and V2).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>**fields</strong> – The fields to update the options</p>
@@ -555,6 +774,12 @@ automatic session handling, and restarts of failed jobs.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.Executor.unset_backend">
+<span class="sig-name descname"><span class="pre">unset_backend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.Executor.unset_backend" title="Link to this definition"></a></dt>
+<dd><p>Unsets the backend that is used for the execution.</p>
+</dd></dl>
+
 </section>
 </dd></dl>
 
@@ -565,7 +790,7 @@ automatic session handling, and restarts of failed jobs.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="squlearn.observables.observable_derivatives.ObservableDerivatives.html" class="btn btn-neutral float-left" title="squlearn.observables.observable_derivatives.ObservableDerivatives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="squlearn.kernel.matrix.FidelityKernel.html" class="btn btn-neutral float-right" title="squlearn.kernel.matrix.FidelityKernel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="squlearn.util.executor.ExecutorEstimator.html" class="btn btn-neutral float-right" title="squlearn.util.executor.ExecutorEstimator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

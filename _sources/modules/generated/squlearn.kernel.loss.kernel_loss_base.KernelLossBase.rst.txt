@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.loss.kernel_loss_base`.\ :spelling:word:`KernelLossBase`
+=====================================================================================
+
+.. currentmodule:: squlearn.kernel.loss.kernel_loss_base
+
+.. autoclass:: KernelLossBase

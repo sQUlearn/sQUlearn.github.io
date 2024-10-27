@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Kernel Methods &mdash; sQUlearn 0.7.6 documentation</title>
+  <title>Quantum Kernel Methods &mdash; sQUlearn 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=918ced64"></script>
+        <script src="../_static/documentation_options.js?v=486e5634"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.6
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -235,7 +235,7 @@ instances.</p>
 <span class="n">enc_circ</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">fqk_instance</span> <span class="o">=</span> <span class="n">FidelityKernel</span><span class="p">(</span>
     <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
+    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">()</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -311,70 +311,44 @@ that contain trainable parameters to optimally adjust to a given learning proble
 parameters are obtained from classical optimization loops which attempt to minimize a given loss
 function.</p>
 <p>sQUlearn implements the kernel target alignment procedure as well as the Negative-Log-Likelihood.
-At the same time it provides several optimizers such as <code class="code docutils literal notranslate"><span class="pre">Adam</span></code> and <code class="code docutils literal notranslate"><span class="pre">SLSQP</span></code>; cf.
-<a class="reference internal" href="../modules/generated/squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html#squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer" title="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer</span></code></a> for details.</p>
+At the same time it provides several optimizers such as <code class="code docutils literal notranslate"><span class="pre">Adam</span></code> and <code class="code docutils literal notranslate"><span class="pre">SLSQP</span></code>;
+This can be achieved by employing the <code class="xref py py-class docutils literal notranslate"><span class="pre">KernelOptimizer</span></code> class which automatically
+enables the optimization of quantum kernels when used in the high-level methods.</p>
 <p>The following examples assume that you have some data set available which you previously split into
 training and test data and shows how to optimize kernels.</p>
 <p><strong>Example - Kernel Target Alignment</strong></p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span>
-<span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
 <span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
 <span class="kn">from</span> <span class="nn">squlearn.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel.optimization</span> <span class="kn">import</span> <span class="n">KernelOptimizer</span><span class="p">,</span> <span class="n">TargetAlignment</span><span class="p">,</span> <span class="n">NLL</span>
-<span class="n">enc_circ</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
-    <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span>
-    <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
-    <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
-    <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span><span class="p">,</span> <span class="n">KernelOptimizer</span><span class="p">,</span> <span class="n">QKRR</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.loss</span> <span class="kn">import</span> <span class="n">TargetAlignment</span>
+
+<span class="c1"># set up the encoding circuit</span>
+<span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># set up the quantum kernel</span>
+<span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span><span class="n">encoding_circuit</span><span class="p">,</span> <span class="n">Executor</span><span class="p">())</span>
+
 <span class="c1"># set up the optimizer</span>
 <span class="n">adam_opt</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+
 <span class="c1"># define KTA loss function</span>
-<span class="n">kta_loss</span> <span class="o">=</span> <span class="n">TargetAlignment</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">pqk_instance</span><span class="p">)</span>
-<span class="n">kta_optimizer</span> <span class="o">=</span> <span class="n">KernelOptimizer</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">kta_loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">adam_opt</span><span class="p">)</span>
-<span class="n">opt_kta_result</span> <span class="o">=</span> <span class="n">kta_optimizer</span><span class="o">.</span><span class="n">run_optimization</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># retrieve optimized parameters</span>
-<span class="n">opt_kta_params</span> <span class="o">=</span> <span class="n">opt_kta_result</span><span class="o">.</span><span class="n">x</span>
-<span class="c1"># assign optimal kta parameters to kernel</span>
-<span class="n">pqk_instance</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">opt_kta_params</span><span class="p">)</span>
+<span class="n">kta_loss</span> <span class="o">=</span> <span class="n">TargetAlignment</span><span class="p">()</span>
+
+<span class="c1"># set up the kernel optimizer</span>
+<span class="n">kernel_optimizer</span> <span class="o">=</span> <span class="n">KernelOptimizer</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">pqk_instance</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">kta_loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">adam_opt</span><span class="p">)</span>
+
+<span class="c1"># initialize the QKRR model with the kernel optimizer</span>
+<span class="n">qkrr</span> <span class="o">=</span> <span class="n">QKRR</span><span class="p">(</span><span class="n">kernel_optimizer</span><span class="p">)</span>
+
+<span class="c1"># Simple example</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="n">qkrr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p><em>Note:</em> The same workflow has to be used for FQKs!</p>
-<p><strong>Example - Negative-Log-Likelihood</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span>
-<span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
-<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
-<span class="kn">from</span> <span class="nn">squlearn.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel.optimization</span> <span class="kn">import</span> <span class="n">KernelOptimizer</span><span class="p">,</span> <span class="n">TargetAlignment</span><span class="p">,</span> <span class="n">NLL</span>
-<span class="n">enc_circ</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pqk_instance</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span>
-    <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">enc_circ</span><span class="p">,</span>
-    <span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(),</span>
-    <span class="n">measurement</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
-    <span class="n">outer_kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
-    <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">)</span>
-<span class="c1"># set up the optimizer</span>
-<span class="n">adam_opt</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
-<span class="c1"># define NLL loss function (note that noise_val needs to bet set)</span>
-<span class="n">nll_loss</span> <span class="o">=</span> <span class="n">NLL</span><span class="p">(</span><span class="n">quantum_kernel</span><span class="o">=</span><span class="n">pqk_instance</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">noise_val</span><span class="p">)</span>
-<span class="n">nll_optimizer</span> <span class="o">=</span> <span class="n">KernelOptimizer</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">nll_loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">adam_opt</span><span class="p">)</span>
-<span class="n">opt_nll_result</span> <span class="o">=</span> <span class="n">nll_optimizer</span><span class="o">.</span><span class="n">run_optimization</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># retrieve optimized parameters</span>
-<span class="n">opt_nll_params</span> <span class="o">=</span> <span class="n">opt_nll_params</span><span class="o">.</span><span class="n">x</span>
-<span class="c1"># assign optimal nll parameters to kernel</span>
-<span class="n">pqk_instance</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">opt_nll_params</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><em>Note:</em> The same workflow has to be used for FQKs!</p>
 <p class="rubric">References</p>
 <p>[1] <a class="reference external" href="http://arxiv.org/abs/2101.11020v2">M. Schuld, “Supervised quantum machine learning models are kernel methods”. arXiv:2101.11020v2 (2021).</a></p>
 <p>[2] <a class="reference external" href="https://arxiv.org/abs/2105.02276">T. Hubregtsen et al., “Training Quantum Embedding Kernels on Near-Term Quantum Computers”. arXiv:2105.02276v1 (2021).</a></p>

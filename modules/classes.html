@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference &mdash; sQUlearn 0.7.6 documentation</title>
+  <title>API Reference &mdash; sQUlearn 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=918ced64"></script>
+        <script src="../_static/documentation_options.js?v=486e5634"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.6
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -70,12 +70,14 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QKRR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QKRR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QGPR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QGPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/squlearn.qnn.QNNRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.QNNRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.qrc.QRCRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qrc</span></code>.QRCRegressor</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#qml-classifiers">QML Classifiers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QSVC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QSVC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/squlearn.kernel.ml.QGPC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.ml</span></code>.QGPC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/squlearn.qnn.QNNClassifier.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.QNNClassifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.qrc.QRCClassifier.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qrc</span></code>.QRCClassifier</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#circuit-design">Circuit Design</a><ul>
@@ -88,8 +90,11 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.MultiControlEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.MultiControlEncodingCircuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ChebyshevRx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ChebyshevRx</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.ParamZFeatureMap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.ParamZFeatureMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.KyriienkoEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.KyriienkoEncodingCircuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QiskitEncodingCircuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.QCNNEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.QCNNEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.RandomLayeredEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.RandomLayeredEncodingCircuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.RandomEncodingCircuit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code>.RandomEncodingCircuit</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#encoding-circuit-tools">Encoding Circuit Tools</a><ul>
@@ -120,15 +125,16 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#execution-tools">Execution Tools</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/squlearn.Executor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn</span></code>.Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.util.executor.ExecutorEstimator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.executor</span></code>.ExecutorEstimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/squlearn.util.executor.ExecutorSampler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.executor</span></code>.ExecutorSampler</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#core">Core</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-squlearn.kernel.matrix">Quantum Kernel Core</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.matrix.FidelityKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code>.FidelityKernel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix</span></code>.ProjectedQuantumKernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimizer</span></code>.KernelOptimizer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.negative_log_likelihood</span></code>.NLL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.target_alignment</span></code>.TargetAlignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.loss.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.negative_log_likelihood</span></code>.NLL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.loss.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.target_alignment</span></code>.TargetAlignment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-squlearn.qnn">QNN Core</a><ul>
@@ -139,6 +145,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.lowlevel_qnn_base.LowLevelQNNBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn_base</span></code>.LowLevelQNNBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.VarianceLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.ODELoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ODELoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ParameterRegularizationLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.get_variance_fac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.get_variance_fac</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.get_lr_decay.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn</span></code>.get_lr_decay</a></li>
@@ -175,11 +182,11 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.observables.observable_base.ObservableBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables.observable_base</span></code>.ObservableBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit.encoding_circuit_base</span></code>.EncodingCircuitBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.matrix.kernel_matrix_base</span></code>.KernelMatrixBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_loss_base.KernelLossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_loss_base</span></code>.KernelLossBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.optimization.kernel_optimization_base</span></code>.KernelOptimizerBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.kernel.loss.kernel_loss_base.KernelLossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.kernel_loss_base</span></code>.KernelLossBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.optimizers.optimizer_base.OptimizerBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.optimizers.optimizer_base</span></code>.OptimizerBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.base_qnn.BaseQNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.base_qnn</span></code>.BaseQNN</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qnn.loss.LossBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.LossBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/squlearn.qrc.base_qrc.BaseQRC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qrc.base_qrc</span></code>.BaseQRC</a></li>
 </ul>
 </li>
 </ul>
@@ -231,6 +238,9 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.QNNRegressor</span></code></a></p></td>
 <td><p>Quantum Neural Network for Regression.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qrc.QRCRegressor.html#squlearn.qrc.QRCRegressor" title="squlearn.qrc.QRCRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qrc.QRCRegressor</span></code></a></p></td>
+<td><p>Quantum Reservoir Computing for regression.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -246,6 +256,9 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.QNNClassifier.html#squlearn.qnn.QNNClassifier" title="squlearn.qnn.QNNClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.QNNClassifier</span></code></a></p></td>
 <td><p>Quantum Neural Network for Classification.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qrc.QRCClassifier.html#squlearn.qrc.QRCClassifier" title="squlearn.qrc.QRCClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qrc.QRCClassifier</span></code></a></p></td>
+<td><p>Quantum Reservoir Computing for classification.</p></td>
 </tr>
 </tbody>
 </table>
@@ -280,11 +293,20 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.ParamZFeatureMap.html#squlearn.encoding_circuit.ParamZFeatureMap" title="squlearn.encoding_circuit.ParamZFeatureMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.ParamZFeatureMap</span></code></a></p></td>
 <td><p>Parameterized Z feature map  with optional CNOT gates between the default layers.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html#squlearn.encoding_circuit.QiskitEncodingCircuit" title="squlearn.encoding_circuit.QiskitEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QiskitEncodingCircuit</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.KyriienkoEncodingCircuit.html#squlearn.encoding_circuit.KyriienkoEncodingCircuit" title="squlearn.encoding_circuit.KyriienkoEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.KyriienkoEncodingCircuit</span></code></a></p></td>
+<td><p>Collection of encoding circuits introduced by Kyriienko et al. in reference [1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QiskitEncodingCircuit.html#squlearn.encoding_circuit.QiskitEncodingCircuit" title="squlearn.encoding_circuit.QiskitEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QiskitEncodingCircuit</span></code></a></p></td>
 <td><p>Wrapper to create sQUlearn encoding circuits from the <a class="reference external" href="https://qiskit.org/documentation/apidoc/circuit_library.html">Qiskit circuit library</a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QCNNEncodingCircuit.html#squlearn.encoding_circuit.QCNNEncodingCircuit" title="squlearn.encoding_circuit.QCNNEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QCNNEncodingCircuit</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.QCNNEncodingCircuit.html#squlearn.encoding_circuit.QCNNEncodingCircuit" title="squlearn.encoding_circuit.QCNNEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.QCNNEncodingCircuit</span></code></a></p></td>
 <td><p>Encoding circuit for quantum convolutional neural networks (QCNN).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.RandomLayeredEncodingCircuit.html#squlearn.encoding_circuit.RandomLayeredEncodingCircuit" title="squlearn.encoding_circuit.RandomLayeredEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.RandomLayeredEncodingCircuit</span></code></a></p></td>
+<td><p>Creates a random Layered encoding circuit with no trainable parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.encoding_circuit.RandomEncodingCircuit.html#squlearn.encoding_circuit.RandomEncodingCircuit" title="squlearn.encoding_circuit.RandomEncodingCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encoding_circuit.RandomEncodingCircuit</span></code></a></p></td>
+<td><p>Random parameterized encoding circuit with randomly picked gates, qubits and feature encodings.</p></td>
 </tr>
 </tbody>
 </table>
@@ -367,6 +389,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a></p></td>
 <td><p>A class for executing quantum jobs on IBM Quantum systems or simulators.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.util.executor.ExecutorEstimator.html#squlearn.util.executor.ExecutorEstimator" title="squlearn.util.executor.ExecutorEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">util.executor.ExecutorEstimator</span></code></a></p></td>
+<td><p>A class that creates an estimator primitive that wraps a Primitives instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.util.executor.ExecutorSampler.html#squlearn.util.executor.ExecutorSampler" title="squlearn.util.executor.ExecutorSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">util.executor.ExecutorSampler</span></code></a></p></td>
+<td><p>A class that creates a sampler primitive that wraps a Primitives instance.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -386,13 +414,10 @@
 </table>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer.html#squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer" title="squlearn.kernel.optimization.kernel_optimizer.KernelOptimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.kernel_optimizer.KernelOptimizer</span></code></a></p></td>
-<td><p>Quantum kernel optimizer.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.negative_log_likelihood.NLL.html#squlearn.kernel.optimization.negative_log_likelihood.NLL" title="squlearn.kernel.optimization.negative_log_likelihood.NLL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.negative_log_likelihood.NLL</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.loss.negative_log_likelihood.NLL.html#squlearn.kernel.loss.negative_log_likelihood.NLL" title="squlearn.kernel.loss.negative_log_likelihood.NLL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.loss.negative_log_likelihood.NLL</span></code></a></p></td>
 <td><p>Negative log likelihood loss function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.target_alignment.TargetAlignment.html#squlearn.kernel.optimization.target_alignment.TargetAlignment" title="squlearn.kernel.optimization.target_alignment.TargetAlignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.target_alignment.TargetAlignment</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.loss.target_alignment.TargetAlignment.html#squlearn.kernel.loss.target_alignment.TargetAlignment" title="squlearn.kernel.loss.target_alignment.TargetAlignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.loss.target_alignment.TargetAlignment</span></code></a></p></td>
 <td><p>Target alignment loss function.</p></td>
 </tr>
 </tbody>
@@ -424,7 +449,10 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.VarianceLoss.html#squlearn.qnn.loss.VarianceLoss" title="squlearn.qnn.loss.VarianceLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.VarianceLoss</span></code></a></p></td>
 <td><p>Variance loss for regression.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html#squlearn.qnn.loss.ParameterRegularizationLoss" title="squlearn.qnn.loss.ParameterRegularizationLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.ParameterRegularizationLoss</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.ODELoss.html#squlearn.qnn.loss.ODELoss" title="squlearn.qnn.loss.ODELoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.ODELoss</span></code></a></p></td>
+<td><p>Squared loss for regression of Ordinary Differential Equations (ODEs).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.ParameterRegularizationLoss.html#squlearn.qnn.loss.ParameterRegularizationLoss" title="squlearn.qnn.loss.ParameterRegularizationLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.ParameterRegularizationLoss</span></code></a></p></td>
 <td><p>Loss for parameter regularization.</p></td>
 </tr>
 </tbody>
@@ -530,20 +558,20 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase.html#squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase" title="squlearn.kernel.matrix.kernel_matrix_base.KernelMatrixBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.matrix.kernel_matrix_base.KernelMatrixBase</span></code></a></p></td>
 <td><p>Base class for defining quantum kernels.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_loss_base.KernelLossBase.html#squlearn.kernel.optimization.kernel_loss_base.KernelLossBase" title="squlearn.kernel.optimization.kernel_loss_base.KernelLossBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.kernel_loss_base.KernelLossBase</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.kernel.loss.kernel_loss_base.KernelLossBase.html#squlearn.kernel.loss.kernel_loss_base.KernelLossBase" title="squlearn.kernel.loss.kernel_loss_base.KernelLossBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.loss.kernel_loss_base.KernelLossBase</span></code></a></p></td>
 <td><p>Empty parent class for a kernel loss function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase.html#squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase" title="squlearn.kernel.optimization.kernel_optimization_base.KernelOptimizerBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel.optimization.kernel_optimization_base.KernelOptimizerBase</span></code></a></p></td>
-<td><p>Empty parent class for defining a kernel optimizer object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.optimizers.optimizer_base.OptimizerBase.html#squlearn.optimizers.optimizer_base.OptimizerBase" title="squlearn.optimizers.optimizer_base.OptimizerBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optimizers.optimizer_base.OptimizerBase</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.optimizers.optimizer_base.OptimizerBase.html#squlearn.optimizers.optimizer_base.OptimizerBase" title="squlearn.optimizers.optimizer_base.OptimizerBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optimizers.optimizer_base.OptimizerBase</span></code></a></p></td>
 <td><p>Base class for QNN optimizers.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.base_qnn.BaseQNN.html#squlearn.qnn.base_qnn.BaseQNN" title="squlearn.qnn.base_qnn.BaseQNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.base_qnn.BaseQNN</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.base_qnn.BaseQNN.html#squlearn.qnn.base_qnn.BaseQNN" title="squlearn.qnn.base_qnn.BaseQNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.base_qnn.BaseQNN</span></code></a></p></td>
 <td><p>Base Class for Quantum Neural Networks.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.LossBase.html#squlearn.qnn.loss.LossBase" title="squlearn.qnn.loss.LossBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.LossBase</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/squlearn.qnn.loss.LossBase.html#squlearn.qnn.loss.LossBase" title="squlearn.qnn.loss.LossBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qnn.loss.LossBase</span></code></a></p></td>
 <td><p>Base class implementation for loss functions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/squlearn.qrc.base_qrc.BaseQRC.html#squlearn.qrc.base_qrc.BaseQRC" title="squlearn.qrc.base_qrc.BaseQRC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qrc.base_qrc.BaseQRC</span></code></a></p></td>
+<td><p>Base class for Quantum Reservoir Computing (QRC) models.</p></td>
 </tr>
 </tbody>
 </table>

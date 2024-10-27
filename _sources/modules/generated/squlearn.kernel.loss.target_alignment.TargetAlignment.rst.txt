@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.loss.target_alignment`.\ :spelling:word:`TargetAlignment`
+======================================================================================
+
+.. currentmodule:: squlearn.kernel.loss.target_alignment
+
+.. autoclass:: TargetAlignment

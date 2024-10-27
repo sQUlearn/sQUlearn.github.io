@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Error Mitigation for QNNs on IBM Devices &mdash; sQUlearn 0.7.6 documentation</title>
+  <title>Error Mitigation for Quantum Neural Networks on IBM Quantum Devices &mdash; sQUlearn 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -22,7 +22,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=918ced64"></script>
+        <script src="../_static/documentation_options.js?v=486e5634"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.6
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -69,26 +69,21 @@
 <li class="toctree-l2"><a class="reference internal" href="example_kernel_digit_classification.html">Handwritten Digit Recognition with Projected Quantum Kernels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_kernel_grid_search.html">Hyperparameter Optimization and Pipelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_quantum_bayesian_optimization.html">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Error Mitigation for QNNs on IBM Devices</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Importing-Libraries">Importing Libraries</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Set-up-of-the-QNN">Set-up of the QNN</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Error Mitigation for Quantum Neural Networks on IBM Quantum Devices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Library-Imports">Library Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Set-up-of-the-QNN">Set-up of the QNN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Configuring-the-Quantum-Neural-Network-(QNN)">Configuring the Quantum Neural Network (QNN)</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#Training-of-the-QNN-with-a-noise-free-simulator">Training of the QNN with a noise free simulator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Evaluating-the-QNN-on-the-IBM-backend-with-error-mitigation">Evaluating the QNN on the IBM backend with error mitigation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Without-error-mitigation">Without error mitigation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Dynamic-decoupling-and-TREX-error-mitigation">Dynamic decoupling and TREX error mitigation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Dynamic-decoupling-and-zero-noise-extrapolation-(ZNE)-for-error-mitigation">Dynamic decoupling and zero-noise extrapolation (ZNE) for error mitigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Evaluating-the-QNN-on-the-IBM-Backend-with-Error-Mitigation">Evaluating the QNN on the IBM Backend with Error Mitigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Without-Error-Mitigation">Without Error Mitigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Dynamic-Decoupling-and-TREX">Dynamic Decoupling and TREX</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Dynamic-Decoupling-and-Zero-Noise-Extrapolation-(ZNE)-for-Error-Mitigation">Dynamic Decoupling and Zero-Noise Extrapolation (ZNE) for Error Mitigation</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#Assessing-the-QNN-on-the-IBM-backend-using-the-sampler-primitive">Assessing the QNN on the IBM backend using the sampler primitive</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Run-the-Sampler-primitive-without-error-mitigation">Run the Sampler primitive without error mitigation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Run-the-Sampler-primitive-with-dynamic-decoupling-and-M3-error-mitigation">Run the Sampler primitive with dynamic decoupling and M3 error mitigation</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Retraining-the-QNN-on-the-IBM-Backend-without-Error-Mitigation-using-Variance-Regularization">Retraining the QNN on the IBM Backend without Error Mitigation using Variance Regularization</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Literature:">Literature:</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#Assessing-the-QNN-on-IBM-Quantum-Using-the-Sampler-Primitive">Assessing the QNN on IBM Quantum Using the Sampler Primitive</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +105,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="examples_index.html">Examples</a></li>
-      <li class="breadcrumb-item active">Error Mitigation for QNNs on IBM Devices</li>
+      <li class="breadcrumb-item active">Error Mitigation for Quantum Neural Networks on IBM Quantum Devices</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/examples/example_qnn_backend_mitigation.nblink.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,27 +115,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Error-Mitigation-for-QNNs-on-IBM-Devices">
-<h1>Error Mitigation for QNNs on IBM Devices<a class="headerlink" href="#Error-Mitigation-for-QNNs-on-IBM-Devices" title="Link to this heading"></a></h1>
-<section id="Introduction">
-<h2>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading"></a></h2>
-<p>This tutorial demonstrates the setup and implementation of error mitigation techniques for Qiskit’s primitives within the context of Quantum Neural Networks (QNNs) in sQUlearn. Firstly, we will train a small QNN using a noise-free and error-free simulator to fit a parabolic dataset. Subsequently, we will illustrate how to configure the <code class="docutils literal notranslate"><span class="pre">Executor</span></code> class to establish a connection with IBM Quantum devices. We assume that you have already set up an IBM account and have access to IBM Quantum
-devices. For detailed instructions on registering and configuring your IBM Quantum account, please refer to the following link: <a class="reference external" href="https://qiskit.org/ecosystem/ibm-runtime/how_to/account-management.html">IBM Quantum Account Management</a>.</p>
-<p>Given the potentially lengthy queuing times for the free quantum devices, we will replicate the noise model of a quantum device and use the QASM simulator to emulate the real characteristics of a quantum computer. The simulator employed in this task, known as the <code class="docutils literal notranslate"><span class="pre">ibmq_qasm_simulator</span></code>, operates within the IBM Quantum cloud and can be accessed similarly to the actual quantum devices.</p>
-<p>We will explore various error mitigation options for both the Estimator and Sampler primitives. Finally, we will demonstrate how to train the QNN on the quantum device (simulator) to adapt to noisy configurations and reduce finite sampling noise through variance regularization [1].</p>
+  <section id="Error-Mitigation-for-Quantum-Neural-Networks-on-IBM-Quantum-Devices">
+<h1>Error Mitigation for Quantum Neural Networks on IBM Quantum Devices<a class="headerlink" href="#Error-Mitigation-for-Quantum-Neural-Networks-on-IBM-Quantum-Devices" title="Link to this heading"></a></h1>
+<section id="Overview">
+<h2>Overview<a class="headerlink" href="#Overview" title="Link to this heading"></a></h2>
+<p>This tutorial covers the setup and implementation of error mitigation techniques for Qiskit’s primitives when building Quantum Neural Networks (QNNs) using <strong>sQUlearn</strong>. We will first train a simple QNN on a noise-free, ideal simulator to fit a parabolic dataset. Next, we’ll demonstrate how to configure the <code class="docutils literal notranslate"><span class="pre">Executor</span></code> class to connect to IBM Quantum devices. Before proceeding, ensure you have an IBM Quantum account with access to IBM devices. If needed, refer to <a class="reference external" href="https://docs.quantum.ibm.com/guides/setup-channel">IBM Quantum Account
+Management</a> for guidance on registering and configuring your account.</p>
+<p>Due to the longer queuing times and associated costs of running circuits on real quantum hardware, we suggest using this notebook primarily as a demonstration of error mitigation setup rather than executing it directly on IBM devices. However, it will prepare you to set up error mitigation for real experiments should the need arise.</p>
+<p>In this notebook, we will explore various error mitigation strategies for the <code class="docutils literal notranslate"><span class="pre">EstimatorV2</span></code> and <code class="docutils literal notranslate"><span class="pre">SamplerV2</span></code> primitive used to performe calculations on IBM Quantum.</p>
 </section>
-<section id="Importing-Libraries">
-<h2>Importing Libraries<a class="headerlink" href="#Importing-Libraries" title="Link to this heading"></a></h2>
-<p>The first step involves importing the necessary libraries for this tutorial. We will be using the <code class="docutils literal notranslate"><span class="pre">qiskit-ibm-runtime</span></code> package to establish connections with IBM Quantum devices and <code class="docutils literal notranslate"><span class="pre">qiskit-aer</span></code> to simulate the noise model of these quantum devices. Additionally, we will employ the <code class="docutils literal notranslate"><span class="pre">squlearn</span></code> library to configure and train the QNN on the quantum device.</p>
+<section id="Library-Imports">
+<h2>Library Imports<a class="headerlink" href="#Library-Imports" title="Link to this heading"></a></h2>
+<p>To begin, we’ll import the essential libraries for this tutorial. These include <code class="docutils literal notranslate"><span class="pre">qiskit-ibm-runtime</span></code> for connecting to IBM Quantum devices. We’ll also use the <code class="docutils literal notranslate"><span class="pre">squlearn</span></code> library to build and train the QNN for both ideal and mitigated scenarios.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">Session</span><span class="p">,</span> <span class="n">Options</span><span class="p">,</span> <span class="n">Estimator</span><span class="p">,</span> <span class="n">Sampler</span>
-<span class="kn">from</span> <span class="nn">qiskit_aer.noise</span> <span class="kn">import</span> <span class="n">NoiseModel</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">Session</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime.fake_provider</span> <span class="kn">import</span> <span class="n">FakeBelemV2</span>
 
 <span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
 <span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
@@ -153,9 +148,9 @@ devices. For detailed instructions on registering and configuring your IBM Quant
 </section>
 <section id="Set-up-of-the-QNN">
 <h2>Set-up of the QNN<a class="headerlink" href="#Set-up-of-the-QNN" title="Link to this heading"></a></h2>
-<p>We first set-up the data encoding circuit of the QNN. Here we utilize the <code class="docutils literal notranslate"><span class="pre">ChebyshevPQC</span></code> encoding circuit for 2 qubits and 2 layers.</p>
+<p>We first set up the data encoding circuit for the QNN. Here, we utilize the <code class="docutils literal notranslate"><span class="pre">ChebyshevPQC</span></code> encoding circuit with 2 qubits and 2 layers to keep runtime low.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nqubits</span> <span class="o">=</span> <span class="mi">2</span>
@@ -165,7 +160,7 @@ devices. For detailed instructions on registering and configuring your IBM Quant
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -174,7 +169,7 @@ devices. For detailed instructions on registering and configuring your IBM Quant
 </div>
 <p>We utilize the parameterized summation over Z Pauli matrices as the observable: <span class="math notranslate nohighlight">\(\hat{O} = \hat{I}\alpha + \sum_i\hat{Z}_i \beta_i\)</span></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)</span>
@@ -192,24 +187,24 @@ SparsePauliOp([&#39;II&#39;, &#39;IZ&#39;, &#39;ZI&#39;],
  ParameterExpression(1.0*p[2])])
 </pre></div></div>
 </div>
-<p>Lastly, we configure the Quantum Neural Network (QNN) using the QNNRegressor class sourced from the squlearn library. In this setup, we initialize the QNN with randomized weights, employ the L2 Loss (also known as SquaredLoss), and utilize the Adam optimization routine with a learning rate set to 0.1. It’s noteworthy that during the training process, the QNN leverages the statevector_simulator to calculate the expectation values of observables, thereby ensuring a noise-free and error-free
-training environment.</p>
+<section id="Configuring-the-Quantum-Neural-Network-(QNN)">
+<h3>Configuring the Quantum Neural Network (QNN)<a class="headerlink" href="#Configuring-the-Quantum-Neural-Network-(QNN)" title="Link to this heading"></a></h3>
+<p>Lastly, we configure the Quantum Neural Network (QNN) using the <code class="docutils literal notranslate"><span class="pre">QNNRegressor</span></code> class from the <strong>squlearn</strong> library. In this setup, we initialize the QNN with randomized weights, apply the L2 Loss (also known as Squared Loss), and utilize the Adam optimization routine with a learning rate of 0.1. Notably, during training, the QNN operates on a noise-free simulation based on the <strong>PennyLane</strong> framework.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Randomly initialize parameters of the encoding circuit</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Randomly initialize parameters of the QNN</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
 <span class="n">param_ini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">pqc</span><span class="o">.</span><span class="n">num_parameters</span><span class="p">)</span>
-<span class="c1"># Initialize parameters of the observable as ones</span>
 <span class="n">param_op_ini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">num_parameters</span><span class="p">)</span>
 
 <span class="n">qnn_simulator</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
     <span class="n">pqc</span><span class="p">,</span>
     <span class="n">op</span><span class="p">,</span>
-    <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;statevector_simulator&quot;</span><span class="p">),</span>
+    <span class="n">Executor</span><span class="p">(),</span>
     <span class="n">SquaredLoss</span><span class="p">(),</span>
-    <span class="n">Adam</span><span class="p">({</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}),</span>
+    <span class="n">Adam</span><span class="p">({</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}),</span>
     <span class="n">param_ini</span><span class="p">,</span>
     <span class="n">param_op_ini</span><span class="p">,</span>
 <span class="p">)</span>
@@ -217,11 +212,12 @@ training environment.</p>
 </div>
 </div>
 </section>
+</section>
 <section id="Training-of-the-QNN-with-a-noise-free-simulator">
 <h2>Training of the QNN with a noise free simulator<a class="headerlink" href="#Training-of-the-QNN-with-a-noise-free-simulator" title="Link to this heading"></a></h2>
 <p>In this cell, we set-up the data <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> for training the QNN. The values are obtained by calculating the values of the simple parametric function <span class="math notranslate nohighlight">\(f(x) = x^2\)</span> with the <code class="docutils literal notranslate"><span class="pre">square</span></code> function of <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data that is inputted to the QNN</span>
@@ -233,10 +229,10 @@ training environment.</p>
 </div>
 <p>Afterwards, we train the QNN by calling the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method of the <code class="docutils literal notranslate"><span class="pre">QNNRegressor</span></code> class.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qnn_simulator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qnn_simulator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -245,12 +241,12 @@ training environment.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-fit: 100%|██████████| 100/100 [01:02&lt;00:00,  1.67it/s]
+fit: 100%|██████████| 100/100 [00:09&lt;00:00, 10.22it/s]
 </pre></div></div>
 </div>
 <p>The finial parameters of the encoding circuit and the observable are displayed in the output of the following cell.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result encoding parameters:&quot;</span><span class="p">,</span> <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param</span><span class="p">)</span>
@@ -270,11 +266,11 @@ Result observable parameters: [0.94664274 0.41717632 0.89088529]
 </div>
 <p>Following the QNN’s training, we proceed to compute model inferences and visualize the results. The QNN model generates the parabolic output, affirming the successful training of the QNN.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># function for evaluating the prediction of the QNN</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># function for evaluating the prediction of the QNN</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parabola function&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN inference&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
@@ -292,80 +288,65 @@ Result observable parameters: [0.94664274 0.41717632 0.89088529]
 </div>
 </div>
 </section>
-<section id="Evaluating-the-QNN-on-the-IBM-backend-with-error-mitigation">
-<h2>Evaluating the QNN on the IBM backend with error mitigation<a class="headerlink" href="#Evaluating-the-QNN-on-the-IBM-backend-with-error-mitigation" title="Link to this heading"></a></h2>
-<p>The subsequent phase involves assessing the noisy outcomes on the IBM backend by leveraging the Qiskit runtime environment. To mitigate queuing delays, we replicate the noise model of a physical quantum device and establish a QASM simulator that replicates its characteristics. To initiate the QiskitRuntimeService function, you must configure an access token outside this notebook. Throughout the execution of all interactions with the Qiskit runtime environment, a session is established that is
-linked to the QASM simulator backend of the IBM Quantum cloud.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<section id="Evaluating-the-QNN-on-the-IBM-Backend-with-Error-Mitigation">
+<h2>Evaluating the QNN on the IBM Backend with Error Mitigation<a class="headerlink" href="#Evaluating-the-QNN-on-the-IBM-Backend-with-Error-Mitigation" title="Link to this heading"></a></h2>
+<p>Next, we assess the QNN’s performance on real IBM backends by utilizing the Qiskit runtime environment. Here, we assume an IBM Quantum setup is already configured, allowing <code class="docutils literal notranslate"><span class="pre">QiskitRuntimeService</span></code> to be called without requiring a token. We initiate a session that is shared across different executor instances to ensure that all evaluations in this notebook are executed within a single session, thereby avoiding queuing delays.</p>
+<p>By default, this notebook is configured to use a fake backend to prevent incurring costs on IBM Quantum. Note, however, that error mitigation strategies are automatically disabled by Qiskit when running on a local simulator. The results presented here are based on actual IBM Quantum hardware outcomes.</p>
+<p>To switch from local simulation to execution on IBM Quantum, simply set the <code class="docutils literal notranslate"><span class="pre">local</span></code> variable to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># User token has to be set in advance file via save_account()</span>
-<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">)</span>
-<span class="c1"># Copy the noise model of the backend</span>
-<span class="n">noisy_backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;ibm_nairobi&quot;</span><span class="p">)</span>
-<span class="n">backend_noise_model</span> <span class="o">=</span> <span class="n">NoiseModel</span><span class="o">.</span><span class="n">from_backend</span><span class="p">(</span><span class="n">noisy_backend</span><span class="p">)</span>
-<span class="c1"># Create a Session for the Qiskit primitives</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;ibmq_qasm_simulator&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<p>In the upcoming cell, we configure the options for Qiskit primitives, specifying their usage of a noise model during evaluations. Furthermore, 10,000 shots are executed for each evaluation of the output of the QNN.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
-<span class="n">options</span><span class="o">.</span><span class="n">simulator</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;noise_model&quot;</span><span class="p">:</span> <span class="n">backend_noise_model</span><span class="p">,</span>
-    <span class="s2">&quot;coupling_map&quot;</span><span class="p">:</span> <span class="n">noisy_backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">coupling_map</span><span class="p">,</span>
-    <span class="s2">&quot;basis_gates&quot;</span><span class="p">:</span> <span class="n">noisy_backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">basis_gates</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">options</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">shots</span> <span class="o">=</span> <span class="mi">10000</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">local</span><span class="p">:</span>
+    <span class="n">execution</span> <span class="o">=</span> <span class="n">FakeBelemV2</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected Backend:&quot;</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">execution</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>Following that, we create an Executor containing an Estimator linked to the session we set up earlier. This configuration ensures that the QNN utilizes the Estimator Primitive for all its evaluations. Then, we proceed to create a new QNNRegressor, which is based on this updated Executor, and initialize it with the optimized set of parameters.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Selected Backend: ibm_strasbourg
+</pre></div></div>
+</div>
+</section>
+<section id="Without-Error-Mitigation">
+<h2>Without Error Mitigation<a class="headerlink" href="#Without-Error-Mitigation" title="Link to this heading"></a></h2>
+<p>In our first example, we disable all error mitigation techniques and test the QNN on the IBM backend. Here, we observe that the QNN’s output differs noticeably from the output of the noise-free simulator.</p>
+<p>Primarily, the QNN’s output is no longer smooth; it displays zigzag patterns. This is because the QNN is evaluated with a limited number of shots, introducing sampling noise into each QNN output. Additionally, the shape of the QNN function changes, as if an offset has been added. Upon closer inspection, we find that this offset is not consistent.</p>
+<p>These differences occur because the applied quantum gates are imperfect; their inherent error rates affect the QNN’s overall shape. A notable way to mitigate this issue is by training the QNN directly on the same IBM backend used for evaluation!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor_backend</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">Estimator</span><span class="p">(</span><span class="n">session</span><span class="p">),</span> <span class="n">caching</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor_no_mitigation</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">execution</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="s2">&quot;qnn.log&quot;</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
 <span class="n">qnn_backend</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
     <span class="n">pqc</span><span class="p">,</span>
     <span class="n">op</span><span class="p">,</span>
-    <span class="n">executor_backend</span><span class="p">,</span>
+    <span class="n">executor_no_mitigation</span><span class="p">,</span>
     <span class="n">SquaredLoss</span><span class="p">(),</span>
     <span class="n">Adam</span><span class="p">(),</span>
     <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param</span><span class="p">,</span>
     <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param_op</span><span class="p">,</span>
     <span class="n">caching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">primitive</span><span class="o">=</span><span class="s2">&quot;estimator&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<section id="Without-error-mitigation">
-<h3>Without error mitigation<a class="headerlink" href="#Without-error-mitigation" title="Link to this heading"></a></h3>
-<p>In our first example, we turn off all error mitigation techniques and test the QNN on the IBM backend. We notice that the QNN’s output differs noticeably from the output of the noise-free simulator.</p>
-<p>The primary differences are that the QNN’s output is no longer smooth; it shows zigzag patterns. This occurs because the QNN is evaluated with a limited number of shots, which introduces sampling noise to each QNN output. Additionally, the shape of the QNN function changes, as if an offset has been added. Upon closer examination, we can see that this offset is not constant.</p>
-<p>The reason for these differences is that the applied gates are no longer perfect; they have some error rates that affect the QNN’s shape. This issue can be significantly reduced by training the QNN on the same IBM backend where it is evaluated.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># Overwrites the options of the Estimator primitive</span>
-<span class="n">executor_backend</span><span class="o">.</span><span class="n">reset_options_estimator</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
-
-<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parabola function&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN inference&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN inference without noise mitigation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN inference without error mitigation&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -374,25 +355,45 @@ linked to the QASM simulator backend of the IBM Quantum cloud.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_qnn_backend_mitigation_23_0.png" src="../_images/examples_example_qnn_backend_mitigation_23_0.png" />
+<img alt="../_images/examples_example_qnn_backend_mitigation_19_0.png" src="../_images/examples_example_qnn_backend_mitigation_19_0.png" />
 </div>
 </div>
 </section>
-<section id="Dynamic-decoupling-and-TREX-error-mitigation">
-<h3>Dynamic decoupling and TREX error mitigation<a class="headerlink" href="#Dynamic-decoupling-and-TREX-error-mitigation" title="Link to this heading"></a></h3>
-<p>In the following cell, we present the results obtained with Qiskit’s default error mitigation setup. This setup is achieved by configuring the resilience level and optimization level in the primitive options to 1. For the estimator primitive, this translates to implementing dynamic decoupling for the circuits and employing TREX error mitigation for the expectation values. For more in-depth information on Qiskit error mitigation, please refer to <a class="reference external" href="https://qiskit.org/ecosystem/ibm-runtime/how_to/error-mitigation.html">this
-link</a>.</p>
-<p>Upon examination, we notice that the output’s shape is now more closely aligned with that of the noise-free simulator. Nevertheless, it’s important to mention that error mitigation leads to a slight increase in noise levels, which is also observable in the output.</p>
+<section id="Dynamic-Decoupling-and-TREX">
+<h2>Dynamic Decoupling and TREX<a class="headerlink" href="#Dynamic-Decoupling-and-TREX" title="Link to this heading"></a></h2>
+<p>In this example, we demonstrate how to use Dynamic Decoupling and Twirled Readout Error Extinction (TREX) to enhance QNN performance on noisy hardware. The options for error mitigation can be configured through the <code class="docutils literal notranslate"><span class="pre">estimator_options</span></code> in the executor, which allows customization of the settings for the <code class="docutils literal notranslate"><span class="pre">EstimatorV2</span></code> primitive used by squlearn under the hood.</p>
+<p><strong>Dynamic Decoupling</strong> is a technique that applies carefully timed sequences of pulses to reduce errors caused by environmental noise and gate imperfections during idle times on qubits.</p>
+<p><strong>TREX (Twirled Readout Error Extinction)</strong> is a method that reduces readout errors by applying randomized transformations to measurement outcomes, making the errors more uniform and thus easier to correct.</p>
+<p>More details on various error mitigation and suppression strategies are available in the <a class="reference external" href="https://docs.quantum.ibm.com/guides/error-mitigation-and-suppression-techniques">Qiskit documentation</a>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor_dd_trex</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">execution</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="s2">&quot;qnn.log&quot;</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
-<span class="n">executor_backend</span><span class="o">.</span><span class="n">reset_options_estimator</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+<span class="c1"># Dynamical decoupling</span>
+<span class="n">executor_dd_trex</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">executor_dd_trex</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XpXm&quot;</span>
 
-<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># Twirled readout error extinction (TREX)</span>
+<span class="n">executor_dd_trex</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">measure_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">executor_dd_trex</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">measure_noise_learning</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">executor_dd_trex</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">measure_noise_learning</span><span class="o">.</span><span class="n">shots_per_randomization</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">qnn_backend</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
+    <span class="n">pqc</span><span class="p">,</span>
+    <span class="n">op</span><span class="p">,</span>
+    <span class="n">executor_dd_trex</span><span class="p">,</span>
+    <span class="n">SquaredLoss</span><span class="p">(),</span>
+    <span class="n">Adam</span><span class="p">(),</span>
+    <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param</span><span class="p">,</span>
+    <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param_op</span><span class="p">,</span>
+    <span class="n">caching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">primitive</span><span class="o">=</span><span class="s2">&quot;estimator&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parabola function&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN inference&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
@@ -406,88 +407,43 @@ link</a>.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_qnn_backend_mitigation_25_0.png" src="../_images/examples_example_qnn_backend_mitigation_25_0.png" />
+<img alt="../_images/examples_example_qnn_backend_mitigation_21_0.png" src="../_images/examples_example_qnn_backend_mitigation_21_0.png" />
 </div>
 </div>
-</section>
-<section id="Dynamic-decoupling-and-zero-noise-extrapolation-(ZNE)-for-error-mitigation">
-<h3>Dynamic decoupling and zero-noise extrapolation (ZNE) for error mitigation<a class="headerlink" href="#Dynamic-decoupling-and-zero-noise-extrapolation-(ZNE)-for-error-mitigation" title="Link to this heading"></a></h3>
-<p>In the last example using the Estimator primitive, we employed dynamic decoupling to mitigate circuit errors and zero-noise extrapolation (ZNE) for expectation value error mitigation. ZNE entails running quantum circuits with artificially increased noise levels and then extrapolating the results to a noise-free scenario.</p>
-<p>Qiskit’s zero-noise extrapolation implementation offers several options to fine-tune the error mitigation process. For detailed information on ZNE and advanced resilience options, please consult <a class="reference external" href="https://qiskit.org/ecosystem/ibm-runtime/how_to/error-mitigation.html#advanced-resilience-options">this link</a>.</p>
-<p>In this specific example, the ZNE did not completely align the QNN’s output with the noise-free results, but the shape of the QNN’s output is closer to the noise-free simulator’s output. However, the noise levels are significantly increased by the ZNE.</p>
+<section id="Dynamic-Decoupling-and-Zero-Noise-Extrapolation-(ZNE)-for-Error-Mitigation">
+<h3>Dynamic Decoupling and Zero-Noise Extrapolation (ZNE) for Error Mitigation<a class="headerlink" href="#Dynamic-Decoupling-and-Zero-Noise-Extrapolation-(ZNE)-for-Error-Mitigation" title="Link to this heading"></a></h3>
+<p>In this example, we employ Zero-Noise Extrapolation (ZNE) to mitigate errors in the computed expectation values. ZNE works by running quantum circuits with artificially increased noise levels and then extrapolating the results to approximate a noise-free scenario.</p>
+<p>Qiskit’s implementation of zero-noise extrapolation offers various options for fine-tuning the error mitigation process. For more details, refer to the <a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions">Qiskit documentation on ZNE</a>.</p>
+<p>In this case, ZNE did not perfectly align the QNN’s output with the noise-free results, though it brought the QNN’s output shape closer to that of the noise-free simulator. However, it’s worth noting that the noise levels increased due to the extrapolation steps involved in ZNE.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">noise_factors</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">noise_amplifier</span> <span class="o">=</span> <span class="s2">&quot;CxAmplifier&quot;</span>
-<span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="s2">&quot;QuadraticExtrapolator&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor_zne</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">execution</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="s2">&quot;qnn.log&quot;</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="c1"># Configuration for Zero Noise Extrapolation</span>
+<span class="n">executor_zne</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">executor_zne</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">noise_factors</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">executor_zne</span><span class="o">.</span><span class="n">estimator_options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span>
 
-<span class="n">executor_backend</span><span class="o">.</span><span class="n">reset_options_estimator</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
-
-<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parabola function&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN inference&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN inference without dynamic decoupling and ZNE&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/examples_example_qnn_backend_mitigation_27_0.png" src="../_images/examples_example_qnn_backend_mitigation_27_0.png" />
-</div>
-</div>
-</section>
-</section>
-<section id="Assessing-the-QNN-on-the-IBM-backend-using-the-sampler-primitive">
-<h2>Assessing the QNN on the IBM backend using the sampler primitive<a class="headerlink" href="#Assessing-the-QNN-on-the-IBM-backend-using-the-sampler-primitive" title="Link to this heading"></a></h2>
-<p>In the forthcoming cells, we assess the QNN’s performance by employing the Sampler primitive. The Sampler primitive gathers probabilities from the encoding circuits, the QNN then computes the expectation values of observables based on these probabilities. Consequently, the Sampler primitive provides distinct error mitigation options compared to the Estimator primitive.</p>
-<p>In the subsequent cell, we reset the session and establish a fresh Executor that relies on the Sampler primitive. This setup ensures that the QNN utilizes the Sampler primitive for all its evaluations. Subsequently, we proceed to create a new QNNRegressor, rooted in this updated Executor, and initialize it with the optimized parameter set.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">service</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;ibmq_qasm_simulator&quot;</span><span class="p">))</span>
-<span class="n">executor_backend</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">Sampler</span><span class="p">(</span><span class="n">session</span><span class="p">),</span> <span class="n">caching</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">qnn_backend</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
     <span class="n">pqc</span><span class="p">,</span>
     <span class="n">op</span><span class="p">,</span>
-    <span class="n">executor_backend</span><span class="p">,</span>
+    <span class="n">executor_zne</span><span class="p">,</span>
     <span class="n">SquaredLoss</span><span class="p">(),</span>
     <span class="n">Adam</span><span class="p">(),</span>
     <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param</span><span class="p">,</span>
     <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param_op</span><span class="p">,</span>
     <span class="n">caching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">primitive</span><span class="o">=</span><span class="s2">&quot;estimator&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<section id="Run-the-Sampler-primitive-without-error-mitigation">
-<h3>Run the Sampler primitive without error mitigation<a class="headerlink" href="#Run-the-Sampler-primitive-without-error-mitigation" title="Link to this heading"></a></h3>
-<p>The following cell computes the inference with the Sampler primitive without error mitigation. Results are comparable to the Estimator primitive without error mitigation.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">executor_backend</span><span class="o">.</span><span class="n">reset_options_sampler</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
-
-<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parabola function&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN inference&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN inference utilizing Sampler and without error mitigation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN inference with ZNE&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -496,95 +452,44 @@ link</a>.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_qnn_backend_mitigation_31_0.png" src="../_images/examples_example_qnn_backend_mitigation_31_0.png" />
+<img alt="../_images/examples_example_qnn_backend_mitigation_23_0.png" src="../_images/examples_example_qnn_backend_mitigation_23_0.png" />
 </div>
 </div>
 </section>
-<section id="Run-the-Sampler-primitive-with-dynamic-decoupling-and-M3-error-mitigation">
-<h3>Run the Sampler primitive with dynamic decoupling and M3 error mitigation<a class="headerlink" href="#Run-the-Sampler-primitive-with-dynamic-decoupling-and-M3-error-mitigation" title="Link to this heading"></a></h3>
-<p>The last inference calculation utilizes the dynamic decoupling for the circuits and employs the M3 error mitigation to mitigate readout errors. This is the default set-up for the Sampler primitive.</p>
+</section>
+<section id="Assessing-the-QNN-on-IBM-Quantum-Using-the-Sampler-Primitive">
+<h2>Assessing the QNN on IBM Quantum Using the Sampler Primitive<a class="headerlink" href="#Assessing-the-QNN-on-IBM-Quantum-Using-the-Sampler-Primitive" title="Link to this heading"></a></h2>
+<p>Last, we assess the QNN’s performance by utilizing the Sampler primitive. The Sampler primitive gathers probability distributions from the encoding circuits, allowing the QNN to compute expectation values of observables based on these probabilities.</p>
+<p>The Sampler primitive also supports various error mitigation strategies, which can be configured in the <code class="docutils literal notranslate"><span class="pre">Executor</span></code> via <code class="docutils literal notranslate"><span class="pre">sampler_options</span></code>, similar to the <code class="docutils literal notranslate"><span class="pre">estimator_options</span></code> discussed above.</p>
+<p>In this example, we again apply Dynamic Decoupling as an error mitigation technique and ensure the QNN uses the Sampler primitive by specifying <code class="docutils literal notranslate"><span class="pre">primitive=&quot;sampler&quot;</span></code> during QNN initialization.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor_sampler</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">execution</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="s2">&quot;qnn.log&quot;</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
-<span class="n">executor_backend</span><span class="o">.</span><span class="n">reset_options_sampler</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+<span class="n">executor_sampler</span><span class="o">.</span><span class="n">sampler_options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">executor_sampler</span><span class="o">.</span><span class="n">sampler_options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XpXm&quot;</span>
 
-<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parabola function&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN inference&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN inference utilizing Sampler and with error mitigation&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/examples_example_qnn_backend_mitigation_33_0.png" src="../_images/examples_example_qnn_backend_mitigation_33_0.png" />
-</div>
-</div>
-</section>
-</section>
-<section id="Retraining-the-QNN-on-the-IBM-Backend-without-Error-Mitigation-using-Variance-Regularization">
-<h2>Retraining the QNN on the IBM Backend without Error Mitigation using Variance Regularization<a class="headerlink" href="#Retraining-the-QNN-on-the-IBM-Backend-without-Error-Mitigation-using-Variance-Regularization" title="Link to this heading"></a></h2>
-<p>In the subsequent section, we illustrate the process of retraining the Quantum Neural Network (QNN) to achieve improved results on real quantum hardware. A crucial aspect of this approach is that we train the QNN on the same hardware on which it is subsequently evaluated.</p>
-<p>Because the training process is capable of adapting to the hardware’s imperfections, the need for error mitigation diminishes, allowing the final inference to align closely with real-world data. To address the noise stemming from finite sampling on real hardware, we employ variance regularization (as detailed in [1]). This regularization technique reduces the variance of the expectation value in addition to the L2 Loss, thereby ensuring a lower variance of the final inference.</p>
-<p>In the initial step, we disable any error mitigation techniques. Throughout the optimization process, we utilize the <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> primitive since it enables us to compute the additional expectation values needed for variance computation from the same set of circuits, eliminating the necessity for additional, costly circuit evaluations.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">options</span><span class="o">.</span><span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">executor_backend</span><span class="o">.</span><span class="n">reset_options_estimator</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>We reinitialize the QNNRegressor with an additional option aimed at reducing variance, which can be activated by adjusting the hyperparameter variance. This value serves as the pre-factor for the variance regularization term within the loss function. While recommended values typically fall within the range of 0.01 to 0.0001, the specific choice depends on the QNN’s capacity to fit the data effectively.</p>
-<p>It’s important to note that this training process is time-intensive, primarily because it is executed on the IBM cloud infrastructure. The expectation time for the QNN training usually takes between 2 to 3 hours.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qnn_backend</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
+<span class="n">qnn_backend</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
     <span class="n">pqc</span><span class="p">,</span>
     <span class="n">op</span><span class="p">,</span>
-    <span class="n">executor_backend</span><span class="p">,</span>
+    <span class="n">executor_sampler</span><span class="p">,</span>
     <span class="n">SquaredLoss</span><span class="p">(),</span>
-    <span class="n">Adam</span><span class="p">({</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}),</span>
-    <span class="n">param_ini</span><span class="p">,</span>
-    <span class="n">param_op_ini</span><span class="p">,</span>
-    <span class="n">variance</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
+    <span class="n">Adam</span><span class="p">(),</span>
+    <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param</span><span class="p">,</span>
+    <span class="n">qnn_simulator</span><span class="o">.</span><span class="n">param_op</span><span class="p">,</span>
+    <span class="n">caching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">primitive</span><span class="o">=</span><span class="s2">&quot;sampler&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">qnn_backend</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
 
-</pre></div></div>
-</div>
-<p>The final inference of the QNN aligns closely with the parabolic data, demonstrating the effectiveness of the QNN to adapt to the hardware’s imperfections. Furthermore the noise stemming from finite sampling is significantly reduced.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">qnn_backend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parabola function&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN inference&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN trained on the IBM backend with variance reduction&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QNN inference utilizing Sampler and with DD mitigation&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -593,13 +498,19 @@ link</a>.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_qnn_backend_mitigation_39_0.png" src="../_images/examples_example_qnn_backend_mitigation_39_0.png" />
+<img alt="../_images/examples_example_qnn_backend_mitigation_25_0.png" src="../_images/examples_example_qnn_backend_mitigation_25_0.png" />
 </div>
 </div>
-<section id="Literature:">
-<h3>Literature:<a class="headerlink" href="#Literature:" title="Link to this heading"></a></h3>
-<p>[1]: David A. Kreplin, and Marco Roth. “Reduction of finite sampling noise in quantum neural networks.” <a class="reference external" href="https://arxiv.org/abs/2306.01639v2">arXiv preprint arXiv:2306.01639</a> (2023)</p>
-</section>
+<p>In the last step, we manually close the session in order to terminate the (potentially costly) usage of the quantum computing resource.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">execution</span><span class="p">,</span> <span class="n">Session</span><span class="p">):</span>
+    <span class="n">execution</span><span class="o">.</span><span class="n">close_session</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 

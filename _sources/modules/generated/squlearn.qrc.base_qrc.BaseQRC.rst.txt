@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qrc.base_qrc`.\ :spelling:word:`BaseQRC`
+==============================================================
+
+.. currentmodule:: squlearn.qrc.base_qrc
+
+.. autoclass:: BaseQRC

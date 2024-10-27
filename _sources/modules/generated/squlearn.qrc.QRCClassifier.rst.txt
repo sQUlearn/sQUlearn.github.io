@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qrc`.\ :spelling:word:`QRCClassifier`
+===========================================================
+
+.. currentmodule:: squlearn.qrc
+
+.. autoclass:: QRCClassifier

@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.loss.negative_log_likelihood`.\ :spelling:word:`NLL`
+=================================================================================
+
+.. currentmodule:: squlearn.kernel.loss.negative_log_likelihood
+
+.. autoclass:: NLL

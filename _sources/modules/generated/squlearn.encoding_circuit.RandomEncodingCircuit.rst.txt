@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.encoding_circuit`.\ :spelling:word:`RandomEncodingCircuit`
+================================================================================
+
+.. currentmodule:: squlearn.encoding_circuit
+
+.. autoclass:: RandomEncodingCircuit

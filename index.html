@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the sQUlearn documentation! &mdash; sQUlearn 0.7.6 documentation</title>
+  <title>Welcome to the sQUlearn documentation! &mdash; sQUlearn 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=918ced64"></script>
+        <script src="_static/documentation_options.js?v=486e5634"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/thebelab-helper.js"></script>
@@ -49,7 +49,7 @@
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.6
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +93,7 @@
              
   <section id="welcome-to-the-squlearn-documentation">
 <h1>Welcome to the sQUlearn documentation!<a class="headerlink" href="#welcome-to-the-squlearn-documentation" title="Link to this heading"></a></h1>
-<p>sQUlearn is a user-friendly, NISQ-ready Python library for quantum machine learning (QML), designed for seamless integration with classical machine learning tools like scikit-learn. The library’s dual-layer architecture serves both QML researchers and practitioners, enabling efficient prototyping, experimentation, and pipelining. sQUlearn provides a comprehensive toolset that includes both quantum kernel methods and quantum neural networks, along with features like customizable data encoding strategies, automated execution handling, and specialized kernel regularization techniques. By focusing on NISQ-compatibility and end-to-end automation, sQUlearn aims to bridge the gap between current quantum computing capabilities and practical machine learning applications.</p>
+<p>sQUlearn is a user-friendly, NISQ-ready Python library for quantum machine learning (QML), designed for seamless integration with classical machine learning tools like scikit-learn. The library’s dual-layer architecture serves both QML researchers and practitioners, enabling efficient prototyping, experimentation, and pipelining. sQUlearn provides a comprehensive tool set that includes both quantum kernel methods and quantum neural networks, along with features like customizable data encoding strategies, automated execution handling, and specialized kernel regularization techniques. By focusing on NISQ-compatibility and end-to-end automation, sQUlearn aims to bridge the gap between current quantum computing capabilities and practical machine learning applications.</p>
 <p>sQUlearn offers scikit-learn compatible high-level interfaces for various kernel methods and QNNs. They build on top of the low-level interfaces of the QNN engine and the quantum kernel engine. The executor is used to run experiments on simulated and real backends of the Qiskit or PennyLane frameworks.</p>
 <p align="center">
   <img width=500px alt="sQUlearn schematic" src="https://raw.githubusercontent.com/sQUlearn/squlearn/main/docs/_static/schematic.png" />
@@ -128,7 +128,7 @@ Tutorials for beginners can be found at <code class="docutils literal notranslat
 </section>
 <section id="contribute-to-squlearn">
 <h2>Contribute to sQUlearn<a class="headerlink" href="#contribute-to-squlearn" title="Link to this heading"></a></h2>
-<p>Thanks for considering to contribute to sQUlearn! Please read our <a class="reference external" href="https://github.com/sQUlearn/squlearn/blob/main/.github/CONTRIBUTING.md">contribution guidelines</a> before you submit a pull request.</p>
+<p>Thanks for considering contributing to sQUlearn! Please read our <a class="reference external" href="https://github.com/sQUlearn/squlearn/blob/main/.github/CONTRIBUTING.md">contribution guidelines</a> before you submit a pull request.</p>
 </section>
 <hr class="docutils" />
 <section id="license">
@@ -151,12 +151,7 @@ Tutorials for beginners can be found at <code class="docutils literal notranslat
 <hr class="docutils" />
 <section id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h2>
-<p>This project was supported by the German Federal Ministry
-of Economic Affairs and Climate Action through the
-projects AutoQML (grant no. 01MQ22002A) and AQUAS
-(grant no. 01MQ22003D), as well as the German Federal
-Ministry of Education and Research through the project
-H2Giga Degrad-EL3 (grant no. 03HY110D).</p>
+<p>This project was supported by the German Federal Ministry of Economic Affairs and Climate Action through the projects AutoQML (grant no. 01MQ22002A) and AQUAS (grant no. 01MQ22003D), as well as the German Federal Ministry of Education and Research through the project H2Giga Degrad-EL3 (grant no. 03HY110D).</p>
 </section>
 <hr class="docutils" />
 <div class="toctree-wrapper compound">
@@ -167,6 +162,7 @@ H2Giga Degrad-EL3 (grant no. 03HY110D).</p>
 <li class="toctree-l2"><a class="reference internal" href="install/install.html#stable-release">Stable Release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install/install.html#bleeding-edge-version">Bleeding-edge version</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install/install.html#development-version">Development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install/install.html#installation-with-optional-dependencies">Installation with optional dependencies:</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/user_guide_index.html">User Guide</a><ul>
@@ -189,7 +185,7 @@ H2Giga Degrad-EL3 (grant no. 03HY110D).</p>
 <li class="toctree-l2"><a class="reference internal" href="examples/example_kernel_digit_classification.html">Handwritten Digit Recognition with Projected Quantum Kernels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/example_kernel_grid_search.html">Hyperparameter Optimization and Pipelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/example_quantum_bayesian_optimization.html">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/example_qnn_backend_mitigation.html">Error Mitigation for QNNs on IBM Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_qnn_backend_mitigation.html">Error Mitigation for Quantum Neural Networks on IBM Quantum Devices</a></li>
 </ul>
 </li>
 </ul>

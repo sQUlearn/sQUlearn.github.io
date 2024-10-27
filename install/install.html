@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; sQUlearn 0.7.6 documentation</title>
+  <title>Installation &mdash; sQUlearn 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=918ced64"></script>
+        <script src="../_static/documentation_options.js?v=486e5634"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -48,7 +48,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.6
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -65,6 +65,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#stable-release">Stable Release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bleeding-edge-version">Bleeding-edge version</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#development-version">Development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-with-optional-dependencies">Installation with optional dependencies:</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/user_guide_index.html">User Guide</a></li>
@@ -102,14 +103,20 @@
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <p>sQUlearn requires a recent python3 (&gt;=3.9) installation.
 Additionally the following python packages are necessary:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">&gt;=</span><span class="mf">1.17</span>
-<span class="n">scipy</span><span class="o">&gt;=</span><span class="mf">1.5</span>
-<span class="n">scikit</span><span class="o">-</span><span class="n">learn</span><span class="o">&gt;=</span><span class="mf">1.0</span>
-<span class="n">qiskit</span><span class="o">&gt;=</span><span class="mf">0.42.1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bayesian</span><span class="o">-</span><span class="n">optimization</span><span class="o">&gt;=</span><span class="mf">1.4.3</span><span class="p">,</span><span class="o">&lt;</span><span class="mi">2</span>
+<span class="n">dill</span><span class="o">&gt;=</span><span class="mf">0.3.4</span>
+<span class="n">mapomatic</span><span class="o">&gt;=</span><span class="mf">0.10.0</span>
+<span class="n">networkx</span><span class="o">&gt;=</span><span class="mf">3.0</span>
+<span class="n">numpy</span><span class="o">&gt;=</span><span class="mf">1.20</span>
+<span class="n">pennylane</span><span class="o">&gt;=</span><span class="mf">0.34.0</span>
+<span class="n">qiskit</span><span class="o">&gt;=</span><span class="mf">0.45.0</span>
 <span class="n">qiskit</span><span class="o">-</span><span class="n">aer</span><span class="o">&gt;=</span><span class="mf">0.12.0</span>
-<span class="n">qiskit</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">&gt;=</span><span class="mf">0.6.0</span>
-<span class="n">qiskit</span><span class="o">-</span><span class="n">ibm</span><span class="o">-</span><span class="n">runtime</span><span class="o">&gt;=</span><span class="mf">0.9</span>
-<span class="n">dill</span><span class="o">&gt;=</span><span class="mf">0.3</span>
+<span class="n">qiskit</span><span class="o">-</span><span class="n">algorithms</span><span class="o">&gt;=</span><span class="mf">0.3.0</span>
+<span class="n">qiskit</span><span class="o">-</span><span class="n">ibm</span><span class="o">-</span><span class="n">runtime</span><span class="o">&gt;=</span><span class="mf">0.18.0</span>
+<span class="n">qiskit</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">&gt;=</span><span class="mf">0.7.0</span>
+<span class="n">scipy</span><span class="o">&gt;=</span><span class="mf">1.8.0</span>
+<span class="n">scikit</span><span class="o">-</span><span class="n">learn</span><span class="o">&gt;=</span><span class="mf">1.2.0</span><span class="p">,</span><span class="o">&lt;</span><span class="mf">1.4.2</span>
+<span class="n">tqdm</span><span class="o">&gt;=</span><span class="mf">4.1.0</span>
 </pre></div>
 </div>
 <p>The packages are automatically installed when installing sQUlearn with pip.</p>
@@ -132,6 +139,23 @@ Additionally the following python packages are necessary:</p>
 <h2>Development version<a class="headerlink" href="#development-version" title="Link to this heading"></a></h2>
 <p>To install the latest development version:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/sQUlearn/squlearn.git@develop
+</pre></div>
+</div>
+</section>
+<section id="installation-with-optional-dependencies">
+<h2>Installation with optional dependencies:<a class="headerlink" href="#installation-with-optional-dependencies" title="Link to this heading"></a></h2>
+<p>There are several optional dependencies that can be installed with sQUlearn.
+To install sQUlearn with the dependencies usefull for development, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>squlearn<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+<p>To install sQUlearn with the dependencies necessary to run all examples, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>squlearn<span class="o">[</span>examples<span class="o">]</span>
+</pre></div>
+</div>
+<p>And to install sQUlearn with the dependencies necessary to build the documentation,
+run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>squlearn<span class="o">[</span>docs<span class="o">]</span>
 </pre></div>
 </div>
 </section>

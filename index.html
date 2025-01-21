@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the sQUlearn documentation! &mdash; sQUlearn 0.8.0 documentation</title>
+  <title>Welcome to the sQUlearn documentation! &mdash; sQUlearn 0.8.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=486e5634"></script>
+        <script src="_static/documentation_options.js?v=ec16d22d"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/thebelab-helper.js"></script>
@@ -49,7 +49,7 @@
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.0
+                0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,9 +94,9 @@
   <section id="welcome-to-the-squlearn-documentation">
 <h1>Welcome to the sQUlearn documentation!<a class="headerlink" href="#welcome-to-the-squlearn-documentation" title="Link to this heading"></a></h1>
 <p>sQUlearn is a user-friendly, NISQ-ready Python library for quantum machine learning (QML), designed for seamless integration with classical machine learning tools like scikit-learn. The library’s dual-layer architecture serves both QML researchers and practitioners, enabling efficient prototyping, experimentation, and pipelining. sQUlearn provides a comprehensive tool set that includes both quantum kernel methods and quantum neural networks, along with features like customizable data encoding strategies, automated execution handling, and specialized kernel regularization techniques. By focusing on NISQ-compatibility and end-to-end automation, sQUlearn aims to bridge the gap between current quantum computing capabilities and practical machine learning applications.</p>
-<p>sQUlearn offers scikit-learn compatible high-level interfaces for various kernel methods and QNNs. They build on top of the low-level interfaces of the QNN engine and the quantum kernel engine. The executor is used to run experiments on simulated and real backends of the Qiskit or PennyLane frameworks.</p>
+<p>sQUlearn offers scikit-learn compatible high-level interfaces for various kernel methods, QNNs and quantum reservoir computing. They build on top of the low-level interfaces of the QNN engine and the quantum kernel engine. The executor is used to run experiments on simulated and real backends of the Qiskit or PennyLane frameworks.</p>
 <p align="center">
-  <img width=500px alt="sQUlearn schematic" src="https://raw.githubusercontent.com/sQUlearn/squlearn/main/docs/_static/schematic.png" />
+  <img width=600px alt="sQUlearn schematic" src="https://raw.githubusercontent.com/sQUlearn/squlearn/main/docs/_static/schematic.png" />
 </p>
 <hr class="docutils" />
 <section id="prerequisites">
@@ -171,6 +171,7 @@ Tutorials for beginners can be found at <code class="docutils literal notranslat
 <li class="toctree-l2"><a class="reference internal" href="user_guide/encoding_circuits.html">Quantum Encoding Circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/kernel_methods.html">Quantum Kernel Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/quantum_neural_networks.html">Quantum Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/quantum_reservoir_computing.html">Quantum Reservoir Computing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules/classes.html">API Reference</a><ul>
@@ -186,6 +187,7 @@ Tutorials for beginners can be found at <code class="docutils literal notranslat
 <li class="toctree-l2"><a class="reference internal" href="examples/example_kernel_grid_search.html">Hyperparameter Optimization and Pipelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/example_quantum_bayesian_optimization.html">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/example_qnn_backend_mitigation.html">Error Mitigation for Quantum Neural Networks on IBM Quantum Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_qnn_ode_solver.html">Solving a First-order Ordinary Differential Equation (ODE)</a></li>
 </ul>
 </li>
 </ul>

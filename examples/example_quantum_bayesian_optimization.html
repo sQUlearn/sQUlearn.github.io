@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model &mdash; sQUlearn 0.8.0 documentation</title>
+  <title>Bayesian Optimization using a Quantum Gaussian Process Surrogate Model &mdash; sQUlearn 0.8.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -22,7 +22,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=486e5634"></script>
+        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -51,7 +51,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.0
+                0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -71,6 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="example_kernel_grid_search.html">Hyperparameter Optimization and Pipelines</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_qnn_backend_mitigation.html">Error Mitigation for Quantum Neural Networks on IBM Quantum Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_qnn_ode_solver.html">Solving a First-order Ordinary Differential Equation (ODE)</a></li>
 </ul>
 </li>
 </ul>
@@ -117,7 +118,7 @@ acquisition function is the expected improvement (EI)</p>
 <p>Here <span class="math notranslate nohighlight">\(\mu(\boldsymbol{x})\)</span> and <span class="math notranslate nohighlight">\(\Sigma(\boldsymbol{x})\)</span> are the posterior mean prediction and the prediction uncertainty of the surrogate model at position <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, and <span class="math notranslate nohighlight">\(\varphi(Z)\)</span>, and <span class="math notranslate nohighlight">\(\boldsymbol{\Phi}(Z)\)</span> are the probability distribution and the cumulative distribution of the standard normal distribution. The location of the best sample, i.e., the current observed minimum of the surrogate model, is indicated by <span class="math notranslate nohighlight">\(\boldsymbol{x}^+\)</span>. The
 standardized prediction error <span class="math notranslate nohighlight">\(Z\)</span> is given by <span class="math notranslate nohighlight">\(Z = [f(\boldsymbol{x}^+) - \mu(\boldsymbol{x}) - \lambda]/\Sigma(\boldsymbol{x})\)</span> if <span class="math notranslate nohighlight">\(\Sigma(\boldsymbol{x}) &gt; 0\)</span> and <span class="math notranslate nohighlight">\(Z=0\)</span> if <span class="math notranslate nohighlight">\(\Sigma(\boldsymbol{x}) = 0\)</span>. The parameter <span class="math notranslate nohighlight">\(\lambda\)</span> is a hyperparameter that controls the exploitation-exploration trade-off, where a high value of <span class="math notranslate nohighlight">\(\lambda\)</span> favours exploration.</p>
 <p>We obtain a quantum Bayesian optimization (QBO) algorithm by using a QGP model as a surrogate model.</p>
-<p>The follwing example will adapt the structre of the examples made in <a class="reference external" href="https://scikit-optimize.github.io/stable/auto_examples/bayesian-optimization.html">scikit-optimize</a>.</p>
+<p>The follwing example will adapt the structure of the examples made in <a class="reference external" href="https://scikit-optimize.github.io/stable/auto_examples/bayesian-optimization.html">scikit-optimize</a>.</p>
 <p>We start by defining the Bayesian optimization base class.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:

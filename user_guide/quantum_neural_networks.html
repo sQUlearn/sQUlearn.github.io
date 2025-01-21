@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Neural Networks &mdash; sQUlearn 0.8.0 documentation</title>
+  <title>Quantum Neural Networks &mdash; sQUlearn 0.8.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=486e5634"></script>
+        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -33,7 +33,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="API Reference" href="../modules/classes.html" />
+    <link rel="next" title="Quantum Reservoir Computing" href="quantum_reservoir_computing.html" />
     <link rel="prev" title="Quantum Kernel Methods" href="kernel_methods.html" /> 
 </head>
 
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.0
+                0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -83,6 +83,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="quantum_reservoir_computing.html">Quantum Reservoir Computing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
@@ -124,13 +125,13 @@ of the QNN. This output is then used to calculate a loss function, which is subs
 minimized by a classical optimizer. The resultant QNN can then be employed to predict outcomes
 for new input data.</p>
 <p>In many cases, QNNs adhere to a layered design, akin to classical neural networks, as illustrated
-in <a class="reference internal" href="#figure-1">figure 1</a>. However, it is essential to note that they do not adhere to the concept of
+in <a class="reference internal" href="#figure-qnn-1">figure_qnn 1</a>. However, it is essential to note that they do not adhere to the concept of
 neurons as seen in classical neural networks. Therefore, the term “Quantum Neural Network” may
 be somewhat misleading, as QNNs do not conform to the traditional neural network paradigm.
 Nevertheless, their application domain closely resembles that of classical neural networks,
 which explains the established nomenclature.</p>
 <figure class="align-center" id="id3">
-<span id="figure-1"></span><a class="reference internal image-reference" href="../_images/qnn.svg"><img alt="Quantum Neural Network (QNN)" src="../_images/qnn.svg" style="width: 600px;" /></a>
+<span id="figure-qnn-1"></span><a class="reference internal image-reference" href="../_images/qnn.svg"><img alt="Quantum Neural Network (QNN)" src="../_images/qnn.svg" style="width: 600px;" /></a>
 <figcaption>
 <p><span class="caption-text"><strong>Figure 1</strong> Layered design of a QNN with alternating encoding (orange) and parameter (blue) layers.
 The QNN is trained in a hybrid quantum-classical scheme by optimizing the QNN’s parameters
@@ -158,7 +159,7 @@ evaluation of the expectation.</p>
 <span class="math notranslate nohighlight">\(\hat{C}\)</span> may also contain additional trainable parameters.</p>
 <p>To train Quantum Neural Networks (QNNs), a hybrid quantum-classical approach is employed.
 The training process consists of two phases: quantum circuit evaluation and classical optimization
-(as illustrated in <a class="reference internal" href="#figure-1">figure 1</a>).</p>
+(as illustrated in <a class="reference internal" href="#figure-qnn-1">figure_qnn 1</a>).</p>
 <p>In the quantum circuit evaluation phase, the QNN and its gradient with respect to the parameters
 are assessed using a quantum computer or simulator. The gradient can be obtained using the
 parameter-shift rule. Subsequently, in the classical optimization phase, an appropriate
@@ -289,7 +290,7 @@ in the following code block, other optimization methods can be used analogously.
 </pre></div>
 </div>
 <p>With this configuration, <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> will use scipy’s
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.14.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.15.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
 The wrapper Class <a class="reference internal" href="../modules/generated/squlearn.optimizers.SLSQP.html#squlearn.optimizers.SLSQP" title="squlearn.optimizers.optimizers_wrapper.SLSQP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SLSQP</span></code></a>
 allows to specify hyper parameters in a <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> that get passed on to the function.</p>
 </section>
@@ -379,12 +380,12 @@ The noise level of the model thus depends on its variance, which can be calculat
 <div class="math notranslate nohighlight">
 \[\sigma_f^2 = \langle\Psi\lvert\hat{C}^2\rvert\Psi\rangle -
 \langle\Psi\lvert\hat{C}\rvert\Psi\rangle^2 \text{.}\]</div>
-<p><a class="reference internal" href="#figure-2">Figure 2</a> shows the output of a <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> fit to a logarithm
+<p><a class="reference internal" href="#figure-qnn-3">Figure_qnn 3</a> shows the output of a <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> fit to a logarithm
 with <a class="reference internal" href="../modules/generated/squlearn.qnn.loss.SquaredLoss.html#squlearn.qnn.loss.SquaredLoss" title="squlearn.qnn.loss.SquaredLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">SquaredLoss</span></code></a> evaluated on Qiskit’s
 <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.15.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>.
 The model has been trained with a noise-free simulator, but evaluating it on a noisy simulator
 yields a high variance in the model output.</p>
-<p id="figure-2">(<a class="reference download internal" download="" href="../_downloads/c05c3699672af090eea3c622fa0636b6/quantum_neural_networks-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/bf22250e911bc38fc607928e3c24d770/quantum_neural_networks-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/6742fed3dd99a4e29057a7711c1c95b2/quantum_neural_networks-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/354a12b3c12b6e1970f17719ee063e28/quantum_neural_networks-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p id="figure-qnn-2">(<a class="reference download internal" download="" href="../_downloads/c05c3699672af090eea3c622fa0636b6/quantum_neural_networks-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/bf22250e911bc38fc607928e3c24d770/quantum_neural_networks-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/6742fed3dd99a4e29057a7711c1c95b2/quantum_neural_networks-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/354a12b3c12b6e1970f17719ee063e28/quantum_neural_networks-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-center" id="id4">
 <img alt="../_images/quantum_neural_networks-1.png" class="plot-directive" src="../_images/quantum_neural_networks-1.png" />
 <figcaption>
@@ -414,8 +415,8 @@ the total loss. It can be either set to a constant <code class="xref py py-class
 takes the keyword argument <code class="docutils literal notranslate"><span class="pre">iteration</span></code> to dynamically adjust the factor. Values between
 <span class="math notranslate nohighlight">\(10^{-2}\)</span> and <span class="math notranslate nohighlight">\(10^{-4}\)</span> have shown to yield satisfying results. <a class="reference internal" href="#id2">[1]</a></p>
 <p>Evaluation on Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.15.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a> now yields less variance
-in the model, as depicted in <a class="reference internal" href="#figure-3">figure 3</a>.</p>
-<p id="figure-3">(<a class="reference download internal" download="" href="../_downloads/9c7cb378db71dd36a9fcfe4d818f6320/quantum_neural_networks-2.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/56f2e61f3c6480b9e56a0b34522ebad9/quantum_neural_networks-2.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/1e8e97a87317428c7aa0aed975e04c66/quantum_neural_networks-2.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b0f8fdf2b01e947525bdbb9acc43a777/quantum_neural_networks-2.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+in the model, as depicted in <a class="reference internal" href="#figure-qnn-3">figure_qnn 3</a>.</p>
+<p id="figure-qnn-3">(<a class="reference download internal" download="" href="../_downloads/9c7cb378db71dd36a9fcfe4d818f6320/quantum_neural_networks-2.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/56f2e61f3c6480b9e56a0b34522ebad9/quantum_neural_networks-2.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/1e8e97a87317428c7aa0aed975e04c66/quantum_neural_networks-2.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b0f8fdf2b01e947525bdbb9acc43a777/quantum_neural_networks-2.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-center" id="id6">
 <img alt="../_images/quantum_neural_networks-2.png" class="plot-directive" src="../_images/quantum_neural_networks-2.png" />
 <figcaption>
@@ -455,7 +456,7 @@ a decay factor of 0.08 and a plateau at <span class="math notranslate nohighligh
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="kernel_methods.html" class="btn btn-neutral float-left" title="Quantum Kernel Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../modules/classes.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quantum_reservoir_computing.html" class="btn btn-neutral float-right" title="Quantum Reservoir Computing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

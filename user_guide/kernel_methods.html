@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Kernel Methods &mdash; sQUlearn 0.8.0 documentation</title>
+  <title>Quantum Kernel Methods &mdash; sQUlearn 0.8.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=486e5634"></script>
+        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.0
+                0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -82,6 +82,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quantum_neural_networks.html">Quantum Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantum_reservoir_computing.html">Quantum Reservoir Computing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
@@ -150,6 +151,19 @@ enriched with the <em>Hilbert-Schmidt inner product</em> as the feature space of
 state [1]. In the quantum computational practice, the Hilbert-Schmidt inner products are revealed by
 measurements. Consequently, in quantum computing, access to the Hilbert space of quantum states is
 given by measurements.</p>
+<figure class="align-center" id="id2">
+<span id="figure-1"></span><a class="reference internal image-reference" href="../_images/QKM_scheme_pic.jpg"><img alt="Quantum Kernel Methods" src="../_images/QKM_scheme_pic.jpg" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1</strong> Schematic illustration of the function principle of quantum kernel methods, which can be formally embedded in the rich
+mathematical framework of conventional kernel theory. Data points  <span class="math notranslate nohighlight">\(\symbf{x}\)</span> are mapped to the quantum Hilbert space by
+encoding them into a quantum state  <span class="math notranslate nohighlight">\(\ket{\symbf{\psi}(\symbf{x})}\)</span>. Access to the quantum Hilbert space is granted by
+measurements. <span class="math notranslate nohighlight">\(\symbf{Left:}\)</span> In quantum mechanics measurements are expressed through Hilbert-Schmidt inner products.
+Quantum kernels, which are defined using this fidelity-type metric are thus referred to as fidelity quantum kernels (FQKs).
+More on FQKs in sQUlearn will be discussed below. <span class="math notranslate nohighlight">\(\symbf{Right:}\)</span> When projecting the quantum states to an approximate
+classical representation using, e.g., reduced physical observables this gives rise to a family of projected quantum kernels (PQKs).
+These will be also subject to discussion in the sQUlearn context below.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 <section id="high-level-methods-that-employ-quantum-kernels">
 <h2>High-Level methods that employ quantum kernels<a class="headerlink" href="#high-level-methods-that-employ-quantum-kernels" title="Link to this heading"></a></h2>
 <p>In general, kernel methods refer to a collection of pattern analysis algorithms that use kernel

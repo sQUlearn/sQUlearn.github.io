@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Reservoir Computing &mdash; sQUlearn 0.8.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
+      <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a63e3025" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="https://squlearn.github.io/user_guide/quantum_reservoir_computing.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="../modules/classes.html" />
+    <link rel="prev" title="Quantum Neural Networks" href="quantum_neural_networks.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.8.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user_guide_index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="executor.html">The Executor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observables.html">Observables for expectation values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encoding_circuits.html">Quantum Encoding Circuits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel_methods.html">Quantum Kernel Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantum_neural_networks.html">Quantum Neural Networks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantum Reservoir Computing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#high-level-methods-for-qrc">High-level methods for QRC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classification">Classification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#training">Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#regression">Regression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user_guide_index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Quantum Reservoir Computing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/quantum_reservoir_computing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quantum-reservoir-computing">
+<span id="id1"></span><h1>Quantum Reservoir Computing<a class="headerlink" href="#quantum-reservoir-computing" title="Link to this heading"></a></h1>
+<p>Reservoir Computing (RC) in general leverages a fixed, randomly connected network structure called the ‘reservoir.’
+This is in strong contrast to conventional deep learning architectures, which performe the optimization of weight across all layers.
+In RC, the reservoir enables dynamic, nonlinear transformations of input data into a high-dimensional feature space, followed by linear regression to produce the output.
+Quantum Reservoir Computing (QRC) tries to take advantage of the exponential scaling dimension of the Hilbert space in the quantum computing context
+to potentially provide an advantage over the classical RC. In QRC there is a register of accessable qubits <span class="math notranslate nohighlight">\(\rho_0\)</span>, which are subject to
+encoding the classical information and measurements, and hidden qubits <span class="math notranslate nohighlight">\(\rho_{\mathrm{hid}}\)</span>, which are related to the reservoir and
+artifically raise the dimension, the reservoir dynamic acts on, by the size of the hidden register. The hidden qubits can either be provided by an additional register
+or interaction with the enviroment.</p>
+<p>First the classical input data <span class="math notranslate nohighlight">\(x=\lbrace x^{(i)}\rbrace_{i=1}^D\)</span>, where <span class="math notranslate nohighlight">\(D\)</span> denotes the samplesize, gets related to a unitary
+evolution <span class="math notranslate nohighlight">\(U(x)\)</span>, called encoding circuit, that evolves the initial state of the accessable qubits <span class="math notranslate nohighlight">\(\rho_0\)</span> to</p>
+<div class="math notranslate nohighlight">
+\[\rho(x)=U(x)\rho_0U(x)^{\dagger}.\]</div>
+<p>Afterwards the reservoir dynamic <span class="math notranslate nohighlight">\(U_R\)</span>  gets applied to the composite of the accessable and hidden qubits, i.e</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\tilde{\rho}(x)=U_R(\rho(x)\otimes \rho_{\mathrm{hid}})U_R^{\dagger}=U_R(U(x)\rho_0U(x)^{\dagger}\otimes \rho_{\mathrm{hid}})U_R^{\dagger}.\]</div>
+</div></blockquote>
+<p>Now using a set of (usually randomized) observables <span class="math notranslate nohighlight">\(\lbrace O_1, \ldots, O_M \rbrace\)</span> the respective expecation-
+values</p>
+<div class="math notranslate nohighlight">
+\[\langle O_j \rangle_x = \mathrm{Tr}(O_j \tilde{\rho}(x))\]</div>
+<p>are deteremined by measurements for all <span class="math notranslate nohighlight">\(j = 1 ,\ldots,M\)</span>. The resulting vector</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\symbf{v}(x):= \begin{bmatrix}\langle O_1 \rangle_x\\\vdots\\\langle O_M \rangle_x\end{bmatrix}\end{split}\]</div>
+<p>can be used to perform classical machine learning algorithms like linear regression. So the key advantage over QNN is
+that one does not optimize over the weights of a complex parametrized quantum circuit, but keeps the complex part fix and later
+optimizes the readout vectors via cheaper algorithms.</p>
+<figure class="align-center" id="id7">
+<span id="figure-qrc-1"></span><a class="reference internal image-reference" href="../_images/QRC_user_guide.png"><img alt="Quantum Reservoir Computing (QRC)" src="../_images/QRC_user_guide.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1</strong> An example of a quantum reservoir computing circuit (see Ref. [1]). In the graphic we set the hidden qubits <span class="math notranslate nohighlight">\(\rho_{\mathrm{hid}}\)</span> as <span class="math notranslate nohighlight">\(\ket{000}\)</span>.
+The encoding circuit (orange) and the quantum reservoir (blue) evolve the initial accessable qubit register <span class="math notranslate nohighlight">\(\ket{\rho_0}\)</span> and
+the composite of accessable and hidden qubits respectively. After the measurement with respect to the observable <span class="math notranslate nohighlight">\(O_k\)</span> we can
+repeat with similar circuits for all the other observables and use the expectation values to do classical machine learning.</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Note that in sQUlearn, there is no hidden qubit register available in the pre-configured encoding circuits. This can be constructed manually if needed, or if run on a
+quantum computer, it may be due to the (non-controllable) interaction with the surrounding bath.</p>
+<p>With the outputs of our QRC circuit we construct the so called readout vector</p>
+<div class="math notranslate nohighlight">
+\[\symbf{v}^*(x)= \symbf{w}^\top \symbf{v}(x) = \sum\limits^M_{j=1} \symrm{w}_j \cdot \langle O_j \rangle_x,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\symbf{w}^\top = (\symrm{w}_1, \ldots, \symrm{w}_M)\)</span>, and the task of classical maschine learning is to determine the best collection of weights <span class="math notranslate nohighlight">\(\symrm{w}_j\)</span>. This can
+be done, for example, using a pseudo inverse method.</p>
+<section id="high-level-methods-for-qrc">
+<h2>High-level methods for QRC<a class="headerlink" href="#high-level-methods-for-qrc" title="Link to this heading"></a></h2>
+<p>As already mentioned the expectation values <span class="math notranslate nohighlight">\(\langle O_j \rangle_x\)</span> will be used to carry out a classical maschine learning model. Usually one sticks to linear
+regression, since the complexity is transmitted to the reservoir. Nonetheless sQUlearn provides some additional options to choose from.</p>
+<p>With sQUlearn it is possible to use QRC to do regression and classification tasks:</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.qrc.QRCClassifier.html#squlearn.qrc.QRCClassifier" title="squlearn.qrc.QRCClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QRCClassifier</span></code></a></p></td>
+<td><p>Quantum Reservoir Computing for classification.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.qrc.QRCRegressor.html#squlearn.qrc.QRCRegressor" title="squlearn.qrc.QRCRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QRCRegressor</span></code></a></p></td>
+<td><p>Quantum Reservoir Computing for regression.</p></td>
+</tr>
+</tbody>
+</table>
+<p>By passing either of both classes a fitting keyword argument <code class="docutils literal notranslate"><span class="pre">mlp</span></code> (multi-layer perceptron model), <code class="docutils literal notranslate"><span class="pre">linear</span></code> (linear model or single layer perceptron for classification) or
+<code class="docutils literal notranslate"><span class="pre">kernel</span></code> (support vector maschine) one can set the desired maschine learning model.
+We will now go step by step through the implementation of an example QRC for both methods with sQUlearn.</p>
+</section>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Link to this heading"></a></h2>
+<section id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
+<p>First an foremost the encoding of the classical data onto the accessable qubits and the quantum reservoir preparation
+is done in sQUlearn by the <code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuit</span></code> class. For details we refer to the documentations and examples in the user guidelines.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
+
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/quantum_reservoir_computing_0_0.png" src="../_images/quantum_reservoir_computing_0_0.png" />
+</div>
+</div>
+<p>Here we have chosen the <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.ChebyshevPQC.html#squlearn.encoding_circuit.ChebyshevPQC" title="squlearn.encoding_circuit.ChebyshevPQC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChebyshevPQC</span></code></a> as our encoding circuit, but sQUlearn provides a list of several alternative choices in <a class="reference internal" href="encoding_circuits.html#quantum-encoding-circuits"><span class="std std-ref">Quantum Encoding Circuits</span></a>.
+The parameters are all randomly chosen. Next we also initialize our executor and QRCClassifier:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.qrc.qrc_classifier</span> <span class="kn">import</span> <span class="n">QRCClassifier</span>
+
+<span class="n">exec</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">()</span>
+<span class="n">qrc</span> <span class="o">=</span> <span class="n">QRCClassifier</span><span class="p">(</span><span class="n">pqc</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">exec</span><span class="p">,</span> <span class="n">ml_model</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">num_operators</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../modules/generated/squlearn.qrc.QRCClassifier.html#squlearn.qrc.QRCClassifier" title="squlearn.qrc.QRCClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">QRCClassifier</span></code></a> takes our prepared <code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuit</span></code> and a machine learning method of our choice with
+linear regression as the default setting. In the last argument we can set the number of observables <span class="math notranslate nohighlight">\(M\)</span>, which will be randomly chosen in
+order to measure the circuit and create the output vector <span class="math notranslate nohighlight">\(\vec{v}\)</span> of size <span class="math notranslate nohighlight">\(M\)</span>. For closer instructions on the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code> class we refer to <a class="reference internal" href="executor.html#executor-user-guide"><span class="std std-ref">The Executor Class</span></a> in the user guideline.</p>
+</section>
+<section id="training">
+<h3>Training<a class="headerlink" href="#training" title="Link to this heading"></a></h3>
+<p>Now we train our QRC model using the <code class="xref py py-class docutils literal notranslate"><span class="pre">fit</span></code> method after we specify a certain dataset we like to train on:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_moons</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_moons</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">qrc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="result">
+<h3>Result<a class="headerlink" href="#result" title="Link to this heading"></a></h3>
+<p>In the end we can plot our results and see how it worked:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">qrc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training Data&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test Data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Feature 1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Feature 2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QRC Classification Inference&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id8">
+<span id="figure-qrc-2"></span><a class="reference internal image-reference" href="../_images/qrc_classification_transparent.png"><img alt="Classification" src="../_images/qrc_classification_transparent.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2</strong> One can see that on this particular case the classification was very successful.</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="regression">
+<h2>Regression<a class="headerlink" href="#regression" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>Setup<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>Just like in the classifier example we start by encoding the classical data and reservoir with the <code class="xref py py-class docutils literal notranslate"><span class="pre">_encoding_circuit</span></code> class.
+This time, we choose the <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.HubregtsenEncodingCircuit.html#squlearn.encoding_circuit.HubregtsenEncodingCircuit" title="squlearn.encoding_circuit.HubregtsenEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">HubregtsenEncodingCircuit</span></code></a> as our encoding circuit, again with randomly picked parameters.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span>
+
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/quantum_reservoir_computing_1_0.png" src="../_images/quantum_reservoir_computing_1_0.png" />
+</div>
+</div>
+<p>The <a class="reference internal" href="../modules/generated/squlearn.qrc.QRCRegressor.html#squlearn.qrc.QRCRegressor" title="squlearn.qrc.QRCRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QRCRegressor</span></code></a> similar to the classifier example, takes our prepared <code class="xref py py-class docutils literal notranslate"><span class="pre">EncodingCircuit</span></code> and a machine learning method
+of our choice with linear regression as the default setting. In the last argument we again can determine the number of observables <span class="math notranslate nohighlight">\(M\)</span>
+to measure the circuit and create the output vector <span class="math notranslate nohighlight">\(\vec{v}\)</span> of size <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.qrc</span> <span class="kn">import</span> <span class="n">QRCRegressor</span>
+
+<span class="n">exec</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">()</span>
+<span class="n">qrc</span> <span class="o">=</span> <span class="n">QRCRegressor</span><span class="p">(</span><span class="n">pqc</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">exec</span><span class="p">,</span> <span class="n">ml_model</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">num_operators</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Training<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">X_train</span><span class="p">))</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">X_test</span><span class="p">))</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qrc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we evaluate the model by calculating the inference of the model and the training data set</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">qrc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Result<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error:&quot;</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R^2 Score:&quot;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True Values&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predictions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training Set&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;f(x)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;QRC Regression Inference&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id9">
+<span id="figure-qrc-3"></span><a class="reference internal image-reference" href="../_images/qrc_regression_transparent.png"><img alt="Regression" src="../_images/qrc_regression_transparent.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3</strong> The regression of our discrete data set fits the function locally with high precision.</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p class="rubric">References</p>
+<p><span class="target" id="id5">[1]</span> Xiong, Weijie, et al. “On fundamental aspects of quantum extreme learning machines”
+<a class="reference external" href="https://arxiv.org/abs/2312.15124">arXiv:2312.15124</a> (2023).</p>
+<p><span class="target" id="id6">[2]</span> Suzuki, Y., Gao, Q., Pradel, K.C. et al. “Natural quantum reservoir computing for temporal information processing”
+<a class="reference external" href="https://doi.org/10.1038/s41598-022-05061-w">Sci Rep 12, 1353</a> (2022).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quantum_neural_networks.html" class="btn btn-neutral float-left" title="Quantum Neural Networks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../modules/classes.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

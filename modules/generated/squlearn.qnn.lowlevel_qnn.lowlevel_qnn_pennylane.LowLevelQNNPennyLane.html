@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane &mdash; sQUlearn 0.8.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css?v=572af1d6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a63e3025" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="canonical" href="https://squlearn.github.io/modules/generated/squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=dbee5847"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase.html" />
+    <link rel="prev" title="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.Expec" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.Expec.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.8.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#core">Core</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.kernel.lowlevel_kernel">Quantum Kernel Core</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.LowLevelQNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn</span></code>.LowLevelQNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit</span></code>.LowLevelQNNQiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.Expec.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit</span></code>.Expec</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane</span></code>.LowLevelQNNPennyLane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base</span></code>.LowLevelQNNBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.VarianceLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.VarianceLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.ODELoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ODELoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.ParameterRegularizationLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ParameterRegularizationLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.util.get_variance_fac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.util</span></code>.get_variance_fac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.util.get_lr_decay.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.util</span></code>.get_lr_decay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.util.ShotsFromRSTD.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.util</span></code>.ShotsFromRSTD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.util.training.train.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.util.training</span></code>.train</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.util.training.train_mini_batch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.util.training</span></code>.train_mini_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#pennylane-interface">PennyLane interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane</span></code>.LowLevelQNNPennyLane</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-qnn-lowlevel-qnn-lowlevel-qnn-pennylane-lowlevelqnnpennylane">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane</span></code>.LowLevelQNNPennyLane<a class="headerlink" href="#squlearn-qnn-lowlevel-qnn-lowlevel-qnn-pennylane-lowlevelqnnpennylane" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.</span></span><span class="sig-name descname"><span class="pre">LowLevelQNNPennyLane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterized_quantum_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane" title="Link to this definition"></a></dt>
+<dd><p>Low level implementation of QNNs and its derivatives based on PennyLane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pqc</strong> (<a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><em>EncodingCircuitBase</em></a>) – parameterized quantum circuit in encoding circuit format</p></li>
+<li><p><strong>operator</strong> (<em>Union</em><em>[</em><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><em>ObservableBase</em></a><em>,</em><em>list</em><em>]</em>) – Operator that is used in the expectation
+value of the QNN. Can be a list for multiple outputs.</p></li>
+<li><p><strong>executor</strong> (<a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><em>Executor</em></a>) – Executor that is used for the evaluation of the QNN</p></li>
+<li><p><strong>caching</strong> – Caching of the result for each <cite>x</cite>, <cite>param</cite>, <cite>param_op</cite> combination
+(default = True)</p></li>
+</ul>
+</dd>
+</dl>
+<section id="attributes">
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_qubits">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_qubits" title="Link to this definition"></a></dt>
+<dd><p>Number of qubits of the QNN</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_features">
+<span class="sig-name descname"><span class="pre">num_features</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_features" title="Link to this definition"></a></dt>
+<dd><p>Dimension of the features of the PQC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_parameters">
+<span class="sig-name descname"><span class="pre">num_parameters</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_parameters" title="Link to this definition"></a></dt>
+<dd><p>Number of trainable parameters of the PQC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_operator">
+<span class="sig-name descname"><span class="pre">num_operator</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_operator" title="Link to this definition"></a></dt>
+<dd><p>Number of outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_parameters_observable">
+<span class="sig-name descname"><span class="pre">num_parameters_observable</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.num_parameters_observable" title="Link to this definition"></a></dt>
+<dd><p>Number of trainable parameters of the expectation value operator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.multiple_output">
+<span class="sig-name descname"><span class="pre">multiple_output</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.multiple_output" title="Link to this definition"></a></dt>
+<dd><p>True if multiple outputs are used</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.parameters" title="Link to this definition"></a></dt>
+<dd><p>Parameter vector of the PQC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ParameterVector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.features">
+<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.features" title="Link to this definition"></a></dt>
+<dd><p>Feature vector of the PQC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ParameterVector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.parameters_operator">
+<span class="sig-name descname"><span class="pre">parameters_operator</span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.parameters_operator" title="Link to this definition"></a></dt>
+<dd><p>Parameter vector of the cost operator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ParameterVector</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="methods">
+<h2>Methods:<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DirectEvaluation</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PostProcessingEvaluation</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.ParameterVector" title="(in Qiskit v2.0)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.ParameterVectorElement" title="(in Qiskit v2.0)"><span class="pre">ParameterVectorElement</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.evaluate" title="Link to this definition"></a></dt>
+<dd><p>General function for evaluating the output of derivatives of the QNN.</p>
+<p>Evaluation works for given combination of
+input features <cite>x</cite> and parameters <cite>param</cite> and <cite>param_op</cite>.
+The function includes caching of results</p>
+<p>If <cite>x</cite>, <cite>param</cite>, and/or <cite>param_op</cite> are given as a nested list
+(for example multiple sets of parameters),
+the values are returned in a nested list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Values of the input feature data.</p></li>
+<li><p><strong>param</strong> (<em>np.ndarray</em>) – Parameter values of the PQC parameters</p></li>
+<li><p><strong>param_op</strong> (<em>np.ndarray</em>) – Parameter values of the operator parameters</p></li>
+<li><p><strong>values</strong> – Derivatives (or values) of the QNN that are evaluated. Higher order
+derivatives are given as tuples of parameters or vectors.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Results:</dt><dd><p>Returns a dictionary with the computed values.
+The keys of the dictionary are given by the entries in the values tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.get_params" title="Link to this definition"></a></dt>
+<dd><p>Returns the dictionary of the hyper-parameters of the QNN.</p>
+<p>In case of multiple outputs, the hyper-parameters of the operator are prefixed
+with <code class="docutils literal notranslate"><span class="pre">op0__</span></code>, <code class="docutils literal notranslate"><span class="pre">op1__</span></code>, etc.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.gradient">
+<span class="sig-name descname"><span class="pre">gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.gradient" title="Link to this definition"></a></dt>
+<dd><p>Return the gradient wrt. trainable parameters of the QNN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>np.ndarray</em><em>]</em>) – Input data.</p></li>
+<li><p><strong>param</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>np.ndarray</em><em>]</em>) – Parameters of the PQC.</p></li>
+<li><p><strong>param_obs</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>np.ndarray</em><em>]</em>) – Parameters of the observable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Gradient of the QNN.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.set_params" title="Link to this definition"></a></dt>
+<dd><p>Sets the hyper-parameters of the QNN</p>
+<p>In case of multiple outputs, the hyper-parameters of the operator are prefixed
+with <code class="docutils literal notranslate"><span class="pre">op0__</span></code>, <code class="docutils literal notranslate"><span class="pre">op1__</span></code>, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – Hyper-parameters that are adjusted, e.g. <code class="docutils literal notranslate"><span class="pre">num_qubits=4</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.Expec.html" class="btn btn-neutral float-left" title="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.Expec" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase.html" class="btn btn-neutral float-right" title="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

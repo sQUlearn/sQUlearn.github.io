@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.util`.\ :spelling:word:`get_lr_decay`
+===============================================================
+
+.. currentmodule:: squlearn.qnn.util
+
+.. autoclass:: get_lr_decay

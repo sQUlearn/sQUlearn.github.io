@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.util`.\ :spelling:word:`ShotsFromRSTD`
+================================================================
+
+.. currentmodule:: squlearn.qnn.util
+
+.. autoclass:: ShotsFromRSTD

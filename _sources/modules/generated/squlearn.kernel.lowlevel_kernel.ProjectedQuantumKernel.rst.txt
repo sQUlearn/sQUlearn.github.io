@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel.lowlevel_kernel`.\ :spelling:word:`ProjectedQuantumKernel`
+=======================================================================================
+
+.. currentmodule:: squlearn.kernel.lowlevel_kernel
+
+.. autoclass:: ProjectedQuantumKernel

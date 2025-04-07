@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane`.\ :spelling:word:`LowLevelQNNPennyLane`
+======================================================================================================
+
+.. currentmodule:: squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane
+
+.. autoclass:: LowLevelQNNPennyLane

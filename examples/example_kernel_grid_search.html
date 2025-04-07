@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hyperparameter Optimization and Pipelines &mdash; sQUlearn 0.8.1 documentation</title>
+  <title>Hyperparameter Optimization and Pipelines &mdash; sQUlearn 0.8.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -22,7 +22,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
+        <script src="../_static/documentation_options.js?v=dbee5847"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -51,7 +51,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.1
+                0.8.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -134,8 +134,8 @@
 
 <span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
 <span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">YZ_CX_EncodingCircuit</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel.matrix</span> <span class="kn">import</span> <span class="n">FidelityKernel</span><span class="p">,</span> <span class="n">ProjectedQuantumKernel</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel.ml</span> <span class="kn">import</span> <span class="n">QGPR</span><span class="p">,</span> <span class="n">QSVR</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.lowlevel_kernel</span> <span class="kn">import</span> <span class="n">FidelityKernel</span><span class="p">,</span> <span class="n">ProjectedQuantumKernel</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">QGPR</span><span class="p">,</span> <span class="n">QSVR</span>
 </pre></div>
 </div>
 </div>
@@ -685,35 +685,35 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
                                        (&#x27;estimator&#x27;,
-                                        QGPR(quantum_kernel=&lt;squlearn.kernel.matrix.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))]),
+                                        QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))]),
              param_grid=[{&#x27;estimator&#x27;: [QGPR(full_regularization=False,
-                                             quantum_kernel=&lt;squlearn.kernel.matrix.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)],
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)],
                           &#x27;estimat...
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]},
                          {&#x27;estimator&#x27;: [QSVR(C=1.0, cache_size=200, epsilon=0.1,
                                              max_iter=-1,
-                                             quantum_kernel=&lt;squlearn.kernel.matrix.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000016F9872EF20&gt;,
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000016F9872EF20&gt;,
                                              shrinking=True, tol=0.001,
                                              verbose=False)],
                           &#x27;estimator__num_layers&#x27;: [1, 2, 3],
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]}],
              scoring=&#x27;neg_mean_squared_error&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
                                        (&#x27;estimator&#x27;,
-                                        QGPR(quantum_kernel=&lt;squlearn.kernel.matrix.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))]),
+                                        QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))]),
              param_grid=[{&#x27;estimator&#x27;: [QGPR(full_regularization=False,
-                                             quantum_kernel=&lt;squlearn.kernel.matrix.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)],
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)],
                           &#x27;estimat...
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]},
                          {&#x27;estimator&#x27;: [QSVR(C=1.0, cache_size=200, epsilon=0.1,
                                              max_iter=-1,
-                                             quantum_kernel=&lt;squlearn.kernel.matrix.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000016F9872EF20&gt;,
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000016F9872EF20&gt;,
                                              shrinking=True, tol=0.001,
                                              verbose=False)],
                           &#x27;estimator__num_layers&#x27;: [1, 2, 3],
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]}],
              scoring=&#x27;neg_mean_squared_error&#x27;)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">estimator: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
                 (&#x27;estimator&#x27;,
-                 QGPR(quantum_kernel=&lt;squlearn.kernel.matrix.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">QGPR</label><div class="sk-toggleable__content fitted"><pre>QGPR(quantum_kernel=&lt;squlearn.kernel.matrix.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div>
+                 QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">QGPR</label><div class="sk-toggleable__content fitted"><pre>QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 </section>
 <section id="Results-Analysis">
@@ -864,7 +864,7 @@ Best Score: -3.020475311434476e-05
 Best Estimator: Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()),
                 (&#39;estimator&#39;,
                  QSVR(C=100.0, cache_size=200, epsilon=0.0001, max_iter=-1,
-                      quantum_kernel=&lt;squlearn.kernel.matrix.fidelity_kernel.FidelityKernel object at 0x0000016F9C622EC0&gt;,
+                      quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F9C622EC0&gt;,
                       shrinking=True, tol=0.001, verbose=False))])
 </pre></div></div>
 </div>

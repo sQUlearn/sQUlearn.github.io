@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Neural Networks &mdash; sQUlearn 0.8.1 documentation</title>
+  <title>Quantum Neural Networks &mdash; sQUlearn 0.8.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
+        <script src="../_static/documentation_options.js?v=dbee5847"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.1
+                0.8.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -290,7 +290,7 @@ in the following code block, other optimization methods can be used analogously.
 </pre></div>
 </div>
 <p>With this configuration, <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> will use scipy’s
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.15.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.15.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
 The wrapper Class <a class="reference internal" href="../modules/generated/squlearn.optimizers.SLSQP.html#squlearn.optimizers.SLSQP" title="squlearn.optimizers.optimizers_wrapper.SLSQP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SLSQP</span></code></a>
 allows to specify hyper parameters in a <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> that get passed on to the function.</p>
 </section>
@@ -333,12 +333,12 @@ This is possible by providing a <code class="xref py py-class docutils literal n
 Then a learning rate is chosen from the list or calculated by the callable at the beginning of
 each iteration or epoch.
 A suitable function for generating a callable with an exponential decay of the learning rate is
-provided by <a class="reference internal" href="../modules/generated/squlearn.qnn.get_lr_decay.html#squlearn.qnn.get_lr_decay" title="squlearn.qnn.get_lr_decay"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_lr_decay()</span></code></a>. The following example will generate an Adam optimization
+provided by <a class="reference internal" href="../modules/generated/squlearn.qnn.util.get_lr_decay.html#squlearn.qnn.util.get_lr_decay" title="squlearn.qnn.util.get_lr_decay"><code class="xref py py-meth docutils literal notranslate"><span class="pre">util.get_lr_decay()</span></code></a>. The following example will generate an Adam optimization
 with an exponential decay in the learning rate from 0.01 to 0.001 over 100 iterations.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
-<span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">get_lr_decay</span>
+<span class="kn">from</span> <span class="nn">squlearn.qnn.util</span> <span class="kn">import</span> <span class="n">get_lr_decay</span>
 <span class="n">adam</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">({</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span><span class="n">get_lr_decay</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">100</span><span class="p">)})</span>
 </pre></div>
 </div>
@@ -358,8 +358,9 @@ Objective is that the RSTD should be smaller than a given threshold <span class=
 can be initialized with a shot controller that takes care to automatically adjust the number of
 shots. The following example will generate a <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a>
 with a RSTD threshold of 0.1 and a minimum and maximum number of shots of 100 and 10000.
-It utilizes the <a class="reference internal" href="../modules/generated/squlearn.qnn.ShotsFromRSTD.html#squlearn.qnn.ShotsFromRSTD" title="squlearn.qnn.ShotsFromRSTD"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShotsFromRSTD</span></code></a> shot controller.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">QNNRegressor</span><span class="p">,</span> <span class="n">ShotsFromRSTD</span>
+It utilizes the <a class="reference internal" href="../modules/generated/squlearn.qnn.util.ShotsFromRSTD.html#squlearn.qnn.util.ShotsFromRSTD" title="squlearn.qnn.util.ShotsFromRSTD"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShotsFromRSTD</span></code></a> shot controller.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">QNNRegressor</span>
+<span class="kn">from</span> <span class="nn">squlearn.qnn.util</span> <span class="kn">import</span> <span class="n">ShotsFromRSTD</span>
 <span class="n">reg</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
     <span class="o">...</span>
     <span class="n">shot_controller</span> <span class="o">=</span> <span class="n">ShotsFromRSTD</span><span class="p">(</span><span class="n">rstd_bound</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">min_shots</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">),</span>
@@ -374,7 +375,7 @@ increase them in the later stages when a higher accuracy is required.</p>
 </section>
 <section id="variance-reduction">
 <h2>Variance reduction<a class="headerlink" href="#variance-reduction" title="Link to this heading"></a></h2>
-<p>When evaluating a pretrained QNN on Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.15.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a> or
+<p>When evaluating a pretrained QNN on Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.16.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a> or
 on real hardware, the model output will be subject to randomness due to the finite number of shots.
 The noise level of the model thus depends on its variance, which can be calculated as</p>
 <div class="math notranslate nohighlight">
@@ -382,7 +383,7 @@ The noise level of the model thus depends on its variance, which can be calculat
 \langle\Psi\lvert\hat{C}\rvert\Psi\rangle^2 \text{.}\]</div>
 <p><a class="reference internal" href="#figure-qnn-3">Figure_qnn 3</a> shows the output of a <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> fit to a logarithm
 with <a class="reference internal" href="../modules/generated/squlearn.qnn.loss.SquaredLoss.html#squlearn.qnn.loss.SquaredLoss" title="squlearn.qnn.loss.SquaredLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">SquaredLoss</span></code></a> evaluated on Qiskit’s
-<a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.15.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>.
+<a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.16.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>.
 The model has been trained with a noise-free simulator, but evaluating it on a noisy simulator
 yields a high variance in the model output.</p>
 <p id="figure-qnn-2">(<a class="reference download internal" download="" href="../_downloads/c05c3699672af090eea3c622fa0636b6/quantum_neural_networks-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/bf22250e911bc38fc607928e3c24d770/quantum_neural_networks-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/6742fed3dd99a4e29057a7711c1c95b2/quantum_neural_networks-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/354a12b3c12b6e1970f17719ee063e28/quantum_neural_networks-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
@@ -390,7 +391,7 @@ yields a high variance in the model output.</p>
 <img alt="../_images/quantum_neural_networks-1.png" class="plot-directive" src="../_images/quantum_neural_networks-1.png" />
 <figcaption>
 <p><span class="caption-text"><strong>Figure 2</strong> Logarithm and output of <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> <span class="math notranslate nohighlight">\(f(\theta, x)\)</span> evaluated on Qiskit’s
-<a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.15.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>. The QNN output has a high variance.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+<a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.16.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>. The QNN output has a high variance.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>We can mitigate this problem by adding the models variance to the loss function
@@ -414,14 +415,14 @@ hyper-parameter <span class="math notranslate nohighlight">\(\alpha\)</span>.</p
 the total loss. It can be either set to a constant <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code> or a <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code> that
 takes the keyword argument <code class="docutils literal notranslate"><span class="pre">iteration</span></code> to dynamically adjust the factor. Values between
 <span class="math notranslate nohighlight">\(10^{-2}\)</span> and <span class="math notranslate nohighlight">\(10^{-4}\)</span> have shown to yield satisfying results. <a class="reference internal" href="#id2">[1]</a></p>
-<p>Evaluation on Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.15.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a> now yields less variance
+<p>Evaluation on Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.16.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a> now yields less variance
 in the model, as depicted in <a class="reference internal" href="#figure-qnn-3">figure_qnn 3</a>.</p>
 <p id="figure-qnn-3">(<a class="reference download internal" download="" href="../_downloads/9c7cb378db71dd36a9fcfe4d818f6320/quantum_neural_networks-2.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/56f2e61f3c6480b9e56a0b34522ebad9/quantum_neural_networks-2.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/1e8e97a87317428c7aa0aed975e04c66/quantum_neural_networks-2.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b0f8fdf2b01e947525bdbb9acc43a777/quantum_neural_networks-2.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-center" id="id6">
 <img alt="../_images/quantum_neural_networks-2.png" class="plot-directive" src="../_images/quantum_neural_networks-2.png" />
 <figcaption>
 <p><span class="caption-text"><strong>Figure 3</strong> Logarithm and output of <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> <span class="math notranslate nohighlight">\(f(\theta, x)\)</span>, trained with variance
-regularization, evaluated on Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.15.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>.
+regularization, evaluated on Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.QasmSimulator.html#qiskit_aer.QasmSimulator" title="(in Qiskit Aer v0.16.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QasmSimulator</span></code></a>.
 The QNN output has a low variance.</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
@@ -434,9 +435,10 @@ stages (see Ref. [1]). This can be achieved by passing a <code class="xref py py
 to the keyword argument <code class="docutils literal notranslate"><span class="pre">variance</span></code> of the <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> (or <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNClassifier.html#squlearn.qnn.QNNClassifier" title="squlearn.qnn.QNNClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNClassifier</span></code></a>).
 The following example will generate a <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> with a variance
 regularization factor that is adjusted dynamically during the optimization by utilizing the
-function <a class="reference internal" href="../modules/generated/squlearn.qnn.get_variance_fac.html#squlearn.qnn.get_variance_fac" title="squlearn.qnn.get_variance_fac"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_variance_fac()</span></code></a>. The set-up features a final regularization factor of 0.005,
+function <a class="reference internal" href="../modules/generated/squlearn.qnn.util.get_variance_fac.html#squlearn.qnn.util.get_variance_fac" title="squlearn.qnn.util.get_variance_fac"><code class="xref py py-meth docutils literal notranslate"><span class="pre">util.get_variance_fac()</span></code></a>. The set-up features a final regularization factor of 0.005,
 a decay factor of 0.08 and a plateau at <span class="math notranslate nohighlight">\(\alpha=1\)</span> of 20 iterations at the beginning.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">QNNRegressor</span><span class="p">,</span><span class="n">get_variance_fac</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">QNNRegressor</span>
+<span class="kn">from</span> <span class="nn">squlearn.qnn.util</span> <span class="kn">import</span> <span class="n">get_variance_fac</span>
 <span class="n">reg</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
     <span class="o">...</span>
     <span class="n">variance</span> <span class="o">=</span> <span class="n">get_variance_fac</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.08</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>

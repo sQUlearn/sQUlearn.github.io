@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.util`.\ :spelling:word:`get_variance_fac`
+===================================================================
+
+.. currentmodule:: squlearn.qnn.util
+
+.. autoclass:: get_variance_fac

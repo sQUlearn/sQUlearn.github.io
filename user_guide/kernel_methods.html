@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Kernel Methods &mdash; sQUlearn 0.8.1 documentation</title>
+  <title>Quantum Kernel Methods &mdash; sQUlearn 0.8.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
+        <script src="../_static/documentation_options.js?v=dbee5847"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.1
+                0.8.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -183,10 +183,10 @@ quantum kernel ridge regression routine (QKRR).</p>
 <p>In terms of classification algorithms, sQUlearn provides:</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QSVC.html#squlearn.kernel.ml.QSVC" title="squlearn.kernel.ml.QSVC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSVC</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.QSVC.html#squlearn.kernel.QSVC" title="squlearn.kernel.QSVC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSVC</span></code></a></p></td>
 <td><p>Quantum Support Vector Classification</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QGPC.html#squlearn.kernel.ml.QGPC" title="squlearn.kernel.ml.QGPC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGPC</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.QGPC.html#squlearn.kernel.QGPC" title="squlearn.kernel.QGPC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGPC</span></code></a></p></td>
 <td><p>Quantum Gaussian process classification (QGPC), that extends the scikit-learn <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessClassifier.html">sklearn.gaussian_process.GaussianProcessClassifier</a>.</p></td>
 </tr>
 </tbody>
@@ -199,13 +199,13 @@ and user guidelines.</p>
 <p>In terms of regression algorithms, sQUlearn provides:</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QSVR.html#squlearn.kernel.ml.QSVR" title="squlearn.kernel.ml.QSVR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSVR</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.QSVR.html#squlearn.kernel.QSVR" title="squlearn.kernel.QSVR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QSVR</span></code></a></p></td>
 <td><p>Quantum Support Vector Regression</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QKRR.html#squlearn.kernel.ml.QKRR" title="squlearn.kernel.ml.QKRR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QKRR</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.QKRR.html#squlearn.kernel.QKRR" title="squlearn.kernel.QKRR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QKRR</span></code></a></p></td>
 <td><p>Quantum Kernel Ridge Regression.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.ml.QGPR.html#squlearn.kernel.ml.QGPR" title="squlearn.kernel.ml.QGPR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGPR</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/generated/squlearn.kernel.QGPR.html#squlearn.kernel.QGPR" title="squlearn.kernel.QGPR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QGPR</span></code></a></p></td>
 <td><p>Quantum Gaussian Process Regression (QGPR).</p></td>
 </tr>
 </tbody>
@@ -230,7 +230,7 @@ kernel matrices using either <em>thresholding</em> or <em>tikhonov</em> approach
 Regularization is by default switched of but can be set via the <code class="code docutils literal notranslate"><span class="pre">regularization</span></code>
 argument.</p>
 <section id="fidelity-quantum-kernel-fqk-via-fidelitykernel">
-<h3>Fidelity Quantum Kernel (FQK) via <a class="reference internal" href="../modules/generated/squlearn.kernel.matrix.FidelityKernel.html#squlearn.kernel.matrix.FidelityKernel" title="squlearn.kernel.matrix.FidelityKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FidelityKernel</span></code></a><a class="headerlink" href="#fidelity-quantum-kernel-fqk-via-fidelitykernel" title="Link to this heading"></a></h3>
+<h3>Fidelity Quantum Kernel (FQK) via <a class="reference internal" href="../modules/generated/squlearn.kernel.lowlevel_kernel.FidelityKernel.html#squlearn.kernel.lowlevel_kernel.FidelityKernel" title="squlearn.kernel.lowlevel_kernel.FidelityKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FidelityKernel</span></code></a><a class="headerlink" href="#fidelity-quantum-kernel-fqk-via-fidelitykernel" title="Link to this heading"></a></h3>
 <p>The straightforward and natural way to the definition of a quantum kernel [1,3-5], is to use the
 <em>native geometry of the quantum state space</em> which is inherent in the <em>Hilbert-Schmidt inner product</em>,
 i.e.</p>
@@ -266,7 +266,7 @@ fulfilled by PQKs. For FQKs one can attempt to restore this property using the
 as defined in Ref. [2]. By default this option is set to <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </section>
 <section id="projected-quantum-kernel-pqk-via-projectedquantumkernel">
-<h3>Projected Quantum Kernel (PQK) via <a class="reference internal" href="../modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html#squlearn.kernel.matrix.ProjectedQuantumKernel" title="squlearn.kernel.matrix.ProjectedQuantumKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectedQuantumKernel</span></code></a><a class="headerlink" href="#projected-quantum-kernel-pqk-via-projectedquantumkernel" title="Link to this heading"></a></h3>
+<h3>Projected Quantum Kernel (PQK) via <a class="reference internal" href="../modules/generated/squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel.html#squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel" title="squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectedQuantumKernel</span></code></a><a class="headerlink" href="#projected-quantum-kernel-pqk-via-projectedquantumkernel" title="Link to this heading"></a></h3>
 <p>Several works show that with increasing problem size, the FQK approach suffers from
 <em>exponential concentration</em> leading to quantum models that suffer from untrainability.
 To circumvent this problem, Ref. [4] introduced a family of <em>projected quantum kernels</em>
@@ -313,7 +313,7 @@ the following example:</p>
 addition to the default setting - <code class="code docutils literal notranslate"><span class="pre">measurement='XYZ'</span></code> - one can specify <code class="code docutils literal notranslate"><span class="pre">measurement='X'</span></code>,
 <code class="code docutils literal notranslate"><span class="pre">measurement='Y'</span></code> and <code class="code docutils literal notranslate"><span class="pre">measurement='Z'</span></code> for one-qubit measurements with respect to only
 one Pauli operator. Beyond that, one can also specify an observable or a list of observables, see the
-respective examples in <a class="reference internal" href="../modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html#squlearn.kernel.matrix.ProjectedQuantumKernel" title="squlearn.kernel.matrix.ProjectedQuantumKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectedQuantumKernel</span></code></a> or the <a class="reference internal" href="observables.html"><span class="doc">Observables for expectation values</span></a>
+respective examples in <a class="reference internal" href="../modules/generated/squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel.html#squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel" title="squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectedQuantumKernel</span></code></a> or the <a class="reference internal" href="observables.html"><span class="doc">Observables for expectation values</span></a>
 user guide.</p>
 </section>
 </section>

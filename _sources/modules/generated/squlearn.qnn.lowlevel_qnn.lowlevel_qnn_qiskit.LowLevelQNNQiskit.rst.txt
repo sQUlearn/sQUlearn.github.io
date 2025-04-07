@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit`.\ :spelling:word:`LowLevelQNNQiskit`
+================================================================================================
+
+.. currentmodule:: squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit
+
+.. autoclass:: LowLevelQNNQiskit

@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.kernel`.\ :spelling:word:`QSVC`
+=====================================================
+
+.. currentmodule:: squlearn.kernel
+
+.. autoclass:: QSVC

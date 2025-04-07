@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Handwritten Digit Recognition with Projected Quantum Kernels &mdash; sQUlearn 0.8.1 documentation</title>
+  <title>Handwritten Digit Recognition with Projected Quantum Kernels &mdash; sQUlearn 0.8.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -22,7 +22,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=ec16d22d"></script>
+        <script src="../_static/documentation_options.js?v=dbee5847"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -51,7 +51,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.1
+                0.8.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -121,7 +121,7 @@
   <section id="Handwritten-Digit-Recognition-with-Projected-Quantum-Kernels">
 <h1>Handwritten Digit Recognition with Projected Quantum Kernels<a class="headerlink" href="#Handwritten-Digit-Recognition-with-Projected-Quantum-Kernels" title="Link to this heading"></a></h1>
 <p>In this notebook, images of handwritten digits are classified by a quantum computer. Quantum machine learning methods promise advantages over conventional algorithms because they can map data into an exponentially large state space. However, the size of the space can also have disadvantages. In this notebook, the data is projected back into a classical space after being mapped into the Hilbert space, in order to take advantage of the benefits of QML without its drawbacks.</p>
-<p>This notebook will make use of sQUlearn’s implementations of Quantum Support Vector Classification <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.ml.QSVC.html">squlearn.kernel.QSVC</a> and Projected Quantum Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.matrix.ProjectedQuantumKernel.html">squlearn.kernel.ProjectedQuantumKernel</a>.</p>
+<p>This notebook will make use of sQUlearn’s implementations of Quantum Support Vector Classification <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.QSVC.html">squlearn.kernel.QSVC</a> and Projected Quantum Kernels <a class="reference external" href="https://sQUlearn.github.io/modules/generated/squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel.html">squlearn.kernel.ProjectedQuantumKernel</a>.</p>
 <p>The data set used here is well known from conventional machine learning and easily solvable with conventional methods. The workflow that that is applied to solve the classification with a quantum computer is representative for this kind of task and can be transferred to more complex data sets.</p>
 <center><p><img alt="pipeline" class="no-scaled-link" src="../_images/pipeline.png" style="width: 800px;" /></p>
 <p><em>Fig. 1: Pipeline used in this notebook.</em></p>
@@ -144,8 +144,8 @@
 
 <span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
 <span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel.ml.qsvc</span> <span class="kn">import</span> <span class="n">QSVC</span>
-<span class="kn">from</span> <span class="nn">squlearn.kernel.matrix</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.qsvc</span> <span class="kn">import</span> <span class="n">QSVC</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.lowlevel_kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
 </pre></div>
 </div>
 </div>
@@ -748,10 +748,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>QSVC(C=1.0, break_ties=False, cache_size=200, class_weight=None,
      decision_function_shape=&#x27;ovr&#x27;, max_iter=-1, probability=False,
-     quantum_kernel=&lt;squlearn.kernel.matrix.projected_quantum_kernel.ProjectedQuantumKernel object at 0x000001804D3F0A90&gt;,
+     quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x000001804D3F0A90&gt;,
      random_state=None, shrinking=True, tol=0.001, verbose=False)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;QSVC<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>QSVC(C=1.0, break_ties=False, cache_size=200, class_weight=None,
      decision_function_shape=&#x27;ovr&#x27;, max_iter=-1, probability=False,
-     quantum_kernel=&lt;squlearn.kernel.matrix.projected_quantum_kernel.ProjectedQuantumKernel object at 0x000001804D3F0A90&gt;,
+     quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x000001804D3F0A90&gt;,
      random_state=None, shrinking=True, tol=0.001, verbose=False)</pre></div> </div></div></div></div></div>
 </div>
 <p>We check its performance on the training and test data.</p>

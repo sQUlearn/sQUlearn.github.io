@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.kernel.lowlevel_kernel.FidelityKernel &mdash; sQUlearn 0.8.2 documentation</title>
+  <title>squlearn.kernel.lowlevel_kernel.FidelityKernel &mdash; sQUlearn 0.8.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=dbee5847"></script>
+        <script src="../../_static/documentation_options.js?v=7f96dc5e"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.2
+                0.8.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -73,6 +73,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.kernel.lowlevel_kernel">Quantum Kernel Core</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.FidelityKernel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.ProjectedQuantumKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.KernelOptimizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.KernelOptimizer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.negative_log_likelihood</span></code>.NLL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.target_alignment</span></code>.TargetAlignment</a></li>
 </ul>
@@ -118,7 +119,7 @@
 <h1><a class="reference internal" href="../classes.html#module-squlearn.kernel.lowlevel_kernel" title="squlearn.kernel.lowlevel_kernel"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code></a>.FidelityKernel<a class="headerlink" href="#squlearn-kernel-lowlevel-kernel-fidelitykernel" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.kernel.lowlevel_kernel.FidelityKernel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.lowlevel_kernel.</span></span><span class="sig-name descname"><span class="pre">FidelityKernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate_duplicates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'off_diagonal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mit_depol_noise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.lowlevel_kernel.FidelityKernel" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.lowlevel_kernel.</span></span><span class="sig-name descname"><span class="pre">FidelityKernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate_duplicates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'off_diagonal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mit_depol_noise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_expectation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.lowlevel_kernel.FidelityKernel" title="Link to this definition"></a></dt>
 <dd><p>Fidelity Quantum Kernel.</p>
 <p>The Fidelity Quantum Kernel is a based on the overlap of the quantum states.
 These quantum states
@@ -143,6 +144,11 @@ initial_parameters is None.</p></li>
 <li><p><strong>regularization</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>None</em><em>]</em><em>, </em><em>default=None</em>) – Option for choosing different regularization techniques (<code class="docutils literal notranslate"><span class="pre">&quot;thresholding&quot;</span></code> or
 <code class="docutils literal notranslate"><span class="pre">&quot;tikhonov&quot;</span></code>) after Ref. [4] for the training kernel matrix, prior to  solving the
 linear system in the <code class="docutils literal notranslate"><span class="pre">fit()</span></code>-procedure.</p></li>
+<li><p><strong>use_expectation</strong> (<em>bool</em><em>, </em><em>default=False</em>) – Option for using the expectation value of a QNN circuit that computes the fidelity
+as the expectation value of the observable
+<span class="math notranslate nohighlight">\(P_0 = |0\rangle\langle0|^{\otimes n}\)</span>.
+This is not very efficient in simulation, but allows the computation of
+derivatives of the kernel.</p></li>
 </ul>
 </dd>
 </dl>
@@ -181,6 +187,27 @@ of the encoding circuit</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Returns the quantum kernel matrix as 2D numpy array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.lowlevel_kernel.FidelityKernel.evaluate_derivatives">
+<span class="sig-name descname"><span class="pre">evaluate_derivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dKdx'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.kernel.lowlevel_kernel.FidelityKernel.evaluate_derivatives" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the Fidelity Kernel and its derivatives for the given data points x and y.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Data points x</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Data points y, if None y = x is used</p></li>
+<li><p><strong>values</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>tuple</em><em>]</em>) – Values to evaluate. Can be a string or a tuple of strings.
+Possible values are:
+<code class="docutils literal notranslate"><span class="pre">dKdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdy</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdxdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdydy</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdxdy</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdydx</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdp</span></code>
+and <code class="docutils literal notranslate"><span class="pre">jacobian</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with the evaluated values</p>
 </dd>
 </dl>
 </dd></dl>

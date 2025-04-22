@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Executor Class &mdash; sQUlearn 0.8.2 documentation</title>
+  <title>The Executor Class &mdash; sQUlearn 0.8.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=dbee5847"></script>
+        <script src="../_static/documentation_options.js?v=7f96dc5e"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -48,7 +48,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.2
+                0.8.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -176,7 +176,7 @@ circuit on the quantum hardware by duplicating the circuit.</p></li>
 execution environment:</p>
 <ul>
 <li><p>Default initialization with no backend specified: If no backend is specified, the <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a>
-class is initialized utilizing PennyLane’s <a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.devices.default_qubit.DefaultQubit.html#pennylane.devices.default_qubit.DefaultQubit" title="(in PennyLane v0.40)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DefaultQubit</span></code></a> simulator.
+class is initialized utilizing PennyLane’s <a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.devices.default_qubit.DefaultQubit.html#pennylane.devices.default_qubit.DefaultQubit" title="(in PennyLane v0.41)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DefaultQubit</span></code></a> simulator.
 If no shots are specified (<code class="docutils literal notranslate"><span class="pre">shots=None</span></code>) the simulator is utilized as a statevector simulator by default. If shots are specified, a shot-based simulator is utilized.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
@@ -195,7 +195,7 @@ If no shots are specified (<code class="docutils literal notranslate"><span clas
 </div>
 </li>
 <li><p>A string specifying the local simulator backend: Qiskit’s <a class="reference external" href="https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html#qiskit_aer.AerSimulator" title="(in Qiskit Aer v0.16.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AerSimulator</span></code></a> is available by providing <code class="docutils literal notranslate"><span class="pre">&quot;qiskit&quot;</span></code>,
-<code class="docutils literal notranslate"><span class="pre">&quot;statevector_simulator&quot;</span></code> and  <code class="docutils literal notranslate"><span class="pre">&quot;qasm_simulator&quot;</span></code>; PennyLane’s <a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.devices.default_qubit.DefaultQubit.html#pennylane.devices.default_qubit.DefaultQubit" title="(in PennyLane v0.40)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DefaultQubit</span></code></a> simulator can be initialized by
+<code class="docutils literal notranslate"><span class="pre">&quot;statevector_simulator&quot;</span></code> and  <code class="docutils literal notranslate"><span class="pre">&quot;qasm_simulator&quot;</span></code>; PennyLane’s <a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.devices.default_qubit.DefaultQubit.html#pennylane.devices.default_qubit.DefaultQubit" title="(in PennyLane v0.41)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DefaultQubit</span></code></a> simulator can be initialized by
 <code class="docutils literal notranslate"><span class="pre">&quot;pennylane&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;default.qubit&quot;</span></code>. Note that with Qiskit version 1.2, the sampler routines will always performe shots for the <code class="docutils literal notranslate"><span class="pre">&quot;statevector_simulator&quot;</span></code> keyword.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
@@ -241,7 +241,7 @@ of other quantum computing backends, as long as they provide a Qiskit <a class="
 </div>
 </div>
 </li>
-<li><p>A PennyLane device of a quantum computing backend obtained with <a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.device.html#pennylane.device" title="(in PennyLane v0.40)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pennylane.device()</span></code></a>. In the following example, the <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> is
+<li><p>A PennyLane device of a quantum computing backend obtained with <a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.device.html#pennylane.device" title="(in PennyLane v0.41)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pennylane.device()</span></code></a>. In the following example, the <a class="reference internal" href="../modules/generated/squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> is
 initialized with a AWS device. Note that this example requires the PennyLane AWS plugin to be
 installed (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">amazon-braket-pennylane-plugin</span></code>) and the AWS credentials to be
 configured. A full list of plugins for PennyLane can be found <a class="reference external" href="https://pennylane.ai/plugins/#plugins">here</a>.</p>
@@ -471,7 +471,7 @@ We set up a small <a class="reference internal" href="../modules/generated/squle
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Chosen backend: &lt;qiskit_ibm_runtime.fake_provider.backends.manila.fake_manila.FakeManilaV2 object at 0x7feb892d5430&gt;
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Chosen backend: &lt;qiskit_ibm_runtime.fake_provider.backends.manila.fake_manila.FakeManilaV2 object at 0x7f33917ff170&gt;
 </pre></div>
 </div>
 </div>

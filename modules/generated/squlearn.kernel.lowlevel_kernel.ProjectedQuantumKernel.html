@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel &mdash; sQUlearn 0.8.2 documentation</title>
+  <title>squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel &mdash; sQUlearn 0.8.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=dbee5847"></script>
+        <script src="../../_static/documentation_options.js?v=7f96dc5e"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -33,7 +33,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="squlearn.kernel.loss.negative_log_likelihood.NLL" href="squlearn.kernel.loss.negative_log_likelihood.NLL.html" />
+    <link rel="next" title="squlearn.kernel.lowlevel_kernel.KernelOptimizer" href="squlearn.kernel.lowlevel_kernel.KernelOptimizer.html" />
     <link rel="prev" title="squlearn.kernel.lowlevel_kernel.FidelityKernel" href="squlearn.kernel.lowlevel_kernel.FidelityKernel.html" /> 
 </head>
 
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.2
+                0.8.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -73,6 +73,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.kernel.lowlevel_kernel">Quantum Kernel Core</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.FidelityKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.FidelityKernel</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.ProjectedQuantumKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.KernelOptimizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.KernelOptimizer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.negative_log_likelihood</span></code>.NLL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.target_alignment</span></code>.TargetAlignment</a></li>
 </ul>
@@ -374,36 +375,36 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 8.31185822e-03 1.24003367e-04 2.80442287e-03
-  1.07192618e-02 6.79455105e-04 8.24132788e-01 2.32242862e-03
-  1.44665926e-02 3.65830292e-04]
- [8.31185822e-03 1.00000000e+00 2.24133061e-05 1.74101165e-05
-  2.42553316e-05 1.62037635e-05 2.01112955e-03 1.69653478e-05
-  2.71191654e-05 1.72189576e-05]
- [1.24003367e-04 2.24133061e-05 1.00000000e+00 3.27706133e-01
-  1.25962542e-01 6.81814238e-01 3.98631465e-04 3.67525205e-01
-  9.83436673e-02 8.45309364e-01]
- [2.80442287e-03 1.74101165e-05 3.27706133e-01 1.00000000e+00
-  8.41545953e-01 8.15089502e-01 1.15976979e-02 9.96538375e-01
-  7.72079655e-01 6.46345658e-01]
- [1.07192618e-02 2.42553316e-05 1.25962542e-01 8.41545953e-01
-  1.00000000e+00 4.77725692e-01 4.20497990e-02 7.99029792e-01
-  9.91160373e-01 3.24155432e-01]
- [6.79455105e-04 1.62037635e-05 6.81814238e-01 8.15089502e-01
-  4.77725692e-01 1.00000000e+00 2.69426210e-03 8.56347649e-01
-  4.05658016e-01 9.56220330e-01]
- [8.24132788e-01 2.01112955e-03 3.98631465e-04 1.15976979e-02
-  4.20497990e-02 2.69426210e-03 1.00000000e+00 9.60748018e-03
-  5.53931416e-02 1.37562368e-03]
- [2.32242862e-03 1.69653478e-05 3.67525205e-01 9.96538375e-01
-  7.99029792e-01 8.56347649e-01 9.60748018e-03 1.00000000e+00
-  7.25363940e-01 6.95248509e-01]
- [1.44665926e-02 2.71191654e-05 9.83436673e-02 7.72079655e-01
-  9.91160373e-01 4.05658016e-01 5.53931416e-02 7.25363940e-01
-  1.00000000e+00 2.66588930e-01]
- [3.65830292e-04 1.72189576e-05 8.45309364e-01 6.46345658e-01
-  3.24155432e-01 9.56220330e-01 1.37562368e-03 6.95248509e-01
-  2.66588930e-01 1.00000000e+00]]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 4.76530668e-04 4.68880190e-05 2.22880402e-05
+  1.73412607e-04 1.02109371e-01 1.70771012e-01 1.77390860e-04
+  1.82224246e-05 6.29416113e-02]
+ [4.76530668e-04 1.00000000e+00 4.05416535e-01 1.24191281e-01
+  8.73895197e-01 2.07882701e-05 3.51387272e-02 8.79481463e-01
+  6.25497216e-02 1.02959584e-01]
+ [4.68880190e-05 4.05416535e-01 1.00000000e+00 7.54094935e-01
+  7.03222970e-01 1.75085390e-05 1.64606562e-03 6.95960778e-01
+  5.45746777e-01 5.52454553e-03]
+ [2.22880402e-05 1.24191281e-01 7.54094935e-01 1.00000000e+00
+  2.93548992e-01 2.59615222e-05 3.30952711e-04 2.88190672e-01
+  9.38413557e-01 1.01063644e-03]
+ [1.73412607e-04 8.73895197e-01 7.03222970e-01 2.93548992e-01
+  1.00000000e+00 1.66754357e-05 1.11774529e-02 9.99921853e-01
+  1.65934152e-01 3.61719367e-02]
+ [1.02109371e-01 2.07882701e-05 1.75085390e-05 2.59615222e-05
+  1.66754357e-05 1.00000000e+00 1.48887312e-03 1.67246199e-05
+  3.39942320e-05 4.72226387e-04]
+ [1.70771012e-01 3.51387272e-02 1.64606562e-03 3.30952711e-04
+  1.11774529e-02 1.48887312e-03 1.00000000e+00 1.14972291e-02
+  1.68245888e-04 8.67689258e-01]
+ [1.77390860e-04 8.79481463e-01 6.95960778e-01 2.88190672e-01
+  9.99921853e-01 1.67246199e-05 1.14972291e-02 1.00000000e+00
+  1.62393516e-01 3.71432502e-02]
+ [1.82224246e-05 6.25497216e-02 5.45746777e-01 9.38413557e-01
+  1.65934152e-01 3.39942320e-05 1.68245888e-04 1.62393516e-01
+  1.00000000e+00 4.73492153e-04]
+ [6.29416113e-02 1.02959584e-01 5.52454553e-03 1.01063644e-03
+  3.61719367e-02 4.72226387e-04 8.67689258e-01 3.71432502e-02
+  4.73492153e-04 1.00000000e+00]]
 </pre></div>
 </div>
 </div>
@@ -480,8 +481,8 @@ of the encoding circuit</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Data points x</p></li>
 <li><p><strong>y</strong> (<em>np.ndarray</em>) – Data points y, if None y = x is used</p></li>
-<li><p><strong>values</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>tuple</em><em>]</em>) – Values to evaluate. Can be a string or a tuple of strings.
-Possible values are: <code class="docutils literal notranslate"><span class="pre">dKdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdy</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdxdx</span></code></p></li>
+<li><p><strong>values</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>tuple</em><em>]</em>) – Values to evaluate. Can be a string or a tuple of strings.</p></li>
+<li><p><strong>are</strong> (<em>Possible values</em>) – <code class="docutils literal notranslate"><span class="pre">dKdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdy</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdxdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dKdp</span></code></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -570,7 +571,7 @@ contained objects are returned (default=True).</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="squlearn.kernel.lowlevel_kernel.FidelityKernel.html" class="btn btn-neutral float-left" title="squlearn.kernel.lowlevel_kernel.FidelityKernel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="squlearn.kernel.loss.negative_log_likelihood.NLL.html" class="btn btn-neutral float-right" title="squlearn.kernel.loss.negative_log_likelihood.NLL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="squlearn.kernel.lowlevel_kernel.KernelOptimizer.html" class="btn btn-neutral float-right" title="squlearn.kernel.lowlevel_kernel.KernelOptimizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

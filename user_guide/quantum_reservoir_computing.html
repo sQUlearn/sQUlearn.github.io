@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Reservoir Computing &mdash; sQUlearn 0.8.4 documentation</title>
+  <title>Quantum Reservoir Computing &mdash; sQUlearn 0.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=b41f4c93"></script>
+        <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.4
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -190,8 +190,8 @@ is done in sQUlearn by the <code class="xref py py-class docutils literal notran
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
 
-<span class="n">pqc</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -272,8 +272,8 @@ This time, we choose the <a class="reference internal" href="../modules/generate
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span>
 
-<span class="n">pqc</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

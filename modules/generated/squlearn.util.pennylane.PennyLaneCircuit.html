@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.util.pennylane.PennyLaneCircuit &mdash; sQUlearn 0.8.4 documentation</title>
+  <title>squlearn.util.pennylane.PennyLaneCircuit &mdash; sQUlearn 0.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=b41f4c93"></script>
+        <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -31,7 +31,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase" href="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase.html" />
+    <link rel="next" title="squlearn.util.qulacs.QulacsCircuit" href="squlearn.util.qulacs.QulacsCircuit.html" />
     <link rel="prev" title="squlearn.util.optree.OpTreeValue" href="squlearn.util.optree.OpTreeValue.html" /> 
 </head>
 
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.4
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -76,6 +76,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.pennylane</span></code>.PennyLaneCircuit</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#qulacs-interface">Qulacs interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a></li>
 </ul>
 </li>
@@ -113,15 +114,14 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.pennylane</span></code>.PennyLaneCircuit<a class="headerlink" href="#squlearn-util-pennylane-pennylanecircuit" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.util.pennylane.PennyLaneCircuit">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.util.pennylane.</span></span><span class="sig-name descname"><span class="pre">PennyLaneCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v2.1)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v2.1)"><span class="pre">SparsePauliOp</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v2.1)"><span class="pre">SparsePauliOp</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.operation.Observable.html#pennylane.operation.Observable" title="(in PennyLane v0.41)"><span class="pre">Observable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.operation.Observable.html#pennylane.operation.Observable" title="(in PennyLane v0.41)"><span class="pre">Observable</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.pennylane.PennyLaneCircuit" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.util.pennylane.</span></span><span class="sig-name descname"><span class="pre">PennyLaneCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v2.1)"><span class="pre">QuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v2.1)"><span class="pre">SparsePauliOp</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp" title="(in Qiskit v2.1)"><span class="pre">SparsePauliOp</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.operation.Operator.html#pennylane.operation.Operator" title="(in PennyLane v0.42)"><span class="pre">Operator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pennylane.ai/en/stable/code/api/pennylane.operation.Operator.html#pennylane.operation.Operator" title="(in PennyLane v0.42)"><span class="pre">Operator</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.pennylane.PennyLaneCircuit" title="Link to this definition"></a></dt>
 <dd><p>Class for converting a Qiskit circuit to a PennyLane circuit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>circuit</strong> (<em>QuantumCircuit</em>) – Qiskit circuit to convert to PennyLane</p></li>
-<li><p><strong>observable</strong> (<em>Union</em><em>[</em><em>None</em><em>, </em><em>SparsePauliOp</em><em>, </em><em>List</em><em>[</em><em>SparsePauliOp</em><em>]</em><em>, </em><em>str</em><em>]</em>) – Observable to be measured
-Can be also a string like <code class="docutils literal notranslate"><span class="pre">&quot;probs&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;state&quot;</span></code></p></li>
-<li><p><strong>executor</strong> (<a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><em>Executor</em></a>) – Executor object to handle the PennyLane circuit. Has to be initialized with a PennyLane device.</p></li>
+<li><p><strong>observable</strong> (<em>Union</em><em>[</em><em>None</em><em>, </em><em>SparsePauliOp</em><em>, </em><em>List</em><em>[</em><em>SparsePauliOp</em><em>]</em><em>, </em><em>str</em><em>]</em>) – Observable to be
+measured. Can be also a string like <code class="docutils literal notranslate"><span class="pre">&quot;probs&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;state&quot;</span></code></p></li>
 </ul>
 </dd>
 </dl>
@@ -244,7 +244,7 @@ PennyLane observable parameters and PennyLane observable parameter dimensions</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.util.pennylane.PennyLaneCircuit.build_pennylane_circuit">
-<span class="sig-name descname"><span class="pre">build_pennylane_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_diff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.pennylane.PennyLaneCircuit.build_pennylane_circuit" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build_pennylane_circuit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.util.pennylane.PennyLaneCircuit.build_pennylane_circuit" title="Link to this definition"></a></dt>
 <dd><p>Function to build the PennyLane circuit from the Qiskit circuit and observable.</p>
 <p>The functions returns a callable PennyLane circuit that can be called with parameters.
 The PennyLane circuit is built from the instructions previously generated from the Qiskit
@@ -289,7 +289,7 @@ circuit and observable.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="squlearn.util.optree.OpTreeValue.html" class="btn btn-neutral float-left" title="squlearn.util.optree.OpTreeValue" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase.html" class="btn btn-neutral float-right" title="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="squlearn.util.qulacs.QulacsCircuit.html" class="btn btn-neutral float-right" title="squlearn.util.qulacs.QulacsCircuit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

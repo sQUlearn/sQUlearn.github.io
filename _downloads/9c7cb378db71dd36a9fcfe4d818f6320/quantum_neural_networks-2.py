@@ -8,7 +8,7 @@ from squlearn.qnn import QNNRegressor, SquaredLoss
 from squlearn.optimizers import SLSQP
 nqubits = 4
 number_of_layers = 2
-pqc = ChebyshevRx(nqubits, 1, num_layers=number_of_layers)
+pqc = ChebyshevRx(num_qubits=nqubits, num_layers=number_of_layers)
 exe = Executor("qasm_simulator")
 exe.set_shots(5000)
 ising_op = IsingHamiltonian(nqubits, I="S", Z="S", ZZ="S")

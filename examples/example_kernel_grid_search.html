@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hyperparameter Optimization and Pipelines &mdash; sQUlearn 0.8.4 documentation</title>
+  <title>Hyperparameter Optimization and Pipelines &mdash; sQUlearn 0.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -22,7 +22,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=b41f4c93"></script>
+        <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -51,7 +51,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.4
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -177,7 +177,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x16f984110f0&gt;
+&lt;matplotlib.legend.Legend at 0x1b64e35ee30&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -195,7 +195,7 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">YZ_CX_EncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">YZ_CX_EncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">()</span>
 
@@ -206,7 +206,7 @@
     <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">encoding_circuit</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">,</span> <span class="n">parameter_seed</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
 
-<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -685,42 +685,40 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
                                        (&#x27;estimator&#x27;,
-                                        QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))]),
+                                        QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x000001B64E35C2E0&gt;))]),
              param_grid=[{&#x27;estimator&#x27;: [QGPR(full_regularization=False,
-                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)],
-                          &#x27;estimat...
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x000001B64E...
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]},
                          {&#x27;estimator&#x27;: [QSVR(C=1.0, cache_size=200, epsilon=0.1,
                                              max_iter=-1,
-                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000016F9872EF20&gt;,
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x000001B64E333E50&gt;,
                                              shrinking=True, tol=0.001,
                                              verbose=False)],
                           &#x27;estimator__num_layers&#x27;: [1, 2, 3],
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]}],
              scoring=&#x27;neg_mean_squared_error&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
                                        (&#x27;estimator&#x27;,
-                                        QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))]),
+                                        QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x000001B64E35C2E0&gt;))]),
              param_grid=[{&#x27;estimator&#x27;: [QGPR(full_regularization=False,
-                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)],
-                          &#x27;estimat...
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x000001B64E...
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]},
                          {&#x27;estimator&#x27;: [QSVR(C=1.0, cache_size=200, epsilon=0.1,
                                              max_iter=-1,
-                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000016F9872EF20&gt;,
+                                             quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x000001B64E333E50&gt;,
                                              shrinking=True, tol=0.001,
                                              verbose=False)],
                           &#x27;estimator__num_layers&#x27;: [1, 2, 3],
                           &#x27;estimator__num_qubits&#x27;: [1, 2, 4]}],
              scoring=&#x27;neg_mean_squared_error&#x27;)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">estimator: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
                 (&#x27;estimator&#x27;,
-                 QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">QGPR</label><div class="sk-toggleable__content fitted"><pre>QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F98366C20&gt;)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div>
+                 QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x000001B64E35C2E0&gt;))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">QGPR</label><div class="sk-toggleable__content fitted"><pre>QGPR(quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x000001B64E35C2E0&gt;)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 </section>
 <section id="Results-Analysis">
 <h2>Results Analysis<a class="headerlink" href="#Results-Analysis" title="Link to this heading"></a></h2>
 <p>To visualize the performance of different hyperparameter combinations, we plot heat maps for each estimator. Each cell in the heat map represents a combination of the number of qubits and layers used in the quantum encoding circuit, and the color represents the negative mean test score (MSE, larger is better). This allows for an intuitive understanding of how different hyperparameters impact performance.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the results into a DataFrame</span>
@@ -736,7 +734,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">num_estimators</span><span class="p">)))</span>
 <span class="n">n_cols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_estimators</span> <span class="o">/</span> <span class="n">n_rows</span><span class="p">))</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Flatten the axis array for easier indexing</span>
 <span class="k">if</span> <span class="n">n_rows</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">n_cols</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -776,11 +774,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Qubits&quot;</span><span class="p">)</span>
 
 <span class="c1"># Add a colorbar with label</span>
-<span class="n">cbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.92</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cax</span><span class="o">=</span><span class="n">cbar_ax</span><span class="p">)</span>
-<span class="n">cbar_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;MSE&quot;</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span>
+    <span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span>  <span class="c1"># über alle Subplots verteilt</span>
+    <span class="n">location</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span>  <span class="c1"># automatisch rechts außen</span>
+    <span class="n">fraction</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+    <span class="n">pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -864,7 +866,7 @@ Best Score: -3.020475311434476e-05
 Best Estimator: Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()),
                 (&#39;estimator&#39;,
                  QSVR(C=100.0, cache_size=200, epsilon=0.0001, max_iter=-1,
-                      quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x0000016F9C622EC0&gt;,
+                      quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.fidelity_kernel.FidelityKernel object at 0x000001B65219AC20&gt;,
                       shrinking=True, tol=0.001, verbose=False))])
 </pre></div></div>
 </div>

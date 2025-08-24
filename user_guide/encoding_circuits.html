@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Encoding Circuits &mdash; sQUlearn 0.8.4 documentation</title>
+  <title>Quantum Encoding Circuits &mdash; sQUlearn 0.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=b41f4c93"></script>
+        <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.4
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -124,7 +124,7 @@ Furthermore, it is possible to create custom encoding circuits that follow a lay
 each gate is applied to all qubits.
 The package facilitate a fully automated pruning algorithm to remove redundant parameters and
 enables the automatic differentiation of arbitrary derivative.</p>
-<p>The following functions and classes are are accessible via <a class="reference internal" href="../modules/classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.</p>
+<p>The following functions and classes are accessible via <a class="reference internal" href="../modules/classes.html#module-squlearn.encoding_circuit" title="squlearn.encoding_circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">squlearn.encoding_circuit</span></code></a>.</p>
 <section id="implemented-quantum-encoding-circuits">
 <h2>Implemented Quantum Encoding Circuits<a class="headerlink" href="#implemented-quantum-encoding-circuits" title="Link to this heading"></a></h2>
 <p>There are several Quantum Encoding Circuits implemented in sQUlearn:</p>
@@ -164,8 +164,8 @@ enables the automatic differentiation of arbitrary derivative.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span>
-<span class="n">pqc</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -187,11 +187,11 @@ equal to the sum of the parameters in the two original encoding circuits.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">,</span> <span class="n">ChebyshevPQC</span>
-<span class="n">fm1</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">fm2</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fm1</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fm2</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Combining both encoding circuits</span>
 <span class="n">fm3</span> <span class="o">=</span> <span class="n">fm1</span> <span class="o">+</span> <span class="n">fm2</span>
-<span class="n">fm3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">fm3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -235,14 +235,14 @@ the <a class="reference internal" href="../modules/generated/squlearn.encoding_c
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
 <span class="kn">from</span> <span class="nn">squlearn.encoding_circuit.layered_encoding_circuit</span> <span class="kn">import</span> <span class="n">Layer</span>
-<span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">encoding_circuit</span><span class="o">.</span><span class="n">H</span><span class="p">()</span>
 <span class="n">layer</span> <span class="o">=</span> <span class="n">Layer</span><span class="p">(</span><span class="n">encoding_circuit</span><span class="p">)</span>
 <span class="n">layer</span><span class="o">.</span><span class="n">Rz</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">layer</span><span class="o">.</span><span class="n">Ry</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
 <span class="n">layer</span><span class="o">.</span><span class="n">cx_entangling</span><span class="p">(</span><span class="s2">&quot;NN&quot;</span><span class="p">)</span>
-<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span><span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -255,9 +255,9 @@ the <a class="reference internal" href="../modules/generated/squlearn.encoding_c
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
 <span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span>
-   <span class="s2">&quot;Ry(p)-3[Rx(p,x;=y*np.arccos(x),{y,x})-crz(p)]-Ry(p)&quot;</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span>
+   <span class="s2">&quot;Ry(p)-3[Rx(p,x;=y*np.arccos(x),{y,x})-crz(p)]-Ry(p)&quot;</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
-<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -284,13 +284,14 @@ the Quantum Fisher Information Matrix (QFIM) of the encoding circuit.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span><span class="p">,</span> <span class="n">automated_pruning</span>
 <span class="kn">from</span> <span class="nn">squlearn.util</span> <span class="kn">import</span> <span class="n">Executor</span>
 <span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;Rz(p)-Ry(p)-Z-Ry(p)-Rz(p)&quot;</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">encoding_circuit</span><span class="o">.</span><span class="n">_build_layered_pqc</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">pruned_encoding_circuit</span> <span class="o">=</span> <span class="n">automated_pruning</span><span class="p">(</span><span class="n">encoding_circuit</span><span class="p">,</span> <span class="n">Executor</span><span class="p">())</span>
 <span class="n">pruned_encoding_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Pruned parameters: [0 1 3 4]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Pruned parameters: [0 1 2 3]
 </pre></div>
 </div>
 <img alt="../_images/encoding_circuits_5_1.png" src="../_images/encoding_circuits_5_1.png" />
@@ -322,8 +323,8 @@ is utilized for the arithmetic operations of the derivatives.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">,</span> <span class="n">EncodingCircuitDerivatives</span>
-<span class="n">fm</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">fm_deriv</span> <span class="o">=</span> <span class="n">EncodingCircuitDerivatives</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">HubregtsenEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fm_deriv</span> <span class="o">=</span> <span class="n">EncodingCircuitDerivatives</span><span class="p">(</span><span class="n">fm</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># From String (gradient of the parameter vector)</span>
 <span class="n">grad_from_string</span> <span class="o">=</span> <span class="n">fm_deriv</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">(</span><span class="s2">&quot;dp&quot;</span><span class="p">)</span>
 <span class="c1"># From Tuple (second order derivative of the parameter vector; equal to the Hessian)</span>
@@ -345,16 +346,20 @@ is utilized for the arithmetic operations of the derivatives.</p>
 <a class="reference internal" href="../modules/generated/squlearn.encoding_circuit.TranspiledEncodingCircuit.html#squlearn.encoding_circuit.TranspiledEncodingCircuit" title="squlearn.encoding_circuit.TranspiledEncodingCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranspiledEncodingCircuit</span></code></a> class. By utilizing this class, you can input an existing
 quantum encoding circuit and have its circuit transpiled according to the specified backend and
 transpiler settings, which are the same settings used in Qiskit.
-The transpiled encoding circuit is internally employed in the QNN program and projected kernels,
-where it is employed internally.</p>
+The transpiled encoding circuit is internally employed in the QNN program and projected kernels.</p>
 <p><strong>Example: Transpile a existing Encoding Circuit to a fake backend</strong></p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">,</span><span class="n">ChebyshevRx</span>
 <span class="kn">from</span> <span class="nn">qiskit_ibm_runtime.fake_provider</span> <span class="kn">import</span> <span class="n">FakeManilaV2</span>
 
-<span class="n">fm</span> <span class="o">=</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">(</span><span class="n">ChebyshevRx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">backend</span><span class="o">=</span><span class="n">FakeManilaV2</span><span class="p">(),</span><span class="n">initial_layout</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
-<span class="n">fm</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">TranspiledEncodingCircuit</span><span class="p">(</span>
+   <span class="n">ChebyshevRx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+   <span class="n">backend</span><span class="o">=</span><span class="n">FakeManilaV2</span><span class="p">(),</span>
+   <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+   <span class="n">initial_layout</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">fm</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

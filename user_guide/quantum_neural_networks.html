@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Neural Networks &mdash; sQUlearn 0.8.4 documentation</title>
+  <title>Quantum Neural Networks &mdash; sQUlearn 0.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=b41f4c93"></script>
+        <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.4
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -173,6 +173,28 @@ They adjust the QNN’s parameters to minimize a predefined cost function, denot
 <p>The specific form of the cost function depends on the problem that the QNN is designed to solve.
 For instance, in a regression problem, the cost function is often defined as the mean squared
 error between the QNN’s output and the target value.</p>
+<p>The optimization of a QNN’s parameters is typically carried out using gradient-based methods
+such as Adam or SLSQP. The gradients of the cost function with respect to the QNN parameters
+can be computed via the parameter-shift rule (<span class="math notranslate nohighlight">\(\alpha \in \{x,y,z\}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dx} \langle \Psi | R_\alpha(\varphi(x)) \hat{C} R_\alpha(\varphi(x)) | \Psi \rangle
+= \tfrac{1}{2} \varphi'(x) \big[ \langle \hat{C}^+ \rangle - \langle \hat{C}^- \rangle \big]\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\langle \hat{C} \rangle^\pm =
+\langle \Psi | R_\alpha(\varphi(x) \pm \tfrac{\pi}{2}) \hat{C}
+R_\alpha(\varphi(x) \pm \tfrac{\pi}{2}) | \Psi \rangle\]</div>
+<p>When running the optimization on a statevector simulator, gradients can alternatively
+be computed using automatic differentiation (autodiff) or backpropagation.
+These methods are considerably more efficient than the parameter-shift rule, which is required
+in shot-based simulations or on real quantum hardware. It is important to note that
+autodiff and backpropagation are not applicable on real quantum computers, as the
+no-cloning theorem prevents copying quantum states for reuse in gradient computation.</p>
+<p>sQUlearn automatically exploits fast gradient evaluation through autodiff for both
+the PennyLane and Qulacs quantum frameworks. PennyLane is the default backend and
+additionally supports the computation of higher-order derivatives. Qulacs, on the other hand,
+is typically much faster than PennyLane for larger circuits, making it the recommended choice
+for most QNN applications. The tutorial below demonstrates how to use Qulacs within sQUlearn.</p>
 <section id="high-level-methods-for-qnns">
 <h2>High-level methods for QNNs<a class="headerlink" href="#high-level-methods-for-qnns" title="Link to this heading"></a></h2>
 <p>In this section, we will illustrate the process of constructing a QNN using sQUlearn.
@@ -186,8 +208,8 @@ method:</p>
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
 
-<span class="n">pqc</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pqc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">num_features</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -234,7 +256,8 @@ sQUlearn offers two easy-to-use implementation of QNNs, either for regression or
 <p>We refer to the documentations and examples of the respective classes for in-depth information.</p>
 <p>In the following example we will use a <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a>, the encoding circuit, and
 the observable as defined above. Additionally, we utilize the mean squared error loss function
-and the Adam optimizer for optimization.</p>
+and the Adam optimizer for optimization. Furthermore, Qulacs is used as the quantum simulator
+to enable fast gradient calculations.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
 <span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">ChebyshevPQC</span>
 <span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">QNNRegressor</span><span class="p">,</span> <span class="n">SquaredLoss</span>
@@ -242,8 +265,8 @@ and the Adam optimizer for optimization.</p>
 <span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
 
 <span class="n">op</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">pqc</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_features</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">qnn</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span><span class="n">pqc</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">Executor</span><span class="p">(),</span> <span class="n">SquaredLoss</span><span class="p">(),</span> <span class="n">Adam</span><span class="p">())</span>
+<span class="n">pqc</span> <span class="o">=</span> <span class="n">ChebyshevPQC</span><span class="p">(</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qnn</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span><span class="n">pqc</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;qulacs&quot;</span><span class="p">),</span> <span class="n">SquaredLoss</span><span class="p">(),</span> <span class="n">Adam</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>The QNN can be trained utilizing the <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor.fit" title="squlearn.qnn.QNNRegressor.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit</span></code></a> method:</p>
@@ -290,7 +313,7 @@ in the following code block, other optimization methods can be used analogously.
 </pre></div>
 </div>
 <p>With this configuration, <a class="reference internal" href="../modules/generated/squlearn.qnn.QNNRegressor.html#squlearn.qnn.QNNRegressor" title="squlearn.qnn.QNNRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QNNRegressor</span></code></a> will use scipy’s
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.16.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.16.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">minimize</span></code></a> function with <code class="docutils literal notranslate"><span class="pre">method=&quot;SLSQP&quot;</span></code>.
 The wrapper Class <a class="reference internal" href="../modules/generated/squlearn.optimizers.SLSQP.html#squlearn.optimizers.SLSQP" title="squlearn.optimizers.optimizers_wrapper.SLSQP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SLSQP</span></code></a>
 allows to specify hyper parameters in a <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> that get passed on to the function.</p>
 </section>

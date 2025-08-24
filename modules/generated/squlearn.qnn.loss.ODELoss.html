@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.qnn.loss.ODELoss &mdash; sQUlearn 0.8.4 documentation</title>
+  <title>squlearn.qnn.loss.ODELoss &mdash; sQUlearn 0.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=b41f4c93"></script>
+        <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.4
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -73,11 +73,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.kernel.lowlevel_kernel">Quantum Kernel Core</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.LowLevelQNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn</span></code>.LowLevelQNN</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit</span></code>.LowLevelQNNQiskit</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.Expec.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit</span></code>.Expec</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane</span></code>.LowLevelQNNPennyLane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit</span></code>.LowLevelQNNQiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qulacs.LowLevelQNNQulacs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qulacs</span></code>.LowLevelQNNQulacs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base</span></code>.LowLevelQNNBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.CrossEntropyLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.CrossEntropyLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.VarianceLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.VarianceLoss</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ODELoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.ParameterRegularizationLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ParameterRegularizationLoss</a></li>
@@ -91,6 +92,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#pennylane-interface">PennyLane interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#qulacs-interface">Qulacs interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a></li>
 </ul>
 </li>

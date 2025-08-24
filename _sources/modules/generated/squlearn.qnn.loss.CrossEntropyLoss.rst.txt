@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.loss`.\ :spelling:word:`CrossEntropyLoss`
+===================================================================
+
+.. currentmodule:: squlearn.qnn.loss
+
+.. autoclass:: CrossEntropyLoss

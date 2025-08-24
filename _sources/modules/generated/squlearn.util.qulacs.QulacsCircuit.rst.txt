@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.util.qulacs`.\ :spelling:word:`QulacsCircuit`
+===================================================================
+
+.. currentmodule:: squlearn.util.qulacs
+
+.. autoclass:: QulacsCircuit

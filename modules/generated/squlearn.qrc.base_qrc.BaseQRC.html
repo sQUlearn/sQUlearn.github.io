@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.qrc.base_qrc.BaseQRC &mdash; sQUlearn 0.8.4 documentation</title>
+  <title>squlearn.qrc.base_qrc.BaseQRC &mdash; sQUlearn 0.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=b41f4c93"></script>
+        <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8.4
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -73,6 +73,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#pennylane-interface">PennyLane interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#qulacs-interface">Qulacs interface</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.observables.observable_base</span></code>.ObservableBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.encoding_circuit.encoding_circuit_base</span></code>.EncodingCircuitBase</a></li>
@@ -156,6 +157,14 @@ parameters are given.</p></li>
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qrc.base_qrc.BaseQRC.dump">
+<span class="sig-name descname"><span class="pre">dump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">IO</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.qrc.base_qrc.BaseQRC.dump" title="Link to this definition"></a></dt>
+<dd><p>Serializes the model object to a file or file-like object.
+:param target: The target file path or file-like object where the model will be serialized.
+:type target: Union[str, IO[bytes]]</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="squlearn.qrc.base_qrc.BaseQRC.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.qrc.base_qrc.BaseQRC.fit" title="Link to this definition"></a></dt>
 <dd><p>Fit a new Quantum Reservoir Computing model to data.</p>
@@ -199,6 +208,21 @@ routing information.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qrc.base_qrc.BaseQRC.load">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">IO</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="headerlink" href="#squlearn.qrc.base_qrc.BaseQRC.load" title="Link to this definition"></a></dt>
+<dd><p>Deserializes the model object from a file or file-like object, injecting the provided <cite>Executor</cite>.
+:param source: The source file path or file-like object from which the model will be deserialized.
+:type source: Union[str, IO[bytes]]
+:param executor: The <cite>Executor</cite> instance to be injected into the deserialized model.
+:type executor: Executor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The deserialized model object with the injected <cite>Executor</cite>.</p>
 </dd>
 </dl>
 </dd></dl>

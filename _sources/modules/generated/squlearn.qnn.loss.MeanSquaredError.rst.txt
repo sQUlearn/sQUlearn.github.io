@@ -1,0 +1,6 @@
+﻿:mod:`squlearn.qnn.loss`.\ :spelling:word:`MeanSquaredError`
+===================================================================
+
+.. currentmodule:: squlearn.qnn.loss
+
+.. autoclass:: MeanSquaredError

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.qnn.loss.ODELoss &mdash; sQUlearn 0.9.1 documentation</title>
+  <title>squlearn.qnn.loss.ODELoss &mdash; sQUlearn 0.10.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=9dc39874"></script>
+        <script src="../../_static/documentation_options.js?v=82662543"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.1
+                0.10.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -65,8 +65,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#high-level-api">High Level API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../classes.html#core">Core</a><ul class="current">
@@ -78,6 +77,7 @@
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qulacs.LowLevelQNNQulacs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qulacs</span></code>.LowLevelQNNQulacs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base</span></code>.LowLevelQNNBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.MeanSquaredError.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.MeanSquaredError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.CrossEntropyLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.CrossEntropyLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.VarianceLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.VarianceLoss</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ODELoss</a></li>
@@ -130,15 +130,21 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.ODELoss<a class="headerlink" href="#squlearn-qnn-loss-odeloss" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.qnn.loss.ODELoss">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.loss.</span></span><span class="sig-name descname"><span class="pre">ODELoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ODE_functional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbols_involved_in_ODE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.float64(1.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_handling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pinned'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.loss.ODELoss" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.loss.</span></span><span class="sig-name descname"><span class="pre">ODELoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ode_functional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbols_involved_in_ode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.loss.ODELoss" title="Link to this definition"></a></dt>
 <dd><p>Squared loss for regression of Ordinary Differential Equations (ODEs).</p>
 <p>Implements an ODE Loss based on Ref. [1].</p>
+<p>It uses the pinned method for handling the boundary conditions: An extra term is
+added to the loss function to enforce the initial values of the ODE.
+This term is pinned by the <code class="docutils literal notranslate"><span class="pre">eta</span></code> parameter. The loss function is given by:</p>
+<div class="math notranslate nohighlight">
+\[L = \sum_{i=0}^{n} L_{\alpha_i}\left( \dot{f}, f, x  \right) +
+\eta \cdot (f(x_0) - f_0)^2, \text{with} f(x) = \sum \alpha_i k(x_i, x)\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ODE_functional</strong> (<em>sympy.Expr</em>) – Functional representation of the ODE (Homogeneous diferential
-equation). Must be a sympy expression and <code class="docutils literal notranslate"><span class="pre">symbols_involved_in_ODE</span></code> must be provided.</p></li>
-<li><p><strong>symbols_involved_in_ODE</strong> (<em>list</em>) – List of sympy symbols involved in the ODE functional.
+<li><p><strong>ode_functional</strong> (<em>sympy.Expr</em>) – Functional representation of the ODE (Homogeneous diferential
+equation). Must be a sympy expression and <code class="docutils literal notranslate"><span class="pre">symbols_involved_in_ode</span></code> must be provided.</p></li>
+<li><p><strong>symbols_involved_in_ode</strong> (<em>list</em>) – List of sympy symbols involved in the ODE functional.
 The list must be ordered as follows: <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">f,</span> <span class="pre">dfdx]</span></code> where each element is a sympy
 symbol corresponding to the independent variable (<code class="docutils literal notranslate"><span class="pre">x</span></code>), the dependent variable
 (<code class="docutils literal notranslate"><span class="pre">f</span></code>), and the first derivative of the dependent variable (<code class="docutils literal notranslate"><span class="pre">dxfx</span></code>), respectively.
@@ -146,23 +152,6 @@ There are no requirements for the symbols beyond the correct order, for example,
 <code class="docutils literal notranslate"><span class="pre">[t,</span> <span class="pre">y,</span> <span class="pre">dydt]</span></code>.</p></li>
 <li><p><strong>initial_values</strong> (<em>np.ndarray</em>) – Initial values of the ODE. The length of the array
 must match the order of the ODE.</p></li>
-<li><p><strong>boundary_handling</strong> (<em>str</em>) – <p>Method for handling the boundary conditions. Options are
-<code class="docutils literal notranslate"><span class="pre">'pinned'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'floating'</span></code>:</p>
-<blockquote>
-<div><ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">'pinned'</span></code>:  An extra term is added to the loss function to enforce the initial
-values of the ODE. This term is pinned by the <code class="docutils literal notranslate"><span class="pre">eta</span></code> parameter. The
-loss function is given by: <span class="math notranslate nohighlight">\(L = \sum_{i=0}^{n} L_{\theta_i}\left( \dot{f},
-f, x  \right) + \eta \cdot (f(x_0) - f_0)^2\)</span>,
-with <span class="math notranslate nohighlight">\(f(x) = QNN(x, \theta)\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'floating'</span></code>: (NOT IMPLEMENTED) An extra “floating” term is added to the trial
-QNN function to be optimized. The loss function is given by:
-<span class="math notranslate nohighlight">\(L = \sum_{i=0}^{n} L_{\theta_i}\left( \dot{f}, f, x  \right)\)</span>,
-with <span class="math notranslate nohighlight">\(f(x) = QNN(x, \theta) + f_b\)</span>, and
-<span class="math notranslate nohighlight">\(f_b =  QNN(x_0, \theta) - f_0\)</span>.</p></li>
-</ul>
-</div></blockquote>
-</p></li>
 <li><p><strong>eta</strong> (<em>float</em>) – Weight for the initial values of the ODE in the loss function for the “pinned”
 boundary handling method.</p></li>
 </ul>
@@ -171,15 +160,14 @@ boundary handling method.</p></li>
 <p><strong>Example</strong></p>
 <p>1. Implements a loss function for the ODE <span class="math notranslate nohighlight">\(\cos(t) y + \frac{dy(t)}{dt} = 0\)</span> with
 initial value <span class="math notranslate nohighlight">\(y(0) = 0.1\)</span>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydt</span><span class="p">,</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;t y dydt&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydt</span><span class="p">,</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;t y dydt&quot;</span><span class="p">)</span>
 <span class="n">eq</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">dydt</span>
 <span class="n">initial_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span>
 
-<span class="n">loss_ODE</span> <span class="o">=</span> <span class="n">ODELoss</span><span class="p">(</span>
+<span class="n">loss_ode</span> <span class="o">=</span> <span class="n">ODELoss</span><span class="p">(</span>
     <span class="n">eq</span><span class="p">,</span>
-    <span class="n">symbols_involved_in_ODE</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydt</span><span class="p">],</span>
+    <span class="n">symbols_involved_in_ode</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydt</span><span class="p">],</span>
     <span class="n">initial_values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">,</span>
-    <span class="n">boundary_handling</span><span class="o">=</span><span class="s2">&quot;pinned&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -187,15 +175,14 @@ initial value <span class="math notranslate nohighlight">\(y(0) = 0.1\)</span>.<
 <li><p>Implements a loss function for the ODE <span class="math notranslate nohighlight">\(\left(df(x)/dx\right) - cos(f(x)) = 0\)</span>
 with initial values <span class="math notranslate nohighlight">\(f(0) = 0.\)</span>.</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dfdx</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x f dfdx&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dfdx</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x f dfdx&quot;</span><span class="p">)</span>
 <span class="n">eq</span> <span class="o">=</span> <span class="n">dfdx</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="n">initial_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">loss_ODE</span> <span class="o">=</span> <span class="n">ODELoss</span><span class="p">(</span>
+<span class="n">loss_ode</span> <span class="o">=</span> <span class="n">ODELoss</span><span class="p">(</span>
     <span class="n">eq</span><span class="p">,</span>
-    <span class="n">symbols_involved_in_ODE</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">],</span>
+    <span class="n">symbols_involved_in_ode</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">],</span>
     <span class="n">initial_values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">,</span>
-    <span class="n">boundary_handling</span><span class="o">=</span><span class="s2">&quot;pinned&quot;</span><span class="p">,</span>
     <span class="n">eta</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>

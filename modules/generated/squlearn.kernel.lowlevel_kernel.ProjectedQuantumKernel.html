@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel &mdash; sQUlearn 0.9.1 documentation</title>
+  <title>squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel &mdash; sQUlearn 0.10.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=9dc39874"></script>
+        <script src="../../_static/documentation_options.js?v=82662543"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.1
+                0.10.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -65,8 +65,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-regressors">QML Regressors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../classes.html#qml-classifiers">QML Classifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#high-level-api">High Level API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../classes.html#core">Core</a><ul class="current">
@@ -76,6 +75,7 @@
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.KernelOptimizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.KernelOptimizer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.negative_log_likelihood</span></code>.NLL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.target_alignment</span></code>.TargetAlignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.ODELoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss</span></code>.ODELoss</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a></li>
@@ -376,36 +376,36 @@ or <code class="docutils literal notranslate"><span class="pre">2.5</span></code
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 2.85575784e-01 6.97753342e-01 4.01760816e-01
-  9.22992359e-01 7.58356722e-01 2.74485715e-01 1.42185156e-01
-  1.16884735e-03 2.08181130e-01]
- [2.85575784e-01 1.00000000e+00 6.32022978e-02 9.70207191e-01
-  4.85581573e-01 7.80444078e-02 9.99648130e-01 4.63682836e-03
-  4.32678165e-02 7.72108680e-03]
- [6.97753342e-01 6.32022978e-02 1.00000000e+00 1.02093959e-01
-  4.64568938e-01 9.94367998e-01 5.99104360e-02 5.00319867e-01
-  2.03464543e-04 6.31003720e-01]
- [4.01760816e-01 9.70207191e-01 1.02093959e-01 1.00000000e+00
-  6.28873359e-01 1.24327169e-01 9.63569362e-01 8.12569612e-03
-  2.55907867e-02 1.34699661e-02]
- [9.22992359e-01 4.85581573e-01 4.64568938e-01 6.28873359e-01
-  1.00000000e+00 5.24705482e-01 4.70740149e-01 6.65903023e-02
-  2.86870021e-03 1.02788407e-01]
- [7.58356722e-01 7.80444078e-02 9.94367998e-01 1.24327169e-01
-  5.24705482e-01 1.00000000e+00 7.40800318e-02 4.41263206e-01
-  2.48623940e-04 5.68238825e-01]
- [2.74485715e-01 9.99648130e-01 5.99104360e-02 9.63569362e-01
-  4.70740149e-01 7.40800318e-02 1.00000000e+00 4.36443961e-03
-  4.57278808e-02 7.26862480e-03]
- [1.42185156e-01 4.63682836e-03 5.00319867e-01 8.12569612e-03
-  6.65903023e-02 4.41263206e-01 4.36443961e-03 1.00000000e+00
-  3.46057966e-05 9.75328383e-01]
- [1.16884735e-03 4.32678165e-02 2.03464543e-04 2.55907867e-02
-  2.86870021e-03 2.48623940e-04 4.57278808e-02 3.46057966e-05
-  1.00000000e+00 4.48299743e-05]
- [2.08181130e-01 7.72108680e-03 6.31003720e-01 1.34699661e-02
-  1.02788407e-01 5.68238825e-01 7.26862480e-03 9.75328383e-01
-  4.48299743e-05 1.00000000e+00]]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 1.60783401e-05 1.40409598e-04 1.61177696e-05
+  5.45105668e-04 3.78086147e-05 4.79408810e-01 1.98386071e-05
+  5.41196338e-04 5.28655017e-05]
+ [1.60783401e-05 1.00000000e+00 7.59878812e-02 9.98975312e-01
+  1.72064344e-02 2.11102559e-01 2.92519602e-05 6.84628921e-01
+  1.73388477e-02 2.34787716e-01]
+ [1.40409598e-04 7.59878812e-02 1.00000000e+00 8.30166531e-02
+  7.82080353e-01 1.40426496e-03 1.69796507e-03 1.17071662e-02
+  7.83947532e-01 8.19600473e-01]
+ [1.61177696e-05 9.98975312e-01 8.30166531e-02 1.00000000e+00
+  1.90231206e-02 1.95994776e-01 3.05620526e-05 6.58031486e-01
+  1.91688155e-02 2.51982690e-01]
+ [5.45105668e-04 1.72064344e-02 7.82080353e-01 1.90231206e-02
+  1.00000000e+00 3.17784976e-04 8.39878664e-03 2.36167309e-03
+  9.99994045e-01 4.19892588e-01]
+ [3.78086147e-05 2.11102559e-01 1.40426496e-03 1.95994776e-01
+  3.17784976e-04 1.00000000e+00 1.75805334e-05 6.49372303e-01
+  3.19958185e-04 5.88198564e-03]
+ [4.79408810e-01 2.92519602e-05 1.69796507e-03 3.05620526e-05
+  8.39878664e-03 1.75805334e-05 1.00000000e+00 1.70233474e-05
+  8.33318467e-03 4.35101342e-04]
+ [1.98386071e-05 6.84628921e-01 1.17071662e-02 6.58031486e-01
+  2.36167309e-03 6.49372303e-01 1.70233474e-05 1.00000000e+00
+  2.38016796e-03 4.64722810e-02]
+ [5.41196338e-04 1.73388477e-02 7.83947532e-01 1.91688155e-02
+  9.99994045e-01 3.19958185e-04 8.33318467e-03 2.38016796e-03
+  1.00000000e+00 4.21720491e-01]
+ [5.28655017e-05 2.34787716e-01 8.19600473e-01 2.51982690e-01
+  4.19892588e-01 5.88198564e-03 4.35101342e-04 4.64722810e-02
+  4.21720491e-01 1.00000000e+00]]
 </pre></div>
 </div>
 </div>

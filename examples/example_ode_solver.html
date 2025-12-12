@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solving a First-order Ordinary Differential Equation (ODE) using QML methods &mdash; sQUlearn 0.10.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
+      <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a63e3025" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="https://squlearn.github.io/examples/example_ode_solver.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=82662543"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Error Mitigation for Quantum Neural Networks on IBM Quantum Devices" href="example_qnn_backend_mitigation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.10.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/classes.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples_index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example_kernel_digit_classification.html">Handwritten Digit Recognition with Projected Quantum Kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_kernel_grid_search.html">Hyperparameter Optimization and Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_quantum_bayesian_optimization.html">Bayesian Optimization using a Quantum Gaussian Process Surrogate Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_qnn_backend_mitigation.html">Error Mitigation for Quantum Neural Networks on IBM Quantum Devices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Solving a First-order Ordinary Differential Equation (ODE) using QML methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QNN-Ansatz">QNN Ansatz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#QK-Ansatz">QK Ansatz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#References">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="examples_index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Solving a First-order Ordinary Differential Equation (ODE) using QML methods</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/example_ode_solver.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Solving-a-First-order-Ordinary-Differential-Equation-(ODE)-using-QML-methods">
+<h1>Solving a First-order Ordinary Differential Equation (ODE) using QML methods<a class="headerlink" href="#Solving-a-First-order-Ordinary-Differential-Equation-(ODE)-using-QML-methods" title="Link to this heading"></a></h1>
+<p>In this notebook, we will solve a first order ODE using sQUlearn’s implementations of a Quantum Neural Networks (QNN) differential equation solver, as described in <a class="reference external" href="https://squlearn.github.io/modules/generated/squlearn.qnn.loss.ODELoss.html#squlearn.qnn.loss.ODELoss">squlearn.qnn.loss.ODELoss</a> and a Quantum Kernel (QK) differential equation solver as as described in <a class="reference external" href="https://squlearn.github.io/modules/generated/squlearn.kernel.QKODE.html">squlearn.kernel.QKODE</a></p>
+<p>Differential Equations are building blocks of many scientific fields. One numerical method to solve these problems consists on representing an ansatz in a suitable basis and solving for the optimal coefficients of the differential equation in this basis. Formally, we consider a differential equations given in its functional form, <span class="math">\begin{equation}\tag{1}
+F = F[\{d^{m}f_{n}/d x^{m}\}_{m,n},\{f_{n}(x)\}_{n},x]=0,
+\end{equation}</span> where <span class="math notranslate nohighlight">\(f\)</span> corresponds to the function solution of the differential equations. For example, the differential equation <span class="math notranslate nohighlight">\(\frac{df(x)}{dx}=\log(x)\)</span>, can be written as <span class="math notranslate nohighlight">\(F\left(\frac{df(x)}{dx}, f(x), f\right) = \frac{df(x)}{dx} - \log(x)\)</span>. The ansatz <span class="math notranslate nohighlight">\(f\)</span> can be represented in a parameterized differentiable form, <span class="math">\begin{equation}\tag{2}
+f=f_{{\theta}},
+\end{equation}</span> and the solution to the differential equation can be seen as an optimization problem, where a loss function, <span class="math">\begin{equation}\tag{3}
+\mathcal{L}_{{\theta}} = \mathcal{L}_{{\theta}}(\{d^{m}f_{n}/d x^{m}\}_{m,n},\{f_{n}(x)\}_{n},x),
+\end{equation}</span> is optimized to find the ideal parameters <span class="math notranslate nohighlight">\({\theta}_{\mathrm{opt}}\)</span>. <span class="math">\begin{equation}\tag{4}
+{\theta}_{\mathrm{opt}}=\arg_{{\theta}}\mathrm{min}(\mathcal{L}_{{\theta}}[d_{x}f,f,x]).
+\end{equation}</span> In sQUlearn two approaches are implemented to solve differential equations:</p>
+<section id="QNN-Ansatz">
+<h2>QNN Ansatz<a class="headerlink" href="#QNN-Ansatz" title="Link to this heading"></a></h2>
+<center><p><img alt="pipeline" class="no-scaled-link" src="../_images/QNN_ode_workflow.png" style="width: 1200px;" /></p>
+<p><em>Fig. 1: General Scheme for solving a differential Equation with a QNN as introduced by Ref. [1]</em></p>
+</center><p>For this case, the ansatz will be given by a parameterized quantum circuit, known as a Quantum Neural Network (QNN) and we will follow the structure introduced by Ref. [1]. Using an encoding circuit unitary <span class="math notranslate nohighlight">\(U_{\phi}(x)\)</span>, and a parameterized set of gates <span class="math notranslate nohighlight">\(U_{{\theta}}\)</span>, a trial state <span class="math notranslate nohighlight">\(\ket{f_{{\theta}, \phi}(x)} = U_{{\theta}} U_{\phi}(x) \ket{0}\)</span> is constructed. By measuring this state with regard to an arbitrary cost operator <span class="math notranslate nohighlight">\(\hat{C}\)</span>, a final trial function is given
+by, <span class="math">\begin{equation}\tag{5}
+f_{{\theta}, \phi}(x) = \langle \hat{C} \rangle = \bra{f_{{\theta}, \phi}(x)} \hat{C} \ket{f_{{\theta}, \phi}(x)}.
+\end{equation}</span> <span class="math notranslate nohighlight">\(\phi\)</span> is a nonlinear function that is used to preprocess the data before encoding it into the quantum state. The encoded state after the first unitary <span class="math notranslate nohighlight">\(U_{\phi}(x)\)</span> is then manipulated by the parameterized unitary <span class="math notranslate nohighlight">\(U_{\theta}\)</span>. Note that sQUlearn’s flexibility allows us to not only to stick to this quantum circuit design but to use any of the available circuits (or self-designed) in the library. The derivatives of our ansatz functions are calculated under the
+hood by sQUlearn and the total loss is obtained. The loss is progressively updated by sQUlearn’s available optimization algorithms.</p>
+<p>Without further ado, we proceed to numerically solve the differential equation.</p>
+<p><strong>Importing Libraries</strong></p>
+<p>In this initial cell, we are importing all the libraries required for the tutorial. We are using sQUlearn to set up the quantum learning problem and <code class="docutils literal notranslate"><span class="pre">sympy</span></code>, to explicitly write the differential equation that we would like to solve</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="kn">from</span> <span class="nn">squlearn</span> <span class="kn">import</span> <span class="n">Executor</span>
+<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">KyriienkoEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">squlearn.observables</span> <span class="kn">import</span> <span class="n">SummedPaulis</span>
+<span class="kn">from</span> <span class="nn">squlearn.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span><span class="p">,</span> <span class="n">LBFGSB</span>
+<span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">QNNRegressor</span>
+<span class="kn">from</span> <span class="nn">squlearn.qnn.util</span> <span class="kn">import</span> <span class="n">get_lr_decay</span>
+<span class="kn">from</span> <span class="nn">squlearn.qnn</span> <span class="kn">import</span> <span class="n">ODELoss</span> <span class="k">as</span> <span class="n">QNNODELoss</span>
+
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">QKODE</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel.loss</span> <span class="kn">import</span> <span class="n">ODELoss</span> <span class="k">as</span> <span class="n">KODELoss</span>
+<span class="kn">from</span> <span class="nn">squlearn.kernel</span> <span class="kn">import</span> <span class="n">ProjectedQuantumKernel</span>
+</pre></div>
+</div>
+</div>
+<p>Our choice of differential equation is the <a class="reference external" href="https://en.wikipedia.org/wiki/Bernoulli_differential_equation">Bernoulli differential equation</a>, whose general form is given by:</p>
+<p><span class="math">\begin{equation}\tag{6}
+\frac{dy}{dx} = Q(x)y^n - P(x)y
+\end{equation}</span></p>
+<p>This family of differential equations has important applications in many fields. Here, we solve a special case known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_function">logistic equation</a>. The logistic equation has an analytical solution and its applications include: population growth in ecology, the Fermi-Dirac distribution in physics, and many uses in machine learning.</p>
+<p>For the logistic differential equation, we take <span class="math notranslate nohighlight">\(Q(x) = P(x) = -6\)</span> and <span class="math notranslate nohighlight">\(n = 2\)</span> in Eq. <span class="math notranslate nohighlight">\((6)\)</span>:</p>
+<p><span class="math">\begin{equation}\tag{7}
+\frac{dy}{dx} = -6y^2 + 6y = 6y(1-y)
+\end{equation}</span></p>
+<p>First, we need to define the differential equation functional using <code class="docutils literal notranslate"><span class="pre">sympy</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydx</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x y dydx&quot;</span><span class="p">)</span>  <span class="c1"># Define the symbols</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="n">dydx</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Define the differential equation</span>
+
+<span class="c1"># Define the differential equation, in our notation y depends on the independent variable x</span>
+<span class="c1"># initial_values corresponds to y(x_0), i.e. the value of y for the first element in the x array</span>
+<span class="n">initial_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Given the differential equation functional, we need to define the squlearn corresponding loss function.</p>
+<ul class="simple">
+<li><p>To correctly construct the loss function, the sympy variable associated to the independent (<code class="docutils literal notranslate"><span class="pre">x</span></code>), dependent (<code class="docutils literal notranslate"><span class="pre">y</span></code>) and derivatives (<code class="docutils literal notranslate"><span class="pre">dydx</span></code>) must be informed in that order, in this case <code class="docutils literal notranslate"><span class="pre">symbols_involved_in_ODE=[x,</span> <span class="pre">y,</span> <span class="pre">dydx]</span></code>.</p></li>
+<li><p>We used the <code class="docutils literal notranslate"><span class="pre">boundary_handling=&quot;pinned&quot;</span></code> which adds a pinning term to the loss function. This is, <span class="math notranslate nohighlight">\(\mathcal{L}_{\theta} = \mathcal{L}_{\theta}(dy/dx, y, x) + \eta \left(y(x_0)- u_0 \right)^2\)</span>, where <span class="math notranslate nohighlight">\(u_0\)</span> corresponds to <code class="docutils literal notranslate"><span class="pre">initial_values</span></code> and <span class="math notranslate nohighlight">\(\eta\)</span> is a regularization pinning term. As default <span class="math notranslate nohighlight">\(x_0\)</span> corresponds to the first element of the domain array.</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss_ODE</span> <span class="o">=</span> <span class="n">QNNODELoss</span><span class="p">(</span>
+    <span class="n">ode_functional</span><span class="o">=</span><span class="n">eq</span><span class="p">,</span>
+    <span class="n">symbols_involved_in_ode</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydx</span><span class="p">],</span>
+    <span class="n">initial_values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">,</span>
+    <span class="n">eta</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now, we proceed to define our quantum solver model. First we define the quantum circuit used as an ansatz</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">KyriienkoEncodingCircuit</span><span class="p">(</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">num_qubits</span><span class="p">,</span>
+    <span class="n">encoding_style</span><span class="o">=</span><span class="s2">&quot;chebyshev_tower&quot;</span><span class="p">,</span>  <span class="c1"># other options are chebyshev_tower, chebyshev_sparse, chebyshev_product</span>
+    <span class="n">variational_arrangement</span><span class="o">=</span><span class="s2">&quot;ABA&quot;</span><span class="p">,</span>  <span class="c1"># other option can be HEA (Hardware Efficient Ansatz), with consecutive entangling layers</span>
+    <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">num_encoding_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">num_variational_layers</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span>
+    <span class="n">num_qubits</span><span class="p">,</span> <span class="n">op_str</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">),</span> <span class="n">include_identity</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>  <span class="c1"># Define the observable ZIII + IZII + IIZI + IIIZ + IIII</span>
+
+<span class="n">param_op_ini</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">generate_initial_parameters</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">param_ini</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">generate_initial_parameters</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_ode_solver_11_0.png" src="../_images/examples_example_ode_solver_11_0.png" />
+</div>
+</div>
+<p>Other parameterized circuits available in sQUlearn can be used interchangeably for this ODE solver interface.</p>
+<p>We proceed to define our solver by creating a <code class="docutils literal notranslate"><span class="pre">QNNRegressor</span></code> with the loss function given by <code class="docutils literal notranslate"><span class="pre">loss_ODE</span></code>. In this case, we are using the Adam optimizer with a decaying learning rate.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ode_regressor</span> <span class="o">=</span> <span class="n">QNNRegressor</span><span class="p">(</span>
+    <span class="n">circuit</span><span class="p">,</span>
+    <span class="n">observable</span><span class="p">,</span>
+    <span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;pennylane&quot;</span><span class="p">),</span>
+    <span class="n">loss_ODE</span><span class="p">,</span>
+    <span class="n">Adam</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span> <span class="s2">&quot;tol&quot;</span><span class="p">:</span> <span class="mf">0.00000009</span><span class="p">,</span> <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="n">get_lr_decay</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">250</span><span class="p">)}),</span>
+    <span class="n">param_ini</span><span class="p">,</span>
+    <span class="n">param_op_ini</span><span class="p">,</span>
+    <span class="n">opt_param_op</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># if True, the optimizer will also optimize the observable parameters</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>At last, we solve the model by training on a fixed domain (this takes a couple og hours) and compare it to the analytical answer</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_numerical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ref_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_numerical</span><span class="p">))</span>
+<span class="n">ode_regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_numerical</span><span class="p">,</span> <span class="n">ref_values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+fit: 100%|██████████| 250/250 [5:15:15&lt;00:00, 75.66s/it]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span> <span class="o">*</span> <span class="n">x_test</span><span class="p">))),</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact Solution&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">ode_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;QNN Solution&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$dydx - 6y(1-y) = 0$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x12a9c2a28d0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_ode_solver_16_1.png" src="../_images/examples_example_ode_solver_16_1.png" />
+</div>
+</div>
+</section>
+<section id="QK-Ansatz">
+<h2>QK Ansatz<a class="headerlink" href="#QK-Ansatz" title="Link to this heading"></a></h2>
+<center><p><img alt="pipeline" class="no-scaled-link" src="../_images/QK_ode_circ_workflow.png" style="width: 1200px;" /></p>
+<p><em>Fig. 1: General Scheme for solving a differential Equation with a QK as introduced by Ref. [2]</em></p>
+</center><p>Another way to solve ODEs is by using QKs which encode the information in the higher-dimensional Hilbert space defined by the inner products. To solve the ODE using (quantum or classical) kernels, the function ansatz of Eq. (2) is given by a linear combination of kernel inner products, <span class="math">\begin{equation}
+f_{\vec{\alpha}}(x) = \sum_{i=1}^N \alpha_i k(x, y_i),
+\end{equation}</span> where the coefficients <span class="math notranslate nohighlight">\(\vec{\alpha}\)</span> are found by empirically minimizing a loss function as proposed by Ref. [2]. Here we use the symbol <span class="math notranslate nohighlight">\(\alpha\)</span> to represent the parameters of the Ansatz, this is fundamentally different from Eq. (5) of the QNNs, as the parameters only affect the linear combination of the ansatz and not the angles within the quantum circuit. As consquence, one advantage of using kernels is that the loss function only depends on the classical
+parameters <span class="math notranslate nohighlight">\(\bm{\alpha}\)</span> and the choice of kernel. Therefore, once a kernel is chosen and evaluated at the numerical domain <span class="math notranslate nohighlight">\(y_i\)</span>, the optimization does not require using again the quantum computer. Furthermore, the minimization problem can be a convex optimization [2] if <span class="math notranslate nohighlight">\(\frac{\partial^{(2)}{\mathcal{L}}}{\partial \alpha_j} \geq 0 \, \forall \, \alpha_j\)</span>, thus a global minimum can exist.</p>
+<p>We will solve the same differential equation but need to define the kernel method to be used and the corresponding loss function. The loss function is given as,</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss_ODE</span> <span class="o">=</span> <span class="n">KODELoss</span><span class="p">(</span>
+    <span class="n">eq</span><span class="p">,</span>
+    <span class="n">symbols_involved_in_ode</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydx</span><span class="p">],</span>
+    <span class="n">initial_values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">,</span>
+    <span class="n">eta</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>And now we need to define the quantum circuit and kernel method. To showcase sQUlearns flexibility, we will use a modify version of the previous encoding circuit with projected quantum kernel (PQK) method</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">KyriienkoEncodingCircuit</span><span class="p">(</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">num_qubits</span><span class="p">,</span>
+    <span class="n">encoding_style</span><span class="o">=</span><span class="s2">&quot;chebyshev_product&quot;</span><span class="p">,</span>  <span class="c1"># other options are chebyshev_tower, chebyshev_sparse, chebyshev_product</span>
+    <span class="n">variational_arrangement</span><span class="o">=</span><span class="s2">&quot;HEA&quot;</span><span class="p">,</span>  <span class="c1"># other option can be HEA (Hardware Efficient Ansatz), with consecutive entangling layers</span>
+    <span class="n">num_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">num_encoding_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">num_variational_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SummedPaulis</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">op_str</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;XYZ&quot;</span><span class="p">),</span> <span class="n">include_identity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">pqk</span> <span class="o">=</span> <span class="n">ProjectedQuantumKernel</span><span class="p">(</span><span class="n">executor</span><span class="o">=</span><span class="n">Executor</span><span class="p">(</span><span class="s2">&quot;pennylane&quot;</span><span class="p">),</span> <span class="n">encoding_circuit</span><span class="o">=</span><span class="n">circuit</span><span class="p">)</span>
+<span class="n">loss_ODE_squ</span> <span class="o">=</span> <span class="n">KODELoss</span><span class="p">(</span>
+    <span class="n">eq</span><span class="p">,</span>
+    <span class="n">symbols_involved_in_ode</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydx</span><span class="p">],</span>
+    <span class="n">initial_values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">,</span>
+    <span class="n">eta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_ode_solver_22_0.png" src="../_images/examples_example_ode_solver_22_0.png" />
+</div>
+</div>
+<p>The solution domain and optimizer are selected and the model is trained</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_numerical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ref_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_numerical</span><span class="p">))</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">LBFGSB</span><span class="p">()</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">QKODE</span><span class="p">(</span><span class="n">pqk</span><span class="p">,</span> <span class="n">loss_ODE_squ</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_numerical</span><span class="p">,</span> <span class="n">ref_values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>QKODE(alpha=None,
+      quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000022253555CF0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;QKODE<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>QKODE(alpha=None,
+      quantum_kernel=&lt;squlearn.kernel.lowlevel_kernel.projected_quantum_kernel.ProjectedQuantumKernel object at 0x0000022253555CF0&gt;)</pre></div> </div></div></div></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span> <span class="o">*</span> <span class="n">x_test</span><span class="p">))),</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact Solution&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;PQK Solution&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$dydx - 6y(1-y) = 0$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+c:\Users\roberto\anaconda3\envs\squlearn_local\lib\site-packages\sklearn\base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0, 0.5, &#39;y&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_ode_solver_25_2.png" src="../_images/examples_example_ode_solver_25_2.png" />
+</div>
+</div>
+<section id="References">
+<h3>References<a class="headerlink" href="#References" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Kyriienko, O., Paine, A., Elfving, V., “Solving nonlinear differential equations with differentiable quantum circuits”, Physical Review A 103 (2021).</p></li>
+<li><p>Paine, A., Elfving, V., Kyriienko, O., “Quantum kernel methods for solving regression problems and differential equations”, Physical Review A 107 (2023).</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example_qnn_backend_mitigation.html" class="btn btn-neutral float-left" title="Error Mitigation for Quantum Neural Networks on IBM Quantum Devices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

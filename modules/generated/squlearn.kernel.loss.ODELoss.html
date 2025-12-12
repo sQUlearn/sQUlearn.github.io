@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squlearn.kernel.loss.ODELoss &mdash; sQUlearn 0.10.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css?v=572af1d6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a63e3025" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="canonical" href="https://squlearn.github.io/modules/generated/squlearn.kernel.loss.ODELoss.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=82662543"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="squlearn.qnn.lowlevel_qnn.LowLevelQNN" href="squlearn.qnn.lowlevel_qnn.LowLevelQNN.html" />
+    <link rel="prev" title="squlearn.kernel.loss.target_alignment.TargetAlignment" href="squlearn.kernel.loss.target_alignment.TargetAlignment.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.10.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/user_guide_index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../classes.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#high-level-api">High Level API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#circuit-design">Circuit Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes.html#execution-tools">Execution Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../classes.html#core">Core</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.kernel.lowlevel_kernel">Quantum Kernel Core</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.FidelityKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.FidelityKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.ProjectedQuantumKernel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.ProjectedQuantumKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.KernelOptimizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.lowlevel_kernel</span></code>.KernelOptimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.negative_log_likelihood.NLL.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.negative_log_likelihood</span></code>.NLL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="squlearn.kernel.loss.target_alignment.TargetAlignment.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss.target_alignment</span></code>.TargetAlignment</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss</span></code>.ODELoss</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#pennylane-interface">PennyLane interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#qulacs-interface">Qulacs interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sQUlearn</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../classes.html">API Reference</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss</span></code>.ODELoss</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/generated/squlearn.kernel.loss.ODELoss.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squlearn-kernel-loss-odeloss">
+<h1><a class="reference internal" href="../classes.html#module-squlearn.kernel.loss" title="squlearn.kernel.loss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.kernel.loss</span></code></a>.ODELoss<a class="headerlink" href="#squlearn-kernel-loss-odeloss" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="squlearn.kernel.loss.ODELoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.kernel.loss.</span></span><span class="sig-name descname"><span class="pre">ODELoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ode_functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sympy.org/latest/modules/core.html#sympy.core.expr.Expr" title="(in SymPy v1.14.0)"><span class="pre">Expr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbols_involved_in_ode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.sympy.org/latest/modules/core.html#sympy.core.basic.Basic" title="(in SymPy v1.14.0)"><span class="pre">Basic</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ode_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.kernel.loss.ODELoss" title="Link to this definition"></a></dt>
+<dd><p>ODE loss function for Quantum Kernels.</p>
+<p>This class implements the ODE loss function for Quantum Kernels. The ODE loss function is
+defined as the sum of the squared residuals of the ODE functional and the initial conditions.</p>
+<p>Implements an ODE Loss based on the mixed model regression algorithm of Ref. [1].</p>
+<p>It uses the pinned method for handling the boundary conditions: An extra term is
+added to the loss function to enforce the initial values of the ODE.
+This term is pinned by the <code class="docutils literal notranslate"><span class="pre">eta</span></code> parameter. The loss function is given by:</p>
+<div class="math notranslate nohighlight">
+\[L = \sum_{i=0}^{n} L_{\alpha_i}\left( \dot{f}, f, x  \right) +
+\eta \cdot (f(x_0) - f_0)^2, \text{with} f(x) = \sum \alpha_i k(x_i, x)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ode_functional</strong> (<a class="reference external" href="https://docs.sympy.org/latest/modules/core.html#sympy.core.expr.Expr" title="(in SymPy v1.14.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sympy.core.expr.Expr</span></code></a> or callable) – Functional representation of the ODE. If a <a class="reference external" href="https://docs.sympy.org/latest/modules/core.html#sympy.core.expr.Expr" title="(in SymPy v1.14.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sympy.core.expr.Expr</span></code></a> is passed,
+then <cite>symbols_involved_in_ode</cite> is required. If a callable is passed,
+<cite>symbols_involved_in_ode</cite> is optional (can be used for sanity checks) and
+<cite>ode_order</cite> must be provided if symbols are not given.</p></li>
+<li><p><strong>initial_values</strong> (<em>sequence</em><em> or </em><em>np.ndarray</em>) – Initial values for the ODE (length must equal ODE order).</p></li>
+<li><p><strong>symbols_involved_in_ode</strong> (sequence of <a class="reference external" href="https://docs.sympy.org/latest/modules/core.html#sympy.core.symbol.Symbol" title="(in SymPy v1.14.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sympy.core.symbol.Symbol</span></code></a>, optional) – Symbols in the order <cite>[x, f, f_d1, f_d2, …]</cite>. Required for
+<a class="reference external" href="https://docs.sympy.org/latest/modules/core.html#sympy.core.expr.Expr" title="(in SymPy v1.14.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sympy.core.expr.Expr</span></code></a>.</p></li>
+<li><p><strong>eta</strong> (<em>float</em><em>, </em><em>default=1.0</em>) – Weight for the pinned initial-value penalty.</p></li>
+<li><p><strong>ode_order</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of the ODE. If provided it is used to set/validate <cite>order_of_ode</cite>.
+When passing a <a class="reference external" href="https://docs.sympy.org/latest/modules/core.html#sympy.core.expr.Expr" title="(in SymPy v1.14.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sympy.core.expr.Expr</span></code></a> this must match
+<cite>len(symbols_involved_in_ode)-2</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example</strong></p>
+<p>1. Implements a loss function for the ODE <span class="math notranslate nohighlight">\(\cos(t) y + \frac{dy(t)}{dt} = 0\)</span> with
+initial value <span class="math notranslate nohighlight">\(y(0) = 0.1\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydt</span><span class="p">,</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;t y dydt&quot;</span><span class="p">)</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">dydt</span>
+<span class="n">initial_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">loss_ode</span> <span class="o">=</span> <span class="n">ODELoss</span><span class="p">(</span>
+    <span class="n">ode_functional</span><span class="o">=</span><span class="n">eq</span><span class="p">,</span>
+    <span class="n">initial_values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">,</span>
+    <span class="n">symbols_involved_in_ode</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dydt</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>2. Implements a loss function for the ODE <span class="math notranslate nohighlight">\(\left(df(x)/dx\right) - cos(f(x)) = 0\)</span>
+with initial values <span class="math notranslate nohighlight">\(f(0) = 0.\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dfdx</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x f dfdx&quot;</span><span class="p">)</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="n">dfdx</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">initial_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">loss_ode</span> <span class="o">=</span> <span class="n">ODELoss</span><span class="p">(</span>
+    <span class="n">ode_functional</span><span class="o">=</span><span class="n">eq</span><span class="p">,</span>
+    <span class="n">initial_values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">,</span>
+    <span class="n">symbols_involved_in_ode</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">],</span>
+    <span class="n">eta</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="squlearn.kernel.QKODE.html#squlearn.kernel.QKODE" title="squlearn.kernel.QKODE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">squlearn.kernel.QKODE</span></code></a></dt><dd><p>Quantum Kernel for ODE solving.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<p>[1]: A. Paine et al., “Quantum kernel methods for solving regression problems and
+differential equations”, Phys. Rev. A 107, 032428</p>
+<section id="methods">
+<h2>Methods:<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.loss.ODELoss.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#squlearn.kernel.loss.ODELoss.compute" title="Link to this definition"></a></dt>
+<dd><p>Calculates the squared loss of the loss function for the ODE as</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+    \mathcal{L}_{\vec{\alpha}} [ \ddot f,  \dot f, f,  x] &amp;= \sum_j^N
+    \left(F\left( \ddot f_{\vec{\alpha}},  \dot f_{\vec{\alpha}},
+    f_{\vec{\alpha}}, x\right)_j\right)^2  + \eta\left(f_{\vec{\alpha}}(0)
+    - u_0\right)^2 + \eta\left(\dot f_{\vec{\alpha}}(0) - \dot u_0\right)^2
+\end{align}\]</div>
+<p>with the ansatz <span class="math notranslate nohighlight">\(f_{\vec{\alpha}} = \alpha_0 + \sum_{i=1}^{n} \alpha_i k(x_i, x)\)</span>.
+Importantly, the optimized parameters act as the coefficients of the kernel matrix
+and do not directly correspond parameterized rotations in the quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter_values</strong> (<em>np.ndarray</em>) – The parameters <span class="math notranslate nohighlight">\(\vec{\alpha}\)</span> of the
+ansatz to be optimized.</p></li>
+<li><p><strong>data</strong> (<em>np.ndarray</em>) – The training data to be used for the kernel matrix.</p></li>
+<li><p><strong>kwargs</strong> – <p>Additional arguments for specific loss functions.</p>
+<ul>
+<li><dl class="simple">
+<dt>kernel_tensor (np.ndarray):</dt><dd><p>A tensor containing the kernel matrix and its derivatives. The shapes of each
+element in the array are (n_samples, n_samples).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The loss function value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.kernel.loss.ODELoss.set_quantum_kernel">
+<span class="sig-name descname"><span class="pre">set_quantum_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_kernel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase.html#squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase" title="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase"><span class="pre">KernelMatrixBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.kernel.loss.ODELoss.set_quantum_kernel" title="Link to this definition"></a></dt>
+<dd><p>Set the quantum kernel matrix to be used in the loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>quantum_kernel</strong> (<a class="reference internal" href="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase.html#squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase" title="squlearn.kernel.lowlevel_kernel.kernel_matrix_base.KernelMatrixBase"><em>KernelMatrixBase</em></a>) – The quantum kernel matrix to be used in the loss.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squlearn.kernel.loss.target_alignment.TargetAlignment.html" class="btn btn-neutral float-left" title="squlearn.kernel.loss.target_alignment.TargetAlignment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="squlearn.qnn.lowlevel_qnn.LowLevelQNN.html" class="btn btn-neutral float-right" title="squlearn.qnn.lowlevel_qnn.LowLevelQNN" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fraunhofer IPA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Observables for expectation values &mdash; sQUlearn 0.11.0 documentation</title>
+  <title>Observables for expectation values &mdash; sQUlearn 0.11.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=f3b36f1a"></script>
+        <script src="../_static/documentation_options.js?v=57cbeb03"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/thebelab-helper.js"></script>
@@ -50,7 +50,7 @@
               <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.11.0
+                0.11.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -154,9 +154,9 @@ predefined observables, but it is also possible to simply construct custom obser
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;II&#39;, &#39;IZ&#39;, &#39;ZI&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f12142610&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f12142670&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f121426d0&gt;])
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a6c10&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a6c70&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a6cd0&gt;])
 </pre></div>
 </div>
 </div>
@@ -187,14 +187,14 @@ This allows the creation of arbitrary observables.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Added observable:
  SparsePauliOp([&#39;IX&#39;, &#39;ZY&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f12143390&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f121433f0&gt;]) 
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a7930&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a7990&gt;]) 
 
 
 Squared observable:
  SparsePauliOp([&#39;II&#39;, &#39;ZZ&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f12143690&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f121436f0&gt;])
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a7c30&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a7c90&gt;])
 </pre></div>
 </div>
 </div>
@@ -216,8 +216,8 @@ together.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Custom observable with multiple operators:
  SparsePauliOp([&#39;ZIZZ&#39;, &#39;XIXI&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f12142f10&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f12143210&gt;])
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a74b0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d3a77b0&gt;])
 </pre></div>
 </div>
 </div>
@@ -255,18 +255,18 @@ The map can be for example obtained in the transpiled encoding circuit.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Observable before mapping:
  SparsePauliOp([&#39;III&#39;, &#39;IIZ&#39;, &#39;IZI&#39;, &#39;ZII&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daad30&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daa730&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daa5b0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daa610&gt;]) 
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48aaf0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48a4f0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48a370&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48a3d0&gt;]) 
 
 
 Observable after mapping:
  SparsePauliOp([&#39;IIIII&#39;, &#39;IIIIZ&#39;, &#39;IIIZI&#39;, &#39;ZIIII&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab510&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab570&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab5d0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab630&gt;])
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b2d0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b330&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b390&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b3f0&gt;])
 </pre></div>
 </div>
 </div>
@@ -292,13 +292,13 @@ The derivatives are calculated with respect to the parameters of the observable.
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Observable:
  SparsePauliOp([&#39;III&#39;, &#39;IIZ&#39;, &#39;IZI&#39;, &#39;ZII&#39;, &#39;IZZ&#39;, &#39;ZIZ&#39;, &#39;ZZI&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daaeb0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab2d0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daafd0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab390&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab1b0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daaf10&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11daaaf0&gt;]) 
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48ad90&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b150&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b0f0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48acd0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48ae50&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48a9d0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48afd0&gt;]) 
 
 
 Gradient of the observable:
@@ -339,15 +339,15 @@ of parameters <a class="reference internal" href="../modules/generated/squlearn.
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Cubed operator:
  SparsePauliOp([&#39;II&#39;, &#39;IZ&#39;, &#39;ZI&#39;, &#39;ZZ&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab5d0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab450&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc80f0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8090&gt;])
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b990&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48bb70&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b5d0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b930&gt;])
 Second-order derivative w.r.t. p[0]:
  [1.0*[1.0*SparsePauliOp([&#39;II&#39;, &#39;IZ&#39;, &#39;ZI&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab1b0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab210&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dab750&gt;])]]
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48bab0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48bb70&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d48b030&gt;])]]
 </pre></div>
 </div>
 </div>
@@ -366,13 +366,13 @@ calculation of the variance of the observable.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;III&#39;, &#39;IIZ&#39;, &#39;IZI&#39;, &#39;ZII&#39;, &#39;IZZ&#39;, &#39;ZIZ&#39;, &#39;ZZI&#39;],
-              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8cf0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8d50&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8db0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8e10&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8e70&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8ed0&gt;,
- &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f7f11dc8f30&gt;])
+              coeffs=[&lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d268ab0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d268b10&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d268b70&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d268bd0&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d268c30&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d268c90&gt;,
+ &lt;qiskit._accelerate.circuit.ParameterExpression object at 0x7f0b5d268cf0&gt;])
 </pre></div>
 </div>
 </div>

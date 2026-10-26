@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.encoding_circuit.LayeredEncodingCircuit &mdash; sQUlearn 0.11.2 documentation</title>
+  <title>squlearn.encoding_circuit.LayeredEncodingCircuit &mdash; sQUlearn 0.12.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=60336169"></script>
+        <script src="../../_static/documentation_options.js?v=61ccb1f1"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.11.2
+                0.12.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -144,14 +144,17 @@ in a nearest-neighbor <code class="docutils literal notranslate"><span class="pr
 </div>
 <p><strong>Create a layered encoding circuit with non-linear input encoding</strong></p>
 <p>It is also possible to define a non-linear function for encoding variables in gates by
-supplying a function for the encoding as the second argument</p>
+supplying a function for the encoding as the second argument. Since the circuit is built
+with symbolic parameters, custom functions must use symbolic-aware functions
+(e.g. from <code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.util.symbolic_math</span></code> or <code class="docutils literal notranslate"><span class="pre">sympy</span></code>) instead of <code class="docutils literal notranslate"><span class="pre">np.*</span></code> calls.
+Passing a NumPy function directly, e.g. <code class="docutils literal notranslate"><span class="pre">encoding=np.arccos</span></code>, is still supported.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">squlearn.encoding_circuit</span> <span class="kn">import</span> <span class="n">LayeredEncodingCircuit</span>
+<span class="kn">from</span> <span class="nn">squlearn.util.symbolic_math</span> <span class="kn">import</span> <span class="n">arccos</span>
 
 <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">arccos</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 
 <span class="n">encoding_circuit</span> <span class="o">=</span> <span class="n">LayeredEncodingCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">encoding_circuit</span><span class="o">.</span><span class="n">H</span><span class="p">()</span>
@@ -698,23 +701,23 @@ either <code class="docutils literal notranslate"><span class="pre">&quot;NN&quo
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squlearn.encoding_circuit.LayeredEncodingCircuit.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.circuit.ParameterVector" title="(in Qiskit v2.4)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.circuit.ParameterVector" title="(in Qiskit v2.4)"><span class="pre">ParameterVector</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.circuit.QuantumCircuit" title="(in Qiskit v2.4)"><span class="pre">QuantumCircuit</span></a></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.get_circuit" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Parameters</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Parameters</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QuantumCircuit</span></span></span><a class="headerlink" href="#squlearn.encoding_circuit.LayeredEncodingCircuit.get_circuit" title="Link to this definition"></a></dt>
 <dd><p>Returns the circuit of the Layered Encoding Circuit</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>Union</strong><strong>[</strong><strong>ParameterVector</strong> (<em>param_vec</em>) – Input vector of the features
+<li><p><strong>Union</strong><strong>[</strong><strong>Parameters</strong> (<em>param_vec</em>) – Input vector of the features
 from which the gate inputs are obtained</p></li>
 <li><p><strong>np.ndarray</strong><strong>]</strong> – Input vector of the features
 from which the gate inputs are obtained</p></li>
-<li><p><strong>Union</strong><strong>[</strong><strong>ParameterVector</strong> – Input vector of the parameters
+<li><p><strong>Union</strong><strong>[</strong><strong>Parameters</strong> – Input vector of the parameters
 from which the gate inputs are obtained</p></li>
 <li><p><strong>np.ndarray</strong><strong>]</strong> – Input vector of the parameters
 from which the gate inputs are obtained</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Returns the circuit in qiskit QuantumCircuit format</p>
+<dd class="field-even"><p>Returns the circuit in qc_executor QuantumCircuit format</p>
 </dd>
 </dl>
 </dd></dl>

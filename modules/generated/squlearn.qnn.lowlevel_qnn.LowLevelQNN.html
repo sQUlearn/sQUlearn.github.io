@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squlearn.qnn.lowlevel_qnn.LowLevelQNN &mdash; sQUlearn 0.11.2 documentation</title>
+  <title>squlearn.qnn.lowlevel_qnn.LowLevelQNN &mdash; sQUlearn 0.12.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
@@ -21,7 +21,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=60336169"></script>
+        <script src="../../_static/documentation_options.js?v=61ccb1f1"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/thebelab-helper.js"></script>
@@ -31,7 +31,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.html" />
+    <link rel="next" title="squlearn.qnn.loss.SquaredLoss" href="squlearn.qnn.loss.SquaredLoss.html" />
     <link rel="prev" title="squlearn.kernel.loss.ODELoss" href="squlearn.kernel.loss.ODELoss.html" /> 
 </head>
 
@@ -48,7 +48,7 @@
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.11.2
+                0.12.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -70,10 +70,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.kernel.lowlevel_kernel">Quantum Kernel Core</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../classes.html#module-squlearn.qnn">QNN Core</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn</span></code>.LowLevelQNN</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane</span></code>.LowLevelQNNPennyLane</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit.LowLevelQNNQiskit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qiskit</span></code>.LowLevelQNNQiskit</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qulacs.LowLevelQNNQulacs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_qulacs</span></code>.LowLevelQNNQulacs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base.LowLevelQNNBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn.lowlevel_qnn_base</span></code>.LowLevelQNNBase</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.SquaredLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.SquaredLoss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.MeanSquaredError.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.MeanSquaredError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="squlearn.qnn.loss.CrossEntropyLoss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.loss</span></code>.CrossEntropyLoss</a></li>
@@ -88,9 +84,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#module-squlearn.optimizers">Implemented optimizers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../classes.html#optree-data-structure">OpTree Data Structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../classes.html#pennylane-interface">PennyLane interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../classes.html#qulacs-interface">Qulacs interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../classes.html#base-classes">Base Classes</a></li>
 </ul>
 </li>
@@ -128,25 +121,115 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">squlearn.qnn.lowlevel_qnn</span></code>.LowLevelQNN<a class="headerlink" href="#squlearn-qnn-lowlevel-qnn-lowlevelqnn" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.lowlevel_qnn.</span></span><span class="sig-name descname"><span class="pre">LowLevelQNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterized_quantum_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_processing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN" title="Link to this definition"></a></dt>
-<dd><p>Low-level QNN factory, which creates the specific low-level QNN based on the quantum framework.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squlearn.qnn.lowlevel_qnn.</span></span><span class="sig-name descname"><span class="pre">LowLevelQNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterized_quantum_circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><span class="pre">EncodingCircuitBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">observable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><span class="pre">ObservableBase</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.util.executor.Executor"><span class="pre">Executor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_processing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN" title="Link to this definition"></a></dt>
+<dd><p>Low-level, framework-agnostic evaluation engine for a parameterized quantum circuit
+together with one or more observables.</p>
+<p>Evaluates the expectation value (<code class="docutils literal notranslate"><span class="pre">f</span></code>) and its derivatives with respect to the circuit’s
+input features (<code class="docutils literal notranslate"><span class="pre">x</span></code>), its trainable parameters (<code class="docutils literal notranslate"><span class="pre">p</span></code>), and the observable’s trainable
+parameters (<code class="docutils literal notranslate"><span class="pre">p_op</span></code>), as well as the corresponding values of the squared observable
+(<code class="docutils literal notranslate"><span class="pre">fcc</span></code>/<code class="docutils literal notranslate"><span class="pre">dfccdx</span></code>/<code class="docutils literal notranslate"><span class="pre">dfccdp</span></code>/<code class="docutils literal notranslate"><span class="pre">dfccdop</span></code>) and the variance family derived from those
+(<code class="docutils literal notranslate"><span class="pre">var</span></code>/<code class="docutils literal notranslate"><span class="pre">dvardx</span></code>/<code class="docutils literal notranslate"><span class="pre">dvardp</span></code>/<code class="docutils literal notranslate"><span class="pre">dvardop</span></code>). For Qiskit and PennyLane, arbitrary chained
+higher-order derivatives (e.g. <code class="docutils literal notranslate"><span class="pre">dfdxdx</span></code>, <code class="docutils literal notranslate"><span class="pre">laplace</span></code>) are supported as well; for Qiskit,
+derivatives can additionally be requested directly by parameter identity (e.g.
+<code class="docutils literal notranslate"><span class="pre">llqnn.parameters[0]</span></code>). Qulacs supports the base key set without chained derivatives.
+Any unsupported key combination raises <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pqc</strong> (<a class="reference internal" href="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase.html#squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase" title="squlearn.encoding_circuit.encoding_circuit_base.EncodingCircuitBase"><em>EncodingCircuitBase</em></a>) – The parameterized quantum circuit.</p></li>
 <li><p><strong>observable</strong> (<em>Union</em><em>[</em><a class="reference internal" href="squlearn.observables.observable_base.ObservableBase.html#squlearn.observables.observable_base.ObservableBase" title="squlearn.observables.observable_base.ObservableBase"><em>ObservableBase</em></a><em>, </em><em>list</em><em>]</em>) – The observable(s) to measure.</p></li>
 <li><p><strong>executor</strong> (<a class="reference internal" href="squlearn.Executor.html#squlearn.Executor" title="squlearn.Executor"><em>Executor</em></a>) – The executor for the quantum circuit.</p></li>
-<li><p><strong>post_processing</strong> (<em>Callable</em>) – Optional post processing function operating on the result dict
-after evaluate.</p></li>
-<li><p><strong>*args</strong> – Additional arguments that are passed to the specific QNN.</p></li>
-<li><p><strong>**kwargs</strong> – Additional keyword arguments that are passed to the specific QNN.</p></li>
+<li><p><strong>num_features</strong> (<em>int</em>) – Dimension of the input features.</p></li>
+<li><p><strong>post_processing</strong> (<em>Callable</em>) – Optional post processing function operating on the result
+dict after evaluate.</p></li>
+<li><p><strong>caching</strong> (<em>bool</em>) – Caching of the result for each <cite>x</cite>, <cite>param</cite>, <cite>param_op</cite> combination
+(default = True)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Parameter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Parameters</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN.evaluate" title="Link to this definition"></a></dt>
+<dd><p>General function for evaluating the output of derivatives of the QNN.</p>
+<p>Evaluation works for given combination of
+input features <cite>x</cite> and parameters <cite>param</cite> and <cite>param_op</cite>.
+The function includes caching of results</p>
+<p>If <cite>x</cite>, <cite>param</cite>, and/or <cite>param_op</cite> are given as a nested list
+(for example multiple sets of parameters),
+the values are returned in a nested list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Values of the input feature data.</p></li>
+<li><p><strong>param</strong> (<em>np.ndarray</em>) – Parameter values of the PQC parameters</p></li>
+<li><p><strong>param_op</strong> (<em>np.ndarray</em>) – Parameter values of the operator parameters</p></li>
+<li><p><strong>values</strong> – Derivatives (or values) of the QNN that are evaluated. Higher order
+derivatives are given as tuples of parameters or vectors.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="simple">
-<dt>Returns</dt><dd><p>LowLevelQNNBase: The specific low-level QNN based on the quantum framework.</p>
+<dt>Results:</dt><dd><p>Returns a dictionary with the computed values.
+The keys of the dictionary are given by the entries in the values tuple</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN.get_params" title="Link to this definition"></a></dt>
+<dd><p>Returns the dictionary of the hyper-parameters of the QNN.</p>
+<p>In case of multiple outputs, the hyper-parameters of the operator are prefixed
+with <code class="docutils literal notranslate"><span class="pre">op0__</span></code>, <code class="docutils literal notranslate"><span class="pre">op1__</span></code>, etc.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN.get_shots">
+<span class="sig-name descname"><span class="pre">get_shots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN.get_shots" title="Link to this definition"></a></dt>
+<dd><p>Getter for the number of shots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN.gradient">
+<span class="sig-name descname"><span class="pre">gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN.gradient" title="Link to this definition"></a></dt>
+<dd><p>Return the gradient wrt. trainable parameters of the QNN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>np.ndarray</em><em>]</em>) – Input data.</p></li>
+<li><p><strong>param</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>np.ndarray</em><em>]</em>) – Parameters of the PQC.</p></li>
+<li><p><strong>param_obs</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>np.ndarray</em><em>]</em>) – Parameters of the observable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Gradient of the QNN.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN.reset_shots">
+<span class="sig-name descname"><span class="pre">reset_shots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN.reset_shots" title="Link to this definition"></a></dt>
+<dd><p>Resets the number of shots to the initial ones.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN.set_params" title="Link to this definition"></a></dt>
+<dd><p>Sets the hyper-parameters of the QNN.</p>
+<p>In case of multiple outputs, the hyper-parameters of the operator are prefixed
+with <code class="docutils literal notranslate"><span class="pre">op0__</span></code>, <code class="docutils literal notranslate"><span class="pre">op1__</span></code>, etc.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squlearn.qnn.lowlevel_qnn.LowLevelQNN.set_shots">
+<span class="sig-name descname"><span class="pre">set_shots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#squlearn.qnn.lowlevel_qnn.LowLevelQNN.set_shots" title="Link to this definition"></a></dt>
+<dd><p>Sets the number of shots for the next evaluations.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -156,7 +239,7 @@ after evaluate.</p></li>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="squlearn.kernel.loss.ODELoss.html" class="btn btn-neutral float-left" title="squlearn.kernel.loss.ODELoss" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane.html" class="btn btn-neutral float-right" title="squlearn.qnn.lowlevel_qnn.lowlevel_qnn_pennylane.LowLevelQNNPennyLane" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="squlearn.qnn.loss.SquaredLoss.html" class="btn btn-neutral float-right" title="squlearn.qnn.loss.SquaredLoss" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
